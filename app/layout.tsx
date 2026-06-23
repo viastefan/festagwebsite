@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./landing.css";
 import { SiteNav } from "./_components/SiteNav";
 import { SiteFooter } from "./_components/SiteFooter";
 
@@ -19,28 +20,24 @@ const aeonik = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),
   title: {
-    default: "Festag — AI Control Layer for Modern Project Work",
-    template: "%s · Festag",
+    default: "Festag — Softwareentwicklung, strukturiert gemacht",
+    template: "%s, Festag",
   },
   description:
-    "Festag turns scattered project work into clear decisions, proof, reports and client-ready execution. The AI control layer for agencies, software teams, marketing teams and companies.",
+    "Festag ist ein KI-natives Produktionssystem, das Softwareentwicklung in einen transparenten, planbaren und jederzeit sichtbaren Prozess verwandelt.",
   applicationName: "Festag",
   keywords: [
     "Festag",
-    "Project Intelligence",
-    "AI Control Layer",
-    "Decision Inbox",
-    "ProofGrid",
-    "Tagro",
-    "Client Reports",
-    "Marketing Projects",
-    "Agency Software",
-    "DACH",
+    "KI-native Softwareproduktion",
+    "Softwareentwicklung System",
+    "Projektsichtbarkeit",
+    "strukturierte Delivery",
+    "Produktionssystem",
   ],
   openGraph: {
-    title: "Festag — AI Control Layer for Modern Project Work",
+    title: "Festag — Softwareentwicklung, strukturiert gemacht",
     description:
-      "Turn project chaos into clarity, proof and decisions. Festag is the calm operating layer for teams, clients and leaders.",
+      "Ein System, das Softwareentwicklung transparent, planbar und nachvollziehbar macht.",
     url: "https://festag.app",
     siteName: "Festag",
     locale: "de_DE",
@@ -48,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Festag — AI Control Layer for Modern Project Work",
+    title: "Festag — Softwareentwicklung, strukturiert gemacht",
     description:
-      "Turn project chaos into clarity, proof and decisions. The calm operating layer for project delivery.",
+      "Ein System, das Softwareentwicklung transparent, planbar und nachvollziehbar macht.",
   },
   icons: {
     icon: [
@@ -61,10 +58,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: dark)", color: "#080808" },
-  ],
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -75,9 +69,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" className={`${aeonik.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-fest-white text-fest-text font-sans">
+      <body className="min-h-full flex flex-col bg-white text-[#1e1e1e] antialiased">
         <SiteNav />
-        <main className="flex-1">{children}</main>
+        <main className="lp-main flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>
