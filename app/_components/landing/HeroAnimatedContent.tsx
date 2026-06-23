@@ -15,14 +15,27 @@ export function HeroAnimatedContent() {
   return (
     <div className={`lp-hero-shell${ready ? " is-ready" : ""}`}>
       <div className="lp-hero-inner">
+        <Link href="/now" className="lp-hero-kicker lp-rise lp-rise-1">
+          <span className="lp-hero-kicker-badge">Neu</span>
+          Wir entwickeln selber
+          <span aria-hidden>→</span>
+        </Link>
+
         <h1 id="lp-hero-title" className="lp-hero-title lp-rise lp-rise-1">
-          <span className="lp-hero-title-muted">
-            Festag verwandelt komplexe Projektarbeit{" "}
+          <span className="lp-hero-title--desktop">
+            <span className="lp-hero-title-muted">
+              Festag verwandelt komplexe Projektarbeit{" "}
+            </span>
+            <span className="lp-hero-title-strong">
+              in verständliche Fortschritte, Entscheidungen und Ergebnisse.
+            </span>{" "}
+            <span className="lp-hero-title-muted">Angetrieben von KI.</span>
           </span>
-          <span className="lp-hero-title-strong">
-            in verständliche Fortschritte, Entscheidungen und Ergebnisse.
-          </span>{" "}
-          <span className="lp-hero-title-muted">Angetrieben von KI.</span>
+          <span className="lp-hero-title--mobile">
+            <span className="lp-hero-title-line">Projekte verständlich machen.</span>
+            <span className="lp-hero-title-line">Mit Tagro strukturieren.</span>
+            <span className="lp-hero-title-line">Client-ready liefern.</span>
+          </span>
         </h1>
 
         <div className="lp-hero-toolbar lp-rise lp-rise-2">
@@ -47,12 +60,13 @@ export function HeroAnimatedContent() {
                 width={16}
                 height={16}
                 aria-hidden
+                className="lp-hero-btn-icon"
               />
               Mit Google verbinden
             </a>
           </div>
 
-          <Link href="/now" className="lp-hero-note">
+          <Link href="/now" className="lp-hero-note lp-hero-note--desktop">
             <span className="lp-hero-note-badge">Neu</span>
             Wir entwickeln selber
             <span aria-hidden>→</span>
