@@ -202,13 +202,21 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: #565c6a;
+  color: rgba(252, 252, 252, 1);
   white-space: nowrap;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .lp-nav-link:hover {
+  color: rgba(252, 252, 252, 0.88);
+}
+
+.lp-nav.is-scrolled .lp-nav-link {
+  color: #565c6a;
+}
+
+.lp-nav.is-scrolled .lp-nav-link:hover {
   color: #1e1e1e;
 }
 
@@ -410,12 +418,13 @@
   --lp-hero-fade: linear-gradient(
     to bottom,
     #161713 0%,
-    #2a2b25 18%,
-    #3b3b31 42%,
-    #5c5c54 58%,
-    #9a9a94 74%,
-    #d6d6d4 88%,
-    #ffffff 100%
+    #2a2b25 12%,
+    #3b3b31 26%,
+    #5c5c54 38%,
+    #8a8a84 48%,
+    #c4c4c0 54%,
+    #ececea 58%,
+    #ffffff 62%
   );
   --lp-hero-dots-mask: linear-gradient(
     180deg,
@@ -2102,15 +2111,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  align-self: stretch;
+  width: auto;
   margin-top: clamp(48px, 6vw, 72px);
-  padding-inline: clamp(20px, 4vw, 40px);
-  padding-bottom: clamp(24px, 4vw, 40px);
+  margin-inline: -40px;
+  padding-inline: 40px;
+  padding-block: clamp(32px, 4vw, 48px);
+  background: #fff;
 }
 
 .lp-stories-header-copy {
   width: 100%;
-  max-width: min(980px, 100%);
+  max-width: min(720px, 92vw);
   margin-inline: auto;
   text-align: center;
 }
@@ -2118,27 +2130,14 @@
 .lp-stories-header-copy p {
   margin: 0;
   font-family: "Aeonik", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: clamp(28px, 3.35vw, 40px);
+  font-size: 28px;
   font-weight: 400;
   font-synthesis: none;
-  line-height: 1.1;
-  letter-spacing: -0.028em;
-  text-wrap: pretty;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
   -webkit-font-smoothing: antialiased;
-  background-image: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.94) 12%,
-    rgba(228, 229, 224, 0.88) 32%,
-    rgba(176, 178, 166, 0.9) 55%,
-    rgba(108, 110, 98, 0.94) 78%,
-    #3b3b31 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: #86868b;
 }
 
 .lp-apple-copy-wrap {
@@ -4065,6 +4064,11 @@
 
   .lp-hero-stage {
     margin-top: 48px;
+    padding-inline: 16px;
+  }
+
+  .lp-hero-trust {
+    margin-inline: -16px;
     padding-inline: 16px;
   }
 
