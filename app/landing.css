@@ -38,6 +38,7 @@
   --lp-max: 1143px;
   --lp-gutter: clamp(20px, 4vw, 48px);
   --lp-nav-h: 56px;
+  --lp-locale-banner-h: 70px;
 }
 
 .sr-only {
@@ -4057,6 +4058,10 @@
     padding-top: calc(var(--lp-nav-h) + 48px);
   }
 
+  body.lp-locale-open .lp-hero-body {
+    padding-top: calc(var(--lp-locale-banner-h) + var(--lp-nav-h) + 48px);
+  }
+
   .lp-hero-toolbar {
     flex-direction: column;
     align-items: stretch;
@@ -4097,63 +4102,68 @@
   }
 }
 
-/* Locale gate — Apple country/region interstitial ---------------------- */
-.lp-locale-gate {
+/* Locale switcher — Apple top banner (#ac-localeswitcher) ---------------- */
+.lp-locale-switcher {
   position: fixed;
-  inset: 0;
-  z-index: 200;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  min-height: var(--lp-locale-banner-h);
+  padding: 12px clamp(20px, 4vw, 48px);
   box-sizing: border-box;
+  background: #f5f5f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.lp-locale-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+body.lp-locale-open .lp-nav {
+  top: var(--lp-locale-banner-h);
 }
 
-.lp-locale-sheet {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 720px);
+body.lp-locale-open .lp-hero-body {
+  padding-top: calc(var(--lp-locale-banner-h) + var(--lp-nav-h) + 72px);
 }
 
-.lp-locale-content {
+.lp-locale-switcher-inner {
   display: flex;
-  flex-direction: column;
-  gap: 28px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+  width: 100%;
+  max-width: min(980px, 100%);
 }
 
 .lp-locale-prompt {
   margin: 0;
-  max-width: 42em;
+  flex: 1 1 280px;
+  max-width: 52em;
   font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(21px, 2.4vw, 28px);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.24;
-  letter-spacing: -0.022em;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: #1d1d1f;
   text-wrap: pretty;
 }
 
-.lp-locale-row {
-  display: flex;
+.lp-locale-controls {
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px 24px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .lp-locale-picker {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  min-height: 32px;
+  gap: 4px;
+  min-height: 28px;
   cursor: pointer;
 }
 
@@ -4170,7 +4180,7 @@
 
 .lp-locale-select-display {
   font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: #1d1d1f;
@@ -4189,16 +4199,18 @@
   border: none;
   background: none;
   font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--lp-primary, #5b647d);
   cursor: pointer;
+  white-space: nowrap;
   transition: color 0.15s ease, opacity 0.15s ease;
 }
 
 .lp-locale-continue:hover:not(:disabled) {
   color: var(--lp-primary-hover, #68728e);
+  text-decoration: underline;
 }
 
 .lp-locale-continue:disabled {
@@ -4215,14 +4227,20 @@
 }
 
 @media (max-width: 640px) {
-  .lp-locale-gate {
+  .lp-locale-switcher {
     align-items: flex-start;
-    padding-top: max(48px, 12vh);
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
-  .lp-locale-row {
+  .lp-locale-switcher-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 12px;
+  }
+
+  .lp-locale-controls {
+    width: 100%;
+    justify-content: flex-start;
   }
 }

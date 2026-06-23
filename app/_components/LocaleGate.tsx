@@ -37,6 +37,11 @@ export function LocaleGate() {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("lp-locale-open", open);
+    return () => document.body.classList.remove("lp-locale-open");
+  }, [open]);
+
   const region = useMemo(() => getRegionOrDefault(regionId), [regionId]);
   const copy = region.gate;
 
@@ -62,62 +67,61 @@ export function LocaleGate() {
   if (!mounted || !open) return null;
 
   return (
-    <div className="lp-locale-gate" role="dialog" aria-modal="true" aria-labelledby="lp-locale-title">
-      <div className="lp-locale-backdrop" aria-hidden />
-      <div className="lp-locale-sheet">
-        <div className="lp-locale-content">
-          <p id="lp-locale-title" className="lp-locale-prompt">
-            {copy.prompt}
-          </p>
-
-          <div className="lp-locale-row">
-            <label className="lp-locale-picker">
-              <span className="sr-only">{copy.selectLabel}</span>
-              <select
-                className="lp-locale-select"
-                value={regionId}
-                disabled={busy}
-                onChange={(e) => setRegionId(e.target.value as FestagRegionId)}
-              >
-                {FESTAG_REGIONS.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-              <span className="lp-locale-select-display" aria-hidden>
-                {region.label}
-              </span>
-              <svg
-                className="lp-locale-select-caret"
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                aria-hidden
-              >
-                <path
-                  d="M3.5 5.25 7 8.75l3.5-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </label>
-
-            <button
-              type="button"
-              className="lp-locale-continue"
+    <aside
+      id="ac-localeswitcher"
+      className="lp-locale-switcher"
+      lang={region.locale.replace("_", "-")}
+      dir="ltr"
+      aria-label={copy.selectLabel}
+    >
+      <div className="lp-locale-switcher-inner">
+        <p className="lp-locale-prompt">{copy.prompt}</p>
+        <div className="lp-locale-controls">
+          <label className="lp-locale-picker">
+            <span className="sr-only">{copy.selectLabel}</span>
+            <select
+              className="lp-locale-select"
+              value={regionId}
               disabled={busy}
-              onClick={onContinue}
+              onChange={(e) => setRegionId(e.target.value as FestagRegionId)}
             >
-              {copy.continue}
-            </button>
-          </div>
+              {FESTAG_REGIONS.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+            <span className="lp-locale-select-display" aria-hidden>
+              {region.label}
+            </span>
+            <svg
+              className="lp-locale-select-caret"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              aria-hidden
+            >
+              <path
+                d="M3 4.5 6 7.5 9 4.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </label>
+          <button
+            type="button"
+            className="lp-locale-continue"
+            disabled={busy}
+            onClick={onContinue}
+          >
+            {copy.continue}
+          </button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 
