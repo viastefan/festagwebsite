@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LocaleFooterLink } from "./LocaleFooterLink";
 
 const LINKS = [
   { href: "/product", label: "Produkt" },
@@ -14,6 +15,7 @@ export function SiteFooter() {
         <div className="lp-footer-row">
           <p className="lp-footer-brand">Festag</p>
           <nav className="lp-footer-nav" aria-label="Footer">
+            <LocaleFooterLink />
             {LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="lp-footer-link">
                 {link.label}

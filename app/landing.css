@@ -153,6 +153,10 @@
   color: #1e1e1e;
 }
 
+.lp-nav:not(.is-scrolled) .lp-nav-brand-mark {
+  color: #fff;
+}
+
 .lp-nav-right {
   display: flex;
   align-items: center;
@@ -403,7 +407,7 @@
   color: var(--lp-text);
 }
 
-/* Hero — Apple dunkelgrün (section-variant) → white fade ---------------- */
+/* Hero — Festag primary (#5b647d) → white fade ------------------------- */
 .lp-hero {
   position: relative;
   isolation: isolate;
@@ -417,24 +421,24 @@
   --my: 35%;
   --lp-hero-fade: linear-gradient(
     to bottom,
-    #161713 0%,
-    #2a2b25 12%,
-    #3b3b31 26%,
-    #5c5c54 38%,
-    #8a8a84 48%,
-    #c4c4c0 54%,
-    #ececea 58%,
-    #ffffff 62%
+    #5b647d 0%,
+    #65708a 14%,
+    #7a8499 26%,
+    #949aab 38%,
+    #b4b8c2 48%,
+    #d4d7dd 56%,
+    #eceef1 64%,
+    #ffffff 74%
   );
   --lp-hero-dots-mask: linear-gradient(
     180deg,
     #000 0%,
-    #000 26%,
-    rgba(0, 0, 0, 0.55) 40%,
-    rgba(0, 0, 0, 0.15) 52%,
-    transparent 62%
+    #000 30%,
+    rgba(0, 0, 0, 0.55) 44%,
+    rgba(0, 0, 0, 0.15) 56%,
+    transparent 74%
   );
-  --lp-hero-dot-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/svg%3E");
+  --lp-hero-dot-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
 }
 
 .lp-hero-spotlight {
@@ -4090,5 +4094,135 @@
   .lp-hero-actions .lp-hero-btn,
   .lp-cta-actions .lp-btn {
     width: 100%;
+  }
+}
+
+/* Locale gate — Apple country/region interstitial ---------------------- */
+.lp-locale-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.lp-locale-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.lp-locale-sheet {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 720px);
+}
+
+.lp-locale-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.lp-locale-prompt {
+  margin: 0;
+  max-width: 42em;
+  font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(21px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+  color: #1d1d1f;
+  text-wrap: pretty;
+}
+
+.lp-locale-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.lp-locale-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+.lp-locale-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.lp-locale-select-display {
+  font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  pointer-events: none;
+}
+
+.lp-locale-select-caret {
+  flex-shrink: 0;
+  color: #86868b;
+  pointer-events: none;
+}
+
+.lp-locale-continue {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--lp-primary, #5b647d);
+  cursor: pointer;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.lp-locale-continue:hover:not(:disabled) {
+  color: var(--lp-primary-hover, #68728e);
+}
+
+.lp-locale-continue:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.lp-footer-locale {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .lp-locale-gate {
+    align-items: flex-start;
+    padding-top: max(48px, 12vh);
+  }
+
+  .lp-locale-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 }

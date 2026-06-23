@@ -4,6 +4,7 @@ import "./globals.css";
 import "./landing.css";
 import { SiteNav } from "./_components/SiteNav";
 import { SiteFooter } from "./_components/SiteFooter";
+import { LocaleGate } from "./_components/LocaleGate";
 
 const aeonik = localFont({
   src: [
@@ -70,6 +71,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${aeonik.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white text-[#1e1e1e] antialiased">
+        <LocaleGate />
         <SiteNav />
         <main className="lp-main flex-1">{children}</main>
         <SiteFooter />
