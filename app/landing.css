@@ -240,13 +240,15 @@
 }
 
 .lp-nav-btn--cta {
-  background: var(--lp-primary);
-  color: #fff;
+  background: #fff;
+  color: #1d1d1f;
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .lp-nav-btn--cta:hover {
-  background: var(--lp-primary-hover);
-  border-color: rgba(91, 100, 125, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #1d1d1f;
 }
 
 @media (max-width: 959px) {
@@ -393,7 +395,7 @@
   color: var(--lp-text);
 }
 
-/* Hero --------------------------------------------------------------- */
+/* Hero — Apple dunkelgrün (section-variant) → white fade ---------------- */
 .lp-hero {
   position: relative;
   isolation: isolate;
@@ -401,10 +403,29 @@
   min-height: auto;
   padding: 0;
   padding-bottom: 0;
-  background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-bottom: 0;
   --mx: 50%;
   --my: 35%;
+  --lp-hero-fade: linear-gradient(
+    to bottom,
+    #161713 0%,
+    #2a2b25 18%,
+    #3b3b31 42%,
+    #5c5c54 58%,
+    #9a9a94 74%,
+    #d6d6d4 88%,
+    #ffffff 100%
+  );
+  --lp-hero-dots-mask: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 26%,
+    rgba(0, 0, 0, 0.55) 40%,
+    rgba(0, 0, 0, 0.15) 52%,
+    transparent 62%
+  );
+  --lp-hero-dot-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/svg%3E");
 }
 
 .lp-hero-spotlight {
@@ -415,12 +436,12 @@
   background:
     radial-gradient(
       480px circle at var(--mx) var(--my),
-      rgba(91, 100, 125, 0.12),
+      rgba(255, 255, 255, 0.07),
       transparent 50%
     ),
     radial-gradient(
       260px circle at var(--mx) var(--my),
-      rgba(255, 255, 255, 0.24),
+      rgba(255, 255, 255, 0.12),
       transparent 68%
     );
   -webkit-mask-image: var(--lp-hero-dots-mask);
@@ -464,12 +485,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(
-    180deg,
-    var(--lp-surface-top) 0%,
-    var(--lp-surface-mid) 42%,
-    var(--lp-surface-bottom) 100%
-  );
+  background: var(--lp-hero-fade);
   pointer-events: none;
 }
 
@@ -477,7 +493,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--lp-dot-grid);
+  background-image: var(--lp-hero-dot-grid);
   background-size: 20px 20px;
   pointer-events: none;
   -webkit-mask-image: var(--lp-hero-dots-mask);
@@ -562,17 +578,15 @@
   font-weight: 400;
   letter-spacing: -0.48px;
   line-height: 1.146;
-  background-image: var(--lp-text-gradient-hero);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: #fff;
 }
 
-.lp-hero-title-muted,
+.lp-hero-title-muted {
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .lp-hero-title-strong {
-  color: transparent;
+  color: #fff;
 }
 
 .lp-hero-toolbar {
@@ -618,27 +632,27 @@
 }
 
 .lp-hero-btn--primary {
-  background: var(--lp-primary);
-  color: #fff;
-  border-color: rgba(91, 100, 125, 0.22);
+  background: #fff;
+  color: #1d1d1f;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .lp-hero-btn--primary:hover {
-  background: var(--lp-primary-hover);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .lp-hero-btn--secondary {
-  background: rgba(255, 255, 255, 0.88);
-  color: #565c6a;
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 .lp-hero-btn--secondary:hover {
-  background: #fff;
-  color: #1d1d1f;
-  border-color: rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.32);
 }
 
 .lp-hero-note {
@@ -650,12 +664,12 @@
   padding-bottom: 10px;
   font-size: 13px;
   letter-spacing: 0.02em;
-  color: var(--lp-text);
+  color: rgba(255, 255, 255, 0.8);
   transition: color var(--t-fast) var(--ease-out);
 }
 
 .lp-hero-note:hover {
-  color: var(--lp-accent);
+  color: #fff;
 }
 
 .lp-hero-note-badge {
@@ -2082,15 +2096,49 @@
   color: var(--lp-text-soft);
 }
 
-/* Hero trust strip — Apple PS headline + body under motion ------------- */
+/* Hero trust strip — Apple product-stories header copy ----------------- */
 .lp-hero-trust {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: clamp(48px, 6vw, 72px);
-  padding-inline: 0;
-  padding-bottom: 0;
+  padding-inline: clamp(20px, 4vw, 40px);
+  padding-bottom: clamp(24px, 4vw, 40px);
+}
+
+.lp-stories-header-copy {
+  width: 100%;
+  max-width: min(980px, 100%);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.lp-stories-header-copy p {
+  margin: 0;
+  font-family: "Aeonik", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: clamp(28px, 3.35vw, 40px);
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.94) 12%,
+    rgba(228, 229, 224, 0.88) 32%,
+    rgba(176, 178, 166, 0.9) 55%,
+    rgba(108, 110, 98, 0.94) 78%,
+    #3b3b31 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .lp-apple-copy-wrap {

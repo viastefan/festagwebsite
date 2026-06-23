@@ -15,13 +15,13 @@ const PRESETS = {
     rgb: "91, 100, 125",
   },
   dark: {
-    gap: 16,
-    radius: 60,
-    push: 6,
-    dotR: 0.65,
-    baseAlpha: 0.085,
-    hoverAlpha: 0.17,
-    rgb: "130, 138, 158",
+    gap: 20,
+    radius: 110,
+    push: 18,
+    dotR: 0.7,
+    baseAlpha: 0.055,
+    hoverAlpha: 0.2,
+    rgb: "255, 255, 255",
   },
 } as const;
 

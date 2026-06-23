@@ -39,7 +39,7 @@ export function HeroBackground() {
     <>
       <div className="lp-hero-spotlight" aria-hidden />
       <div className="lp-hero-dots" aria-hidden>
-        <HeroDotField variant="light" className="lp-hero-grid" rootSelector=".lp-hero" />
+        <HeroDotField variant="dark" className="lp-hero-grid" rootSelector=".lp-hero" />
       </div>
     </>
   );
