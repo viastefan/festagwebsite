@@ -6,6 +6,7 @@ import { FestagWordmark } from "./Brand";
 
 const LINKS = [
   { href: "/product", label: "Produkt" },
+  { href: "/extension", label: "Chrome-Erweiterung" },
   { href: "/about", label: "Philosophie" },
   { href: "/pricing", label: "Preise" },
   { href: "/now", label: "Aktuelles" },

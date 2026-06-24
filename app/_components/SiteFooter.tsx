@@ -3,6 +3,7 @@ import { LocaleFooterLink } from "./LocaleFooterLink";
 
 const LINKS = [
   { href: "/product", label: "Produkt" },
+  { href: "/extension", label: "Chrome-Erweiterung" },
   { href: "/about", label: "Philosophie" },
   { href: "/contact", label: "Kontakt" },
   { href: "/legal/privacy", label: "Rechtliches" },
