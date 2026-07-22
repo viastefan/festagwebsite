@@ -15,10 +15,11 @@ Tokens live in [`app/globals.css`](./app/globals.css) and are bridged into Tailw
 
 ## Routes
 
-- `/` — Homepage with 12 sections (Hero → Final CTA)
+- `/` — OLED marketing home (Vercel-style), primary CTA **Open App** → `https://festag.app`
 - `/careers` — Open roles index, mission, principles
 - `/careers/[slug]` — Job detail with `JobPosting` JSON-LD and mailto/form apply flow
 - `/contact` — Direct mail channels
+- `/product`, `/docs`, `/pricing`, … — product & stub surfaces
 - `/sitemap.xml`, `/robots.txt` — auto-generated
 
 ## Content / CMS

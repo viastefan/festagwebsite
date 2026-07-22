@@ -2,9 +2,8 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./landing.css";
-import { SiteNav } from "./_components/SiteNav";
-import { SiteFooter } from "./_components/SiteFooter";
 import { LocaleGate } from "./_components/LocaleGate";
+import { SiteChrome } from "./_components/SiteChrome";
 
 const aeonik = localFont({
   src: [
@@ -21,24 +20,24 @@ const aeonik = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),
   title: {
-    default: "Festag — Softwareentwicklung, strukturiert gemacht",
+    default: "Festag — Operational Intelligence",
     template: "%s, Festag",
   },
   description:
-    "Festag ist ein KI-natives Produktionssystem, das Softwareentwicklung in einen transparenten, planbaren und jederzeit sichtbaren Prozess verwandelt.",
+    "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
   applicationName: "Festag",
   keywords: [
     "Festag",
-    "KI-native Softwareproduktion",
-    "Softwareentwicklung System",
+    "Operational Intelligence",
+    "Delivery Intelligence",
     "Projektsichtbarkeit",
-    "strukturierte Delivery",
-    "Produktionssystem",
+    "Tagro",
+    "Company Brain",
   ],
   openGraph: {
-    title: "Festag — Softwareentwicklung, strukturiert gemacht",
+    title: "Festag — Operational Intelligence",
     description:
-      "Ein System, das Softwareentwicklung transparent, planbar und nachvollziehbar macht.",
+      "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
     url: "https://festag.app",
     siteName: "Festag",
     locale: "de_DE",
@@ -46,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Festag — Softwareentwicklung, strukturiert gemacht",
+    title: "Festag — Operational Intelligence",
     description:
-      "Ein System, das Softwareentwicklung transparent, planbar und nachvollziehbar macht.",
+      "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
   },
   icons: {
     icon: [
@@ -59,7 +58,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -70,11 +69,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" className={`${aeonik.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-[#1e1e1e] antialiased">
+      <body className="min-h-full flex flex-col bg-black text-[#f5f5f7] antialiased">
         <LocaleGate />
-        <SiteNav />
-        <main className="lp-main flex-1">{children}</main>
-        <SiteFooter />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

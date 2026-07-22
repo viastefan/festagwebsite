@@ -72,12 +72,14 @@ export function SiteNav() {
                 >
                   Anmelden
                 </a>
-                <Link
-                  href="/contact?intent=audit"
+                <a
+                  href="https://festag.app"
                   className="lp-nav-btn lp-nav-btn--cta"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Audit anfragen
-                </Link>
+                  Open App
+                </a>
                 <button
                   type="button"
                   className="lp-nav-menu-btn"
@@ -140,13 +142,15 @@ export function SiteNav() {
             >
               Anmelden
             </a>
-            <Link
-              href="/contact?intent=audit"
+            <a
+              href="https://festag.app"
               className="lp-nav-mobile-cta"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
             >
-              Audit anfragen
-            </Link>
+              Open App
+            </a>
           </div>
         </nav>
       </div>
