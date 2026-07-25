@@ -146,6 +146,13 @@
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
+  gap: 9px;
+}
+
+.lp-nav-brand-icon {
+  border-radius: 6px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .lp-nav-brand-mark {

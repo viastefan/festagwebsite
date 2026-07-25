@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FestagWordmark } from "./Brand";
+import { FestagMark, FestagWordmark } from "./Brand";
 
 const LINKS = [
   { href: "/product", label: "Produkt" },
@@ -49,6 +49,7 @@ export function SiteNav() {
         <div className="lp-nav-bar">
           <div className="lp-nav-shell">
             <Link href="/" aria-label="Festag, Startseite" className="lp-nav-brand">
+              <FestagMark size={22} className="lp-nav-brand-icon" />
               <FestagWordmark className="lp-nav-brand-mark" />
             </Link>
 
@@ -110,7 +111,10 @@ export function SiteNav() {
         />
         <nav className="lp-nav-mobile-panel" aria-label="Mobile Navigation">
           <div className="lp-nav-mobile-head">
-            <FestagWordmark className="lp-nav-mobile-mark" />
+            <span className="lp-nav-mobile-brand">
+              <FestagMark size={22} />
+              <FestagWordmark className="lp-nav-mobile-mark" />
+            </span>
             <button
               type="button"
               className="lp-nav-mobile-close"

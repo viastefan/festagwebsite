@@ -1,17 +1,17 @@
+import Image from "next/image";
+
 /**
- * Festag wordmark — Geist Sans, optical kerning, signal-dot accent.
- * Pure SVG so it inherits currentColor in dark/light surfaces.
+ * Festag wordmark — Geist Sans, optical kerning.
+ * Pure SVG so it inherits currentColor on dark/light surfaces.
  */
 export function FestagWordmark({
   className,
-  showDot = true,
 }: {
   className?: string;
-  showDot?: boolean;
 }) {
   return (
     <svg
-      viewBox="0 0 128 22"
+      viewBox="0 0 92 22"
       className={className}
       role="img"
       aria-label="Festag"
@@ -22,37 +22,51 @@ export function FestagWordmark({
         fontFamily='var(--font-geist-sans), "Geist", system-ui, sans-serif'
         fontWeight={500}
         fontSize="18"
-        letterSpacing="-0.2"
+        letterSpacing="-0.35"
         fill="currentColor"
       >
-        festag
+        Festag
       </text>
-      {showDot && (
-        <circle cx="65" cy="6" r="1.6" fill="var(--primary, #5B647D)" />
-      )}
     </svg>
   );
 }
 
-export function FestagMark({ className }: { className?: string }) {
+/** Current Festag split-mark (PNG from festag-mvp brand). */
+export function FestagMark({
+  className,
+  size = 28,
+  priority = false,
+}: {
+  className?: string;
+  size?: number;
+  priority?: boolean;
+}) {
   return (
-    <svg
-      viewBox="0 0 32 32"
+    <Image
+      src="/brand/festag-mark.png"
+      alt=""
+      width={size}
+      height={size}
       className={className}
-      role="img"
-      aria-label="Festag mark"
-    >
-      <rect width="32" height="32" rx="8" fill="currentColor" />
-      <circle cx="16" cy="16" r="3.5" fill="#fff" />
-      <circle
-        cx="16"
-        cy="16"
-        r="8"
-        fill="none"
-        stroke="#fff"
-        strokeOpacity="0.35"
-        strokeWidth="1"
-      />
-    </svg>
+      priority={priority}
+      quality={100}
+      unoptimized
+      aria-hidden
+    />
+  );
+}
+
+export function FestagBrandLockup({
+  markSize = 22,
+  className,
+}: {
+  markSize?: number;
+  className?: string;
+}) {
+  return (
+    <span className={className} style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+      <FestagMark size={markSize} />
+      <FestagWordmark className="fh-wordmark" />
+    </span>
   );
 }

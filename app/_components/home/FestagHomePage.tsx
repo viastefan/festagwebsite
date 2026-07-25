@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { FestagMark } from "../Brand";
 import { FESTAG_HOME_STYLES } from "./festag-home-styles";
 
-/** Product app */
 const APP_HREF = "https://festag.app";
 const LOGIN_HREF = "https://festag.app/login";
 const REGISTER_HREF = "https://festag.app/register";
@@ -13,45 +14,60 @@ const NAV = [
   { href: "/product", label: "Produkt" },
   { href: "/docs", label: "Docs" },
   { href: "/pricing", label: "Preise" },
+  { href: "/careers", label: "Karriere" },
   { href: "/contact", label: "Kontakt" },
 ];
 
 const PILLARS = [
   {
-    title: "Delivery Intelligence",
-    body: "Aus Arbeitssignalen wird klarer Fortschritt — verständlich für Kunden, nicht nur für Teams.",
+    title: "Purpose-built",
+    body: "Geformt für Agenturen und Delivery-Teams — nicht für generisches Projektmanagement.",
   },
   {
-    title: "Entscheidungen sichtbar",
-    body: "Offene Freigaben, Risiken und nächste Schritte bleiben im Blick, statt in Chats zu verschwinden.",
+    title: "Signal to clarity",
+    body: "GitHub, Slack und Arbeitssignale werden zu Status, Risiko und nächstem Schritt.",
+  },
+  {
+    title: "Client-ready",
+    body: "Führung und Kunden sehen, was wirklich läuft — ruhig, entscheidungsreif, vertrauenswürdig.",
+  },
+];
+
+const SURFACES = [
+  {
+    title: "Delivery Intelligence",
+    body: "Aus verteilter Arbeit wird verständlicher Fortschritt — für Kunden, nicht nur für Teams.",
+    href: "/product",
+    panel: "delivery" as const,
+  },
+  {
+    title: "Entscheidungen",
+    body: "Offene Freigaben, Optionen und Konsequenzen bleiben sichtbar, statt in Chats zu verschwinden.",
+    href: "https://festag.app/decisions",
+    panel: "decisions" as const,
+  },
+  {
+    title: "Tagro",
+    body: "Der Operations Interpreter — komprimiert Signale zu Briefings, die Menschen verstehen.",
+    href: "/tagro",
+    panel: "tagro" as const,
   },
   {
     title: "Company Brain",
     body: "Festag lernt, wie eure Organisation liefert — und macht jedes Projekt ein Stück intelligenter.",
+    href: "/about",
+    panel: "brain" as const,
   },
 ];
 
-const LOGOS = [
+const CONNECTORS = [
   { label: "GitHub", icon: GithubIcon },
   { label: "Slack", icon: SlackIcon },
+  { label: "Linear", icon: LinearIcon },
   { label: "Notion", icon: NotionIcon },
   { label: "Figma", icon: FigmaIcon },
-  { label: "Linear", icon: LinearIcon },
   { label: "Vercel", icon: VercelIcon },
 ] as const;
-
-function FestagFMark({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 64 64" aria-hidden>
-      <g fill="#E8EDF4">
-        <rect x="21" y="16" width="8" height="33" rx="1.6" />
-        <rect x="21" y="16" width="23" height="8" rx="1.6" />
-        <rect x="21" y="29" width="17" height="8" rx="1.6" />
-      </g>
-      <rect x="47" y="16" width="6" height="6" rx="1.6" fill="#6a738c" />
-    </svg>
-  );
-}
 
 function GithubIcon() {
   return (
@@ -101,6 +117,78 @@ function VercelIcon() {
   );
 }
 
+function SurfacePanel({ kind }: { kind: (typeof SURFACES)[number]["panel"] }) {
+  if (kind === "delivery") {
+    return (
+      <div className="fh-mini">
+        <div className="fh-mini-bar">
+          <span>Gesamtbericht</span>
+          <em>Heute</em>
+        </div>
+        <div className="fh-mini-metric">
+          <strong>Stabil</strong>
+          <p>3 Projekte on track, 1 Entscheidung offen</p>
+        </div>
+        <div className="fh-mini-bars" aria-hidden>
+          <i style={{ height: "42%" }} />
+          <i style={{ height: "68%" }} />
+          <i style={{ height: "54%" }} />
+          <i style={{ height: "82%" }} />
+          <i style={{ height: "61%" }} />
+        </div>
+      </div>
+    );
+  }
+  if (kind === "decisions") {
+    return (
+      <div className="fh-mini">
+        <div className="fh-mini-bar">
+          <span>Entscheidungen</span>
+          <em>2 offen</em>
+        </div>
+        <div className="fh-mini-row is-active">
+          <b>Refund-Policy</b>
+          <p>Option A vs. B — Freigabe bis Mittwoch</p>
+        </div>
+        <div className="fh-mini-row">
+          <b>Scope Checkout</b>
+          <p>Guest-Flow optional halten?</p>
+        </div>
+      </div>
+    );
+  }
+  if (kind === "tagro") {
+    return (
+      <div className="fh-mini">
+        <div className="fh-mini-bar">
+          <span>Tagro</span>
+          <em>Briefing</em>
+        </div>
+        <p className="fh-mini-quote">
+          Payment-Flow ist live. Review wartet auf Freigabe. Risiko: Refund-Edge-Case
+          noch unklar für den Kunden.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="fh-mini">
+      <div className="fh-mini-bar">
+        <span>Company Brain</span>
+        <em>DNA</em>
+      </div>
+      <div className="fh-mini-row">
+        <b>Delivery</b>
+        <p>Prefers speed over perfection for MVPs</p>
+      </div>
+      <div className="fh-mini-row">
+        <b>Quality</b>
+        <p>Client-ready status before internal polish</p>
+      </div>
+    </div>
+  );
+}
+
 export default function FestagHomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -129,7 +217,7 @@ export default function FestagHomePage() {
         <div className="fh-nav-left">
           <Link href="/" className="fh-brand" aria-label="Festag">
             <span className="fh-brand-mark">
-              <FestagFMark />
+              <FestagMark size={22} priority />
             </span>
             <span className="fh-brand-name">Festag</span>
           </Link>
@@ -168,57 +256,105 @@ export default function FestagHomePage() {
       </header>
 
       <main>
+        {/* Hero — brand first, Linear/Vercel density */}
         <section className="fh-hero" aria-label="Festag">
-          <div className="fh-hero-shell">
-            <div className="fh-hero-copy">
-              <h1 className="fh-hero-brand">Festag</h1>
-              <p className="fh-hero-lead">
-                Operational Intelligence für Teams, die liefern — klar für Kunden
-                und Führung.
-              </p>
-              <div className="fh-hero-actions">
-                <a href={APP_HREF} className="fh-btn fh-btn-primary fh-btn-lg">
-                  Open App
-                </a>
-                <Link href="/product" className="fh-btn fh-btn-ghost fh-btn-lg">
-                  Produkt ansehen
-                </Link>
-              </div>
+          <div className="fh-hero-orbit" aria-hidden>
+            <div className="fh-hero-glow" />
+            <div className="fh-hero-ring" />
+            <div className="fh-hero-mark-wrap">
+              <Image
+                src="/brand/festag-mark.png"
+                alt=""
+                width={512}
+                height={512}
+                className="fh-hero-mark"
+                priority
+                quality={100}
+                sizes="(max-width: 560px) 148px, 200px"
+              />
             </div>
+          </div>
 
-            <div className="fh-stage" aria-hidden>
-              <div className="fh-stage-glow" />
-              <div className="fh-stage-panel">
+          <div className="fh-hero-copy">
+            <h1 className="fh-hero-title">
+              Operational Intelligence
+              <br />
+              <span>für Teams, die liefern.</span>
+            </h1>
+            <p className="fh-hero-lead">
+              Festag sitzt über Slack, Linear und GitHub — und macht aus Arbeitssignalen
+              klaren Status, Risiken und Entscheidungen für Kunden und Führung.
+            </p>
+            <div className="fh-hero-actions">
+              <a href={APP_HREF} className="fh-btn fh-btn-primary fh-btn-lg">
+                Open App
+              </a>
+              <Link href="/product" className="fh-btn fh-btn-ghost fh-btn-lg">
+                Produkt ansehen
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Product stage */}
+        <section className="fh-stage-section" aria-label="Produktvorschau">
+          <div className="fh-stage-frame">
+            <div className="fh-stage-chrome">
+              <span className="fh-stage-dots" aria-hidden>
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="fh-stage-url">festag.app</span>
+            </div>
+            <div className="fh-stage-body">
+              <aside className="fh-stage-rail" aria-hidden>
+                <div className="fh-stage-rail-brand">
+                  <FestagMark size={18} />
+                  <span>Festag</span>
+                </div>
+                <div className="fh-stage-rail-item is-active">Dashboard</div>
+                <div className="fh-stage-rail-item">Projekte</div>
+                <div className="fh-stage-rail-item">Entscheidungen</div>
+                <div className="fh-stage-rail-item">Tagro</div>
+                <div className="fh-stage-rail-item">Führung</div>
+              </aside>
+              <div className="fh-stage-main">
                 <div className="fh-stage-top">
-                  <span className="fh-stage-kicker">Tagro Briefing</span>
+                  <div>
+                    <h2 className="fh-stage-title">Acme Checkout</h2>
+                    <p className="fh-stage-sub">
+                      Was gebaut wurde, was blockiert und welche Entscheidung offen ist.
+                    </p>
+                  </div>
                   <span className="fh-stage-pill">
                     <i /> Stabil
                   </span>
                 </div>
-                <h2 className="fh-stage-title">Acme Checkout</h2>
-                <p className="fh-stage-sub">
-                  Was gebaut wurde, was blockiert und welche Entscheidung offen ist.
-                </p>
-                <div className="fh-stage-rows">
-                  <div className="fh-stage-row">
-                    <span>Status</span>
+                <div className="fh-stage-grid">
+                  <article className="fh-stage-card">
+                    <h3>Status</h3>
                     <p>Payment-Flow live. Review auf Freigabe.</p>
-                  </div>
-                  <div className="fh-stage-row">
-                    <span>Risiko</span>
+                  </article>
+                  <article className="fh-stage-card">
+                    <h3>Risiko</h3>
                     <p>Refund-Edge-Case noch unklar für den Kunden.</p>
-                  </div>
-                  <div className="fh-stage-row">
-                    <span>Nächster Schritt</span>
-                    <p>Entscheidung: Refund-Policy bis Mittwoch.</p>
-                  </div>
+                  </article>
+                  <article className="fh-stage-card fh-stage-card--wide">
+                    <h3>Nächster Schritt</h3>
+                    <p>Entscheidung: Refund-Policy bis Mittwoch freigeben.</p>
+                  </article>
                 </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div className="fh-logos" aria-label="Anbindungen">
-            {LOGOS.map((item) => (
+        {/* Connectors */}
+        <section className="fh-logos" aria-label="Anbindungen">
+          <p className="fh-logos-label">Arbeitet mit den Tools, die Teams schon nutzen</p>
+          <div className="fh-logos-row">
+            {CONNECTORS.map((item) => (
               <span key={item.label} className="fh-logo-item">
                 <item.icon />
                 {item.label}
@@ -227,15 +363,16 @@ export default function FestagHomePage() {
           </div>
         </section>
 
-        <section className="fh-section">
-          <div className="fh-section-inner">
-            <h2 className="fh-section-title">
-              Arbeitssignale werden zu Klarheit, die Kunden und Führung vertrauen.
+        {/* Positioning */}
+        <section className="fh-section fh-section--statement">
+          <div className="fh-section-inner fh-center">
+            <h2 className="fh-statement">
+              Eine neue Schicht über Delivery.
+              <span>
+                {" "}
+                Purpose-built für moderne Teams — mit Intelligence im Kern.
+              </span>
             </h2>
-            <p className="fh-section-body">
-              Festag ersetzt weder Slack noch Linear. Es sitzt darüber — und macht aus
-              Delivery eine verständliche Erfahrung.
-            </p>
             <div className="fh-pillars">
               {PILLARS.map((pillar) => (
                 <article key={pillar.title} className="fh-pillar">
@@ -247,19 +384,117 @@ export default function FestagHomePage() {
           </div>
         </section>
 
+        {/* Product surfaces */}
+        <section className="fh-section">
+          <div className="fh-section-inner">
+            <h2 className="fh-section-title">
+              Von Signalen zu Klarheit — die Surfaces, die zählen.
+            </h2>
+            <p className="fh-section-body">
+              Festag ersetzt weder Slack noch Linear. Es sitzt darüber und macht aus
+              Delivery eine verständliche Erfahrung.
+            </p>
+            <div className="fh-surfaces">
+              {SURFACES.map((surface) => {
+                const inner = (
+                  <>
+                    <div className="fh-surface-copy">
+                      <h3>{surface.title}</h3>
+                      <p>{surface.body}</p>
+                      <span className="fh-surface-link">Mehr erfahren →</span>
+                    </div>
+                    <div className="fh-surface-visual">
+                      <SurfacePanel kind={surface.panel} />
+                    </div>
+                  </>
+                );
+                const isExternal = surface.href.startsWith("http");
+                if (isExternal) {
+                  return (
+                    <a
+                      key={surface.title}
+                      href={surface.href}
+                      className="fh-surface"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {inner}
+                    </a>
+                  );
+                }
+                return (
+                  <Link key={surface.title} href={surface.href} className="fh-surface">
+                    {inner}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* GitHub / connectors deep dive */}
+        <section className="fh-section fh-section--github">
+          <div className="fh-section-inner fh-github">
+            <div className="fh-github-copy">
+              <h2 className="fh-section-title">
+                Verbunden mit GitHub — und dem Rest eurer Delivery.
+              </h2>
+              <p className="fh-section-body">
+                Commits, PRs und Issues werden zu verständlichen Signalen. Tagro
+                übersetzt sie in Status und nächste Schritte — ohne dass ihr eure
+                Tools verlassen müsst.
+              </p>
+              <div className="fh-hero-actions">
+                <a href={APP_HREF} className="fh-btn fh-btn-primary">
+                  Open App
+                </a>
+                <a
+                  href="https://github.com/viastefan/festag-mvp"
+                  className="fh-btn fh-btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <GithubIcon />
+                  festag-mvp
+                </a>
+              </div>
+            </div>
+            <div className="fh-github-card" aria-hidden>
+              <div className="fh-github-card-top">
+                <GithubIcon />
+                <span>viastefan/festag-mvp</span>
+              </div>
+                  <div className="fh-github-pr">
+                <b>feat: delivery intelligence briefing</b>
+                <p>#842, merged into main</p>
+              </div>
+              <div className="fh-github-signal">
+                <span>Festag signal</span>
+                <p>Checkout Payment-Flow deployed. Client-ready status updated.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
         <section className="fh-section">
           <div className="fh-section-inner">
             <div className="fh-cta-band">
               <div>
-                <h2>Öffne Festag und sieh, was wirklich läuft.</h2>
+                <h2>Built for the future. Available today.</h2>
                 <p>
-                  Status, Risiken, Entscheidungen und nächste Schritte — ruhig und
+                  Öffne Festag und sieh Status, Risiken und Entscheidungen — ruhig und
                   entscheidungsreif.
                 </p>
               </div>
-              <a href={APP_HREF} className="fh-btn fh-btn-primary fh-btn-lg">
-                Open App
-              </a>
+              <div className="fh-cta-actions">
+                <a href={REGISTER_HREF} className="fh-btn fh-btn-primary fh-btn-lg">
+                  Jetzt starten
+                </a>
+                <a href={LOGIN_HREF} className="fh-btn fh-btn-ghost fh-btn-lg">
+                  Anmelden
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -270,7 +505,7 @@ export default function FestagHomePage() {
           <div className="fh-footer-brand">
             <Link href="/" className="fh-brand" aria-label="Festag">
               <span className="fh-brand-mark">
-                <FestagFMark />
+                <FestagMark size={22} />
               </span>
               <span className="fh-brand-name">Festag</span>
             </Link>
@@ -286,6 +521,9 @@ export default function FestagHomePage() {
               </li>
               <li>
                 <Link href="/product">Produkt</Link>
+              </li>
+              <li>
+                <Link href="/tagro">Tagro</Link>
               </li>
               <li>
                 <Link href="/docs">Docs</Link>
@@ -308,7 +546,13 @@ export default function FestagHomePage() {
                 <Link href="/contact">Kontakt</Link>
               </li>
               <li>
-                <a href={REGISTER_HREF}>Registrieren</a>
+                <a
+                  href="https://github.com/viastefan/festagwebsite"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
               </li>
             </ul>
           </div>
