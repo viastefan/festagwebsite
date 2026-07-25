@@ -150,6 +150,15 @@ export const FESTAG_HOME_STYLES = `
     border: 1px solid var(--fh-ghost-border);
   }
   .fh-btn-ghost:hover { background: var(--fh-ghost-hover); }
+  .fh-btn-ask {
+    background: rgba(91, 100, 125, 0.18);
+    color: rgba(237, 237, 239, 0.92);
+    border: 1px solid rgba(91, 100, 125, 0.32);
+  }
+  .fh-btn-ask:hover {
+    background: rgba(91, 100, 125, 0.28);
+    border-color: rgba(91, 100, 125, 0.45);
+  }
   .fh-btn-lg {
     height: 44px;
     padding: 0 22px;
@@ -823,6 +832,8 @@ export const FESTAG_HOME_STYLES = `
   .fh-sheet a:last-of-type { border-bottom: 0; }
   .fh-sheet-cta {
     display: flex;
+    flex-direction: column;
+    gap: 8px;
     margin-top: 12px;
   }
   .fh-sheet-cta .fh-btn { width: 100%; height: 44px; }
@@ -857,6 +868,7 @@ export const FESTAG_HOME_STYLES = `
 
   @media (max-width: 560px) {
     .fh-nav-right .fh-btn-ghost { display: none; }
+    .fh-nav-right .fh-btn-ask { display: none; }
     .fh-footer-inner { grid-template-columns: 1fr; }
     .fh-cta-band { padding: 26px 20px; }
     .fh-stage-grid { grid-template-columns: 1fr; }

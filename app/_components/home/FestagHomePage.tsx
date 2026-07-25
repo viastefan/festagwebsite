@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FestagMark } from "../Brand";
+import { AskAiTrigger } from "../AskAiPanel";
 import { FESTAG_HOME_STYLES } from "./festag-home-styles";
 
 const APP_HREF = "https://festag.app";
@@ -230,6 +231,7 @@ export default function FestagHomePage() {
           </nav>
         </div>
         <div className="fh-nav-right">
+          <AskAiTrigger className="fh-btn fh-btn-ask" />
           <a href={LOGIN_HREF} className="fh-btn fh-btn-ghost">
             Anmelden
           </a>
@@ -595,6 +597,10 @@ export default function FestagHomePage() {
           </Link>
         ))}
         <div className="fh-sheet-cta">
+          <AskAiTrigger
+            className="fh-btn fh-btn-ask"
+            onOpen={() => setMenuOpen(false)}
+          />
           <a
             href={APP_HREF}
             className="fh-btn fh-btn-primary"

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FestagMark, FestagWordmark } from "./Brand";
+import { AskAiTrigger } from "./AskAiPanel";
 
 const LINKS = [
   { href: "/product", label: "Produkt" },
@@ -65,6 +66,7 @@ export function SiteNav() {
               <span className="lp-nav-divider" aria-hidden />
 
               <div className="lp-nav-actions">
+                <AskAiTrigger className="lp-nav-ask" tone="light" />
                 <a
                   href="https://festag.app/login"
                   className="lp-nav-link lp-nav-link--login"
@@ -138,6 +140,11 @@ export function SiteNav() {
             ))}
           </ul>
           <div className="lp-nav-mobile-actions">
+            <AskAiTrigger
+              className="lp-nav-mobile-ask"
+              tone="light"
+              onOpen={() => setMenuOpen(false)}
+            />
             <a
               href="https://festag.app/login"
               className="lp-nav-mobile-login"

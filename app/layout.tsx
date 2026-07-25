@@ -5,6 +5,7 @@ import "./globals.css";
 import "./landing.css";
 import { LocaleGate } from "./_components/LocaleGate";
 import { SiteChrome } from "./_components/SiteChrome";
+import { AskAiPanel } from "./_components/AskAiPanel";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),
@@ -64,6 +65,7 @@ export default function RootLayout({
       >
         <LocaleGate />
         <SiteChrome>{children}</SiteChrome>
+        <AskAiPanel />
       </body>
     </html>
   );
