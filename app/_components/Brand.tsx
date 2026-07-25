@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 /**
- * Festag wordmark — Geist Sans, optical kerning.
+ * Festag wordmark — Aeonik Regular, optical kerning.
  * Pure SVG so it inherits currentColor on dark/light surfaces.
  */
 export function FestagWordmark({
@@ -19,8 +19,8 @@ export function FestagWordmark({
       <text
         x="0"
         y="17"
-        fontFamily='var(--font-geist-sans), "Geist", system-ui, sans-serif'
-        fontWeight={500}
+        fontFamily='var(--font-aeonik), "Aeonik", system-ui, sans-serif'
+        fontWeight={400}
         fontSize="18"
         letterSpacing="-0.35"
         fill="currentColor"

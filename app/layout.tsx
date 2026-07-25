@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#f7f7f8",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -61,7 +61,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body
-        className={`${GeistSans.className} min-h-full flex flex-col bg-black text-[#f5f5f7] antialiased`}
+        className={`${GeistSans.className} min-h-full flex flex-col bg-[#f7f7f8] text-[#0a0a0b] antialiased`}
       >
         <LocaleGate />
         <SiteChrome>{children}</SiteChrome>

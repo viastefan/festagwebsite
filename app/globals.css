@@ -3,7 +3,7 @@
 /* ─────────────────────────────────────────────────────────────────────
    FESTAG WEBSITE — DESIGN SYSTEM
    Modern Black / Modern White / Wood Brown / Primary Slate #5B647D
-   Geist Sans (primary) · Geist Mono (code) · EditorsNote (rare italic)
+   Aeonik Regular (primary) · Geist Mono (code) · EditorsNote (rare italic)
    ───────────────────────────────────────────────────────────────────── */
 
 @font-face {
@@ -11,6 +11,36 @@
   src: url("/fonts/EditorsNote-MediumItalic.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
+  font-display: swap;
+}
+
+/* Aeonik fallback if next/font variable is unavailable */
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -111,7 +141,7 @@
   --color-fest-primary-deep: var(--primary-deep);
   --color-fest-wood: var(--wood-300);
   --color-fest-wood-light: var(--wood-400);
-  --font-sans: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui,
+  --font-sans: var(--font-aeonik), "Aeonik", ui-sans-serif, system-ui,
     -apple-system, "Segoe UI", sans-serif;
   --font-serif: "EditorsNote", "Times New Roman", serif;
   --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono",
@@ -597,7 +627,7 @@ body {
 .linear-hero-title {
   margin: 0;
   max-width: 720px;
-  font-family: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-aeonik), "Aeonik", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(34px, 4.4vw, 52px);
   font-weight: 400;
   letter-spacing: -0.024em;

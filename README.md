@@ -2,11 +2,13 @@
 
 The public Festag website: Homepage, Careers, Job-Detail, Contact.
 
-**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 · Geist Sans.
+**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 · Aeonik Regular.
+
+**Product context:** mirrored north-star docs in [`docs/`](./docs/) + [`AGENTS.md`](./AGENTS.md). Open both repos via [`../festag.code-workspace`](../festag.code-workspace).
 
 ## Brand contract
 
-- **Type:** Geist Sans throughout (Geist Mono for code). EditorsNote only for rare italic accents.
+- **Type:** Aeonik Regular throughout (Geist Mono for code). EditorsNote only for rare italic accents.
 - **Letter-spacing:** Header 1.2 % · Body 1.7 % · Sidebar 2.3 %.
 - **Palette:** Modern Black, Modern White, Rich Wood Brown accent, Primary `#5B647D`.
 - **No** colored buttons, no white-on-dark / black-on-light contrast inversion, no Apple emojis, no childish AI gradients.

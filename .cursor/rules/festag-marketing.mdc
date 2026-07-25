@@ -1,0 +1,47 @@
+---
+description: Festag public website — product positioning + marketing brand (not the portal app)
+alwaysApply: true
+---
+
+# Festag Marketing Website
+
+You are building the **public Festag website** in this repo — not the client portal / auth app.
+
+Read product truth from:
+
+- `docs/festag-product-north-star.md`
+- `docs/festag-adaptive-intelligence.md`
+- `docs/leqra-festag-operating-architecture.md`
+- `AGENTS.md`
+
+## Category language
+
+Never describe Festag as: AI assistant · chatbot · project manager · automation tool · workspace clone.
+
+Prefer: Operational Intelligence Platform · Delivery Intelligence · Company Intelligence Layer · self-learning operating system for organizations.
+
+Tagro interprets work into calm, decision-ready language — never “chat with AI”.
+
+## What this repo is for
+
+Homepage, careers, contact, product storytelling, public docs/pricing stubs, SEO.
+
+Primary app CTA → production app (`https://festag.app` or configured app URL). Keep marketing and product app **separate**.
+
+## Brand lock
+
+- **Font:** Aeonik Regular (`--font-aeonik`), weight 400 by default. Medium only where hierarchy needs it. No Geist Sans.
+- **Accent:** `#5B647D` (Festag slate). Wood brown rare.
+- **Tone:** calm, precise, founder-serious — Apple/Linear/Vercel bar.
+- Letter-spacing tokens: header 1.2% · body 1.7% · sidebar 2.3%.
+
+## Do not
+
+- Import or invent portal mobile dock / auth chrome / settings patterns from `festag-mvp`
+- Ship generic SaaS purple gradients or “AI sparkle” marketing
+- Contradict Adaptive Intelligence / OKM positioning in copy
+- Use middle dots (`·`) to join meta labels — prefer commas or separate lines
+
+## When unsure
+
+Bias copy and IA toward: client-ready clarity, trust, delivery understanding, operational intelligence — not feature laundry lists of a PM tool.
