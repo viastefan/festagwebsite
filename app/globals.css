@@ -2,40 +2,10 @@
 
 /* ─────────────────────────────────────────────────────────────────────
    FESTAG WEBSITE — DESIGN SYSTEM
-   Modern Black / Modern White / Wood Brown / Primary Blue #5B647D
-   Aeonik Medium throughout, letter-spacing per role.
+   Modern Black / Modern White / Wood Brown / Primary Slate #5B647D
+   Geist Sans (primary) · Geist Mono (code) · EditorsNote (rare italic)
    ───────────────────────────────────────────────────────────────────── */
 
-/* Aeonik — local fonts (festag-mvp parity) ----------------------------- */
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/Aeonik-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-/* Bold faces resolve to Medium — Aeonik Bold is brand-forbidden. */
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/Aeonik-Medium.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 @font-face {
   font-family: "EditorsNote";
   src: url("/fonts/EditorsNote-MediumItalic.otf") format("opentype");
@@ -141,10 +111,11 @@
   --color-fest-primary-deep: var(--primary-deep);
   --color-fest-wood: var(--wood-300);
   --color-fest-wood-light: var(--wood-400);
-  --font-sans: "Aeonik", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, sans-serif;
+  --font-sans: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", sans-serif;
   --font-serif: "EditorsNote", "Times New Roman", serif;
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono",
+    Menlo, monospace;
 }
 
 /* Base reset ---------------------------------------------------------- */
@@ -161,7 +132,7 @@ body {
 }
 
 html {
-  font-family: "Aeonik", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   letter-spacing: var(--ls-body);
   background: #ffffff;
@@ -626,7 +597,7 @@ body {
 .linear-hero-title {
   margin: 0;
   max-width: 720px;
-  font-family: var(--font-aeonik, "Aeonik"), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(34px, 4.4vw, 52px);
   font-weight: 400;
   letter-spacing: -0.024em;

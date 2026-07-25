@@ -56,7 +56,7 @@ export function SignalRouter({ className }: { className?: string }) {
             <text
               x="40"
               y={s.y + 4}
-              fontFamily="Aeonik, sans-serif"
+              fontFamily="Geist, sans-serif"
               fontSize="11"
               letterSpacing="0.04em"
               fill="rgba(255,255,255,0.7)"
@@ -97,7 +97,7 @@ export function SignalRouter({ className }: { className?: string }) {
             x="480"
             y="32"
             textAnchor="middle"
-            fontFamily="Aeonik, sans-serif"
+            fontFamily="Geist, sans-serif"
             fontSize="10"
             letterSpacing="0.2em"
             fill="rgba(255,255,255,0.55)"
@@ -126,7 +126,7 @@ export function SignalRouter({ className }: { className?: string }) {
               <text
                 x="446"
                 y={l.y + 4}
-                fontFamily="Aeonik, sans-serif"
+                fontFamily="Geist, sans-serif"
                 fontSize="12"
                 fontWeight={500}
                 letterSpacing="0.012em"
@@ -170,7 +170,7 @@ export function SignalRouter({ className }: { className?: string }) {
             <text
               x="800"
               y={s.y + 4}
-              fontFamily="Aeonik, sans-serif"
+              fontFamily="Geist, sans-serif"
               fontSize="11"
               letterSpacing="0.04em"
               fill="rgba(255,255,255,0.92)"

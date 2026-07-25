@@ -1,27 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import "./landing.css";
 import { LocaleGate } from "./_components/LocaleGate";
 import { SiteChrome } from "./_components/SiteChrome";
 
-const aeonik = localFont({
-  src: [
-    { path: "../public/fonts/Aeonik-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Aeonik-Medium.ttf", weight: "500", style: "normal" },
-    // Festag rule: Aeonik Bold is forbidden — bolder weights resolve to Medium.
-    { path: "../public/fonts/Aeonik-Medium.ttf", weight: "600", style: "normal" },
-    { path: "../public/fonts/Aeonik-Medium.ttf", weight: "700", style: "normal" },
-  ],
-  variable: "--font-aeonik",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),
   title: {
     default: "Festag — Operational Intelligence",
-    template: "%s, Festag",
+    template: "%s · Festag",
   },
   description:
     "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
@@ -50,9 +39,7 @@ export const metadata: Metadata = {
       "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
   },
   icons: {
-    icon: [
-      { url: "/brand/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
+    icon: [{ url: "/brand/icon-512.png", sizes: "512x512", type: "image/png" }],
     apple: "/brand/icon-512.png",
   },
 };
@@ -68,8 +55,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={`${aeonik.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-black text-[#f5f5f7] antialiased">
+    <html
+      lang="de"
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+    >
+      <body
+        className={`${GeistSans.className} min-h-full flex flex-col bg-black text-[#f5f5f7] antialiased`}
+      >
         <LocaleGate />
         <SiteChrome>{children}</SiteChrome>
       </body>

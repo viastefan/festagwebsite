@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FESTAG_HOME_STYLES } from "./festag-home-styles";
 
-/** Product app on festag.app */
+/** Product app */
 const APP_HREF = "https://festag.app";
 const LOGIN_HREF = "https://festag.app/login";
 const REGISTER_HREF = "https://festag.app/register";
@@ -14,12 +14,6 @@ const NAV = [
   { href: "/docs", label: "Docs" },
   { href: "/pricing", label: "Preise" },
   { href: "/contact", label: "Kontakt" },
-];
-
-const ASIDE = [
-  "Für Kunden und CEOs",
-  "Status ohne Chaos",
-  "Tagro versteht das Projekt",
 ];
 
 const PILLARS = [
@@ -175,32 +169,51 @@ export default function FestagHomePage() {
 
       <main>
         <section className="fh-hero" aria-label="Festag">
-          <div className="fh-hero-grid">
+          <div className="fh-hero-shell">
             <div className="fh-hero-copy">
-              <h1 className="fh-hero-title">Operational Intelligence</h1>
+              <h1 className="fh-hero-brand">Festag</h1>
+              <p className="fh-hero-lead">
+                Operational Intelligence für Teams, die liefern — klar für Kunden
+                und Führung.
+              </p>
               <div className="fh-hero-actions">
                 <a href={APP_HREF} className="fh-btn fh-btn-primary fh-btn-lg">
                   Open App
                 </a>
-                <Link href="/docs" className="fh-btn fh-btn-ghost fh-btn-lg">
-                  Docs lesen
+                <Link href="/product" className="fh-btn fh-btn-ghost fh-btn-lg">
+                  Produkt ansehen
                 </Link>
               </div>
             </div>
 
-            <div className="fh-hero-mark-wrap" aria-hidden>
-              <div className="fh-hero-glow" />
-              <div className="fh-hero-mark">
-                <FestagFMark />
-              </div>
-            </div>
-
-            <div className="fh-hero-aside">
-              {ASIDE.map((line) => (
-                <p key={line} className="fh-aside-line">
-                  {line}
+            <div className="fh-stage" aria-hidden>
+              <div className="fh-stage-glow" />
+              <div className="fh-stage-panel">
+                <div className="fh-stage-top">
+                  <span className="fh-stage-kicker">Tagro Briefing</span>
+                  <span className="fh-stage-pill">
+                    <i /> Stabil
+                  </span>
+                </div>
+                <h2 className="fh-stage-title">Acme Checkout</h2>
+                <p className="fh-stage-sub">
+                  Was gebaut wurde, was blockiert und welche Entscheidung offen ist.
                 </p>
-              ))}
+                <div className="fh-stage-rows">
+                  <div className="fh-stage-row">
+                    <span>Status</span>
+                    <p>Payment-Flow live. Review auf Freigabe.</p>
+                  </div>
+                  <div className="fh-stage-row">
+                    <span>Risiko</span>
+                    <p>Refund-Edge-Case noch unklar für den Kunden.</p>
+                  </div>
+                  <div className="fh-stage-row">
+                    <span>Nächster Schritt</span>
+                    <p>Entscheidung: Refund-Policy bis Mittwoch.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

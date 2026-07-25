@@ -1,26 +1,34 @@
-/** Festag marketing home — Vercel-like structure, Festag OLED + Aeonik theme. */
+/** Festag marketing home — clean product marketing, Festag slate + Geist. */
 export const FESTAG_HOME_STYLES = `
   .fh-root {
     --fh-canvas: #000000;
-    --fh-text: #f5f5f7;
-    --fh-muted: rgba(245, 245, 247, 0.62);
-    --fh-faint: rgba(245, 245, 247, 0.38);
+    --fh-ink: #f4f5f7;
+    --fh-muted: rgba(244, 245, 247, 0.58);
+    --fh-faint: rgba(244, 245, 247, 0.34);
     --fh-line: rgba(255, 255, 255, 0.08);
     --fh-surface: #0c0c0e;
     --fh-surface-2: #121214;
-    --fh-btn-bg: #ffffff;
-    --fh-btn-fg: #1e1e20;
-    --fh-btn-hover: #fafafa;
-    --fh-ghost-border: rgba(255, 255, 255, 0.18);
-    --fh-ghost-hover: rgba(255, 255, 255, 0.06);
-    --fh-radius: 999px;
+    --fh-slate: #5b647d;
+    --fh-slate-soft: rgba(91, 100, 125, 0.35);
+    --fh-btn-bg: #f4f5f7;
+    --fh-btn-fg: #0f1012;
+    --fh-btn-hover: #ffffff;
+    --fh-ghost-border: rgba(255, 255, 255, 0.14);
+    --fh-ghost-hover: rgba(255, 255, 255, 0.05);
+    --fh-radius-pill: 999px;
+    --fh-radius-mark: 6px;
+    --fh-radius-panel: 18px;
     --fh-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
     min-height: 100dvh;
-    background: var(--fh-canvas);
-    color: var(--fh-text);
-    font-family: var(--font-aeonik, "Aeonik"), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+      radial-gradient(90% 55% at 72% 28%, rgba(91, 100, 125, 0.18) 0%, transparent 55%),
+      radial-gradient(60% 40% at 18% 80%, rgba(91, 100, 125, 0.08) 0%, transparent 50%),
+      var(--fh-canvas);
+    color: var(--fh-ink);
+    font-family: var(--font-geist-sans), var(--font-sans), system-ui, sans-serif;
     font-weight: 400;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
     text-rendering: geometricPrecision;
     overflow-x: hidden;
@@ -49,9 +57,9 @@ export const FESTAG_HOME_STYLES = `
     justify-content: space-between;
     gap: 20px;
     padding: 14px clamp(18px, 4vw, 40px);
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s ease;
   }
@@ -73,23 +81,24 @@ export const FESTAG_HOME_STYLES = `
   .fh-brand-mark {
     width: 22px;
     height: 22px;
-    border-radius: 6px;
+    border-radius: var(--fh-radius-mark);
     background: #0b1118;
     display: grid;
     place-items: center;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
-  .fh-brand-mark svg { width: 14px; height: 14px; display: block; }
+  .fh-brand-mark svg { width: 13px; height: 13px; display: block; }
   .fh-brand-name {
     font-size: 15px;
-    letter-spacing: -0.01em;
-    color: var(--fh-text);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--fh-ink);
   }
 
   .fh-nav-links {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
   }
   .fh-nav-link {
     padding: 8px 12px;
@@ -100,7 +109,7 @@ export const FESTAG_HOME_STYLES = `
     white-space: nowrap;
   }
   .fh-nav-link:hover {
-    color: var(--fh-text);
+    color: var(--fh-ink);
     background: rgba(255, 255, 255, 0.04);
   }
 
@@ -118,9 +127,10 @@ export const FESTAG_HOME_STYLES = `
     gap: 8px;
     height: 36px;
     padding: 0 16px;
-    border-radius: var(--fh-radius);
+    border-radius: var(--fh-radius-pill);
     font-size: 13.5px;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: -0.015em;
     white-space: nowrap;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s var(--fh-ease);
   }
@@ -128,12 +138,11 @@ export const FESTAG_HOME_STYLES = `
   .fh-btn-primary {
     background: var(--fh-btn-bg);
     color: var(--fh-btn-fg);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   }
   .fh-btn-primary:hover { background: var(--fh-btn-hover); }
   .fh-btn-ghost {
     background: transparent;
-    color: var(--fh-text);
+    color: var(--fh-ink);
     border: 1px solid var(--fh-ghost-border);
   }
   .fh-btn-ghost:hover { background: var(--fh-ghost-hover); }
@@ -150,97 +159,153 @@ export const FESTAG_HOME_STYLES = `
     border-radius: 10px;
     align-items: center;
     justify-content: center;
-    color: var(--fh-text);
+    color: var(--fh-ink);
   }
   .fh-nav-menu:hover { background: rgba(255, 255, 255, 0.06); }
 
+  /* Hero — brand first, one job */
   .fh-hero {
     position: relative;
     min-height: calc(100dvh - 64px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(40px, 8vh, 88px) clamp(18px, 4vw, 40px) 48px;
+    padding: clamp(48px, 9vh, 96px) clamp(18px, 4vw, 40px) 56px;
   }
 
-  .fh-hero-grid {
+  .fh-hero-shell {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.9fr) minmax(0, 0.95fr);
-    align-items: center;
-    gap: clamp(20px, 4vw, 48px);
-    max-width: 1180px;
+    max-width: 1120px;
     margin: 0 auto;
     width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
   }
 
-  .fh-hero-copy { max-width: 420px; }
-  .fh-hero-title {
+  .fh-hero-copy { max-width: 480px; }
+  .fh-hero-brand {
     margin: 0;
-    font-size: clamp(40px, 5.6vw, 72px);
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-    font-weight: 400;
-    color: var(--fh-text);
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    font-weight: 500;
+    color: var(--fh-ink);
+  }
+  .fh-hero-lead {
+    margin: 22px 0 0;
+    max-width: 38ch;
+    font-size: clamp(16px, 1.7vw, 19px);
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    color: var(--fh-muted);
   }
   .fh-hero-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 28px;
+    margin-top: 30px;
   }
 
-  .fh-hero-mark-wrap {
+  .fh-stage {
     position: relative;
+    min-height: clamp(280px, 42vw, 420px);
     display: grid;
     place-items: center;
-    min-height: clamp(220px, 36vw, 360px);
   }
-  .fh-hero-glow {
+  .fh-stage-glow {
     position: absolute;
-    inset: -8% -18%;
+    inset: 8% 4%;
     border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.38) 0%, rgba(232, 237, 244, 0.16) 32%, rgba(232, 237, 244, 0.04) 52%, transparent 70%);
-    filter: blur(18px);
-    animation: fhGlow 6.5s ease-in-out infinite;
+    background: radial-gradient(circle at 50% 45%, var(--fh-slate-soft), transparent 68%);
+    filter: blur(28px);
+    animation: fhPulse 7s ease-in-out infinite;
     pointer-events: none;
   }
-  .fh-hero-mark {
+  .fh-stage-panel {
     position: relative;
-    width: clamp(140px, 22vw, 220px);
-    height: clamp(140px, 22vw, 220px);
-    border-radius: 28px;
-    background: linear-gradient(160deg, #141820 0%, #0b1118 100%);
+    width: min(100%, 460px);
+    border-radius: var(--fh-radius-panel);
+    background: linear-gradient(165deg, #14161c 0%, #0c0c0e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.1),
-      0 0 80px rgba(232, 237, 244, 0.18),
-      0 40px 80px rgba(0, 0, 0, 0.55);
-    display: grid;
-    place-items: center;
-    animation: fhFloat 7s var(--fh-ease) infinite;
+      0 0 0 1px rgba(91, 100, 125, 0.12),
+      0 28px 80px rgba(0, 0, 0, 0.55);
+    padding: 22px 22px 20px;
+    animation: fhRise 0.8s var(--fh-ease) both;
   }
-  .fh-hero-mark svg {
-    width: 58%;
-    height: 58%;
-    display: block;
-  }
-
-  .fh-hero-aside {
+  .fh-stage-top {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    justify-self: end;
-    max-width: 260px;
-    padding-top: 48px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
   }
-  .fh-aside-line {
+  .fh-stage-kicker {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fh-faint);
+  }
+  .fh-stage-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    padding: 0 10px;
+    border-radius: var(--fh-radius-pill);
+    background: rgba(91, 100, 125, 0.22);
+    color: #c8cfdd;
+    font-size: 12px;
+    letter-spacing: -0.01em;
+  }
+  .fh-stage-pill i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8fa0c4;
+    box-shadow: 0 0 0 3px rgba(143, 160, 196, 0.18);
+  }
+  .fh-stage-title {
     margin: 0;
-    font-size: clamp(15px, 1.5vw, 18px);
-    line-height: 1.35;
-    letter-spacing: -0.02em;
-    color: var(--fh-text);
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+  .fh-stage-sub {
+    margin: 8px 0 0;
+    font-size: 13.5px;
+    color: var(--fh-muted);
+    line-height: 1.45;
+  }
+  .fh-stage-rows {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .fh-stage-row {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 12px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .fh-stage-row span {
+    font-size: 12px;
+    color: var(--fh-faint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .fh-stage-row p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: rgba(244, 245, 247, 0.88);
   }
 
   .fh-logos {
@@ -250,20 +315,19 @@ export const FESTAG_HOME_STYLES = `
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: clamp(22px, 4vw, 48px);
-    margin: clamp(48px, 8vh, 80px) auto 0;
-    max-width: 980px;
-    opacity: 0.72;
+    gap: clamp(18px, 3.5vw, 40px);
+    margin: clamp(44px, 7vh, 72px) auto 0;
+    max-width: 920px;
+    opacity: 0.62;
   }
   .fh-logo-item {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: rgba(245, 245, 247, 0.78);
-    font-size: 13px;
+    color: rgba(244, 245, 247, 0.78);
+    font-size: 12.5px;
     letter-spacing: -0.01em;
   }
-  .fh-logo-item svg { opacity: 0.9; }
 
   .fh-section {
     padding: clamp(72px, 12vh, 120px) clamp(18px, 4vw, 40px);
@@ -278,12 +342,12 @@ export const FESTAG_HOME_STYLES = `
     max-width: 720px;
     font-size: clamp(28px, 4vw, 44px);
     line-height: 1.12;
-    letter-spacing: -0.035em;
-    font-weight: 400;
+    letter-spacing: -0.04em;
+    font-weight: 500;
   }
   .fh-section-body {
     margin: 18px 0 0;
-    max-width: 560px;
+    max-width: 54ch;
     font-size: 16.5px;
     line-height: 1.6;
     color: var(--fh-muted);
@@ -292,30 +356,30 @@ export const FESTAG_HOME_STYLES = `
   .fh-pillars {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: 12px;
     margin-top: 40px;
   }
   .fh-pillar {
     background: var(--fh-surface);
     border: 1px solid var(--fh-line);
-    border-radius: 22px;
-    padding: 24px 22px 26px;
-    min-height: 168px;
+    border-radius: 16px;
+    padding: 22px 20px 24px;
+    min-height: 156px;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
   .fh-pillar:hover {
     background: var(--fh-surface-2);
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(91, 100, 125, 0.35);
   }
   .fh-pillar h3 {
     margin: 0;
-    font-size: 17px;
+    font-size: 16px;
     letter-spacing: -0.02em;
-    font-weight: 400;
+    font-weight: 500;
   }
   .fh-pillar p {
-    margin: 12px 0 0;
-    font-size: 14.5px;
+    margin: 10px 0 0;
+    font-size: 14px;
     line-height: 1.55;
     color: var(--fh-muted);
   }
@@ -326,16 +390,18 @@ export const FESTAG_HOME_STYLES = `
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding: 36px 32px;
-    border-radius: 24px;
-    background: var(--fh-surface);
+    padding: 32px 30px;
+    border-radius: 18px;
+    background:
+      linear-gradient(135deg, rgba(91, 100, 125, 0.16), transparent 55%),
+      var(--fh-surface);
     border: 1px solid var(--fh-line);
   }
   .fh-cta-band h2 {
     margin: 0;
-    font-size: clamp(24px, 3vw, 32px);
-    letter-spacing: -0.03em;
-    font-weight: 400;
+    font-size: clamp(22px, 3vw, 30px);
+    letter-spacing: -0.035em;
+    font-weight: 500;
     max-width: 420px;
   }
   .fh-cta-band p {
@@ -373,8 +439,8 @@ export const FESTAG_HOME_STYLES = `
     margin: 0 0 14px;
     font-size: 13px;
     letter-spacing: -0.01em;
-    color: var(--fh-text);
-    font-weight: 400;
+    color: var(--fh-ink);
+    font-weight: 500;
   }
   .fh-footer ul {
     list-style: none;
@@ -389,7 +455,7 @@ export const FESTAG_HOME_STYLES = `
     color: var(--fh-muted);
     transition: color 0.15s ease;
   }
-  .fh-footer a:hover { color: var(--fh-text); }
+  .fh-footer a:hover { color: var(--fh-ink); }
   .fh-footer-bottom {
     max-width: 1080px;
     margin: 40px auto 0;
@@ -422,7 +488,7 @@ export const FESTAG_HOME_STYLES = `
     z-index: 51;
     background: var(--fh-surface-2);
     border: 1px solid var(--fh-line);
-    border-radius: 22px;
+    border-radius: 18px;
     padding: 10px 16px 20px;
     transform: translateY(110%);
     transition: transform 0.28s var(--fh-ease);
@@ -440,7 +506,7 @@ export const FESTAG_HOME_STYLES = `
     padding: 14px 4px;
     font-size: 16px;
     border-bottom: 1px solid var(--fh-line);
-    color: var(--fh-text);
+    color: var(--fh-ink);
   }
   .fh-sheet a:last-of-type { border-bottom: 0; }
   .fh-sheet-cta {
@@ -449,50 +515,30 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-sheet-cta .fh-btn { width: 100%; height: 44px; }
 
-  @keyframes fhGlow {
-    0%, 100% { opacity: 0.85; transform: scale(1); }
+  @keyframes fhPulse {
+    0%, 100% { opacity: 0.75; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.04); }
   }
-  @keyframes fhFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes fhIn {
-    from { opacity: 0; transform: translateY(10px); }
+  @keyframes fhRise {
+    from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .fh-hero-copy,
-  .fh-hero-mark-wrap,
-  .fh-hero-aside {
-    animation: fhIn 0.7s var(--fh-ease) both;
-  }
-  .fh-hero-mark-wrap { animation-delay: 0.08s; }
-  .fh-hero-aside { animation-delay: 0.16s; }
+  .fh-hero-copy { animation: fhRise 0.7s var(--fh-ease) both; }
 
   @media (prefers-reduced-motion: reduce) {
-    .fh-hero-glow,
-    .fh-hero-mark,
-    .fh-hero-copy,
-    .fh-hero-mark-wrap,
-    .fh-hero-aside { animation: none; }
+    .fh-stage-glow,
+    .fh-stage-panel,
+    .fh-hero-copy { animation: none; }
   }
 
   @media (max-width: 960px) {
     .fh-nav-links { display: none; }
     .fh-nav-menu { display: inline-flex; }
-    .fh-hero-grid {
+    .fh-hero-shell {
       grid-template-columns: 1fr;
-      text-align: left;
-      gap: 36px;
+      gap: 40px;
     }
-    .fh-hero-copy { max-width: none; }
-    .fh-hero-mark-wrap { order: -1; min-height: 220px; }
-    .fh-hero-aside {
-      justify-self: start;
-      padding-top: 0;
-      max-width: none;
-      gap: 10px;
-    }
+    .fh-stage { order: -1; min-height: 260px; }
     .fh-pillars { grid-template-columns: 1fr; }
     .fh-footer-inner { grid-template-columns: 1fr 1fr; }
   }
@@ -500,6 +546,7 @@ export const FESTAG_HOME_STYLES = `
   @media (max-width: 560px) {
     .fh-nav-right .fh-btn-ghost { display: none; }
     .fh-footer-inner { grid-template-columns: 1fr; }
-    .fh-cta-band { padding: 28px 22px; }
+    .fh-cta-band { padding: 26px 20px; }
+    .fh-stage-row { grid-template-columns: 1fr; gap: 4px; }
   }
 `

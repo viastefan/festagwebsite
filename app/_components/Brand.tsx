@@ -1,5 +1,5 @@
 /**
- * Festag wordmark — Aeonik Medium, optical kerning, signal-dot accent.
+ * Festag wordmark — Geist Sans, optical kerning, signal-dot accent.
  * Pure SVG so it inherits currentColor in dark/light surfaces.
  */
 export function FestagWordmark({
@@ -19,7 +19,7 @@ export function FestagWordmark({
       <text
         x="0"
         y="17"
-        fontFamily='"Aeonik", system-ui, sans-serif'
+        fontFamily='var(--font-geist-sans), "Geist", system-ui, sans-serif'
         fontWeight={500}
         fontSize="18"
         letterSpacing="-0.2"

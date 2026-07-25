@@ -133,7 +133,7 @@ const JOBS: JobPosting[] = [
     shortDescription:
       "Turn Festag's black/white premium design system into a reliable, mobile-ready product interface.",
     mission:
-      "Du überträgst das Festag-Design-System (Modern Black/White, Slate #5B647D, Aeonik Medium) in eine zuverlässige, performante und mobile-ready Produkt-UI.",
+      "Du überträgst das Festag-Design-System (Modern Black/White, Slate #5B647D, Geist Sans) in eine zuverlässige, performante und mobile-ready Produkt-UI.",
     responsibilities: [
       "Kern-Komponenten (Buttons, Cards, Modals, Inputs, Tables, Reports) als sauberes System aufbauen",
       "Motion-Sprache implementieren — ohne sie laut zu machen",

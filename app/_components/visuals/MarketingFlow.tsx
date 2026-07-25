@@ -36,7 +36,7 @@ export function MarketingFlow({ className }: { className?: string }) {
               <text
                 x={n.x + 26}
                 y="86"
-                fontFamily="Aeonik, sans-serif"
+                fontFamily="Geist, sans-serif"
                 fontSize="10"
                 letterSpacing="0.2em"
                 fill="#5A5A5A"
@@ -46,7 +46,7 @@ export function MarketingFlow({ className }: { className?: string }) {
               <text
                 x={n.x + 26}
                 y="124"
-                fontFamily="Aeonik, sans-serif"
+                fontFamily="Geist, sans-serif"
                 fontSize="20"
                 fontWeight={500}
                 letterSpacing="-0.01em"
@@ -82,7 +82,7 @@ export function MarketingFlow({ className }: { className?: string }) {
             <text
               x="558"
               y="193"
-              fontFamily="Aeonik, sans-serif"
+              fontFamily="Geist, sans-serif"
               fontSize="12"
               fontWeight={500}
               letterSpacing="0.012em"
