@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { FestagMark } from "../Brand";
 import { AskAiTrigger } from "../AskAiPanel";
+import {
+  ClarityMarkHero,
+  ClientCutPanel,
+  InstallConstellation,
+  OpsSignalMap,
+  TagroCutCard,
+} from "../graphics";
 import { FESTAG_HOME_STYLES } from "./festag-home-styles";
 
 const APP_HREF = "https://festag.app";
@@ -128,21 +134,11 @@ export default function FestagHomePage() {
       </header>
 
       <main>
-        {/* Hero — logo as primary brand signal */}
+        {/* Hero — Signal Cut mark as primary brand signal */}
         <section className="fh-hero" aria-label="Festag">
           <div className="fh-hero-inner">
-            <div className="fh-hero-logo" aria-hidden>
-              <div className="fh-hero-logo-glow" />
-              <Image
-                src="/brand/festag-mark.png"
-                alt=""
-                width={512}
-                height={512}
-                className="fh-hero-logo-img"
-                priority
-                quality={100}
-                sizes="180px"
-              />
+            <div className="fh-hero-mark">
+              <ClarityMarkHero />
             </div>
             <h1 className="fh-hero-title">
               Operational Intelligence
@@ -167,7 +163,7 @@ export default function FestagHomePage() {
           </div>
         </section>
 
-        {/* Tagro section — Vercel Notion-style */}
+        {/* Tagro — Signal Cut briefing card */}
         <section className="fh-band">
           <div className="fh-band-inner">
             <h2 className="fh-band-title">
@@ -181,28 +177,8 @@ export default function FestagHomePage() {
                 </div>
               </div>
 
-              <div className="fh-chat-card" aria-hidden>
-                <div className="fh-chat-top">
-                  <span>Neues Tagro Briefing</span>
-                  <span className="fh-chat-icons">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                </div>
-                <div className="fh-chat-body">
-                  <FestagMark size={28} />
-                  <h3>Wie kann ich helfen?</h3>
-                  <ul>
-                    <li>Status für den Kunden formulieren</li>
-                    <li>Offene Entscheidungen finden</li>
-                    <li>Nächste Schritte ableiten</li>
-                  </ul>
-                </div>
-                <div className="fh-chat-input">
-                  <span className="fh-chip">@ Acme Checkout</span>
-                  <span>Frag, suche oder entscheide…</span>
-                </div>
+              <div className="fh-graphic-card">
+                <TagroCutCard />
               </div>
 
               <div className="fh-trio-side fh-trio-side--right">
@@ -227,7 +203,7 @@ export default function FestagHomePage() {
         {/* Install Festag */}
         <section className="fh-band fh-band--tight">
           <div className="fh-band-inner">
-            <div className="fh-split">
+            <div className="fh-split fh-split--graphic">
               <div>
                 <h2 className="fh-band-title fh-band-title--sm">
                   Installiere Festag und nutze es im Alltag.
@@ -244,23 +220,26 @@ export default function FestagHomePage() {
                     Chrome-Extension
                   </Link>
                 </div>
+                <ol className="fh-steps">
+                  {INSTALL_STEPS.map((step) => (
+                    <li key={step.n}>
+                      <span>{step.n}</span>
+                      <div>
+                        <strong>{step.title}</strong>
+                        <p>{step.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <ol className="fh-steps">
-                {INSTALL_STEPS.map((step) => (
-                  <li key={step.n}>
-                    <span>{step.n}</span>
-                    <div>
-                      <strong>{step.title}</strong>
-                      <p>{step.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <div className="fh-graphic-aside">
+                <InstallConstellation />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Scale / product — Zapier style */}
+        {/* Ops signal map — Signal Cut routing */}
         <section className="fh-band">
           <div className="fh-band-inner">
             <h2 className="fh-band-title">
@@ -282,87 +261,22 @@ export default function FestagHomePage() {
                   </ul>
                 </div>
               </aside>
-              <div className="fh-product-frame">
-                <div className="fh-product-chrome">
-                  <span className="fh-dots" aria-hidden>
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span>festag.app</span>
-                </div>
-                <div className="fh-product-body">
-                  <div className="fh-product-rail" aria-hidden>
-                    <div className="fh-product-rail-brand">
-                      <FestagMark size={16} />
-                      Festag
-                    </div>
-                    <div className="is-active">Dashboard</div>
-                    <div>Projekte</div>
-                    <div>Entscheidungen</div>
-                    <div>Tagro</div>
-                    <div>Führung</div>
-                  </div>
-                  <div className="fh-product-main">
-                    <div className="fh-product-head">
-                      <div>
-                        <h3>Acme Checkout</h3>
-                        <p>Was gebaut wurde, was blockiert, was offen ist.</p>
-                      </div>
-                      <span className="fh-pill">Stabil</span>
-                    </div>
-                    <div className="fh-product-grid">
-                      <article>
-                        <h4>Status</h4>
-                        <p>Payment-Flow live. Review auf Freigabe.</p>
-                      </article>
-                      <article>
-                        <h4>Risiko</h4>
-                        <p>Refund-Edge-Case noch unklar für den Kunden.</p>
-                      </article>
-                      <article className="fh-span">
-                        <h4>Nächster Schritt</h4>
-                        <p>Entscheidung: Refund-Policy bis Mittwoch freigeben.</p>
-                      </article>
-                    </div>
-                  </div>
-                </div>
+              <div className="fh-graphic-wide">
+                <OpsSignalMap />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Client clarity — Mintlify style */}
+        {/* Client clarity — Signal Cut panel */}
         <section className="fh-band fh-band--muted">
           <div className="fh-band-inner">
             <h2 className="fh-band-title">
               Klarheit, die Kunden und Führung wirklich nutzen.
             </h2>
             <div className="fh-feature-row fh-feature-row--rev">
-              <div className="fh-shot-card">
-                <div className="fh-shot-top">
-                  <FestagMark size={18} />
-                  <span>Client Panel</span>
-                </div>
-                <h3>Dein Fortschritt, verständlich.</h3>
-                <p>
-                  Keine Ticketlisten. Status, Entscheidungen und nächste Schritte — ruhig
-                  und freigabefähig.
-                </p>
-                <div className="fh-shot-rows">
-                  <div>
-                    <b>On track</b>
-                    <span>Checkout MVP</span>
-                  </div>
-                  <div>
-                    <b>Wartet</b>
-                    <span>Refund-Policy</span>
-                  </div>
-                  <div>
-                    <b>Erledigt</b>
-                    <span>Auth & Billing</span>
-                  </div>
-                </div>
+              <div className="fh-graphic-wide">
+                <ClientCutPanel />
               </div>
               <aside className="fh-feature-copy">
                 <p>

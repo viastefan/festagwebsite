@@ -1,47 +1,77 @@
 ---
-description: Festag public website — product positioning + marketing brand (not the portal app)
+description: Festag marketing website — product positioning, brand, and copy north star
 alwaysApply: true
 ---
 
 # Festag Marketing Website
 
-You are building the **public Festag website** in this repo — not the client portal / auth app.
+You are building the **public Festag website** (this repo), not the product portal.
 
-Read product truth from:
+Mindset: Apple product philosophy · Linear craft · Vercel marketing calm · Stripe clarity.
+
+## Product truth (always)
+
+Festag is a **self-learning Operational Intelligence System** / Delivery Intelligence Platform.
+
+- Not an AI assistant, chatbot, PM tool, or automation toy
+- Sits above Slack / Notion / Linear / Jira / GitHub — turns work signals into client-ready clarity
+- Tagro is a Project / Operations Interpreter — never a chatbot in copy
+
+Read before changing homepage, product, pricing, or careers copy:
 
 - `docs/festag-product-north-star.md`
 - `docs/festag-adaptive-intelligence.md`
 - `docs/leqra-festag-operating-architecture.md`
-- `AGENTS.md`
 
-## Category language
+## Positioning language
 
-Never describe Festag as: AI assistant · chatbot · project manager · automation tool · workspace clone.
+Prefer: Operational Intelligence · Delivery Intelligence · Company Brain · clarity for clients and leadership
 
-Prefer: Operational Intelligence Platform · Delivery Intelligence · Company Intelligence Layer · self-learning operating system for organizations.
+Avoid: assistant · chatbot · AI agent playground · project manager · workspace clone
 
-Tagro interprets work into calm, decision-ready language — never “chat with AI”.
+## Brand / UI (this site)
 
-## What this repo is for
+- Type: **Aeonik Regular** (`--font-aeonik`), weight 400 by default; Medium only where hierarchy needs it
+- Accent: Festag slate `#5B647D`
+- No colored marketing CTAs, no playful AI gradients, no emoji decoration
+- Calm, serious, trustworthy — one composition per viewport on marketing heroes
 
-Homepage, careers, contact, product storytelling, public docs/pricing stubs, SEO.
+## Graphic system: Signal Cut
 
-Primary app CTA → production app (`https://festag.app` or configured app URL). Keep marketing and product app **separate**.
+Unique visual language so Festag does not look like Vercel / Linear / OpenAI clones.
 
-## Brand lock
+**Idea:** the logo’s diagonal split = *clarity cutting through operational noise*.
 
-- **Font:** Aeonik Regular (`--font-aeonik`), weight 400 by default. Medium only where hierarchy needs it. No Geist Sans.
-- **Accent:** `#5B647D` (Festag slate). Wood brown rare.
-- **Tone:** calm, precise, founder-serious — Apple/Linear/Vercel bar.
-- Letter-spacing tokens: header 1.2% · body 1.7% · sidebar 2.3%.
+| Token | Use |
+|---|---|
+| Cool slate `#5B647D` | Cut beams, routing lines, accents |
+| Warm paper `#f5f5f2` | Soft plates behind geometry |
+| Ink `#0a0a0b` | Mark shells, primary type |
+| Rare wood `#8a684d` | Waiting / human-decision accents only |
 
-## Do not
+**Primitives** in `app/_components/graphics/`:
 
-- Import or invent portal mobile dock / auth chrome / settings patterns from `festag-mvp`
-- Ship generic SaaS purple gradients or “AI sparkle” marketing
-- Contradict Adaptive Intelligence / OKM positioning in copy
-- Use middle dots (`·`) to join meta labels — prefer commas or separate lines
+- `ClarityMarkHero` — brand presence
+- `OpsSignalMap` — Signal → Status → Risk → Decision → Next
+- `TagroCutCard` — briefing surface with cut beam
+- `InstallConstellation` — install path on the cut axis
+- `ClientCutPanel` — client clarity panel
 
-## When unsure
+**Do**
 
-Bias copy and IA toward: client-ready clarity, trust, delivery understanding, operational intelligence — not feature laundry lists of a PM tool.
+- Reuse Signal Cut motifs across home, product, empty states
+- Quiet geometry, dashed routing, diagonal cut channels
+- Keep illustrations decorative (`aria-hidden`) when copy already explains
+
+**Don’t**
+
+- Purple AI glow, mesh blobs, neural nets, sparkle agents
+- Generic isometric 3D marketing kits
+- Middle-dot joins in graphic labels — use commas
+- Chatbot bubble UIs for Tagro
+
+## Boundaries
+
+- This repo ≠ `festag-mvp`. Do not port portal docks, auth sheets, or app chrome here.
+- When a change needs real product behavior, point to the app — do not fake it on the marketing site.
+- Jobs / careers content stays in `lib/jobs.ts` until a CMS is wired.

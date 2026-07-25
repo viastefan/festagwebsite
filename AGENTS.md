@@ -4,36 +4,37 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-# Festag Website — Agent Context
+# Festag Website — Agent Instructions
 
-This repo is the **public marketing site** (`festag.app` website), not the product app (`festag-mvp`).
+This repo is the **public marketing site** for Festag (`festag.app`), separate from the product app (`festag-mvp`).
 
-Build marketing, careers, docs surfaces, and product storytelling here. Do **not** port portal chrome, auth sheets, MobilePageDock, or app UI rules from the MVP.
+## Product context (read before copy / IA / positioning)
 
-## Product north star (read before copy / IA)
-
-1. `docs/festag-product-north-star.md` — Delivery Intelligence Platform category
+1. `docs/festag-product-north-star.md` — Delivery Intelligence Platform
 2. `docs/festag-adaptive-intelligence.md` — Adaptive Intelligence / OKM / Company Brain
-3. `docs/leqra-festag-operating-architecture.md` — Leqra intelligence + Festag execution
+3. `docs/leqra-festag-operating-architecture.md` — Leqra + Festag two-layer model
 
-These are mirrored from `festag-mvp`. When product positioning changes in the MVP, re-copy these three files.
+Cursor always applies `.cursor/rules/festag-marketing.mdc`.
 
-## Positioning (never contradict)
+## What Festag is (website language)
 
-Festag is **not**: AI assistant · chatbot · PM software · automation tool · Notion/Slack/Linear clone.
+Describe Festag as:
 
-Festag **is**: Operational Intelligence Platform · Delivery Intelligence · Company Intelligence Layer · self-learning operating layer for modern organizations.
+- Operational Intelligence Platform
+- Company Intelligence Layer
+- Self-learning Operating System for modern organizations
+- Delivery Intelligence for agencies and project teams
 
-Tagro is a Project / Operations Interpreter — not a chatbot.
+Never describe Festag as: AI assistant · chatbot · PM software · automation tool · Notion/Slack/Jira clone.
 
-## Brand (this site)
+## Scope of this repo
 
-- **Type:** Aeonik Regular (400). Geist Mono for code only. EditorsNote only for rare italic.
-- **Palette:** Modern Black / Modern White, Primary `#5B647D`, Wood Brown sparingly.
-- **Letter-spacing:** Header 1.2% · Body 1.7% · Sidebar 2.3%.
-- Calm, serious, Linear/Vercel-grade — no purple AI gradients, no emoji marketing, no childish illustration.
+- Marketing pages, careers, contact, product story, docs marketing surfaces
+- Brand: **Aeonik Regular**, slate `#5B647D`, calm Linear/Vercel craft
+- Primary product CTA → app login / `https://festag.app` (or configured app URL)
 
-## Sibling repo
+Do **not** rebuild the portal, auth chrome, or app UI rules here. Product app work stays in `festag-mvp`.
 
-Product app: `../festag-mvp` (or open both via `festag.code-workspace`).
-Use the MVP for product truth; ship public pages only in this repo.
+## Sync note
+
+Product docs are copied from `festag-mvp/docs/`. When north-star positioning changes in the app repo, re-copy those three files into `docs/` here.

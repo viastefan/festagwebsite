@@ -4,6 +4,8 @@ The public Festag website: Homepage, Careers, Job-Detail, Contact.
 
 **Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 · Aeonik Regular.
 
+**Product context for agents:** `AGENTS.md` + `docs/festag-*.md` (synced from `festag-mvp`). Open both repos via `Documents/festag.code-workspace` when you need app + website together.
+
 **Product context:** mirrored north-star docs in [`docs/`](./docs/) + [`AGENTS.md`](./AGENTS.md). Open both repos via [`../festag.code-workspace`](../festag.code-workspace).
 
 ## Brand contract

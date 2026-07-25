@@ -1,11 +1,46 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
+import localFont from "next/font/local";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import "./landing.css";
 import { LocaleGate } from "./_components/LocaleGate";
 import { SiteChrome } from "./_components/SiteChrome";
 import { AskAiPanel } from "./_components/AskAiPanel";
+
+const aeonik = localFont({
+  src: [
+    {
+      path: "../public/fonts/Aeonik-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Aeonik-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Aeonik-Medium.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Aeonik-Medium.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-aeonik",
+  display: "swap",
+  fallback: [
+    "Inter",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "SF Pro Text",
+    "Segoe UI",
+    "sans-serif",
+  ],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),
@@ -58,10 +93,11 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+      className={`${aeonik.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body
-        className={`${GeistSans.className} min-h-full flex flex-col bg-[#f7f7f8] text-[#0a0a0b] antialiased`}
+        className={`${aeonik.className} min-h-full flex flex-col bg-[#f7f7f8] text-[#0a0a0b] antialiased`}
+        style={{ fontWeight: 400 }}
       >
         <LocaleGate />
         <SiteChrome>{children}</SiteChrome>

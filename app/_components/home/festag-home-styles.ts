@@ -29,7 +29,9 @@ export const FESTAG_HOME_STYLES = `
   .fh-root *,
   .fh-root *::before,
   .fh-root *::after { box-sizing: border-box; }
-  .fh-root a { color: inherit; text-decoration: none; }
+  .fh-root a { text-decoration: none; }
+  /* Don't inherit ink onto solid CTAs (would be black-on-black). */
+  .fh-root a:not(.fh-btn) { color: inherit; }
   .fh-root button {
     font: inherit;
     color: inherit;
@@ -59,15 +61,18 @@ export const FESTAG_HOME_STYLES = `
     margin: 0 auto;
     padding: 12px clamp(20px, 4vw, 40px);
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
   }
   .fh-nav-left {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: clamp(20px, 3vw, 40px);
     min-width: 0;
+    flex: 1 1 auto;
   }
   .fh-brand {
     display: inline-flex;
@@ -96,6 +101,7 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-nav-links {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 2px;
   }
@@ -113,9 +119,11 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-nav-right {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
+    margin-left: auto;
   }
 
   .fh-btn {
@@ -135,7 +143,7 @@ export const FESTAG_HOME_STYLES = `
   .fh-btn:active { transform: scale(0.98); }
   .fh-btn-outline {
     background: var(--fh-surface);
-    color: var(--fh-ink);
+    color: var(--fh-ink) !important;
     border: 1px solid var(--fh-line-strong);
     box-shadow: 0 1px 1px rgba(15, 15, 17, 0.02);
   }
@@ -145,7 +153,7 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-btn-solid {
     background: var(--fh-ink);
-    color: #fafafa;
+    color: #fafafa !important;
     border: 1px solid transparent;
   }
   .fh-btn-solid:hover { background: #1a1a1c; }
@@ -412,7 +420,28 @@ export const FESTAG_HOME_STYLES = `
     gap: clamp(28px, 5vw, 64px);
     align-items: start;
   }
+  .fh-split--graphic {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+  }
   .fh-split .fh-band-title { margin-bottom: 0; }
+  .fh-split--graphic .fh-steps {
+    margin-top: 28px;
+  }
+  .fh-graphic-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .fh-graphic-aside {
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+  }
+  .fh-graphic-wide {
+    width: 100%;
+    min-width: 0;
+  }
   .fh-steps {
     list-style: none;
     margin: 0;
@@ -704,7 +733,7 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-cta .fh-btn-outline {
     background: transparent;
-    color: #ededef;
+    color: #ededef !important;
     border-color: rgba(255,255,255,0.16);
   }
   .fh-cta .fh-btn-outline:hover {
@@ -712,7 +741,7 @@ export const FESTAG_HOME_STYLES = `
   }
   .fh-cta .fh-btn-solid {
     background: #ededef;
-    color: #0a0a0b;
+    color: #0a0a0b !important;
   }
   .fh-cta .fh-btn-solid:hover { background: #fff; }
 
@@ -822,9 +851,14 @@ export const FESTAG_HOME_STYLES = `
     }
     .fh-trio-side--left { display: none; }
     .fh-split,
+    .fh-split--graphic,
     .fh-feature-row,
     .fh-feature-row--rev {
       grid-template-columns: 1fr;
+    }
+    .fh-graphic-aside {
+      margin: 8px auto 0;
+      max-width: 380px;
     }
     .fh-product-body { grid-template-columns: 1fr; }
     .fh-product-rail { display: none; }
@@ -841,5 +875,6 @@ export const FESTAG_HOME_STYLES = `
     .fh-product-grid { grid-template-columns: 1fr; }
     .fh-product-grid .fh-span { grid-column: auto; }
     .fh-hero-logo { width: 96px; height: 96px; }
+    .fh-hero-mark { width: min(180px, 52vw); margin-bottom: 22px; }
   }
 `
