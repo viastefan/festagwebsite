@@ -1,87 +1,86 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Btn, siteLinks } from "../_components/site/primitives";
 
-const DOWNLOAD_URL = "https://festag.app/downloads/festag-chrome-extension.zip";
-const APP_GUIDE_URL = "https://festag.app/download#chrome-extension";
+export const metadata: Metadata = {
+  title: "Chrome Extension",
+  description:
+    "Festag Chrome Extension — Delivery Intelligence im Browser, ohne Kontextverlust.",
+};
 
 const STEPS = [
   {
-    title: "ZIP herunterladen",
-    detail: "Die Erweiterung speichern und in einen Ordner entpacken.",
+    title: "Installieren",
+    body: "Extension laden und mit deinem Festag Workspace verbinden — in unter einer Minute.",
   },
   {
-    title: "Chrome-Erweiterungen öffnen",
-    detail: "In Chrome chrome://extensions in der Adresszeile öffnen.",
+    title: "Signale erfassen",
+    body: "Status, Entscheidungen und Notizen dort erfassen, wo du arbeitest.",
   },
   {
-    title: "Entwicklermodus aktivieren",
-    detail: "Oben rechts den Schalter einschalten.",
+    title: "Klarheit behalten",
+    body: "Tagro und Dashboard bleiben synchron — ohne ein weiteres Tool zu stapeln.",
   },
-  {
-    title: "Entpackte Erweiterung laden",
-    detail: "Den entpackten Ordner auswählen.",
-  },
-  {
-    title: "Bei Festag anmelden",
-    detail: "Im selben Browser bei festag.app einloggen, Projekt wählen, Feedback auf der Vorschau-Seite aufnehmen.",
-  },
-] as const;
+];
 
-export const metadata: Metadata = {
-  title: "Chrome-Erweiterung — Tagro Live-Feedback",
-  description:
-    "Sprich oder tippe Feedback direkt auf deiner Projekt-Vorschau. Tagro macht daraus umsetzbare Änderungen für dein Team.",
-};
+const BENEFITS = [
+  "Kein Kontextwechsel zwischen Browser und Status-Runden",
+  "Dieselbe ruhige Sprache wie in Festag — client-ready",
+  "Permission-aware: nur was dein Workspace erlaubt",
+];
 
 export default function ExtensionPage() {
   return (
-    <section className="relative overflow-hidden pt-[120px] pb-28 grain surface-light">
-      <div className="shell relative max-w-[760px]">
-        <p className="section-label text-fest-muted">Chrome-Erweiterung</p>
-        <h1 className="t-headline mt-8 text-[clamp(40px,5.8vw,72px)] max-w-[16ch]">
-          Live-Feedback{" "}
-          <span className="t-serif-italic text-fest-muted">auf der Seite</span>.
-        </h1>
-        <p className="t-body mt-8 max-w-[58ch] text-[clamp(16px,1.4vw,19px)] text-fest-muted">
-          Die Festag Chrome-Erweiterung bringt Tagro direkt auf deine Projekt-Vorschau.
-          Sprechen, tippen, Elemente markieren — dein Team bekommt strukturierte Freigaben.
+    <div className="page">
+      <div className="site-wrap">
+        <h1 className="page-title">Chrome Extension</h1>
+        <p className="page-body">
+          Festag bleibt nah an der Arbeit. Die Extension bringt Status und Klarheit in den
+          Browser — ruhig, schnell, ohne Theater.
         </p>
-
-        <div className="mt-12 flex flex-wrap gap-3">
-          <a href={DOWNLOAD_URL} className="lp-btn lp-btn--primary">
-            Erweiterung herunterladen
-          </a>
-          <Link href={APP_GUIDE_URL} className="lp-btn lp-btn--secondary">
-            Anleitung in Festag
-          </Link>
+        <div className="cta-actions" style={{ marginTop: 28 }}>
+          <Btn href={siteLinks.app} variant="solid" size="lg" external>
+            In der App starten
+          </Btn>
+          <Btn href="mailto:hello@festag.app?subject=Chrome%20Extension" variant="ghost" size="lg" external>
+            Early Access anfragen
+          </Btn>
         </div>
+        <p className="page-meta">Chrome Web Store — Early Access über hello@festag.app</p>
 
-        <ol className="mt-14 grid gap-0 border border-black/8 rounded-2xl overflow-hidden bg-white">
-          {STEPS.map((step, index) => (
-            <li
-              key={step.title}
-              className="flex items-start gap-4 px-5 py-4 border-t border-black/6 first:border-t-0"
-            >
-              <span className="t-mono text-fest-primary shrink-0 mt-0.5">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <p className="text-[15px] font-medium text-fest-text">{step.title}</p>
-                <p className="mt-1 text-[14px] leading-relaxed text-fest-muted">{step.detail}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <section className="section" style={{ paddingTop: 56, paddingBottom: 0 }}>
+          <h2 className="section-title">So nutzt du sie</h2>
+          <div className="grid-3">
+            {STEPS.map((s) => (
+              <article key={s.title} className="tile">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-        <p className="mt-10 text-[14px] leading-relaxed text-fest-muted max-w-[58ch]">
-          Die Erweiterung läuft in Chrome und Edge. Nach dem Laden erscheint das Festag-Icon in der
-          Symbolleiste. Ohne Chrome kannst du Live-Feedback auch direkt in Festag unter{" "}
-          <Link href="https://festag.app/captures" className="text-fest-text underline underline-offset-2">
-            Freigaben
-          </Link>{" "}
-          starten.
-        </p>
+        <section className="page-block" style={{ marginTop: 56 }}>
+          <h2>Warum eine Extension</h2>
+          <ul className="prose-list">
+            {BENEFITS.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+        </section>
+
+        <div className="cta-band">
+          <h2>Zuerst die Delivery Experience.</h2>
+          <p>Workspace anlegen — die Extension folgt demselben ruhigen Modell.</p>
+          <div className="cta-actions">
+            <Btn href={siteLinks.register} variant="solid" size="lg" external>
+              Workspace starten
+            </Btn>
+            <Btn href="/product" variant="ghost" size="lg">
+              Produkt
+            </Btn>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,72 +1,69 @@
 import type { Metadata } from "next";
+import { Btn } from "../_components/site/primitives";
 
 export const metadata: Metadata = {
-  title: "Contact — Festag",
-  description: "Talk to Festag — demo, partnerships, press, careers.",
+  title: "Kontakt",
+  description: "Kontaktiere Festag — Sales, Support, Careers und Security.",
 };
 
-const CONTACTS = [
+const CHANNELS = [
   {
-    label: "Demo & sales",
-    address: "hello@festag.app",
-    body: "30-Minuten-Demo, echte Projekte, ehrliche Gespräche.",
+    title: "Sales & Demos",
+    body: "Für Teams und Organisationen, die Festag evaluieren. Wir zeigen Delivery Intelligence — kein Pitch-Deck-Theater.",
+    href: "mailto:hello@festag.app",
+    label: "hello@festag.app",
   },
   {
-    label: "Careers",
-    address: "careers@festag.app",
-    body: "Auch ohne offene Rolle — schreib uns, wenn die Mission passt.",
+    title: "Support",
+    body: "Für bestehende Workspaces — ruhig, konkret, schnell.",
+    href: "mailto:support@festag.app",
+    label: "support@festag.app",
   },
   {
-    label: "Press",
-    address: "press@festag.app",
-    body: "Brand, Bilder, Statements für Veröffentlichungen.",
+    title: "Careers",
+    body: "Rollen und Initiativbewerbungen.",
+    href: "mailto:careers@festag.app",
+    label: "careers@festag.app",
   },
   {
-    label: "Partnerships",
-    address: "partners@festag.app",
-    body: "Agencies, integrations, dev networks im DACH-Raum.",
+    title: "Security",
+    body: "Security Reviews und Vulnerability Reports.",
+    href: "mailto:security@festag.app",
+    label: "security@festag.app",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <>
-      <section className="surface-dark pt-[120px] pb-28 grain relative overflow-hidden">
-        <div className="shell relative">
-          <p className="section-label text-white/55">Contact</p>
-          <h1 className="t-headline mt-8 text-white text-[clamp(40px,6vw,92px)] max-w-[20ch]">
-            Talk to{" "}
-            <span className="t-serif-italic text-white/70">Festag</span>.
-          </h1>
-          <p className="t-body mt-8 max-w-[58ch] text-white/55 text-[clamp(16px,1.4vw,19px)]">
-            Wir antworten persönlich — keine Form-Trichter, keine
-            Automated-Reply-Schleifen. Wähle den richtigen Kanal.
-          </p>
-        </div>
-      </section>
+    <div className="page">
+      <div className="site-wrap">
+        <h1 className="page-title">Kontakt</h1>
+        <p className="page-body">
+          Schreib uns direkt. Wir antworten ruhig und ohne Sales-Theater — in der Regel
+          innerhalb eines Werktags.
+        </p>
 
-      <section className="surface-light py-24">
-        <div className="shell grid grid-cols-1 md:grid-cols-2 gap-3">
-          {CONTACTS.map((c) => (
-            <a
-              key={c.address}
-              href={`mailto:${c.address}`}
-              className="card group hover:border-fest-primary transition-colors"
-            >
-              <p className="t-mono text-fest-muted">{c.label}</p>
-              <h2 className="mt-4 text-[22px] tracking-[0.012em] font-medium">
-                {c.address}
-              </h2>
-              <p className="t-body mt-3 text-fest-muted text-[15px]">
-                {c.body}
-              </p>
-              <span className="mt-6 inline-flex items-center gap-2 text-fest-primary text-[14px]">
-                Open mail <span aria-hidden>↗</span>
-              </span>
-            </a>
+        <div className="grid-2" style={{ marginTop: 40 }}>
+          {CHANNELS.map((c) => (
+            <article key={c.title} className="tile">
+              <h3>{c.title}</h3>
+              <p style={{ marginBottom: 16 }}>{c.body}</p>
+              <Btn href={c.href} variant="ghost" external>
+                {c.label}
+              </Btn>
+            </article>
           ))}
         </div>
-      </section>
-    </>
+
+        <section className="page-block" style={{ marginTop: 56 }}>
+          <h2>Bevor du schreibst</h2>
+          <ul className="prose-list">
+            <li>Sales: Workspace-Größe, Tools (GitHub, Slack, Linear…) und was Klarheit heute kostet.</li>
+            <li>Support: Workspace-Name und kurze Repro — wir brauchen keine Screenshots-Flut.</li>
+            <li>Security: Responsible Disclosure an security@festag.app.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
   );
 }

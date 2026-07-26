@@ -1,34 +1,33 @@
 # festag.app — Website
 
-The public Festag website: Homepage, Careers, Job-Detail, Contact.
+Public marketing site for Festag. Separate from the product app (`festag-mvp`).
 
-**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 · Aeonik Regular.
+**Stack:** Next.js 16 · React 19 · Tailwind v4 · Aeonik Regular only
 
-**Product context for agents:** `AGENTS.md` + `docs/festag-*.md` (synced from `festag-mvp`). Open both repos via `Documents/festag.code-workspace` when you need app + website together.
+## Brand
 
-**Product context:** mirrored north-star docs in [`docs/`](./docs/) + [`AGENTS.md`](./AGENTS.md). Open both repos via [`../festag.code-workspace`](../festag.code-workspace).
-
-## Brand contract
-
-- **Type:** Aeonik Regular throughout (Geist Mono for code). EditorsNote only for rare italic accents.
-- **Letter-spacing:** Header 1.2 % · Body 1.7 % · Sidebar 2.3 %.
-- **Palette:** Modern Black, Modern White, Rich Wood Brown accent, Primary `#5B647D`.
-- **No** colored buttons, no white-on-dark / black-on-light contrast inversion, no Apple emojis, no childish AI gradients.
-
-Tokens live in [`app/globals.css`](./app/globals.css) and are bridged into Tailwind v4 via `@theme inline`.
+- Type: Aeonik Regular (`400`) throughout
+- Letter-spacing: Display 1.2% · Body 1.7% · UI 1.4%
+- Canvas `#f7f7f8` · Ink `#0a0a0b` · Slate `#5B647D`
+- Mark without black plate (SVG)
 
 ## Routes
 
-- `/` — OLED marketing home (Vercel-style), primary CTA **Open App** → `https://festag.app`
-- `/careers` — Open roles index, mission, principles
-- `/careers/[slug]` — Job detail with `JobPosting` JSON-LD and mailto/form apply flow
-- `/contact` — Direct mail channels
-- `/product`, `/docs`, `/pricing`, … — product & stub surfaces
-- `/sitemap.xml`, `/robots.txt` — auto-generated
+| Path | Purpose |
+|---|---|
+| `/` | Home — brand-led hero + system |
+| `/product` | Product story |
+| `/tagro` | Operations Interpreter |
+| `/pricing` | Plans |
+| `/extension` | Chrome Extension |
+| `/docs` | Docs entry |
+| `/careers` | Roles |
+| `/contact` | Channels |
+| `/legal/*` | Imprint, privacy, terms |
 
-## Content / CMS
+## Product context
 
-Jobs are typed source-of-truth in [`lib/jobs.ts`](./lib/jobs.ts) — the `JobPosting` schema is CMS-ready; swap `getAllJobs()` / `getJobBySlug()` to plug in Supabase, Sanity or Contentful later without touching pages.
+See `docs/` and `AGENTS.md`. Positioning: Operational Intelligence Platform — never chatbot / PM tool.
 
 ## Run
 
@@ -36,12 +35,3 @@ Jobs are typed source-of-truth in [`lib/jobs.ts`](./lib/jobs.ts) — the `JobPos
 npm install
 npm run dev
 ```
-
-Production build:
-
-```bash
-npm run build
-npm start
-```
-
-Deployed via Vercel (`vercel.com/festag/festagwebsite`).

@@ -1,26 +1,44 @@
 import type { Metadata } from "next";
-import { StubPage } from "../../_components/StubPage";
 
 export const metadata: Metadata = {
-  title: "Privacy — Festag",
-  description: "Festag privacy notice — what data we collect and why.",
+  title: "Datenschutz",
 };
 
 export default function PrivacyPage() {
   return (
-    <StubPage
-      eyebrow="Privacy"
-      title="What data we collect,"
-      italicTail="and why"
-      body="Diese Seite wird durch das finale Datenschutz-Statement ersetzt. Bis dahin kannst du Anfragen direkt an uns richten."
-      bullets={[
-        "Verantwortlich: Festag, DACH",
-        "Verarbeitete Daten: nur was Projektarbeit braucht",
-        "Keine Weitergabe an Dritte für Werbezwecke",
-        "DPA auf Anfrage",
-      ]}
-      mailto="mailto:privacy@festag.app?subject=Festag%20%E2%80%94%20Privacy%20request"
-      mailtoLabel="privacy@festag.app"
-    />
+    <div className="page">
+      <div className="site-wrap">
+        <h1 className="page-title">Datenschutz</h1>
+        <div className="page-stack" style={{ marginTop: 28 }}>
+          <section className="page-block">
+            <h2>Collaboration Intelligence</h2>
+            <p>
+              Festag behandelt Adaptive Intelligence als Collaboration Intelligence — nicht
+              als Surveillance. Learning bleibt workspace-scoped. Personal Profiles sind
+              Opt-in. Export und Löschung sind vorgesehen.
+            </p>
+          </section>
+          <section className="page-block">
+            <h2>Was wir speichern</h2>
+            <p>
+              Account- und Workspace-Daten, Delivery-Signale aus verbundenen Tools (soweit
+              ihr sie verbindet), sowie Nutzungsdaten zur Stabilität der Plattform —
+              permission-aware und zweckgebunden.
+            </p>
+          </section>
+          <section className="page-block">
+            <h2>Kontakt</h2>
+            <p>
+              Fragen zu Datenschutz und Auskunft:{" "}
+              <a href="mailto:privacy@festag.app" style={{ color: "var(--slate)" }}>
+                privacy@festag.app
+              </a>
+              . Die vollständige Datenschutzerklärung mit Processor-Liste folgt an dieser
+              Stelle.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }

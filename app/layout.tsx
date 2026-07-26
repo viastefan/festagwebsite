@@ -1,45 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import "./landing.css";
-import { LocaleGate } from "./_components/LocaleGate";
-import { SiteChrome } from "./_components/SiteChrome";
-import { AskAiPanel } from "./_components/AskAiPanel";
+import { SiteChrome } from "./_components/site/SiteChrome";
 
 const aeonik = localFont({
   src: [
     {
       path: "../public/fonts/Aeonik-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Aeonik-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Aeonik-Medium.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Aeonik-Medium.ttf",
-      weight: "700",
+      weight: "100 900",
       style: "normal",
     },
   ],
   variable: "--font-aeonik",
   display: "swap",
-  fallback: [
-    "Inter",
-    "-apple-system",
-    "BlinkMacSystemFont",
-    "SF Pro Text",
-    "Segoe UI",
-    "sans-serif",
-  ],
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -51,14 +25,6 @@ export const metadata: Metadata = {
   description:
     "Delivery Intelligence für Agenturen und Teams. Status, Risiken und Entscheidungen — klar für Kunden und Führung.",
   applicationName: "Festag",
-  keywords: [
-    "Festag",
-    "Operational Intelligence",
-    "Delivery Intelligence",
-    "Projektsichtbarkeit",
-    "Tagro",
-    "Company Brain",
-  ],
   openGraph: {
     title: "Festag — Operational Intelligence",
     description:
@@ -81,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f7f8",
+  themeColor: "#f7f8f8",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -91,17 +57,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="de"
-      className={`${aeonik.variable} ${GeistMono.variable} h-full antialiased`}
-    >
-      <body
-        className={`${aeonik.className} min-h-full flex flex-col bg-[#f7f7f8] text-[#0a0a0b] antialiased`}
-        style={{ fontWeight: 400 }}
-      >
-        <LocaleGate />
+    <html lang="de" className={`${aeonik.variable} h-full antialiased`}>
+      <body className={`${aeonik.className} min-h-full antialiased`} style={{ fontWeight: 400 }}>
         <SiteChrome>{children}</SiteChrome>
-        <AskAiPanel />
       </body>
     </html>
   );

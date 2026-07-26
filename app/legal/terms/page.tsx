@@ -1,26 +1,41 @@
 import type { Metadata } from "next";
-import { StubPage } from "../../_components/StubPage";
 
 export const metadata: Metadata = {
-  title: "Terms — Festag",
-  description: "Festag terms of service — governing the use of Festag.",
+  title: "AGB",
 };
 
 export default function TermsPage() {
   return (
-    <StubPage
-      eyebrow="Terms"
-      title="Terms of service,"
-      italicTail="in plain language"
-      body="Diese Seite wird durch die finalen Nutzungsbedingungen ersetzt. Wir orientieren uns an klarer DACH-B2B-Sprache."
-      bullets={[
-        "Zugang, Nutzung, Verantwortung",
-        "Daten- und IP-Klärung",
-        "Festag Garantie (Mode A) — vertragliche Anker",
-        "Kündigung, Datenexport, Übergabeszenarien",
-      ]}
-      mailto="mailto:legal@festag.app?subject=Festag%20%E2%80%94%20Terms%20question"
-      mailtoLabel="legal@festag.app"
-    />
+    <div className="page">
+      <div className="site-wrap">
+        <h1 className="page-title">AGB</h1>
+        <div className="page-stack" style={{ marginTop: 28 }}>
+          <section className="page-block">
+            <h2>Nutzung von Festag</h2>
+            <p>
+              Festag ist eine Operational Intelligence Platform für Organisationen. Die
+              Nutzung setzt einen Workspace und die geltenden Produktbedingungen voraus.
+            </p>
+          </section>
+          <section className="page-block">
+            <h2>Verantwortung</h2>
+            <p>
+              Ihr bleibt verantwortlich für Inhalte und verbundene Tools in eurem
+              Workspace. Festag ersetzt keine Rechts-, Steuer- oder Sicherheitsberatung.
+            </p>
+          </section>
+          <section className="page-block">
+            <h2>Kontakt</h2>
+            <p>
+              Die vollständigen AGB werden hier hinterlegt. Bis dahin:{" "}
+              <a href="mailto:hello@festag.app" style={{ color: "var(--slate)" }}>
+                hello@festag.app
+              </a>
+              .
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }

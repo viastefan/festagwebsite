@@ -1,49 +1,38 @@
 import Link from "next/link";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Not found · 404",
-  description: "This page does not exist on festag.app.",
-};
+import { Btn, siteLinks } from "./_components/site/primitives";
 
 export default function NotFound() {
   return (
-    <section className="surface-dark relative overflow-hidden pt-[120px] pb-32 grain min-h-[80vh]">
-      <div
-        aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-[0.15] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(91,100,125,0.5), rgba(91,100,125,0) 70%)",
-        }}
-      />
-      <div className="shell relative">
-        <p className="section-label text-white/55">404</p>
-        <h1 className="t-headline mt-8 text-white text-[clamp(44px,7.4vw,108px)] max-w-[18ch]">
-          This page does not{" "}
-          <span className="t-serif-italic text-white/70">exist</span>.
-        </h1>
-        <p className="t-body mt-8 max-w-[58ch] text-white/55 text-[clamp(16px,1.4vw,19px)]">
-          Vielleicht ist sie noch nicht gebaut — wir veröffentlichen, wenn
-          etwas substantielles steht. Bis dahin:
+    <div className="page">
+      <div className="site-wrap">
+        <h1 className="page-title">Seite nicht gefunden</h1>
+        <p className="page-body">
+          Diese Route existiert nicht — zurück zur Klarheit.
         </p>
-
-        <div className="mt-12 flex flex-wrap gap-3">
-          <Link href="/" className="btn btn-primary h-12 px-6 text-[14px]">
-            Back to start
-          </Link>
-          <Link href="/product" className="btn btn-ghost-dark h-12 px-6 text-[14px]">
-            See the product
-          </Link>
-          <Link href="/careers" className="btn btn-ghost-dark h-12 px-6 text-[14px]">
-            Open roles
-          </Link>
+        <div className="cta-actions" style={{ marginTop: 28 }}>
+          <Btn href="/" variant="solid" size="lg">
+            Zur Startseite
+          </Btn>
+          <Btn href={siteLinks.app} variant="ghost" size="lg" external>
+            Open App
+          </Btn>
         </div>
-
-        <p className="t-mono mt-16 text-white/30">
-          festag / status · 404 not found
+        <p className="page-body" style={{ marginTop: 24 }}>
+          Oder direkt zu{" "}
+          <Link href="/product" style={{ color: "var(--slate)" }}>
+            Produkt
+          </Link>
+          ,{" "}
+          <Link href="/careers" style={{ color: "var(--slate)" }}>
+            Karriere
+          </Link>{" "}
+          oder{" "}
+          <Link href="/contact" style={{ color: "var(--slate)" }}>
+            Kontakt
+          </Link>
+          .
         </p>
       </div>
-    </section>
+    </div>
   );
 }
