@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button, TextLink } from "./_components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "./_components/ui/Reveal";
 import { Stage } from "./_components/ui/Window";
@@ -16,7 +17,7 @@ import {
   ConnectorMarquee,
   FeatureBlock,
   IconCard,
-  LatestUpdates,
+  Highlights,
   VoicesGrid,
 } from "./_components/site/Blocks";
 import { links } from "@/lib/site/links";
@@ -62,11 +63,13 @@ export default function HomePage() {
         <div className="wrap wrap--wide">
           <Reveal className="hero-copy">
             <h1 className="display">
-              Das Team arbeitet. Der Kunde rätselt. Festag schließt die <span className="serif accent">Lücke.</span>
+              Das Team arbeitet. Der Kunde rätselt.
+              <br />
+              Festag schließt die Lücke.
             </h1>
             <p className="lead">
-              Operational Intelligence über GitHub, Linear, Jira und Slack. Tagro übersetzt Arbeitssignale in Status,
-              Risiken und Entscheidungen — klar für Kunden und Führung, unter eurer Marke oder unserer.
+              Operational Intelligence über GitHub, Linear, Jira und Slack — Tagro übersetzt Arbeit in Status, Risiken und
+              Entscheidungen, die Kunden und Führung verstehen.
             </p>
             <div className="btn-row">
               <Button href={links.register} variant="solid" size="lg" arrow>
@@ -76,6 +79,17 @@ export default function HomePage() {
                 Demo anfragen
               </Button>
             </div>
+            <ul className="hero-proof">
+              <li>
+                <Icon name="check" size={14} /> Erster Workspace kostenlos
+              </li>
+              <li>
+                <Icon name="check" size={14} /> Server in Deutschland
+              </li>
+              <li>
+                <Icon name="check" size={14} /> Nichts geht ohne Freigabe raus
+              </li>
+            </ul>
           </Reveal>
 
           <Reveal className="hero-stage" delay={0.15} y={24}>
@@ -95,7 +109,7 @@ export default function HomePage() {
             <Reveal>
               <span className="eyebrow">Das eigentliche Problem</span>
               <h2 className="h2" style={{ marginTop: 16 }}>
-                Es fehlt nicht an Arbeit. Es fehlt an <span className="serif">verständlichem</span> Fortschritt.
+                Es fehlt nicht an Arbeit. Es fehlt an verständlichem Fortschritt.
               </h2>
               <p className="lead" style={{ marginTop: 18 }}>
                 Agenturen und Software-Teams verlieren Zeit, Vertrauen und Marge, weil sie Fortschritt ständig von Hand
@@ -105,7 +119,7 @@ export default function HomePage() {
             <RevealGroup className="home-questions">
               {clientQuestions.map((q) => (
                 <RevealItem key={q} className="home-q">
-                  <span className="serif">{q}</span>
+                  {q}
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -177,7 +191,7 @@ export default function HomePage() {
             eyebrow="Adaptive Intelligence"
             title={
               <>
-                Wird mit jedem Projekt <span className="serif accent">klüger.</span>
+                Wird mit jedem Projekt klüger.
               </>
             }
             lead="Festag lernt die Operational DNA eurer Organisation: wie ihr entscheidet, was „fertig“ heißt, wo es staut. Wie ein Kollege, der seit Jahren bei euch arbeitet — nicht wie ein Chatbot, den man fragt."
@@ -246,14 +260,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───────── Changelog ───────── */}
+      {/* ───────── Team image (Cursor-style split) ───────── */}
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
-          <div className="home-updates-head">
-            <SectionHead title="Immer einen Schritt voraus." />
-            <TextLink href="/changelog">Alle Updates</TextLink>
-          </div>
-          <LatestUpdates />
+          <Reveal className="home-team">
+            <div className="home-team-copy">
+              <p className="h3">
+                Festag ist ein Produktteam aus Niederbayern, das Software baut, die versteht, wie Organisationen arbeiten.
+              </p>
+              <TextLink href="/company">Lerne das Team kennen</TextLink>
+            </div>
+            <div className="home-team-media">
+              <Image
+                src="/brand/bg-office.jpg"
+                alt="Ein Team arbeitet gemeinsam in einem hellen Studio"
+                fill
+                sizes="(max-width: 960px) 100vw, 60vw"
+                className="home-team-img"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────── Highlights ───────── */}
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <Reveal>
+            <h2 className="h3">Aktuelle Highlights</h2>
+          </Reveal>
+          <Highlights />
+          <Reveal style={{ marginTop: 20 }}>
+            <TextLink href="/changelog">Alle Updates ansehen</TextLink>
+          </Reveal>
         </div>
       </section>
 
@@ -275,10 +314,20 @@ const HOME_CSS = `
 .home-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
 .home-trust { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .home-trust-copy { position: sticky; top: calc(var(--nav-h) + 32px); }
+.home-team {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: clamp(16px, 2vw, 24px);
+  padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl); background: var(--surface-2);
+}
+.home-team-copy { display: grid; align-content: center; gap: 18px; padding: clamp(14px, 2vw, 28px); }
+.home-team-copy .h3 { font-weight: 500; max-width: 26ch; }
+.home-team-media { position: relative; min-height: clamp(280px, 34vw, 480px); border-radius: var(--r-lg); overflow: hidden; }
+.home-team-img { object-fit: cover; object-position: center 40%; }
 .home-updates-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
 .home-updates-head .sec-head { margin-bottom: clamp(24px, 4vw, 40px); }
 .home-updates-head > .link { margin-bottom: clamp(24px, 4vw, 40px); flex-shrink: 0; }
 @media (max-width: 960px) {
+  .home-team { grid-template-columns: 1fr; }
+  .home-team-copy { padding: 10px 6px 4px; }
   .home-problem, .home-trust { grid-template-columns: 1fr; }
   .home-trust-copy { position: static; }
 }

@@ -10,7 +10,7 @@ export default function NotFound() {
           404
         </p>
         <h1 className="display" style={{ marginTop: 16 }}>
-          Dieses Signal führt <span className="serif accent">nirgendwohin.</span>
+          Dieses Signal führt nirgendwohin.
         </h1>
         <p className="lead">Die Seite existiert nicht oder ist umgezogen. Zurück zur Klarheit:</p>
         <div className="btn-row">

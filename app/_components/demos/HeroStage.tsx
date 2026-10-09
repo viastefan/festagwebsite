@@ -569,7 +569,7 @@ const HS_CSS = `
   padding: 10px; border-radius: 6px;
   transition: background var(--dur) ease;
 }
-.hs-item:not(.hs-item--static):hover { background: rgba(23,22,27,0.045); }
+.hs-item:not(.hs-item--static):hover { background: rgba(15, 15, 20,0.045); }
 .hs-item[aria-current="true"] { background: #fff; box-shadow: var(--sh-xs); }
 .hs-item--static { opacity: 0.72; }
 .hs-check {
@@ -577,10 +577,10 @@ const HS_CSS = `
   border: 1.4px solid var(--faint); color: var(--muted);
   display: grid; place-items: center;
 }
-.hs-check.is-run { border-color: var(--burgundy-glow); }
+.hs-check.is-run { border-color: var(--accent-glow); }
 .hs-spin {
   width: 10px; height: 10px; border-radius: 50%;
-  border: 1.6px solid var(--burgundy); border-right-color: transparent;
+  border: 1.6px solid var(--accent); border-right-color: transparent;
   animation: hs-rot 0.8s linear infinite;
 }
 @keyframes hs-rot { to { transform: rotate(360deg); } }
@@ -625,8 +625,8 @@ const HS_CSS = `
 .hs-approve-note { font-size: 12px; color: var(--muted); }
 .hs-approve-btn { animation: hs-ping 1.6s ease-in-out infinite; }
 @keyframes hs-ping {
-  0%,100% { box-shadow: 0 0 0 0 rgba(122,30,51,0.35); }
-  50% { box-shadow: 0 0 0 6px rgba(122,30,51,0); }
+  0%,100% { box-shadow: 0 0 0 0 rgba(59, 111, 212,0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(59, 111, 212,0); }
 }
 .hs-approved { display: inline-flex; align-items: center; gap: 7px; color: var(--ok); font-size: 12.5px; }
 .hs-composer {
@@ -640,7 +640,7 @@ const HS_CSS = `
   display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 8px;
   border-radius: 999px; font-size: 11.5px; color: var(--muted);
 }
-.hs-chip--accent { background: var(--burgundy-tint); color: var(--burgundy); }
+.hs-chip--accent { background: var(--accent-tint); color: var(--accent); }
 .hs-send {
   margin-left: auto; width: 26px; height: 26px; border-radius: 50%;
   display: grid; place-items: center; background: var(--surface-2); color: var(--muted);
@@ -660,27 +660,27 @@ const HS_CSS = `
 .hs-p-client { font-size: 11.5px; color: var(--faint); letter-spacing: 0.06em; text-transform: uppercase; }
 .hs-p-title {
   margin-top: 6px; font-size: 22px; letter-spacing: -0.005em; color: var(--ink);
-  font-family: var(--font-serif), Georgia, serif; font-style: italic;
+  
 }
 .hs-p-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
 .hs-metric { display: grid; gap: 3px; }
 .hs-metric > span { font-size: 11px; color: var(--faint); }
 .hs-metric strong { font-weight: 400; font-size: 17px; color: var(--ink); font-variant-numeric: tabular-nums; }
 .hs-metric strong.is-ok { color: var(--ok); }
-.hs-metric strong.is-risk { color: var(--burgundy); }
+.hs-metric strong.is-risk { color: var(--accent); }
 .hs-p-bar { margin-top: 12px; }
 .hs-p-highlight {
   margin-top: 14px; overflow: hidden;
-  border-radius: 6px; border: 1px solid rgba(122,30,51,0.35);
+  border-radius: 6px; border: 1px solid rgba(59, 111, 212,0.35);
   background: rgba(247,234,238,0.7);
 }
 .hs-p-tag {
   display: inline-block; margin: 0; padding: 3px 7px; font-size: 11px;
-  color: var(--burgundy); background: var(--burgundy-tint); border-bottom-right-radius: 6px;
+  color: var(--accent); background: var(--accent-tint); border-bottom-right-radius: 6px;
 }
 .hs-p-highlight p {
   padding: 6px 10px 10px; font-size: 14px; line-height: 1.5; color: var(--ink);
-  font-family: var(--font-serif), Georgia, serif;
+  
 }
 .hs-p-section { margin: 18px 0 8px; display: block; font-size: 11px; color: var(--faint); letter-spacing: 0.06em; text-transform: uppercase; }
 .hs-p-list { display: grid; }
@@ -694,7 +694,7 @@ const HS_CSS = `
   padding: 12px 14px; border-radius: 7px; background: var(--surface-2);
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
-.hs-p-decision.is-live { background: #fff; box-shadow: 0 0 0 1px rgba(122,30,51,0.3), var(--sh-sm); }
+.hs-p-decision.is-live { background: #fff; box-shadow: 0 0 0 1px rgba(59, 111, 212,0.3), var(--sh-sm); }
 .hs-p-decision-q { margin-top: 4px; color: var(--ink); font-size: 13.5px; }
 .hs-p-decision-btn {
   flex-shrink: 0; height: 28px; padding: 0 12px; border-radius: 999px;
@@ -728,7 +728,7 @@ const HS_CSS = `
 }
 .hs-progress button {
   position: relative; width: 36px; height: 3px; border-radius: 999px;
-  background: rgba(23,22,27,0.14); overflow: hidden;
+  background: rgba(15, 15, 20,0.14); overflow: hidden;
 }
 .hs-progress i {
   position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink);

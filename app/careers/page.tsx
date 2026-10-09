@@ -33,7 +33,7 @@ export default function CareersPage() {
         eyebrow="Karriere"
         title={
           <>
-            Wir bauen Software, die <span className="serif accent">versteht,</span> wie Organisationen arbeiten.
+            Wir bauen Software, die versteht, wie Organisationen arbeiten.
           </>
         }
         lead="Ein kleines Team, eine neue Kategorie. Remote in DACH, mit echtem Ownership und Equity für die ersten Rollen."
@@ -105,7 +105,7 @@ export default function CareersPage() {
 
       <style>{`
         .cr-group { margin-top: 32px; }
-        .cr-dept { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 8px; }
+        .cr-dept { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
         .cr-open { margin-top: 40px; }
         @media (max-width: 640px) { .cr-loc { display: none; } }
       `}</style>

@@ -25,24 +25,33 @@ export type NavItem = {
 
 export type NavMenuItem = NavItem & {
   body: string;
-  icon: "book" | "sparkles" | "puzzle" | "people" | "mail" | "shield" | "clock" | "cube";
+  icon: "book" | "sparkles" | "puzzle" | "people" | "mail" | "shield" | "clock" | "cube" | "portal" | "flow" | "chart" | "decision" | "globe";
 };
 
-export const primaryNav: NavItem[] = [
-  { href: "/product", label: "Produkt" },
-  { href: "/tagro", label: "Tagro" },
-  { href: "/connectors", label: "Connectors" },
+/** Top-level items. `menu` opens a mega dropdown. */
+export const primaryNav: (NavItem & { menu?: "product" | "resources" })[] = [
+  { href: "/product", label: "Produkt", menu: "product" },
   { href: "/enterprise", label: "Enterprise" },
   { href: "/pricing", label: "Preise" },
+  { href: "/community", label: "Community" },
+  { href: "/docs", label: "Ressourcen", menu: "resources" },
 ];
 
+export const productMenu: NavMenuItem[] = [
+  { href: "/product", label: "Plattform", body: "Client Panel, Entscheidungen, Executive.", icon: "portal" },
+  { href: "/tagro", label: "Tagro", body: "Der Operations Interpreter, der mitdenkt.", icon: "sparkles" },
+  { href: "/connectors", label: "Connectors", body: "GitHub, Linear, Jira, Slack und mehr.", icon: "flow" },
+  { href: "/intelligence", label: "Modelle & Intelligence", body: "Leqra, Tagro, Veyra und Company Brain.", icon: "chart" },
+  { href: "/extension", label: "Chrome Extension", body: "Signale erfassen, wo Arbeit passiert.", icon: "puzzle" },
+];
+
+export const announcement = {
+  label: "Neu",
+  text: "Adaptive Intelligence: Operational DNA ist jetzt persistent",
+  href: "/changelog#v2.6",
+};
+
 export const resourcesMenu: NavMenuItem[] = [
-  {
-    href: "/intelligence",
-    label: "Modelle & Intelligence",
-    body: "Leqra, Tagro, Veyra — und die Workspace-Modi dahinter.",
-    icon: "sparkles",
-  },
   {
     href: "/docs",
     label: "Guides",
@@ -62,10 +71,10 @@ export const resourcesMenu: NavMenuItem[] = [
     icon: "clock",
   },
   {
-    href: "/extension",
-    label: "Chrome Extension",
-    body: "Signale erfassen, wo Arbeit passiert.",
-    icon: "puzzle",
+    href: "/community",
+    label: "Community",
+    body: "Early Access, Partner, Office Hours.",
+    icon: "globe",
   },
   {
     href: "/careers",

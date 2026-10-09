@@ -105,7 +105,7 @@ export default function IntelligencePage() {
         eyebrow="Modelle & Intelligence"
         title={
           <>
-            Software, die <span className="serif accent">versteht,</span> wie eure Organisation arbeitet.
+            Software, die versteht, wie eure Organisation arbeitet.
           </>
         }
         lead="Festag ist ein selbstlernendes Operational-Intelligence-System. Drei spezialisierte Interpreter, ein gemeinsames Wissensmodell — und jede Interaktion macht es klüger."
@@ -133,7 +133,7 @@ export default function IntelligencePage() {
                   <span className="tag">{m.tag}</span>
                 </div>
                 <div className="in-model-name">
-                  <span className="serif">{m.name}</span>
+                  {m.name}
                 </div>
                 <div className="in-model-role">{m.role}</div>
                 <p className="body" style={{ fontSize: 14.5, marginTop: 14 }}>
@@ -151,7 +151,7 @@ export default function IntelligencePage() {
             ))}
           </RevealGroup>
           <Reveal className="in-tagline">
-            <span className="serif">Leqra denkt.</span> Festag handelt.
+            Leqra denkt. Festag handelt.
           </Reveal>
         </div>
       </section>
@@ -229,7 +229,7 @@ export default function IntelligencePage() {
             {PREDICT.map((p) => (
               <RevealItem key={p} className="in-predict">
                 <Icon name="sparkles" size={16} />
-                <span className="serif">{p}</span>
+                {p}
               </RevealItem>
             ))}
           </RevealGroup>
@@ -283,7 +283,7 @@ export default function IntelligencePage() {
         </div>
       </section>
 
-      <CtaBand title="Software, die Operations versteht — und jeden Tag besser wird." />
+      <CtaBand title="Klüger mit jedem Projekt." />
 
       <style>{`
         .in-model {
@@ -293,29 +293,28 @@ export default function IntelligencePage() {
         .in-model-top { display: flex; align-items: center; justify-content: space-between; }
         .in-model-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; }
         .in-model-name { margin-top: 26px; font-size: 40px; line-height: 1; color: var(--ink); }
-        .in-model-role { margin-top: 8px; font-size: 14px; color: var(--burgundy); }
+        .in-model-role { margin-top: 8px; font-size: 14px; color: var(--accent); }
         .in-model-facts { margin: 20px 0 0; padding-top: 16px; border-top: var(--hair) solid var(--line); display: grid; gap: 10px; margin-top: auto; }
         .in-model .body { margin-bottom: 20px; }
         .in-model-facts div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: 13.5px; }
         .in-model-facts dt { color: var(--faint); }
         .in-model-facts dd { margin: 0; color: var(--ink-2); }
         .in-tagline { margin-top: 40px; text-align: center; font-size: clamp(24px, 3vw, 36px); color: var(--ink); }
-        .in-tagline .serif { color: var(--burgundy); }
         .in-pipe { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
         .in-pipe-step { display: flex; align-items: center; gap: 10px; }
         .in-pipe-step span {
           padding: 14px 22px; border-radius: 999px; font-size: 17px; background: var(--surface); border: var(--hair) solid var(--line);
           color: var(--ink); box-shadow: var(--sh-xs);
         }
-        .in-pipe-step:last-child span { background: var(--burgundy); border-color: var(--burgundy); color: #fff; }
+        .in-pipe-step:last-child span { background: var(--accent); border-color: var(--accent); color: #fff; }
         .in-pipe-step svg { color: var(--faint); }
         .in-okm { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .in-okm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .in-okm-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line); font-size: 14.5px; color: var(--ink); }
-        .in-okm-item svg { color: var(--burgundy); }
+        .in-okm-item svg { color: var(--accent); }
         .in-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
         .in-predict { display: grid; grid-template-columns: 18px 1fr; gap: 14px; padding: 22px; border-radius: 10px; background: var(--surface-2); font-size: 19px; line-height: 1.4; color: var(--ink); }
-        .in-predict svg { color: var(--burgundy); margin-top: 5px; }
+        .in-predict svg { color: var(--accent); margin-top: 5px; }
         .in-privacy { border-radius: 10px; border: var(--hair) solid var(--line); background: var(--surface); overflow: hidden; }
         .in-privacy-row { display: grid; grid-template-columns: 1.2fr 0.5fr 2fr; gap: 16px; padding: 16px 20px; border-top: var(--hair) solid var(--line); align-items: center; font-size: 14.5px; color: var(--muted); }
         .in-privacy-row span:first-child { color: var(--ink); }

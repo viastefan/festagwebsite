@@ -57,23 +57,23 @@ export function PageHero({
 }
 
 export function CtaBand({
-  title = "Gebt jedem Kunden das Gefühl, dass sein Projekt unter Kontrolle ist.",
-  lead = "Workspace anlegen, Tools verbinden, Tagro öffnen — in unter zehn Minuten sehen, was wirklich läuft.",
+  title = "Festag jetzt testen.",
+  lead = "Erster Workspace kostenlos. Tools verbinden, Tagro öffnen — in zehn Minuten sehen, was wirklich läuft.",
 }: {
   title?: string;
   lead?: string;
 }) {
   return (
-    <section className="section section--flush-top">
+    <section className="section">
       <div className="wrap">
         <Reveal className="cta">
-          <h2 className="h2">{title}</h2>
+          <h2 className="cta-title">{title}</h2>
           <p className="lead">{lead}</p>
           <div className="btn-row">
             <Button href={links.register} variant="solid" size="lg" arrow>
               Kostenlos starten
             </Button>
-            <Button href="/contact" variant="ghost" size="lg">
+            <Button href="/contact" variant="soft" size="lg">
               Demo anfragen
             </Button>
           </div>

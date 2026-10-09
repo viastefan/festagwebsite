@@ -15,16 +15,12 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "linear-gradient(180deg, #f7f6f2 0%, #efe9e6 100%)",
-          color: "#17161b",
+          background: "linear-gradient(180deg, #f8f7f5 0%, #e3eaf5 100%)",
+          color: "#0f0f14",
           fontFamily: "system-ui, sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <svg width="40" height="40" viewBox="0 0 64 64" fill="#17161b">
-            <path d="M14 6h33.6c1.2 0 2.3.5 3 1.5l6 8.2c.9 1.2.8 2.9-.2 4L27.7 54.4c-.9 1.1-2.2 1.6-3.6 1.6H14c-4.4 0-8-3.6-8-8V14c0-4.4 3.6-8 8-8z" />
-            <path d="M54.9 32.4c1-1.1 2.6-.4 2.6 1.1V51c0 2.8-2.2 5-5 5H37.6c-1.4 0-2.1-1.6-1.2-2.7z" />
-          </svg>
           <div style={{ display: "flex", fontSize: 34 }}>festag</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
@@ -35,7 +31,7 @@ export default function OpengraphImage() {
             Operational Intelligence über GitHub, Linear, Jira und Slack.
           </div>
         </div>
-        <div style={{ display: "flex", height: 6, width: 160, borderRadius: 6, background: "#7a1e33" }} />
+        <div style={{ display: "flex", height: 6, width: 160, borderRadius: 6, background: "#5b647d" }} />
       </div>
     ),
     { ...size },

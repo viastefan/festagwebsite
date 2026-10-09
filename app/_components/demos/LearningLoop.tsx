@@ -38,13 +38,13 @@ export function LearningLoop() {
     <div ref={ref} className="ll">
       <div className="ll-ring">
         <svg viewBox="0 0 400 400" className="ll-svg" aria-hidden>
-          <circle cx="200" cy="200" r={R} fill="none" stroke="rgba(23,22,27,0.08)" strokeWidth="1.5" />
+          <circle cx="200" cy="200" r={R} fill="none" stroke="rgba(15, 15, 20,0.08)" strokeWidth="1.5" />
           <motion.circle
             cx="200"
             cy="200"
             r={R}
             fill="none"
-            stroke="var(--burgundy)"
+            stroke="var(--accent)"
             strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray={2 * Math.PI * R}
@@ -125,8 +125,8 @@ const LL_CSS = `
   font-size: 12px; color: var(--muted); display: grid; place-items: center;
   transition: all 0.3s var(--ease);
 }
-.ll-dot.is-done { border-color: rgba(122,30,51,0.35); color: var(--burgundy); }
-.ll-dot.is-active { background: var(--burgundy); border-color: var(--burgundy); color: #fff; transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 0 0 6px var(--burgundy-soft); }
+.ll-dot.is-done { border-color: rgba(59, 111, 212,0.35); color: var(--accent); }
+.ll-dot.is-active { background: var(--accent); border-color: var(--accent); color: #fff; transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 0 0 6px var(--accent-soft); }
 .ll-center { position: absolute; inset: 24%; display: grid; place-items: center; text-align: center; align-content: center; gap: 12px; }
 .ll-mark { width: 30px; height: 30px; color: var(--ink); }
 .ll-center-label { font-size: 17px; color: var(--ink); }
@@ -134,7 +134,7 @@ const LL_CSS = `
 .ll-dna { background: #fff; border: var(--hair) solid var(--line); border-radius: 10px; padding: 20px; box-shadow: var(--sh-sm); display: grid; gap: 4px; }
 .ll-dna-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
 .ll-fact { padding: 12px 0; border-top: var(--hair) solid var(--line); display: grid; gap: 4px; }
-.ll-fact-k { font-size: 12px; color: var(--burgundy); }
+.ll-fact-k { font-size: 12px; color: var(--accent); }
 .ll-fact-v { font-size: 14.5px; color: var(--ink); }
 .ll-fact-c { display: grid; grid-template-columns: 1fr 44px; gap: 10px; align-items: center; margin-top: 4px; }
 .ll-fact-c em { font-style: normal; font-size: 12px; color: var(--faint); text-align: right; font-variant-numeric: tabular-nums; }

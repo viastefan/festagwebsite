@@ -79,13 +79,13 @@ export default function ChangelogPage() {
           background: var(--surface-2); font-size: 12.5px; color: var(--ink); font-variant-numeric: tabular-nums;
         }
         .cl-meta time { font-size: 13.5px; color: var(--muted); }
-        .cl-title:hover h2 { color: var(--burgundy); }
+        .cl-title:hover h2 { color: var(--accent); }
         .cl-title h2 { transition: color var(--dur) ease; }
         .cl-text { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--ink-2); max-width: 64ch; }
         .cl-media { margin-top: 24px; }
         .cl-list { margin-top: 22px; display: grid; gap: 10px; }
         .cl-list li { display: grid; grid-template-columns: 16px 1fr; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
-        .cl-list svg { color: var(--burgundy); margin-top: 3px; }
+        .cl-list svg { color: var(--accent); margin-top: 3px; }
         .cl-tags { display: flex; gap: 6px; margin-top: 20px; flex-wrap: wrap; }
         @media (max-width: 760px) {
           .cl-item { grid-template-columns: 1fr; gap: 14px; }

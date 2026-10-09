@@ -230,7 +230,7 @@ export function TagroConsole({ compact }: { compact?: boolean }) {
                 send(input);
               }}
             >
-              <Icon name="sparkles" size={16} style={{ color: "var(--burgundy)", flexShrink: 0 }} />
+              <Icon name="sparkles" size={16} style={{ color: "var(--accent)", flexShrink: 0 }} />
               <input
                 ref={inputRef}
                 value={input}
@@ -368,7 +368,7 @@ const TC_CSS = `
   background: #fff; border: var(--hair) solid var(--line); border-radius: 8px; padding: 16px 18px;
   box-shadow: var(--sh-xs); max-width: 640px;
 }
-.tc-answer-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--burgundy); }
+.tc-answer-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--accent); }
 .tc-av {
   width: 22px; height: 22px; border-radius: 5px; background: var(--ink); color: #fff;
   display: grid; place-items: center;
@@ -388,9 +388,9 @@ const TC_CSS = `
 .tc-option:not(:disabled):hover { border-color: var(--line-strong); background: #fff; transform: translateY(-1px); }
 .tc-option span { font-size: 13.5px; color: var(--ink); }
 .tc-option em { font-style: normal; font-size: 11.5px; color: var(--muted); }
-.tc-option.is-rec { background: #fff; border-color: rgba(122,30,51,0.3); }
-.tc-option.is-rec em { color: var(--burgundy); }
-.tc-option.is-picked { background: var(--burgundy); border-color: var(--burgundy); }
+.tc-option.is-rec { background: #fff; border-color: rgba(59, 111, 212,0.3); }
+.tc-option.is-rec em { color: var(--accent); }
+.tc-option.is-picked { background: var(--accent); border-color: var(--accent); }
 .tc-option.is-picked span, .tc-option.is-picked em { color: #fff; }
 .tc-option:disabled:not(.is-picked) { opacity: 0.45; cursor: default; }
 .tc-sources { display: flex; flex-wrap: wrap; gap: 6px; }

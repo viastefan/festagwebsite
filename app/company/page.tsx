@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Button, TextLink } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
@@ -17,9 +18,16 @@ export const metadata: Metadata = {
 
 const FACTS = [
   { k: "Status", v: "Beta · v0.9" },
-  { k: "Sitz", v: "Deutschland, remote in DACH" },
+  { k: "Sitz", v: "Landshut, Bayern" },
   { k: "Hosting", v: "Server in Deutschland" },
   { k: "Kategorie", v: "Operational Intelligence" },
+];
+
+const TEAM: { name?: string; initials?: string; role: string; href?: string }[] = [
+  { name: "Stefan Dirnberger", initials: "SD", role: "Gründer · Produkt & Entwicklung", href: "https://www.dirnberger-soehne.dev/unternehmen" },
+  { role: "Product Design · Systems & UI" },
+  { role: "AI Product Engineering · Tagro" },
+  { role: "Customer Success & Betrieb" },
 ];
 
 const CHAPTERS = [
@@ -51,7 +59,7 @@ export default function CompanyPage() {
           <Reveal>
             <span className="eyebrow">Unternehmen</span>
             <h1 className="display" style={{ marginTop: 18 }}>
-              Wir bauen Software, die <span className="serif accent">versteht,</span> wie Organisationen arbeiten.
+              Wir bauen Software, die versteht, wie Organisationen arbeiten.
             </h1>
             <p className="lead" style={{ marginTop: 22 }}>
               Festag ist eine Operational-Intelligence-Plattform für Agenturen, Software-Teams und Unternehmen mit
@@ -86,7 +94,7 @@ export default function CompanyPage() {
       <section className="section section--flush-top">
         <div className="wrap co-wrap">
           <Reveal className="co-quote">
-            <p className="serif">„Das Team arbeitet. Der Kunde rätselt. Festag schließt die Lücke.“</p>
+            <p >„Das Team arbeitet. Der Kunde rätselt. Festag schließt die Lücke.“</p>
             <span className="small">Unser Leitsatz seit Tag eins</span>
           </Reveal>
         </div>
@@ -98,7 +106,7 @@ export default function CompanyPage() {
             <div>
               <span className="eyebrow">Architektur</span>
               <h2 className="h3" style={{ marginTop: 14 }}>
-                <span className="serif">Leqra denkt.</span> Festag handelt.
+                Leqra denkt. Festag handelt.
               </h2>
             </div>
             <p className="body" style={{ fontSize: 16.5 }}>
@@ -128,6 +136,64 @@ export default function CompanyPage() {
               </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </section>
+
+      <section className="section section--flush-top" id="team">
+        <div className="wrap co-wrap">
+          <Reveal className="co-team-head">
+            <h2 className="h3">
+              Das Team hinter Festag
+              <span style={{ display: "block", color: "var(--muted)" }}>
+                Produkt, Design, Engineering und Betrieb — ein Kernteam, ergänzt um Spezialisten.
+              </span>
+            </h2>
+            <TextLink href="/careers">Mit uns arbeiten</TextLink>
+          </Reveal>
+          <Reveal className="co-team-photo">
+            <Image
+              src="/brand/bg-office.jpg"
+              alt="Das Team arbeitet gemeinsam im Studio"
+              fill
+              sizes="(max-width: 1040px) 100vw, 1040px"
+              style={{ objectFit: "cover", objectPosition: "center 45%" }}
+            />
+          </Reveal>
+          <RevealGroup className="co-team">
+            {TEAM.map((m) => (
+              <RevealItem key={m.role} className="co-member">
+                <span className={`co-avatar${m.name ? "" : " is-open"}`} aria-hidden>
+                  {m.name ? m.initials : <Icon name="plus" size={16} />}
+                </span>
+                <div>
+                  <div className="co-member-name">{m.name ?? "Wir stellen ein"}</div>
+                  <div className="co-member-role">{m.role}</div>
+                </div>
+                {m.href ? (
+                  <a href={m.href} className="co-member-link" aria-label={`${m.name ?? m.role} — mehr`}>
+                    <Icon name="arrowUpRight" size={15} />
+                  </a>
+                ) : (
+                  <Link href="/careers" className="co-member-link" aria-label="Offene Rollen">
+                    <Icon name="arrowUpRight" size={15} />
+                  </Link>
+                )}
+              </RevealItem>
+            ))}
+          </RevealGroup>
+          <Reveal className="co-studio">
+            <span className="co-studio-mark">D&amp;S</span>
+            <div>
+              <div className="co-member-name">Entstanden bei Dirnberger &amp; Söhne</div>
+              <div className="co-member-role">
+                Design, Entwicklung und Betrieb digitaler Produkte aus Landshut — und das Studio, in dem Festag jeden Tag
+                eingesetzt wird.
+              </div>
+            </div>
+            <a href="https://www.dirnberger-soehne.dev/unternehmen" className="link">
+              dirnberger-soehne.dev <Icon name="arrowUpRight" size={14} />
+            </a>
+          </Reveal>
         </div>
       </section>
 
@@ -194,7 +260,7 @@ export default function CompanyPage() {
         .co-facts dd { margin: 4px 0 0; font-size: 15px; color: var(--ink); }
         .co-chapters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
         .co-chapter { padding: 22px; border-radius: var(--r-lg); background: var(--surface-2); border: var(--hair) solid var(--line); display: grid; gap: 8px; align-content: start; }
-        .co-n { font-size: 12px; letter-spacing: 0.08em; color: var(--burgundy); }
+        .co-n { font-size: 12px; letter-spacing: 0.08em; color: var(--accent); }
         .co-chapter .body { font-size: 15px; }
         .co-quote { padding: clamp(28px, 5vw, 56px) 0; border-block: var(--hair) solid var(--line); text-align: center; display: grid; gap: 14px; }
         .co-quote p { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; color: var(--ink); max-width: 26ch; margin-inline: auto; }
@@ -202,10 +268,11 @@ export default function CompanyPage() {
         .co-split .link { display: inline-flex; margin-left: 4px; }
         .co-principles { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
         .co-principle { display: grid; grid-template-columns: 18px 1fr; gap: 12px; padding: 18px 0; border-top: var(--hair) solid var(--line); }
-        .co-principle svg { color: var(--burgundy); margin-top: 3px; }
+        .co-principle svg { color: var(--accent); margin-top: 3px; }
         .co-p-title { font-size: 16px; color: var(--ink); }
         .co-news-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
-        .co-news { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .co-news { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+        .co-news > li { min-width: 0; }
         .co-news > li:first-child { grid-row: span 3; }
         .co-news-item { height: 100%; }
         .co-news-link {
@@ -217,10 +284,25 @@ export default function CompanyPage() {
         .co-news-meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
         .co-news-title { margin-top: 10px; font-size: 17px; line-height: 1.35; color: var(--ink); }
         .is-lead .co-news-title { font-size: 22px; }
+        .co-team-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+        .co-team-head .h3 { max-width: 640px; }
+        .co-team-photo { position: relative; height: clamp(240px, 34vw, 420px); border-radius: var(--r-xl); overflow: hidden; }
+        .co-team { margin-top: 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        .co-member { position: relative; display: grid; gap: 12px; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
+        .co-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 500; color: #fff; background: linear-gradient(135deg, var(--accent), #7fd8e8); }
+        .co-avatar.is-open { background: #fff; color: var(--faint); box-shadow: 0 0 0 var(--hair) var(--line-strong) inset; }
+        .co-member-name { font-size: 15px; font-weight: 500; color: var(--ink); }
+        .co-member-role { margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+        .co-member-link { position: absolute; top: 16px; right: 16px; color: var(--faint); transition: color var(--dur) ease; }
+        .co-member-link:hover { color: var(--accent); }
+        .co-studio { margin-top: 10px; display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
+        .co-studio-mark { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 500; }
+        @media (max-width: 860px) { .co-team { grid-template-columns: 1fr 1fr; } .co-studio { grid-template-columns: 44px 1fr; } .co-studio .link { grid-column: 2; } }
+        @media (max-width: 520px) { .co-team { grid-template-columns: 1fr; } }
         .co-join { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: clamp(22px, 3vw, 36px); border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
         @media (max-width: 860px) {
           .co-facts { grid-template-columns: 1fr 1fr; }
-          .co-chapters, .co-principles, .co-news { grid-template-columns: 1fr; }
+          .co-chapters, .co-principles, .co-news { grid-template-columns: minmax(0, 1fr); }
           .co-news > li:first-child { grid-row: auto; }
           .co-split { grid-template-columns: 1fr; }
         }

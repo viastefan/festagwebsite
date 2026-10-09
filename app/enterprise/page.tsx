@@ -54,7 +54,7 @@ export default function EnterprisePage() {
         eyebrow="Enterprise"
         title={
           <>
-            Operational Intelligence für Organisationen mit <span className="serif accent">mehr als einem</span>{" "}
+            Operational Intelligence für Organisationen mit mehr als einem{" "}
             Portfolio.
           </>
         }
@@ -176,11 +176,11 @@ export default function EnterprisePage() {
       </section>
 
       <style>{`
-        .ent-wl-top { border-color: rgba(122,30,51,0.3); box-shadow: 0 0 0 1px rgba(122,30,51,0.1), var(--sh-md); }
+        .ent-wl-top { border-color: rgba(59, 111, 212,0.3); box-shadow: 0 0 0 1px rgba(59, 111, 212,0.1), var(--sh-md); }
         .ent-contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
         .ent-list { display: grid; gap: 10px; margin-top: 24px; }
         .ent-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-2); }
-        .ent-list svg { color: var(--burgundy); }
+        .ent-list svg { color: var(--accent); }
         @media (max-width: 960px) { .ent-contact { grid-template-columns: 1fr; } }
       `}</style>
     </>

@@ -121,15 +121,15 @@ const TD_CSS = `
 .td-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .td-pager { display: flex; gap: 6px; }
 .td-pager button { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-3); transition: background var(--dur) ease, transform var(--dur) var(--ease); }
-.td-pager button.is-active { background: var(--burgundy); transform: scale(1.2); }
+.td-pager button.is-active { background: var(--accent); transform: scale(1.2); }
 .td-raw, .td-client { flex: 1; border-radius: 8px; padding: 18px; }
 .td-raw { background: #fff; border: var(--hair) dashed var(--line-strong); }
 .td-raw-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
 .td-raw-head em { margin-left: auto; font-style: normal; font-size: 11.5px; color: var(--faint); }
 .td-raw p { margin-top: 12px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
-.td-client { background: #fff; border: 1px solid rgba(122,30,51,0.22); box-shadow: 0 0 0 4px var(--burgundy-soft), var(--sh-sm); }
+.td-client { background: #fff; border: 1px solid rgba(59, 111, 212,0.22); box-shadow: 0 0 0 4px var(--accent-soft), var(--sh-sm); }
 .td-client-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .td-client-src { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--faint); }
-.td-client p { margin-top: 14px; font-size: 18px; line-height: 1.5; color: var(--ink); font-family: var(--font-serif), Georgia, serif; }
+.td-client p { margin-top: 14px; font-size: 18px; line-height: 1.5; color: var(--ink);  }
 .td-foot span { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--faint); }
 `;

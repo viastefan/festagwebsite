@@ -27,7 +27,7 @@ export default function ConnectorsPage() {
         eyebrow="Connectors"
         title={
           <>
-            Euer Team bleibt, wo es arbeitet. Festag <span className="serif accent">liest mit.</span>
+            Euer Team bleibt, wo es arbeitet. Festag liest mit.
           </>
         }
         lead="Festag sitzt über GitHub, Linear, Jira und Slack. Es ersetzt keine Workflows, erzeugt keine doppelten Tasks und verlangt von niemandem, alles aufzuschreiben."
@@ -145,7 +145,7 @@ export default function ConnectorsPage() {
         .cn-icon { width: 42px; height: 42px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center; flex-shrink: 0; }
         .cn-signals { display: grid; gap: 6px; margin-top: 14px; }
         .cn-signals li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
-        .cn-signals svg { color: var(--burgundy); }
+        .cn-signals svg { color: var(--accent); }
         .cn-never { margin-top: auto; padding-top: 14px; display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; color: var(--faint); border-top: var(--hair) solid var(--line); margin-top: 16px; }
         .cn-never svg { flex-shrink: 0; margin-top: 2px; }
         .cn-tax { border-radius: 10px; border: var(--hair) solid var(--line); background: var(--surface); overflow: hidden; }

@@ -48,7 +48,7 @@ export default function TagroPage() {
         eyebrow="Tagro · Operations Interpreter"
         title={
           <>
-            Wie ein Kollege, der seit Jahren bei euch <span className="serif accent">arbeitet.</span>
+            Wie ein Kollege, der seit Jahren bei euch arbeitet.
           </>
         }
         lead="Tagro liest Signale aus GitHub, Linear, Jira und Slack, versteht, was sie bedeuten, und übersetzt sie in ruhige, entscheidungsreife Sprache. Kein Chatbot, den man fragt — ein Interpreter, der mitdenkt."
@@ -106,7 +106,7 @@ export default function TagroPage() {
               {QUESTIONS.map((q, i) => (
                 <RevealItem key={q} className="tg-q">
                   <span className="tg-q-n">{i + 1}</span>
-                  <span className="serif">{q}</span>
+                  {q}
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -168,24 +168,24 @@ export default function TagroPage() {
         </div>
       </section>
 
-      <CtaBand title="Frag Tagro, was in euren Projekten wirklich läuft." />
+      <CtaBand title="Frag Tagro selbst." />
 
       <style>{`
         .tg-console-wrap { max-width: 920px; margin: 0 auto; }
         .tg-structure { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
         .tg-struct { display: grid; gap: 8px; align-content: start; padding: 22px 20px; border-radius: 10px; background: var(--surface); border: var(--hair) solid var(--line); }
-        .tg-struct-n { font-size: 12px; color: var(--burgundy); letter-spacing: 0.08em; }
+        .tg-struct-n { font-size: 12px; color: var(--accent); letter-spacing: 0.08em; }
         .tg-questions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .tg-q-list { display: grid; gap: 8px; }
         .tg-q { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: 8px; background: var(--surface-2); font-size: 20px; color: var(--ink); }
-        .tg-q-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #fff; font-size: 12px; color: var(--burgundy); flex-shrink: 0; }
+        .tg-q-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #fff; font-size: 12px; color: var(--accent); flex-shrink: 0; }
         .tg-vs { border-radius: 10px; overflow: hidden; border: var(--hair) solid var(--line); background: var(--surface); }
         .tg-vs-head, .tg-vs-row { display: grid; grid-template-columns: 1fr 1fr; }
         .tg-vs-head span { padding: 14px 20px; font-size: 13px; color: var(--faint); background: var(--surface-2); display: flex; align-items: center; gap: 8px; }
-        .tg-vs-head span:last-child { color: var(--burgundy); background: var(--burgundy-tint); }
+        .tg-vs-head span:last-child { color: var(--accent); background: var(--accent-tint); }
         .tg-vs-row span { padding: 16px 20px; border-top: var(--hair) solid var(--line); font-size: 15px; color: var(--muted); display: flex; gap: 10px; align-items: flex-start; }
         .tg-vs-row span:last-child { color: var(--ink); background: rgba(247,234,238,0.35); }
-        .tg-vs-row span:last-child svg { color: var(--burgundy); margin-top: 3px; flex-shrink: 0; }
+        .tg-vs-row span:last-child svg { color: var(--accent); margin-top: 3px; flex-shrink: 0; }
         .tg-cursor { display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; padding: clamp(24px, 4vw, 44px); border-radius: var(--r-xl); background: var(--surface-2); }
         .tg-cursor-icon { width: 64px; height: 64px; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
         @media (max-width: 1100px) { .tg-structure { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

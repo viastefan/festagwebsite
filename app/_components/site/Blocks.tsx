@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, type IconName } from "../ui/Icon";
+import { FestagMark } from "../ui/Logo";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { Stage } from "../ui/Window";
 import { TextLink } from "../ui/Button";
@@ -178,5 +179,36 @@ export function IconCard({
     <div className="card" style={{ height: "100%" }}>
       {inner}
     </div>
+  );
+}
+
+export function shortDate(iso: string) {
+  return new Date(iso).toLocaleDateString("de-DE", { day: "numeric", month: "short", year: "numeric" });
+}
+
+/** Cursor-style "Recent highlights": date · category, title, author line. */
+export function Highlights({ count = 4 }: { count?: number }) {
+  return (
+    <RevealGroup className="hl">
+      {changelog.slice(0, count).map((e) => {
+        const minutes = Math.max(2, Math.round((e.body.length + e.highlights.join(" ").length) / 260));
+        return (
+          <RevealItem key={e.version}>
+            <Link href={`/changelog#v${e.version}`} className="hl-card">
+              <span className="hl-meta">
+                {shortDate(e.date)} · {e.tags[0]}
+              </span>
+              <span className="hl-title">{e.title}</span>
+              <span className="hl-by">
+                <span className="hl-av">
+                  <FestagMark />
+                </span>
+                Festag Team · {minutes} Min. Lesezeit
+              </span>
+            </Link>
+          </RevealItem>
+        );
+      })}
+    </RevealGroup>
   );
 }

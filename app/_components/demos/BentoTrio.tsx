@@ -274,7 +274,7 @@ const BT_CSS = `
 .mc-item[aria-selected="true"] { background: rgba(255,255,255,0.75); color: var(--ink); }
 .mc-box { padding: 12px 12px 10px; border-radius: 8px; background: #fff; box-shadow: var(--sh-md); }
 .mc-text { font-size: 14px; color: var(--ink); line-height: 1.6; min-height: 44px; }
-.mc-chip { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--burgundy-tint); color: var(--burgundy); }
+.mc-chip { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--accent-tint); color: var(--accent); }
 .mc-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
 .mc-pill { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); font-size: 11px; color: var(--ink-2); }
 .mc-model { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; color: var(--muted); }
@@ -291,7 +291,7 @@ const BT_CSS = `
 .tl-hl { position: absolute; inset: 0 30px 0 0; border-radius: 7px; background: #fff; box-shadow: var(--sh-sm); z-index: 0; }
 .tl-label, .tl-when, .tl-ico, .tl-tick { position: relative; z-index: 1; }
 .tl-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tl-ico { color: var(--burgundy); }
+.tl-ico { color: var(--accent); }
 .tl-when { font-size: 12px; color: var(--faint); white-space: nowrap; }
 .tl-row.is-active .tl-when { color: var(--ink); }
 .tl-tick { height: 1px; background: var(--line-strong); }

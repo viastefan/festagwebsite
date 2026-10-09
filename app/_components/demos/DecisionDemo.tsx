@@ -137,7 +137,7 @@ export function DecisionDemo() {
 function HealthRing({ value }: { value: number }) {
   const r = 22;
   const c = 2 * Math.PI * r;
-  const tone = value >= 75 ? "var(--ok)" : value >= 65 ? "var(--warn)" : "var(--burgundy)";
+  const tone = value >= 75 ? "var(--ok)" : value >= 65 ? "var(--warn)" : "var(--accent)";
   return (
     <div className="dd-ring" aria-label={`Projekt-Health ${value}`}>
       <svg width="56" height="56" viewBox="0 0 56 56">
@@ -186,17 +186,17 @@ const DD_CSS = `
   transition: border-color var(--dur) ease, background var(--dur) ease, box-shadow var(--dur) ease, opacity var(--dur) ease;
 }
 .dd-opt:not(:disabled):hover { border-color: var(--line-strong); background: #fcfbf9; }
-.dd-opt.is-hint { border-color: rgba(122,30,51,0.4); box-shadow: 0 0 0 4px var(--burgundy-soft); }
-.dd-opt.is-picked { border-color: var(--burgundy); background: var(--burgundy-tint); }
+.dd-opt.is-hint { border-color: rgba(59, 111, 212,0.4); box-shadow: 0 0 0 4px var(--accent-soft); }
+.dd-opt.is-picked { border-color: var(--accent); background: var(--accent-tint); }
 .dd-opt:disabled { opacity: 0.5; cursor: default; }
 .dd-radio {
   width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line-strong); margin-top: 1px;
   display: grid; place-items: center; color: #fff;
 }
-.dd-opt.is-picked .dd-radio { background: var(--burgundy); border-color: var(--burgundy); }
+.dd-opt.is-picked .dd-radio { background: var(--accent); border-color: var(--accent); }
 .dd-opt-copy { display: grid; gap: 3px; }
 .dd-opt-label { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--ink); }
-.dd-opt-label em { font-style: normal; font-size: 11px; color: var(--burgundy); background: var(--burgundy-tint); padding: 2px 7px; border-radius: 999px; }
+.dd-opt-label em { font-style: normal; font-size: 11px; color: var(--accent); background: var(--accent-tint); padding: 2px 7px; border-radius: 999px; }
 .dd-opt.is-picked .dd-opt-label em { background: #fff; }
 .dd-opt-impact { font-size: 12.5px; color: var(--muted); }
 .dd-outcome { overflow: hidden; }

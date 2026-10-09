@@ -1,182 +1,231 @@
 /**
- * Pricing — single source of truth for /pricing and the home teaser.
- *
- * NOTE: Amounts are launch placeholders. Change them here only; every surface
- * reads from this file. Prices are per user per month, EUR, net of VAT.
+ * Pricing — mirrors the business rules in festag-mvp:
+ *  - first owned workspace is free (Hobby)          → lib/platform/workspace-creation.ts WORKSPACE_PLAN
+ *  - every additional workspace: Workspace-Plan €19/month
+ *  - project-based software production €1,500 → €15,000+ (docs/festag-master-system-instruction.md §23)
+ *  - milestones are paid one by one via Stripe checkout (lib/payments/stripe.ts)
+ *  - add-ons + prices from lib/addons-catalog.ts
+ *  - partner codes can include workspaces (/redeem)
+ * All prices EUR, net of VAT.
  */
 
-export type PlanId = "starter" | "team" | "organization" | "enterprise";
+export type PlanCta = { label: string; href: "register" | "sales" | "contact" };
 
 export type Plan = {
-  id: PlanId;
+  id: string;
   name: string;
+  price: string;
+  unit?: string;
   tagline: string;
-  monthly: number | null; // null → custom
-  yearly: number | null; // per month, billed yearly
-  note: string;
-  cta: { label: string; href: "register" | "sales" };
+  cta: PlanCta;
   featured?: boolean;
   badge?: string;
-  features: { label: string; muted?: boolean }[];
+  lead?: string;
+  features: string[];
 };
 
-export const plans: Plan[] = [
+export const WORKSPACE_PRICE = 19;
+
+export const workspacePlans: Plan[] = [
   {
-    id: "starter",
-    name: "Starter",
-    tagline: "Für Freelancer und das erste Kundenprojekt.",
-    monthly: 0,
-    yearly: 0,
-    note: "Kostenlos. Keine Kreditkarte.",
+    id: "hobby",
+    name: "Hobby",
+    price: "0 €",
+    unit: "für immer",
+    tagline: "Dein erster Workspace. Für Freelancer, erste Kundenprojekte und zum Ausprobieren.",
     cta: { label: "Kostenlos starten", href: "register" },
     features: [
-      { label: "1 Workspace, 2 aktive Projekte" },
-      { label: "2 Connectors (z. B. GitHub + Slack)" },
-      { label: "Tagro Briefings, 20 pro Monat" },
-      { label: "Client Panel, Festag-branded" },
-      { label: "Entscheidungen & Risiken" },
-      { label: "Executive Overview", muted: true },
-      { label: "White-Label", muted: true },
+      "1 Workspace mit eigener Domain",
+      "Projekte, Entscheidungen, Aufgaben",
+      "Tagro im Workspace",
+      "Client Portal für eure Kunden",
+      "Connectors: GitHub, Linear, Jira, Slack",
     ],
   },
   {
-    id: "team",
-    name: "Team",
-    tagline: "Für Agenturen und Software-Teams, die Kunden Klarheit liefern.",
-    monthly: 29,
-    yearly: 24,
-    note: "pro Nutzer / Monat",
-    cta: { label: "Team starten", href: "register" },
+    id: "workspace",
+    name: "Workspace",
+    price: `${WORKSPACE_PRICE} €`,
+    unit: "pro Workspace / Monat",
+    tagline: "Für jeden weiteren Kunden-, Team- oder Produkt-Workspace. Monatlich kündbar.",
+    cta: { label: "Workspace hinzufügen", href: "register" },
     featured: true,
-    badge: "Beliebt",
+    badge: "Kein Preis pro Kopf",
+    lead: "Alles aus Hobby, plus",
     features: [
-      { label: "Unbegrenzte Projekte & Kunden" },
-      { label: "Alle Connectors" },
-      { label: "Tagro Briefings, unbegrenzt" },
-      { label: "Reports mit Freigabe vor Versand" },
-      { label: "Co-branded Client Portal" },
-      { label: "Audio-Briefings & Transkripte" },
-      { label: "Chrome Extension" },
+      "Unbegrenzt Mitglieder und Kunden",
+      "Delivery-, Teams- oder Agency-Modus",
+      "Executive Overview über alle Projekte",
+      "Audio-Briefings und Reports mit Freigabe",
+      "Adaptive Intelligence (Operational DNA)",
     ],
   },
   {
-    id: "organization",
-    name: "Organization",
-    tagline: "Für Portfolios, Führung und mehrere Marken.",
-    monthly: 59,
-    yearly: 49,
-    note: "pro Nutzer / Monat",
-    cta: { label: "Organization starten", href: "register" },
+    id: "partner",
+    name: "Partner",
+    price: "Inklusive",
+    unit: "über Partner-Code",
+    tagline: "Kunden unserer Partneragenturen bekommen Workspaces für ihr Team inklusive.",
+    cta: { label: "Code einlösen", href: "register" },
+    lead: "Alles aus Workspace, plus",
     features: [
-      { label: "Alles aus Team" },
-      { label: "Executive Overview & Portfolio-Health" },
-      { label: "Objectives & Activity Intelligence" },
-      { label: "Adaptive Intelligence (Company Brain)" },
-      { label: "Subtle-branded White-Label" },
-      { label: "SSO (Google, Microsoft)" },
-      { label: "Prioritäts-Support" },
+      "Bis zu 3 Workspaces inklusive",
+      "Direkt mit dem Projekt der Agentur verbunden",
+      "Freigaben, Rechnungen, Domains an einem Ort",
+      "Ein Ansprechpartner bei der Agentur",
     ],
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    tagline: "Für Organisationen mit Security-Review, SCIM und eigener Marke.",
-    monthly: null,
-    yearly: null,
-    note: "Individuell, jährlich",
+    price: "Individuell",
+    unit: "jährlich",
+    tagline: "Für Organisationen mit eigener Marke, Security-Review und vielen Teams.",
     cta: { label: "Vertrieb kontaktieren", href: "sales" },
+    lead: "Alles aus Workspace, plus",
     features: [
-      { label: "Alles aus Organization" },
-      { label: "Full White-Label (kein Festag-Branding)" },
-      { label: "SAML SSO & SCIM" },
-      { label: "Datenresidenz Deutschland" },
-      { label: "Security Review & DPA" },
-      { label: "Dedizierter Onboarding-Pfad" },
-      { label: "SLA & Named Support" },
+      "Full White-Label mit eigener Domain",
+      "SAML SSO und SCIM",
+      "Datenresidenz Deutschland, vertraglich",
+      "Security Review, AVV, SLA",
+      "Dedizierter Onboarding-Pfad",
     ],
   },
 ];
 
-export type CompareRow = {
-  label: string;
-  values: [string | boolean, string | boolean, string | boolean, string | boolean];
-};
+export const deliveryPlans: Plan[] = [
+  {
+    id: "launch",
+    name: "Launch",
+    price: "ab 1.500 €",
+    unit: "Festpreis",
+    tagline: "Website, Landingpage oder ein klar umrissenes Tool — schnell und sauber live.",
+    cta: { label: "Projekt anfragen", href: "contact" },
+    features: [
+      "Festpreis, in Meilensteine geteilt",
+      "Bezahlung pro Meilenstein nach Abnahme",
+      "Client Portal und Tagro-Briefings inklusive",
+      "Workspace während des Projekts inklusive",
+    ],
+  },
+  {
+    id: "product",
+    name: "Product",
+    price: "ab 5.000 €",
+    unit: "Festpreis",
+    tagline: "Web-App, Kundenportal oder internes System — mit Design, Backend und Betrieb.",
+    cta: { label: "Projekt anfragen", href: "contact" },
+    featured: true,
+    badge: "Häufigste Wahl",
+    lead: "Alles aus Launch, plus",
+    features: [
+      "Design-System und Komponenten",
+      "Backend, API und Integrationen",
+      "Entscheidungen mit Optionen und Risiko",
+      "Executive Overview für Gründer",
+    ],
+  },
+  {
+    id: "platform",
+    name: "Platform",
+    price: "ab 15.000 €",
+    unit: "Festpreis",
+    tagline: "SaaS, Plattformen und Produkte, die wachsen sollen — mit Roadmap über Phasen.",
+    cta: { label: "Gespräch vereinbaren", href: "contact" },
+    lead: "Alles aus Product, plus",
+    features: [
+      "Mehrphasige Roadmap mit Objectives",
+      "Mehrere Teams und Marken",
+      "Predictive Hints zu Verzögerung und Scope",
+      "Wartung und Software-Pflege optional",
+    ],
+  },
+];
 
+/** Selection from festag-mvp lib/addons-catalog.ts — same names and prices. */
+export const addons: { name: string; body: string; price: number; cat: string }[] = [
+  { name: "Branding Paket Pro", body: "Logo, Farbpalette, Typografie, Brand Guidelines", price: 1290, cat: "Design" },
+  { name: "Design System mit Tokens", body: "Komponenten-Bibliothek, Design-Tokens, Storybook", price: 1890, cat: "Design" },
+  { name: "Landingpage Design", body: "Hochkonvertierende Marketing-Page", price: 790, cat: "Design" },
+  { name: "Dark-Mode-Theme", body: "Vollständige Dark-Mode-Implementierung", price: 390, cat: "Design" },
+  { name: "Auth-Flow Komplett", body: "Login, Register, Reset, OAuth (Google + Apple)", price: 690, cat: "Frontend" },
+  { name: "Dashboard mit 5 Widgets", body: "Kunden-Dashboard mit anpassbaren Widgets", price: 890, cat: "Frontend" },
+  { name: "PWA-Support", body: "Progressive Web App mit Offline-Modus", price: 590, cat: "Frontend" },
+  { name: "REST API mit OpenAPI", body: "Vollständige API mit Swagger-Doku", price: 1190, cat: "Backend" },
+  { name: "PDF-Generierung", body: "Rechnungen, Reports, Verträge als PDF", price: 590, cat: "Backend" },
+  { name: "AI Chatbot", body: "Custom GPT/Claude für deine Plattform", price: 1190, cat: "AI" },
+  { name: "RAG Knowledge Base", body: "Frage-Antwort-System auf eigenen Dokumenten", price: 1390, cat: "AI" },
+  { name: "Voice-To-Text", body: "Audio-Transkription mit Whisper", price: 690, cat: "AI" },
+];
+
+export type CompareRow = { label: string; values: [string | boolean, string | boolean, string | boolean] };
 export type CompareGroup = { group: string; rows: CompareRow[] };
 
+/** Columns: Hobby · Workspace · Enterprise */
 export const compare: CompareGroup[] = [
   {
     group: "Workspace",
     rows: [
-      { label: "Aktive Projekte", values: ["2", "Unbegrenzt", "Unbegrenzt", "Unbegrenzt"] },
-      { label: "Kunden / Client Panels", values: ["2", "Unbegrenzt", "Unbegrenzt", "Unbegrenzt"] },
-      { label: "Mitglieder", values: ["3", "Unbegrenzt", "Unbegrenzt", "Unbegrenzt"] },
-      { label: "Workspace-Modi (Delivery, Teams, Agency)", values: ["Delivery", "Delivery, Teams", "Alle", "Alle"] },
+      { label: "Preis", values: ["0 €", "19 € / Monat", "Individuell"] },
+      { label: "Workspaces", values: ["1", "je Workspace", "Unbegrenzt"] },
+      { label: "Mitglieder und Kunden", values: ["Unbegrenzt", "Unbegrenzt", "Unbegrenzt"] },
+      { label: "Eigene Workspace-Domain", values: [true, true, true] },
+      { label: "Modi: Delivery, Teams, Agency", values: ["Delivery", "Alle", "Alle"] },
     ],
   },
   {
     group: "Intelligence",
     rows: [
-      { label: "Tagro Briefings", values: ["20 / Monat", "Unbegrenzt", "Unbegrenzt", "Unbegrenzt"] },
-      { label: "Entscheidungen & Risiken", values: [true, true, true, true] },
-      { label: "Reports mit Freigabe vor Versand", values: [false, true, true, true] },
-      { label: "Audio-Briefings & Transkripte", values: [false, true, true, true] },
-      { label: "Objectives & Activity Intelligence", values: [false, false, true, true] },
-      { label: "Executive Overview & Portfolio-Health", values: [false, false, true, true] },
-      { label: "Adaptive Intelligence (OKM, Operational DNA)", values: [false, false, true, true] },
-      { label: "Predictive Hints (Verzögerung, Scope)", values: [false, false, true, true] },
+      { label: "Tagro im Workspace", values: [true, true, true] },
+      { label: "Entscheidungen mit Optionen und Risiko", values: [true, true, true] },
+      { label: "Reports mit Freigabe vor Versand", values: [true, true, true] },
+      { label: "Audio-Briefings mit Transkript", values: [false, true, true] },
+      { label: "Executive Overview", values: [false, true, true] },
+      { label: "Adaptive Intelligence (Operational DNA)", values: [false, true, true] },
     ],
   },
   {
     group: "Connectors",
     rows: [
-      { label: "Connectors", values: ["2", "Alle", "Alle", "Alle"] },
-      { label: "Chrome Extension", values: [true, true, true, true] },
-      { label: "Cursor Cloud Agent (Beta)", values: [false, true, true, true] },
+      { label: "GitHub, Linear, Jira, Slack", values: [true, true, true] },
+      { label: "Chrome Extension", values: [true, true, true] },
+      { label: "Cursor Cloud Agent (Beta)", values: [false, true, true] },
     ],
   },
   {
-    group: "Marke & Client Experience",
+    group: "Marke und Security",
     rows: [
-      { label: "Client Portal", values: ["Festag-branded", "Co-branded", "Subtle-branded", "Full White-Label"] },
-      { label: "Eigene Domain für Kundenportal", values: [false, false, true, true] },
-      { label: "Mehrere Marken", values: [false, false, true, true] },
-    ],
-  },
-  {
-    group: "Security & Support",
-    rows: [
-      { label: "SSO", values: [false, false, "Google, Microsoft", "SAML + SCIM"] },
-      { label: "Datenresidenz Deutschland", values: ["Standard", "Standard", "Standard", "Vertraglich"] },
-      { label: "Security Review & DPA", values: [false, false, "Auf Anfrage", true] },
-      { label: "Support", values: ["Community", "E-Mail", "Priorität", "Named, SLA"] },
+      { label: "Client Portal", values: ["Festag", "Co-branded", "Full White-Label"] },
+      { label: "Server in Deutschland", values: [true, true, true] },
+      { label: "SSO", values: [false, false, "SAML + SCIM"] },
+      { label: "AVV, Security Review, SLA", values: [false, false, true] },
     ],
   },
 ];
 
 export const pricingFaq: { q: string; a: string }[] = [
   {
-    q: "Wer zählt als Nutzer?",
-    a: "Jedes Teammitglied mit Zugriff auf das Execution Panel. Kunden, die nur das Client Panel sehen, sind in allen Plänen kostenlos — unbegrenzt.",
+    q: "Warum zahlt man pro Workspace und nicht pro Nutzer?",
+    a: "Weil Klarheit nicht teurer werden soll, je mehr Menschen sie sehen. Ein Workspace ist ein Kunde, ein Team oder ein Produkt — darin sind Mitglieder und Kunden unbegrenzt.",
   },
   {
-    q: "Gibt es eine Testphase?",
-    a: "Starter ist dauerhaft kostenlos. Team und Organization könnt ihr 14 Tage ohne Kreditkarte testen — Workspace anlegen, Connectors verbinden, Tagro nutzen.",
+    q: "Was ist im kostenlosen Hobby-Workspace enthalten?",
+    a: "Dein erster eigener Workspace ist dauerhaft kostenlos: Projekte, Entscheidungen, Tagro, Client Portal und Connectors. Erst ab dem zweiten Workspace greift der Workspace-Plan für 19 € pro Monat.",
+  },
+  {
+    q: "Wie funktionieren die Projektpreise?",
+    a: "Festag liefert auch selbst: Websites, Apps und Plattformen zum Festpreis ab 1.500 €. Das Projekt wird in Meilensteine geteilt, jeder Meilenstein wird erst nach eurer Abnahme bezahlt.",
+  },
+  {
+    q: "Was ist ein Partner-Code?",
+    a: "Agenturen, die mit Festag arbeiten, können ihren Kunden Workspaces inklusive geben. Den Code löst ihr beim Anlegen des Workspaces ein.",
   },
   {
     q: "Was passiert mit unseren Daten?",
-    a: "Daten liegen in Deutschland. Festag trainiert keine öffentlichen Modelle auf eurem Workspace. Adaptive Intelligence ist Collaboration Intelligence innerhalb eures Workspaces — persönliche Profile sind Opt-in, Export und Löschung jederzeit möglich.",
+    a: "Daten liegen in Deutschland. Festag trainiert keine öffentlichen Modelle auf eurem Workspace. Persönliche Profile sind Opt-in, Export und Löschung jederzeit möglich.",
   },
   {
-    q: "Was unterscheidet die White-Label-Stufen?",
-    a: "Co-branded zeigt „Powered by Festag“. Subtle-branded stellt eure Marke in den Vordergrund, Tagro bleibt als Briefing-Engine sichtbar. Full White-Label zeigt euren Kunden kein Festag-Branding — inklusive eigener Domain.",
-  },
-  {
-    q: "Können wir monatlich kündigen?",
-    a: "Ja. Monatliche Pläne sind monatlich kündbar. Jährliche Pläne sparen rund 17 % und laufen 12 Monate. Enterprise wird individuell vereinbart.",
-  },
-  {
-    q: "Ersetzt Festag Linear, Jira oder Slack?",
-    a: "Nein. Festag sitzt über diesen Tools und liest Signale. Euer Team arbeitet weiter, wo es arbeitet — Festag macht daraus Klarheit für Kunden und Führung.",
+    q: "Kann ich monatlich kündigen?",
+    a: "Ja. Der Workspace-Plan ist monatlich kündbar. Enterprise wird individuell und jährlich vereinbart.",
   },
 ];

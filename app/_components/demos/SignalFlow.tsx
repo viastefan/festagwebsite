@@ -142,23 +142,23 @@ const SF_CSS = `
   transition: background var(--dur) ease;
 }
 .sf-row:hover { background: var(--surface-2); }
-.sf-row[aria-pressed="true"] { background: var(--burgundy-tint); }
+.sf-row[aria-pressed="true"] { background: var(--accent-tint); }
 .sf-src { width: 26px; height: 26px; border-radius: 5px; background: var(--surface-2); display: grid; place-items: center; color: var(--ink); }
 .sf-row[aria-pressed="true"] .sf-src { background: #fff; }
 .sf-raw { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--mono); }
-.sf-timer { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--burgundy); transform-origin: left; opacity: 0.5; }
+.sf-timer { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform-origin: left; opacity: 0.5; }
 .sf-pipe { padding: 22px; display: flex; align-items: center; }
 .sf-stack { width: 100%; display: flex; flex-direction: column; align-items: stretch; }
 .sf-stage { background: #fff; border: var(--hair) solid var(--line); border-radius: 8px; padding: 12px 14px; box-shadow: var(--sh-xs); }
-.sf-stage.is-accent { border-color: rgba(122,30,51,0.3); box-shadow: 0 0 0 4px var(--burgundy-soft); }
+.sf-stage.is-accent { border-color: rgba(59, 111, 212,0.3); box-shadow: 0 0 0 4px var(--accent-soft); }
 .sf-stage-label { display: flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
-.sf-stage.is-accent .sf-stage-label { color: var(--burgundy); }
+.sf-stage.is-accent .sf-stage-label { color: var(--accent); }
 .sf-stage-body { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .sf-mono { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
 .sf-meaning { font-size: 14px; color: var(--ink); line-height: 1.45; }
 .sf-project { width: 100%; font-size: 11.5px; color: var(--faint); }
-.sf-client { font-size: 15px; color: var(--ink); line-height: 1.45; font-family: var(--font-serif), Georgia, serif; }
-.sf-conn { display: grid; place-items: center; color: var(--burgundy); height: 26px; transform-origin: top; }
+.sf-client { font-size: 15px; color: var(--ink); line-height: 1.45;  }
+.sf-conn { display: grid; place-items: center; color: var(--accent); height: 26px; transform-origin: top; }
 .sf-conn line { animation: fs-dash 1.2s linear infinite; }
 @media (max-width: 760px) {
   .sf-body { grid-template-columns: 1fr; }

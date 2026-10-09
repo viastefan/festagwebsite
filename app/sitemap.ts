@@ -15,6 +15,7 @@ const ROUTES = [
   "/docs",
   "/changelog",
   "/company",
+  "/community",
   "/careers",
   "/contact",
   "/legal/imprint",

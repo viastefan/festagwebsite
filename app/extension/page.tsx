@@ -36,7 +36,7 @@ export default function ExtensionPage() {
         eyebrow="Chrome Extension"
         title={
           <>
-            Signale erfassen, <span className="serif accent">wo Arbeit passiert.</span>
+            Signale erfassen, wo Arbeit passiert.
           </>
         }
         lead="Die Festag Extension bringt Status-Notes, Entscheidungen und Evidence in jeden Tab — ohne Kontextwechsel, ohne Tracking."
@@ -159,7 +159,7 @@ export default function ExtensionPage() {
       <style>{`
         .xt-scene { position: relative; max-width: 980px; margin: 0 auto; padding-bottom: 40px; }
         .xt-browser { max-width: 820px; }
-        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--burgundy-soft); }
+        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--accent-soft); }
         .xt-ext-mark { width: 13px; height: 13px; }
         .xt-page { padding: 28px; min-height: 340px; background: #fff; }
         .xt-issue { max-width: 460px; }
@@ -176,10 +176,10 @@ export default function ExtensionPage() {
         .xt-popup-tabs { display: flex; gap: 4px; }
         .xt-popup-tabs span { height: 28px; padding: 0 10px; display: inline-flex; align-items: center; border-radius: 999px; font-size: 12.5px; color: var(--muted); }
         .xt-popup-tabs span.is-on { background: var(--surface-2); color: var(--ink); }
-        .xt-popup-input { padding: 12px 14px; border-radius: 7px; border: 1px solid var(--burgundy); box-shadow: 0 0 0 4px var(--burgundy-soft); font-size: 13.5px; line-height: 1.5; color: var(--ink); }
+        .xt-popup-input { padding: 12px 14px; border-radius: 7px; border: 1px solid var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); font-size: 13.5px; line-height: 1.5; color: var(--ink); }
         .xt-popup-detect { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
-        .xt-popup-detect svg { color: var(--burgundy); }
-        .xt-popup-detect strong { font-weight: 400; color: var(--burgundy); }
+        .xt-popup-detect svg { color: var(--accent); }
+        .xt-popup-detect strong { font-weight: 400; color: var(--accent); }
         .xt-popup-foot { display: flex; align-items: center; justify-content: space-between; }
         @media (max-width: 760px) {
           .xt-popup { position: relative; top: 0; right: auto; width: 100%; margin-top: -60px; animation: none; }

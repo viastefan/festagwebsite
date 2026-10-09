@@ -36,8 +36,8 @@ const EXECUTION: { icon: IconName; title: string; body: string }[] = [
 ];
 
 const WHITE_LABEL = [
-  { name: "Co-branded", body: "„Powered by Festag“ sichtbar. Ideal für den Start.", plan: "Team" },
-  { name: "Subtle-branded", body: "Eure Marke vorne, Tagro als Briefing-Engine sichtbar.", plan: "Organization" },
+  { name: "Co-branded", body: "„Powered by Festag“ sichtbar. Ideal für den Start.", plan: "Workspace" },
+  { name: "Subtle-branded", body: "Eure Marke vorne, Tagro als Briefing-Engine sichtbar.", plan: "Partner" },
   { name: "Full White-Label", body: "Kein Festag-Branding für Kunden. Eigene Domain.", plan: "Enterprise" },
 ];
 
@@ -48,7 +48,7 @@ export default function ProductPage() {
         eyebrow="Produkt"
         title={
           <>
-            Nicht noch ein Workspace. Eine <span className="serif accent">Delivery-Intelligence</span>-Schicht.
+            Nicht noch ein Workspace. Eine Delivery-Intelligence-Schicht.
           </>
         }
         lead="Festag ersetzt keine Tools. Es sitzt über ihnen und macht aus verstreuter Arbeit verständlichen Projektstand — für Kunden, Gründer und Führung."
@@ -156,7 +156,7 @@ export default function ProductPage() {
             <Reveal>
               <span className="eyebrow">White-Label</span>
               <h2 className="h2" style={{ marginTop: 16 }}>
-                Eure Marke vorne. <span className="serif">Festag-Intelligenz</span> darunter.
+                Eure Marke vorne. Festag-Intelligenz darunter.
               </h2>
               <p className="lead" style={{ marginTop: 18 }}>
                 Agenturen, Studios und Beratungen geben Kunden ein eigenes Projektportal. Festag verkauft keine KI —
@@ -218,7 +218,7 @@ export default function ProductPage() {
         .pl-wl-level i:nth-child(1) { height: 8px; }
         .pl-wl-level i:nth-child(2) { height: 15px; }
         .pl-wl-level i:nth-child(3) { height: 22px; }
-        .pl-wl-level i.is-on { background: var(--burgundy); }
+        .pl-wl-level i.is-on { background: var(--accent); }
         @media (max-width: 960px) { .pl-wl { grid-template-columns: 1fr; } }
         @media (max-width: 520px) { .pl-wl-item { grid-template-columns: 36px 1fr; } .pl-wl-item .tag { grid-column: 2; justify-self: start; } }
       `}</style>

@@ -38,12 +38,12 @@ export function ConnectorGraph({ items = connectors.slice(0, 10) }: { items?: ty
         <svg viewBox={`0 0 ${W} ${H}`} className="cg-svg" aria-hidden>
           <defs>
             <radialGradient id="cg-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(122,30,51,0.18)" />
-              <stop offset="100%" stopColor="rgba(122,30,51,0)" />
+              <stop offset="0%" stopColor="rgba(59, 111, 212,0.18)" />
+              <stop offset="100%" stopColor="rgba(59, 111, 212,0)" />
             </radialGradient>
           </defs>
-          <ellipse cx={CX} cy={CY} rx={W * 0.4} ry={H * 0.38} fill="none" stroke="rgba(23,22,27,0.06)" />
-          <ellipse cx={CX} cy={CY} rx={W * 0.22} ry={H * 0.2} fill="none" stroke="rgba(23,22,27,0.05)" />
+          <ellipse cx={CX} cy={CY} rx={W * 0.4} ry={H * 0.38} fill="none" stroke="rgba(15, 15, 20,0.06)" />
+          <ellipse cx={CX} cy={CY} rx={W * 0.22} ry={H * 0.2} fill="none" stroke="rgba(15, 15, 20,0.05)" />
           <circle cx={CX} cy={CY} r={120} fill="url(#cg-glow)" />
           {nodes.map(({ c, x, y }, i) => {
             const on = i === active;
@@ -55,7 +55,7 @@ export function ConnectorGraph({ items = connectors.slice(0, 10) }: { items?: ty
                   y1={y}
                   x2={CX}
                   y2={CY}
-                  stroke={on ? "var(--burgundy)" : "rgba(23,22,27,0.12)"}
+                  stroke={on ? "var(--accent)" : "rgba(15, 15, 20,0.12)"}
                   strokeWidth={on ? 1.5 : 1}
                   strokeDasharray={soon ? "2 5" : "4 4"}
                   className={on && !reduced ? "cg-flow" : undefined}
@@ -63,7 +63,7 @@ export function ConnectorGraph({ items = connectors.slice(0, 10) }: { items?: ty
                 {!soon && !reduced && inView ? (
                   <motion.circle
                     r={on ? 3.5 : 2.2}
-                    fill={on ? "var(--burgundy)" : "rgba(23,22,27,0.35)"}
+                    fill={on ? "var(--accent)" : "rgba(15, 15, 20,0.35)"}
                     initial={{ cx: x, cy: y, opacity: 0 }}
                     animate={{ cx: [x, CX], cy: [y, CY], opacity: [0, 1, 0] }}
                     transition={{
@@ -150,7 +150,7 @@ const CG_CSS = `
 .cg-core {
   position: absolute; transform: translate(-50%, -50%);
   width: 76px; height: 76px; border-radius: 12px; background: var(--ink); color: #fff;
-  display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(122,30,51,0.06), var(--sh-lg);
+  display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(59, 111, 212,0.06), var(--sh-lg);
 }
 .cg-core-mark { width: 36px; height: 36px; }
 .cg-node {
@@ -161,7 +161,7 @@ const CG_CSS = `
   transition: transform var(--dur) var(--ease), border-color var(--dur) ease, box-shadow var(--dur) ease, color var(--dur) ease;
 }
 .cg-node:hover { transform: translate(-50%, -50%) scale(1.06); }
-.cg-node.is-active { border-color: var(--burgundy); color: var(--burgundy); box-shadow: 0 0 0 5px var(--burgundy-soft), var(--sh-md); transform: translate(-50%, -50%) scale(1.08); }
+.cg-node.is-active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft), var(--sh-md); transform: translate(-50%, -50%) scale(1.08); }
 .cg-node.is-soon { color: var(--faint); background: #fbfaf8; }
 .cg-node-label {
   position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);

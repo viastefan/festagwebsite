@@ -7,27 +7,33 @@ import { AnimatePresence, motion } from "motion/react";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { links, primaryNav, resourcesMenu } from "@/lib/site/links";
+import { announcement, links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+type MenuId = "product" | "resources";
 
 export function SiteNav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menu, setMenu] = useState<MenuId | null>(null);
   const [lastPath, setLastPath] = useState(pathname);
   const closeTimer = useRef<number | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const [top, setTop] = useState(90);
+  const measure = () => {
+    const b = headerRef.current?.getBoundingClientRect().bottom;
+    if (b) setTop(Math.round(b));
+  };
 
-  // Close overlays on route change (render-time state sync, no effect needed).
   if (pathname !== lastPath) {
     setLastPath(pathname);
     setSheetOpen(false);
-    setMenuOpen(false);
+    setMenu(null);
   }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 4);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -37,7 +43,7 @@ export function SiteNav() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSheetOpen(false);
-        setMenuOpen(false);
+        setMenu(null);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -51,78 +57,65 @@ export function SiteNav() {
     };
   }, [sheetOpen]);
 
-  const openMenu = () => {
+  const open = (id: MenuId) => {
+    measure();
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    setMenuOpen(true);
+    setMenu(id);
   };
   const scheduleClose = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setMenuOpen(false), 140);
+    closeTimer.current = window.setTimeout(() => setMenu(null), 120);
   };
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-  const resourcesActive = resourcesMenu.some((i) => isActive(i.href));
+  const groupActive = (id: MenuId) =>
+    (id === "product" ? productMenu : resourcesMenu).some((i) => isActive(i.href));
 
   return (
     <>
-      <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
+      <div className="announce">
+        <Link href={announcement.href} className="announce-link">
+          <span className="announce-tag">{announcement.label}</span>
+          <span className="announce-text">{announcement.text}</span>
+          <Icon name="arrow" size={13} />
+        </Link>
+      </div>
+
+      <header ref={headerRef} className={`nav${scrolled ? " is-scrolled" : ""}${menu ? " has-menu" : ""}`}>
         <div className="nav-inner">
           <div className="nav-left">
             <Logo />
           </div>
 
-          <nav className="nav-center" aria-label="Hauptnavigation">
-            {primaryNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="nav-link"
-                aria-current={isActive(item.href) ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="nav-dd" onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
-              <button
-                type="button"
-                className="nav-link"
-                aria-expanded={menuOpen}
-                aria-haspopup="true"
-                aria-current={resourcesActive ? "page" : undefined}
-                onClick={() => setMenuOpen((v) => !v)}
-                onFocus={openMenu}
-              >
-                Ressourcen
-                <Icon name="chevronDown" />
-              </button>
-              <AnimatePresence>
-                {menuOpen ? (
-                  <motion.div
-                    className="nav-menu"
-                    role="menu"
-                    initial={{ opacity: 0, y: -6, scale: 0.98, x: "-50%" }}
-                    animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
-                    exit={{ opacity: 0, y: -4, scale: 0.98, x: "-50%" }}
-                    transition={{ duration: 0.2, ease: EASE }}
-                    style={{ transformOrigin: "top center" }}
-                  >
-                    {resourcesMenu.map((item) => (
-                      <Link key={item.href} href={item.href} className="nav-menu-item" role="menuitem">
-                        <span className="nav-menu-icon">
-                          <Icon name={item.icon} />
-                        </span>
-                        <span>
-                          <span className="nav-menu-title">{item.label}</span>
-                          <span className="nav-menu-body" style={{ display: "block" }}>
-                            {item.body}
-                          </span>
-                        </span>
-                      </Link>
-                    ))}
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            </div>
+          <nav className="nav-center" aria-label="Hauptnavigation" onMouseLeave={scheduleClose}>
+            {primaryNav.map((item) =>
+              item.menu ? (
+                <button
+                  key={item.label}
+                  type="button"
+                  className="nav-link"
+                  aria-expanded={menu === item.menu}
+                  aria-haspopup="true"
+                  aria-current={groupActive(item.menu) ? "page" : undefined}
+                  onMouseEnter={() => open(item.menu!)}
+                  onFocus={() => open(item.menu!)}
+                  onClick={() => setMenu((m) => (m === item.menu ? null : item.menu!))}
+                >
+                  {item.label}
+                  <Icon name="chevronDown" />
+                </button>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="nav-link"
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  onMouseEnter={scheduleClose}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           <div className="nav-right">
@@ -130,65 +123,152 @@ export function SiteNav() {
               Anmelden
             </Button>
             <Button href="/contact" variant="ghost">
-              Vertrieb kontaktieren
+              Demo anfragen
             </Button>
             <Button href={links.register} variant="solid">
               Kostenlos starten
             </Button>
             <button
               type="button"
-              className="nav-burger"
-              aria-label="Menü öffnen"
+              className={`nav-burger${sheetOpen ? " is-open" : ""}`}
+              aria-label={sheetOpen ? "Menü schließen" : "Menü öffnen"}
               aria-expanded={sheetOpen}
-              onClick={() => setSheetOpen(true)}
+              onClick={() => {
+                measure();
+                setSheetOpen((v) => !v);
+              }}
             >
-              <Icon name="menu" />
+              <span />
+              <span />
             </button>
           </div>
         </div>
       </header>
 
-      <div
-        className={`sheet-backdrop${sheetOpen ? " is-open" : ""}`}
-        onClick={() => setSheetOpen(false)}
-        aria-hidden
-      />
-      <div
-        className={`sheet${sheetOpen ? " is-open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menü"
-        aria-hidden={!sheetOpen}
-        inert={!sheetOpen}
-      >
-        <div className="sheet-grip" />
-        <div className="sheet-group">
-          <div className="sheet-label">Produkt</div>
-          {primaryNav.map((item) => (
-            <Link key={item.href} href={item.href} className="sheet-link">
-              {item.label}
-              <Icon name="arrow" size={16} />
-            </Link>
-          ))}
-        </div>
-        <div className="sheet-group">
-          <div className="sheet-label">Ressourcen</div>
-          {resourcesMenu.map((item) => (
-            <Link key={item.href} href={item.href} className="sheet-link">
-              {item.label}
-              <Icon name="arrow" size={16} />
-            </Link>
-          ))}
-        </div>
-        <div className="sheet-cta">
-          <Button href={links.register} variant="solid">
-            Kostenlos starten
-          </Button>
-          <Button href={links.login} variant="ghost">
-            Anmelden
-          </Button>
-        </div>
-      </div>
+      {/* Mega menu — sibling of the header so its backdrop-filter sees the page */}
+      <AnimatePresence>
+        {menu ? (
+          <motion.div
+            key="mega"
+            className="mega"
+            style={{ top }}
+            onMouseEnter={() => open(menu)}
+            onMouseLeave={scheduleClose}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.22, ease: EASE }}
+          >
+            <div className="mega-inner">
+              <div className="mega-grid">
+                {(menu === "product" ? productMenu : resourcesMenu).map((item) => (
+                  <Link key={item.href} href={item.href} className="mega-item">
+                    <span className="mega-icon">
+                      <Icon name={item.icon} size={16} />
+                    </span>
+                    <span>
+                      <span className="mega-title">{item.label}</span>
+                      <span className="mega-body">{item.body}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <Link href={menu === "product" ? "/tagro" : "/changelog"} className="mega-feature">
+                <span className="mega-feature-art" aria-hidden>
+                  <span className="mega-feature-chip">
+                    <Icon name="sparkles" size={12} /> Tagro
+                  </span>
+                  <span className="mega-feature-line" />
+                  <span className="mega-feature-line mega-feature-line--short" />
+                  <span className="mega-feature-opt">Eine Woche verschieben · Risiko −42 %</span>
+                </span>
+                <span className="mega-title">{menu === "product" ? "Tagro live ausprobieren" : "Was ist neu"}</span>
+                <span className="mega-body">
+                  {menu === "product"
+                    ? "Frag den Interpreter selbst — mit Beispiel-Workspace."
+                    : "Operational DNA, Executive Forecast, Cursor Agents."}
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      {/* Mobile — full-screen frosted sheet */}
+      <AnimatePresence>
+        {sheetOpen ? (
+          <motion.div
+            key="m"
+            className="msheet"
+            style={{ top }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menü"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.nav
+              className="msheet-inner"
+              initial="hidden"
+              animate="show"
+              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }}
+            >
+              <MGroup label="Produkt" items={productMenu} isActive={isActive} />
+              <MGroup
+                label="Unternehmen"
+                items={[
+                  { href: "/enterprise", label: "Enterprise" },
+                  { href: "/pricing", label: "Preise" },
+                  { href: "/community", label: "Community" },
+                ]}
+                isActive={isActive}
+              />
+              <MGroup label="Ressourcen" items={resourcesMenu.filter((i) => i.href !== "/community")} isActive={isActive} />
+              <motion.div className="msheet-cta" variants={ITEM}>
+                <Button href={links.register} variant="solid" size="lg" arrow>
+                  Kostenlos starten
+                </Button>
+                <Button href={links.login} variant="ghost" size="lg">
+                  Anmelden
+                </Button>
+              </motion.div>
+            </motion.nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
+  );
+}
+
+const ITEM = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } },
+};
+
+function MGroup({
+  label,
+  items,
+  isActive,
+}: {
+  label: string;
+  items: { href: string; label: string }[];
+  isActive: (h: string) => boolean;
+}) {
+  return (
+    <div className="msheet-group">
+      <motion.div className="msheet-label" variants={ITEM}>
+        {label}
+      </motion.div>
+      {items.map((i) => (
+        <motion.div key={i.href} variants={ITEM}>
+          <Link href={i.href} className="msheet-link" aria-current={isActive(i.href) ? "page" : undefined}>
+            {i.label}
+            <Icon name="arrow" size={16} />
+          </Link>
+        </motion.div>
+      ))}
+    </div>
   );
 }
