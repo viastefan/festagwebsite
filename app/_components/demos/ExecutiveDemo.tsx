@@ -184,7 +184,7 @@ function Kpi({
 
 const EX_CSS = `
 .ex-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.ex-kpi { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; }
+.ex-kpi { background: #fff; border: var(--hair) solid var(--line); border-radius: 7px; padding: 12px 14px; display: grid; gap: 4px; }
 .ex-kpi > span { font-size: 11.5px; color: var(--faint); }
 .ex-kpi strong { font-weight: 400; font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums; }
 .ex-kpi strong.is-risk { color: var(--burgundy); }
@@ -198,7 +198,7 @@ const EX_CSS = `
 .ex-bar { width: 110px; }
 .ex-num { width: 24px; text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
 .ex-detail {
-  display: grid; grid-template-columns: 16px 1fr; gap: 10px; padding: 12px 14px; border-radius: 12px;
+  display: grid; grid-template-columns: 16px 1fr; gap: 10px; padding: 12px 14px; border-radius: 7px;
   background: var(--burgundy-tint); color: var(--burgundy); font-size: 13px; line-height: 1.5;
 }
 .ex-detail svg { margin-top: 3px; }

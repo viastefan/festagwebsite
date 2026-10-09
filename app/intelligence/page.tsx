@@ -288,13 +288,13 @@ export default function IntelligencePage() {
       <style>{`
         .in-model {
           display: flex; flex-direction: column; padding: 26px; border-radius: var(--r-lg);
-          background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sh-xs);
+          background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-xs);
         }
         .in-model-top { display: flex; align-items: center; justify-content: space-between; }
-        .in-model-icon { width: 44px; height: 44px; border-radius: 13px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+        .in-model-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; }
         .in-model-name { margin-top: 26px; font-size: 40px; line-height: 1; color: var(--ink); }
         .in-model-role { margin-top: 8px; font-size: 14px; color: var(--burgundy); }
-        .in-model-facts { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line); display: grid; gap: 10px; margin-top: auto; }
+        .in-model-facts { margin: 20px 0 0; padding-top: 16px; border-top: var(--hair) solid var(--line); display: grid; gap: 10px; margin-top: auto; }
         .in-model .body { margin-bottom: 20px; }
         .in-model-facts div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: 13.5px; }
         .in-model-facts dt { color: var(--faint); }
@@ -304,20 +304,20 @@ export default function IntelligencePage() {
         .in-pipe { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
         .in-pipe-step { display: flex; align-items: center; gap: 10px; }
         .in-pipe-step span {
-          padding: 14px 22px; border-radius: 999px; font-size: 17px; background: var(--surface); border: 1px solid var(--line);
+          padding: 14px 22px; border-radius: 999px; font-size: 17px; background: var(--surface); border: var(--hair) solid var(--line);
           color: var(--ink); box-shadow: var(--sh-xs);
         }
         .in-pipe-step:last-child span { background: var(--burgundy); border-color: var(--burgundy); color: #fff; }
         .in-pipe-step svg { color: var(--faint); }
         .in-okm { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .in-okm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .in-okm-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 14.5px; color: var(--ink); }
+        .in-okm-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line); font-size: 14.5px; color: var(--ink); }
         .in-okm-item svg { color: var(--burgundy); }
-        .in-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 20px; padding: clamp(18px, 3vw, 36px); border: 1px solid var(--line); }
-        .in-predict { display: grid; grid-template-columns: 18px 1fr; gap: 14px; padding: 22px; border-radius: 18px; background: var(--surface-2); font-size: 19px; line-height: 1.4; color: var(--ink); }
+        .in-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
+        .in-predict { display: grid; grid-template-columns: 18px 1fr; gap: 14px; padding: 22px; border-radius: 10px; background: var(--surface-2); font-size: 19px; line-height: 1.4; color: var(--ink); }
         .in-predict svg { color: var(--burgundy); margin-top: 5px; }
-        .in-privacy { border-radius: 20px; border: 1px solid var(--line); background: var(--surface); overflow: hidden; }
-        .in-privacy-row { display: grid; grid-template-columns: 1.2fr 0.5fr 2fr; gap: 16px; padding: 16px 20px; border-top: 1px solid var(--line); align-items: center; font-size: 14.5px; color: var(--muted); }
+        .in-privacy { border-radius: 10px; border: var(--hair) solid var(--line); background: var(--surface); overflow: hidden; }
+        .in-privacy-row { display: grid; grid-template-columns: 1.2fr 0.5fr 2fr; gap: 16px; padding: 16px 20px; border-top: var(--hair) solid var(--line); align-items: center; font-size: 14.5px; color: var(--muted); }
         .in-privacy-row span:first-child { color: var(--ink); }
         .in-privacy-head { border-top: 0; background: var(--surface-2); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
         .in-privacy-head span:first-child { color: var(--faint); }

@@ -122,8 +122,8 @@ const TD_CSS = `
 .td-pager { display: flex; gap: 6px; }
 .td-pager button { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-3); transition: background var(--dur) ease, transform var(--dur) var(--ease); }
 .td-pager button.is-active { background: var(--burgundy); transform: scale(1.2); }
-.td-raw, .td-client { flex: 1; border-radius: 14px; padding: 18px; }
-.td-raw { background: #fff; border: 1px dashed var(--line-strong); }
+.td-raw, .td-client { flex: 1; border-radius: 8px; padding: 18px; }
+.td-raw { background: #fff; border: var(--hair) dashed var(--line-strong); }
 .td-raw-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
 .td-raw-head em { margin-left: auto; font-style: normal; font-size: 11.5px; color: var(--faint); }
 .td-raw p { margin-top: 12px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }

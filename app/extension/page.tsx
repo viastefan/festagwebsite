@@ -159,7 +159,7 @@ export default function ExtensionPage() {
       <style>{`
         .xt-scene { position: relative; max-width: 980px; margin: 0 auto; padding-bottom: 40px; }
         .xt-browser { max-width: 820px; }
-        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--burgundy-soft); }
+        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--burgundy-soft); }
         .xt-ext-mark { width: 13px; height: 13px; }
         .xt-page { padding: 28px; min-height: 340px; background: #fff; }
         .xt-issue { max-width: 460px; }
@@ -168,7 +168,7 @@ export default function ExtensionPage() {
         .xt-meta { display: flex; gap: 16px; align-items: center; margin-top: 22px; }
         .xt-popup {
           position: absolute; right: 0; top: 56px; width: min(360px, 90%);
-          background: #fff; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--sh-lg);
+          background: #fff; border-radius: 10px; border: var(--hair) solid var(--line); box-shadow: var(--sh-lg);
           padding: 16px; display: grid; gap: 12px; animation: fs-float 6s ease-in-out infinite;
         }
         .xt-popup-head { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); }
@@ -176,7 +176,7 @@ export default function ExtensionPage() {
         .xt-popup-tabs { display: flex; gap: 4px; }
         .xt-popup-tabs span { height: 28px; padding: 0 10px; display: inline-flex; align-items: center; border-radius: 999px; font-size: 12.5px; color: var(--muted); }
         .xt-popup-tabs span.is-on { background: var(--surface-2); color: var(--ink); }
-        .xt-popup-input { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--burgundy); box-shadow: 0 0 0 4px var(--burgundy-soft); font-size: 13.5px; line-height: 1.5; color: var(--ink); }
+        .xt-popup-input { padding: 12px 14px; border-radius: 7px; border: 1px solid var(--burgundy); box-shadow: 0 0 0 4px var(--burgundy-soft); font-size: 13.5px; line-height: 1.5; color: var(--ink); }
         .xt-popup-detect { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
         .xt-popup-detect svg { color: var(--burgundy); }
         .xt-popup-detect strong { font-weight: 400; color: var(--burgundy); }

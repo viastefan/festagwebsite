@@ -70,6 +70,7 @@ export type ChangelogEntry = {
   body: string;
   tags: string[];
   art: "connectors" | "executive" | "tagro" | "okm" | "extension" | "cursor" | "audio" | "objectives";
+  highlights: string[];
 };
 
 export const changelog: ChangelogEntry[] = [
@@ -80,6 +81,12 @@ export const changelog: ChangelogEntry[] = [
     body: "Entscheidungsmuster werden als workspace-gebundene OKM-Fakten gespeichert — aggregiert, ohne Namen oder Freitext. Tagro nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext.",
     tags: ["Intelligence", "Datenschutz"],
     art: "okm",
+    highlights: [
+      "Decisions → Decision-, Quality- und Delivery-DNA auf /decide, /delegate und /apply",
+      "Tagro nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext",
+      "Neue Übersicht gespeicherter Fakten unter Einstellungen → Tagro & Klarheit, inklusive Löschen",
+      "Persönliche Profile bleiben standardmäßig aus (Opt-in)",
+    ],
   },
   {
     date: "2026-09-18",
@@ -88,6 +95,12 @@ export const changelog: ChangelogEntry[] = [
     body: "Führung sieht alle Projekte auf einer Seite: Health Score, offene Entscheidungen, Risiken und erwartete Verschiebung — mit Begründung pro Zeile.",
     tags: ["Executive"],
     art: "executive",
+    highlights: [
+      "Health Score pro Projekt mit Begründung",
+      "Offene Entscheidungen und Risiken portfolioweit",
+      "Forecast: erwartete Verschiebung in Tagen",
+      "Wöchentliches Executive Briefing als Audio",
+    ],
   },
   {
     date: "2026-09-04",
@@ -96,6 +109,11 @@ export const changelog: ChangelogEntry[] = [
     body: "Klar umrissene Dev-Tasks können aus Tagro an einen Cursor Cloud Agent übergeben werden. Der PR kommt als Signal zurück ins Projekt — nie ohne Review.",
     tags: ["Execution", "Beta"],
     art: "cursor",
+    highlights: [
+      "Delegation nur nach expliziter Freigabe",
+      "PR des Agents erscheint als Signal im Projekt",
+      "Review-Pflicht vor Merge bleibt bestehen",
+    ],
   },
   {
     date: "2026-08-21",
@@ -104,6 +122,11 @@ export const changelog: ChangelogEntry[] = [
     body: "Projekte und Issues lassen sich strategischen Zielen zuordnen. Tagro erklärt Fortschritt und Risiko jetzt im Kontext des Ziels, nicht nur des Tickets.",
     tags: ["Produkt"],
     art: "objectives",
+    highlights: [
+      "Objectives unter /objectives",
+      "Issues und Projekte mit Zielen verknüpfen",
+      "Tagro begründet Prioritäten mit dem Objective",
+    ],
   },
   {
     date: "2026-08-07",
@@ -112,6 +135,11 @@ export const changelog: ChangelogEntry[] = [
     body: "Wöchentliche Briefings als ruhige Audio-Zusammenfassung — für Kunden, die lieber hören. Jedes Audio hat ein Transkript und nennt Quellen.",
     tags: ["Client Panel"],
     art: "audio",
+    highlights: [
+      "Audio-Briefing pro Woche und Projekt",
+      "Transkript mit Quellenangaben",
+      "Abspielbar direkt im Client Panel",
+    ],
   },
   {
     date: "2026-07-17",
@@ -120,6 +148,11 @@ export const changelog: ChangelogEntry[] = [
     body: "Status-Notes, Entscheidungen und Screenshots als Evidence — direkt aus Slack Web, Jira oder jeder Seite, ohne Kontextwechsel.",
     tags: ["Capture"],
     art: "extension",
+    highlights: [
+      "Status-Note, Entscheidung, Evidence als drei Aktionen",
+      "Kontext der aktuellen Seite wird vorgeschlagen, nie automatisch gesendet",
+      "Tastenkürzel ⌘⇧F",
+    ],
   },
   {
     date: "2026-06-26",
@@ -128,6 +161,12 @@ export const changelog: ChangelogEntry[] = [
     body: "GitHub, Linear, Jira und Slack liefern Signale. Issues sind eine eigene operative Entität. Activity vereint Arbeitssignale, Issues und Ereignisse auf einer Seite.",
     tags: ["Connectors", "Release"],
     art: "connectors",
+    highlights: [
+      "Connectors für GitHub, Linear, Jira und Slack",
+      "Issues als eigene operative Entität",
+      "Activity Intelligence auf /activity",
+      "Executive-Ansicht (Vorschau)",
+    ],
   },
   {
     date: "2026-06-05",
@@ -136,6 +175,11 @@ export const changelog: ChangelogEntry[] = [
     body: "Tagro beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt.",
     tags: ["Tagro"],
     art: "tagro",
+    highlights: [
+      "Optionen mit Risiko-Delta",
+      "Empfehlung mit Begründung",
+      "Entscheidung wird mit Begründung im Projekt gespeichert",
+    ],
   },
 ];
 

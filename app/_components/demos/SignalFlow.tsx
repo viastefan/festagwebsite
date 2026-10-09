@@ -135,21 +135,21 @@ function Connector() {
 
 const SF_CSS = `
 .sf-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 440px; background: var(--canvas); }
-.sf-list { border-right: 1px solid var(--line); padding: 10px; display: grid; align-content: start; gap: 2px; background: #fff; }
+.sf-list { border-right: var(--hair) solid var(--line); padding: 10px; display: grid; align-content: start; gap: 2px; background: #fff; }
 .sf-row {
   position: relative; width: 100%; display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: center;
-  text-align: left; padding: 9px 10px; border-radius: 10px; overflow: hidden;
+  text-align: left; padding: 9px 10px; border-radius: 6px; overflow: hidden;
   transition: background var(--dur) ease;
 }
 .sf-row:hover { background: var(--surface-2); }
 .sf-row[aria-pressed="true"] { background: var(--burgundy-tint); }
-.sf-src { width: 26px; height: 26px; border-radius: 8px; background: var(--surface-2); display: grid; place-items: center; color: var(--ink); }
+.sf-src { width: 26px; height: 26px; border-radius: 5px; background: var(--surface-2); display: grid; place-items: center; color: var(--ink); }
 .sf-row[aria-pressed="true"] .sf-src { background: #fff; }
 .sf-raw { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--mono); }
 .sf-timer { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--burgundy); transform-origin: left; opacity: 0.5; }
 .sf-pipe { padding: 22px; display: flex; align-items: center; }
 .sf-stack { width: 100%; display: flex; flex-direction: column; align-items: stretch; }
-.sf-stage { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; box-shadow: var(--sh-xs); }
+.sf-stage { background: #fff; border: var(--hair) solid var(--line); border-radius: 8px; padding: 12px 14px; box-shadow: var(--sh-xs); }
 .sf-stage.is-accent { border-color: rgba(122,30,51,0.3); box-shadow: 0 0 0 4px var(--burgundy-soft); }
 .sf-stage-label { display: flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
 .sf-stage.is-accent .sf-stage-label { color: var(--burgundy); }
@@ -162,6 +162,6 @@ const SF_CSS = `
 .sf-conn line { animation: fs-dash 1.2s linear infinite; }
 @media (max-width: 760px) {
   .sf-body { grid-template-columns: 1fr; }
-  .sf-list { border-right: 0; border-bottom: 1px solid var(--line); max-height: 220px; overflow: auto; }
+  .sf-list { border-right: 0; border-bottom: var(--hair) solid var(--line); max-height: 220px; overflow: auto; }
 }
 `;

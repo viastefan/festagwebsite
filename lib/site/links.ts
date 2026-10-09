@@ -50,6 +50,12 @@ export const resourcesMenu: NavMenuItem[] = [
     icon: "book",
   },
   {
+    href: "/company",
+    label: "Unternehmen",
+    body: "Mission, Haltung und Aktuelles von Festag.",
+    icon: "cube",
+  },
+  {
     href: "/changelog",
     label: "Changelog",
     body: "Was neu ist — jede Woche, ohne Marketing-Nebel.",
@@ -103,6 +109,7 @@ export const footerColumns: { title: string; items: (NavItem & { external?: bool
       { href: "/docs", label: "Guides" },
       { href: links.app, label: "App öffnen", external: true },
       { href: links.register, label: "Workspace erstellen", external: true },
+      { href: "/company", label: "Unternehmen" },
       { href: "/contact", label: "Kontakt" },
       { href: "/careers", label: "Karriere" },
     ],

@@ -97,7 +97,7 @@ export default async function JobPage({ params }: Props) {
       </div>
       <style>{`
         .jb { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 5vw, 72px); align-items: start; margin-top: 8px; }
-        .jb-side { position: sticky; top: calc(var(--nav-h) + 24px); display: grid; gap: 16px; padding: 22px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sh-sm); }
+        .jb-side { position: sticky; top: calc(var(--nav-h) + 24px); display: grid; gap: 16px; padding: 22px; border-radius: 10px; background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-sm); }
         .jb-side dl { margin: 0; display: grid; gap: 12px; }
         .jb-side dt { font-size: 12px; color: var(--faint); }
         .jb-side dd { margin: 2px 0 0; font-size: 15px; color: var(--ink); }

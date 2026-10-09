@@ -42,7 +42,7 @@ export function LegalShell({
       <style>{`
         .lg { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
         .lg-nav { position: sticky; top: calc(var(--nav-h) + 24px); display: grid; gap: 2px; }
-        .lg-nav a { padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--muted); }
+        .lg-nav a { padding: 8px 12px; border-radius: 6px; font-size: 14px; color: var(--muted); }
         .lg-nav a:hover { background: var(--surface-2); color: var(--ink); }
         .lg-nav a[aria-current="page"] { background: var(--surface); color: var(--ink); box-shadow: var(--sh-xs); }
         @media (max-width: 760px) { .lg { grid-template-columns: 1fr; } .lg-nav { position: static; display: flex; flex-wrap: wrap; } }

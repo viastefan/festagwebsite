@@ -61,7 +61,7 @@ export default function ContactPage() {
         .ct { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
         .ct-channels { display: grid; gap: 10px; }
         .ct-channel {
-          display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 20px; border-radius: 18px;
+          display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 20px; border-radius: 10px;
           background: var(--surface-2); transition: background var(--dur) ease;
         }
         .ct-channel:hover { background: var(--surface-3); }

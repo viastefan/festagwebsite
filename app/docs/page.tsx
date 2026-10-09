@@ -138,7 +138,7 @@ export default function DocsPage() {
       <style>{`
         .dc-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
         .dc-toc { position: sticky; top: calc(var(--nav-h) + 24px); display: grid; gap: 2px; }
-        .dc-toc a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; font-size: 14px; color: var(--muted); transition: all var(--dur) ease; }
+        .dc-toc a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 14px; color: var(--muted); transition: all var(--dur) ease; }
         .dc-toc a:hover { background: var(--surface-2); color: var(--ink); }
         .dc-toc svg { color: var(--faint); }
         .dc-sections { display: grid; gap: clamp(40px, 6vw, 64px); }

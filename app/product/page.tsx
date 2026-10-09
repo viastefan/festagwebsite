@@ -211,7 +211,7 @@ export default function ProductPage() {
         .pl-wl-list { display: grid; gap: 10px; }
         .pl-wl-item {
           display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center;
-          padding: 18px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sh-xs);
+          padding: 18px 20px; border-radius: 10px; background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-xs);
         }
         .pl-wl-level { display: flex; gap: 3px; align-items: flex-end; height: 22px; }
         .pl-wl-level i { width: 8px; border-radius: 3px; background: var(--surface-3); }

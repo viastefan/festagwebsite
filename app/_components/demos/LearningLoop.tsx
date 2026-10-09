@@ -121,7 +121,7 @@ const LL_CSS = `
 .ll-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ll-dot {
   position: absolute; transform: translate(-50%, -50%);
-  width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid var(--line-strong);
+  width: 32px; height: 32px; border-radius: 50%; background: #fff; border: var(--hair) solid var(--line-strong);
   font-size: 12px; color: var(--muted); display: grid; place-items: center;
   transition: all 0.3s var(--ease);
 }
@@ -131,9 +131,9 @@ const LL_CSS = `
 .ll-mark { width: 30px; height: 30px; color: var(--ink); }
 .ll-center-label { font-size: 17px; color: var(--ink); }
 .ll-center-body { margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.ll-dna { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; box-shadow: var(--sh-sm); display: grid; gap: 4px; }
+.ll-dna { background: #fff; border: var(--hair) solid var(--line); border-radius: 10px; padding: 20px; box-shadow: var(--sh-sm); display: grid; gap: 4px; }
 .ll-dna-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-.ll-fact { padding: 12px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; }
+.ll-fact { padding: 12px 0; border-top: var(--hair) solid var(--line); display: grid; gap: 4px; }
 .ll-fact-k { font-size: 12px; color: var(--burgundy); }
 .ll-fact-v { font-size: 14.5px; color: var(--ink); }
 .ll-fact-c { display: grid; grid-template-columns: 1fr 44px; gap: 10px; align-items: center; margin-top: 4px; }

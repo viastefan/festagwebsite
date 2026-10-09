@@ -169,10 +169,10 @@ const DD_CSS = `
 .dd-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .dd-tabs button {
   height: 30px; padding: 0 12px; border-radius: 999px; font-size: 12.5px; color: var(--muted);
-  border: 1px solid var(--line); background: #fff; transition: all var(--dur) ease;
+  border: var(--hair) solid var(--line); background: #fff; transition: all var(--dur) ease;
 }
 .dd-tabs button[aria-selected="true"] { color: var(--ink); border-color: var(--line-strong); box-shadow: var(--sh-xs); }
-.dd-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px; box-shadow: var(--sh-sm); }
+.dd-card { background: #fff; border: var(--hair) solid var(--line); border-radius: 8px; padding: 18px; box-shadow: var(--sh-sm); }
 .dd-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
 .dd-meta { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--faint); }
 .dd-q { margin-top: 10px; font-size: 20px; line-height: 1.25; color: var(--ink); letter-spacing: var(--ls-display); }
@@ -182,7 +182,7 @@ const DD_CSS = `
 .dd-options { display: grid; gap: 8px; margin-top: 16px; }
 .dd-opt {
   display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; text-align: left;
-  padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: #fff;
+  padding: 12px 14px; border-radius: 7px; border: var(--hair) solid var(--line); background: #fff;
   transition: border-color var(--dur) ease, background var(--dur) ease, box-shadow var(--dur) ease, opacity var(--dur) ease;
 }
 .dd-opt:not(:disabled):hover { border-color: var(--line-strong); background: #fcfbf9; }
@@ -202,7 +202,7 @@ const DD_CSS = `
 .dd-outcome { overflow: hidden; }
 .dd-outcome-inner {
   margin-top: 12px; display: grid; grid-template-columns: 16px 1fr; gap: 10px; padding: 12px 14px;
-  border-radius: 12px; background: var(--ok-soft); color: var(--ok); font-size: 13.5px; line-height: 1.5;
+  border-radius: 7px; background: var(--ok-soft); color: var(--ok); font-size: 13.5px; line-height: 1.5;
 }
 .dd-outcome-inner span { color: var(--ink-2); }
 .dd-outcome-inner svg { margin-top: 3px; }

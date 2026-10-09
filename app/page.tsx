@@ -11,6 +11,7 @@ import { TagroConsole } from "./_components/demos/TagroConsole";
 import { ExecutiveDemo } from "./_components/demos/ExecutiveDemo";
 import { SignalFlow } from "./_components/demos/SignalFlow";
 import { LearningLoop } from "./_components/demos/LearningLoop";
+import { BentoTrio } from "./_components/demos/BentoTrio";
 import {
   ConnectorMarquee,
   FeatureBlock,
@@ -159,6 +160,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <BentoTrio />
+
       {/* ───────── Voices ───────── */}
       <section className="section">
         <div className="wrap wrap--wide">
@@ -265,11 +268,11 @@ const HOME_CSS = `
 .home-problem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
 .home-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .home-q {
-  padding: 16px 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line);
+  padding: 16px 18px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line);
   font-size: 17px; line-height: 1.3; color: var(--ink-2); box-shadow: var(--sh-xs);
 }
 .home-q:nth-child(4n+1), .home-q:nth-child(4n) { background: var(--surface-2); border-color: transparent; box-shadow: none; }
-.home-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 20px; padding: clamp(18px, 3vw, 36px); border: 1px solid var(--line); }
+.home-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
 .home-trust { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .home-trust-copy { position: sticky; top: calc(var(--nav-h) + 32px); }
 .home-updates-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }

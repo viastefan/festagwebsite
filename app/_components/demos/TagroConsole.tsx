@@ -348,7 +348,7 @@ const TC_CSS = `
 }
 .tc-empty { margin: auto; text-align: center; max-width: 360px; display: grid; justify-items: center; gap: 8px; }
 .tc-empty-mark {
-  width: 44px; height: 44px; border-radius: 14px; background: var(--ink); color: #fff;
+  width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: #fff;
   display: grid; place-items: center; margin-bottom: 6px;
 }
 .tc-empty-mark svg { width: 22px; height: 22px; }
@@ -356,7 +356,7 @@ const TC_CSS = `
 .tc-empty-sub { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 .tc-msg--user { align-self: flex-end; max-width: 80%; }
 .tc-user {
-  padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: var(--ink); color: #fff;
+  padding: 10px 14px; border-radius: 8px 8px 4px 8px; background: var(--ink); color: #fff;
   font-size: 14px; line-height: 1.45;
 }
 .tc-msg--system { align-self: center; }
@@ -365,23 +365,23 @@ const TC_CSS = `
   background: var(--ok-soft); color: var(--ok); font-size: 12.5px; text-align: center;
 }
 .tc-answer {
-  background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
+  background: #fff; border: var(--hair) solid var(--line); border-radius: 8px; padding: 16px 18px;
   box-shadow: var(--sh-xs); max-width: 640px;
 }
 .tc-answer-head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--burgundy); }
 .tc-av {
-  width: 22px; height: 22px; border-radius: 7px; background: var(--ink); color: #fff;
+  width: 22px; height: 22px; border-radius: 5px; background: var(--ink); color: #fff;
   display: grid; place-items: center;
 }
 .tc-av svg { width: 12px; height: 12px; }
 .tc-summary { margin-top: 10px; font-size: 16px; line-height: 1.45; color: var(--ink); }
-.tc-sections { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.tc-sections { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: var(--hair) solid var(--line); }
 .tc-sec { display: grid; grid-template-columns: 120px 1fr; gap: 12px; }
 .tc-sec span { font-size: 12px; color: var(--faint); padding-top: 2px; }
 .tc-sec p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
 .tc-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
 .tc-option {
-  display: grid; gap: 2px; text-align: left; padding: 10px 14px; border-radius: 12px;
+  display: grid; gap: 2px; text-align: left; padding: 10px 14px; border-radius: 7px;
   background: var(--surface-2); border: 1px solid transparent; min-width: 150px;
   transition: border-color var(--dur) ease, background var(--dur) ease, transform var(--dur) var(--ease);
 }
@@ -397,7 +397,7 @@ const TC_CSS = `
 .tc-reading { display: grid; gap: 6px; padding: 4px 4px; }
 .tc-read { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
 .tc-read svg { color: var(--ok); }
-.tc-foot { padding: 12px 16px 14px; border-top: 1px solid var(--line); background: #fbfaf8; display: grid; gap: 10px; }
+.tc-foot { padding: 12px 16px 14px; border-top: var(--hair) solid var(--line); background: #fbfaf8; display: grid; gap: 10px; }
 .tc-hint { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--faint); }
 @media (max-width: 640px) {
   .tc-body { height: 600px; }
