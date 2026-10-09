@@ -1,117 +1,192 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BrandLockup, Btn, siteLinks } from "./primitives";
+import { AnimatePresence, motion } from "motion/react";
+import { Logo } from "../ui/Logo";
+import { Button } from "../ui/Button";
+import { Icon } from "../ui/Icon";
+import { links, primaryNav, resourcesMenu } from "@/lib/site/links";
 
-const NAV = [
-  { href: "/product", label: "Produkt" },
-  { href: "/tagro", label: "Tagro" },
-  { href: "/pricing", label: "Preise" },
-  { href: "/careers", label: "Karriere" },
-  { href: "/contact", label: "Kontakt" },
-];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function SiteNav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [lastPath, setLastPath] = useState(pathname);
+  const closeTimer = useRef<number | null>(null);
+
+  // Close overlays on route change (render-time state sync, no effect needed).
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setSheetOpen(false);
+    setMenuOpen(false);
+  }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 6);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setSheetOpen(false);
+        setMenuOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = sheetOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [sheetOpen]);
+
+  const openMenu = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setMenuOpen(true);
+  };
+  const scheduleClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setMenuOpen(false), 140);
+  };
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const resourcesActive = resourcesMenu.some((i) => isActive(i.href));
 
   return (
     <>
-      <header className={`site-nav${scrolled ? " is-scrolled" : ""}`}>
-        <div className="site-nav-inner">
-          <div className="site-nav-left">
-            <BrandLockup />
-            <nav className="site-nav-links" aria-label="Hauptnavigation">
-              {NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="site-nav-link"
-                  aria-current={
-                    pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+      <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
+        <div className="nav-inner">
+          <div className="nav-left">
+            <Logo />
           </div>
-          <div className="site-nav-right">
-            <Btn href={siteLinks.login} variant="ghost" external>
+
+          <nav className="nav-center" aria-label="Hauptnavigation">
+            {primaryNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="nav-link"
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="nav-dd" onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
+              <button
+                type="button"
+                className="nav-link"
+                aria-expanded={menuOpen}
+                aria-haspopup="true"
+                aria-current={resourcesActive ? "page" : undefined}
+                onClick={() => setMenuOpen((v) => !v)}
+                onFocus={openMenu}
+              >
+                Ressourcen
+                <Icon name="chevronDown" />
+              </button>
+              <AnimatePresence>
+                {menuOpen ? (
+                  <motion.div
+                    className="nav-menu"
+                    role="menu"
+                    initial={{ opacity: 0, y: -6, scale: 0.98, x: "-50%" }}
+                    animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                    exit={{ opacity: 0, y: -4, scale: 0.98, x: "-50%" }}
+                    transition={{ duration: 0.2, ease: EASE }}
+                    style={{ transformOrigin: "top center" }}
+                  >
+                    {resourcesMenu.map((item) => (
+                      <Link key={item.href} href={item.href} className="nav-menu-item" role="menuitem">
+                        <span className="nav-menu-icon">
+                          <Icon name={item.icon} />
+                        </span>
+                        <span>
+                          <span className="nav-menu-title">{item.label}</span>
+                          <span className="nav-menu-body" style={{ display: "block" }}>
+                            {item.body}
+                          </span>
+                        </span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+          </nav>
+
+          <div className="nav-right">
+            <Button href={links.login} variant="text">
               Anmelden
-            </Btn>
-            <Btn href={siteLinks.app} variant="solid" external>
-              Open App
-            </Btn>
+            </Button>
+            <Button href="/contact" variant="ghost">
+              Vertrieb kontaktieren
+            </Button>
+            <Button href={links.register} variant="solid">
+              Kostenlos starten
+            </Button>
             <button
               type="button"
-              className="site-nav-menu"
+              className="nav-burger"
               aria-label="Menü öffnen"
-              aria-expanded={open}
-              onClick={() => setOpen(true)}
+              aria-expanded={sheetOpen}
+              onClick={() => setSheetOpen(true)}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <Icon name="menu" />
             </button>
           </div>
         </div>
       </header>
 
       <div
-        className={`site-sheet-backdrop${open ? " is-open" : ""}`}
-        onClick={() => setOpen(false)}
-        aria-hidden={!open}
+        className={`sheet-backdrop${sheetOpen ? " is-open" : ""}`}
+        onClick={() => setSheetOpen(false)}
+        aria-hidden
       />
       <div
-        className={`site-sheet${open ? " is-open" : ""}`}
+        className={`sheet${sheetOpen ? " is-open" : ""}`}
         role="dialog"
         aria-modal="true"
         aria-label="Menü"
+        aria-hidden={!sheetOpen}
+        inert={!sheetOpen}
       >
-        <div className="site-sheet-grip" />
-        {NAV.map((item) => (
-          <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
-            {item.label}
-          </Link>
-        ))}
-        <div className="site-sheet-cta">
-          <Btn href={siteLinks.login} variant="ghost" external>
+        <div className="sheet-grip" />
+        <div className="sheet-group">
+          <div className="sheet-label">Produkt</div>
+          {primaryNav.map((item) => (
+            <Link key={item.href} href={item.href} className="sheet-link">
+              {item.label}
+              <Icon name="arrow" size={16} />
+            </Link>
+          ))}
+        </div>
+        <div className="sheet-group">
+          <div className="sheet-label">Ressourcen</div>
+          {resourcesMenu.map((item) => (
+            <Link key={item.href} href={item.href} className="sheet-link">
+              {item.label}
+              <Icon name="arrow" size={16} />
+            </Link>
+          ))}
+        </div>
+        <div className="sheet-cta">
+          <Button href={links.register} variant="solid">
+            Kostenlos starten
+          </Button>
+          <Button href={links.login} variant="ghost">
             Anmelden
-          </Btn>
-          <Btn href={siteLinks.app} variant="solid" external>
-            Open App
-          </Btn>
+          </Button>
         </div>
       </div>
     </>

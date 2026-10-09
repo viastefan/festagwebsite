@@ -1,71 +1,44 @@
 import Link from "next/link";
-import { BrandLockup, siteLinks } from "./primitives";
+import { Logo } from "../ui/Logo";
+import { footerColumns } from "@/lib/site/links";
+
+const YEAR = 2026;
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
-      <div className="site-wrap">
-        <div className="site-footer-grid">
-          <div>
-            <div className="site-footer-brand">
-              <BrandLockup />
-            </div>
-            <p className="site-footer-copy">
-              Operational Intelligence für moderne Organisationen — klar für Kunden und Führung.
+    <footer className="footer">
+      <div className="wrap wrap--wide">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <Logo />
+            <p>
+              Operational Intelligence für Teams, die liefern. Klarheit für Kunden und Führung —
+              aus der Arbeit, die ohnehin passiert.
             </p>
           </div>
-          <div>
-            <h3>Produkt</h3>
-            <ul>
-              <li>
-                <Link href="/product">Produkt</Link>
-              </li>
-              <li>
-                <Link href="/tagro">Tagro</Link>
-              </li>
-              <li>
-                <Link href="/extension">Extension</Link>
-              </li>
-              <li>
-                <Link href="/docs">Guides</Link>
-              </li>
-              <li>
-                <a href={siteLinks.app}>Open App</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3>Unternehmen</h3>
-            <ul>
-              <li>
-                <Link href="/pricing">Preise</Link>
-              </li>
-              <li>
-                <Link href="/careers">Karriere</Link>
-              </li>
-              <li>
-                <Link href="/contact">Kontakt</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3>Rechtliches</h3>
-            <ul>
-              <li>
-                <Link href="/legal/imprint">Impressum</Link>
-              </li>
-              <li>
-                <Link href="/legal/privacy">Datenschutz</Link>
-              </li>
-              <li>
-                <Link href="/legal/terms">AGB</Link>
-              </li>
-            </ul>
-          </div>
+          {footerColumns.map((col) => (
+            <div key={col.title}>
+              <h4>{col.title}</h4>
+              <ul>
+                {col.items.map((item) => (
+                  <li key={item.label}>
+                    {item.external || /^(https?:|mailto:)/.test(item.href) ? (
+                      <a href={item.href}>{item.label}</a>
+                    ) : (
+                      <Link href={item.href}>{item.label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div className="site-footer-bottom">
-          <span>© {new Date().getFullYear()} Festag</span>
-          <span>Delivery Intelligence Platform</span>
+        <div className="footer-bottom">
+          <span>© {YEAR} Festag. Made in Germany.</span>
+          <span className="footer-status">
+            <i aria-hidden />
+            Alle Systeme betriebsbereit · Server in Deutschland · DSGVO-konform
+          </span>
         </div>
       </div>
     </footer>

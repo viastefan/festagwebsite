@@ -3,25 +3,31 @@ import { getAllJobs } from "@/lib/jobs";
 
 const BASE = "https://festag.app";
 
+const ROUTES = [
+  "/",
+  "/product",
+  "/tagro",
+  "/connectors",
+  "/intelligence",
+  "/pricing",
+  "/enterprise",
+  "/extension",
+  "/docs",
+  "/changelog",
+  "/careers",
+  "/contact",
+  "/legal/imprint",
+  "/legal/privacy",
+  "/legal/terms",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticRoutes: MetadataRoute.Sitemap = [
-    "/",
-    "/product",
-    "/tagro",
-    "/pricing",
-    "/extension",
-    "/docs",
-    "/careers",
-    "/contact",
-    "/legal/imprint",
-    "/legal/privacy",
-    "/legal/terms",
-  ].map((path) => ({
-    url: `${BASE}${path === "/" ? "/" : path}`,
+  const staticRoutes: MetadataRoute.Sitemap = ROUTES.map((path) => ({
+    url: `${BASE}${path}`,
     lastModified: now,
-    changeFrequency: path === "/" ? "weekly" : "monthly",
-    priority: path === "/" ? 1 : 0.7,
+    changeFrequency: path === "/" || path === "/changelog" ? "weekly" : "monthly",
+    priority: path === "/" ? 1 : path.startsWith("/legal") ? 0.3 : 0.7,
   }));
 
   const jobRoutes: MetadataRoute.Sitemap = getAllJobs()

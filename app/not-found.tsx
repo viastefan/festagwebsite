@@ -1,38 +1,33 @@
-import Link from "next/link";
-import { Btn, siteLinks } from "./_components/site/primitives";
+import { Button, TextLink } from "./_components/ui/Button";
+import { FestagMark } from "./_components/ui/Logo";
 
 export default function NotFound() {
   return (
-    <div className="page">
-      <div className="site-wrap">
-        <h1 className="page-title">Seite nicht gefunden</h1>
-        <p className="page-body">
-          Diese Route existiert nicht — zurück zur Klarheit.
+    <section className="page-hero page-hero--center" style={{ paddingBlock: "clamp(80px, 14vw, 160px)" }}>
+      <div className="wrap">
+        <FestagMark className="nf-mark" />
+        <p className="eyebrow" style={{ justifyContent: "center", marginTop: 24 }}>
+          404
         </p>
-        <div className="cta-actions" style={{ marginTop: 28 }}>
-          <Btn href="/" variant="solid" size="lg">
+        <h1 className="display" style={{ marginTop: 16 }}>
+          Dieses Signal führt <span className="serif accent">nirgendwohin.</span>
+        </h1>
+        <p className="lead">Die Seite existiert nicht oder ist umgezogen. Zurück zur Klarheit:</p>
+        <div className="btn-row">
+          <Button href="/" variant="solid" size="lg" arrow>
             Zur Startseite
-          </Btn>
-          <Btn href={siteLinks.app} variant="ghost" size="lg" external>
-            Open App
-          </Btn>
-        </div>
-        <p className="page-body" style={{ marginTop: 24 }}>
-          Oder direkt zu{" "}
-          <Link href="/product" style={{ color: "var(--slate)" }}>
-            Produkt
-          </Link>
-          ,{" "}
-          <Link href="/careers" style={{ color: "var(--slate)" }}>
-            Karriere
-          </Link>{" "}
-          oder{" "}
-          <Link href="/contact" style={{ color: "var(--slate)" }}>
+          </Button>
+          <Button href="/contact" variant="ghost" size="lg">
             Kontakt
-          </Link>
-          .
-        </p>
+          </Button>
+        </div>
+        <div style={{ display: "flex", gap: 24, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
+          <TextLink href="/product">Produkt</TextLink>
+          <TextLink href="/pricing">Preise</TextLink>
+          <TextLink href="/changelog">Changelog</TextLink>
+        </div>
       </div>
-    </div>
+      <style>{`.nf-mark { width: 44px; height: 44px; margin: 0 auto; color: var(--ink); }`}</style>
+    </section>
   );
 }

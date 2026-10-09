@@ -1,80 +1,114 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllJobs, DEPARTMENT_LABEL } from "@/lib/jobs";
-import { Btn } from "../_components/site/primitives";
+import { Icon } from "../_components/ui/Icon";
+import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { Button } from "../_components/ui/Button";
+import { PageHero, SectionHead } from "../_components/ui/Section";
+import { getAllJobs, DEPARTMENT_LABEL, type JobDepartment } from "@/lib/jobs";
+import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
   title: "Karriere",
-  description: "Arbeite an Festag — dem Operating System für Delivery Intelligence.",
+  description: "Baue mit uns die Kategorie Operational Intelligence. Remote in DACH.",
 };
 
 const VALUES = [
-  {
-    title: "Produktwahrheit",
-    body: "Keine Chatbot-Demos. Festag ist Operational Intelligence — wir halten die Linie.",
-  },
-  {
-    title: "Calm craft",
-    body: "Linear-Niveau in Code und UI. Weniger Features, bessere Defaults.",
-  },
-  {
-    title: "Collaboration, nicht Surveillance",
-    body: "Adaptive Intelligence bleibt workspace-scoped, opt-in und erklärbar.",
-  },
+  { title: "Produktwahrheit", body: "Keine Chatbot-Demos. Festag ist Operational Intelligence — wir halten die Linie, auch wenn es unbequem ist." },
+  { title: "Calm craft", body: "Linear-Niveau in Code und UI. Weniger Features, bessere Defaults, kein Lärm." },
+  { title: "Collaboration, nicht Surveillance", body: "Adaptive Intelligence bleibt workspace-gebunden, Opt-in und erklärbar. Das gilt auch intern." },
 ];
 
+const REMOTE: Record<string, string> = { remote: "Remote", hybrid: "Hybrid", "on-site": "Vor Ort" };
+
 export default function CareersPage() {
-  const jobs = getAllJobs().filter((j) => j.status === "published");
+  const jobs = getAllJobs();
+  const groups = jobs.reduce<Record<string, typeof jobs>>((acc, j) => {
+    (acc[j.department] ??= []).push(j);
+    return acc;
+  }, {});
 
   return (
-    <div className="page">
-      <div className="site-wrap">
-        <h1 className="page-title">Karriere</h1>
-        <p className="page-body">
-          Wir bauen die Intelligence Layer für moderne Organisationen. Calm craft, harte
-          Produktwahrheit, kein Chatbot-Theater.
-        </p>
+    <>
+      <PageHero
+        eyebrow="Karriere"
+        title={
+          <>
+            Wir bauen Software, die <span className="serif accent">versteht,</span> wie Organisationen arbeiten.
+          </>
+        }
+        lead="Ein kleines Team, eine neue Kategorie. Remote in DACH, mit echtem Ownership und Equity für die ersten Rollen."
+      >
+        <div className="btn-row">
+          <Button href="#roles" variant="solid" size="lg" arrow>
+            Offene Rollen
+          </Button>
+          <Button href={links.careers} variant="soft" size="lg">
+            Initiativbewerbung
+          </Button>
+        </div>
+      </PageHero>
 
-        <div className="grid-3" style={{ marginTop: 40 }}>
-          {VALUES.map((v) => (
-            <article key={v.title} className="tile">
-              <h3>{v.title}</h3>
-              <p>{v.body}</p>
-            </article>
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <RevealGroup className="grid-3">
+            {VALUES.map((v) => (
+              <RevealItem key={v.title} className="card card--soft">
+                <h3 className="h4">{v.title}</h3>
+                <p className="body" style={{ fontSize: 14.5 }}>
+                  {v.body}
+                </p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      <section className="section section--tight" id="roles">
+        <div className="wrap">
+          <SectionHead title={`${jobs.length} offene Rollen`} />
+          {Object.entries(groups).map(([dept, list]) => (
+            <Reveal key={dept} className="cr-group">
+              <h3 className="cr-dept">{DEPARTMENT_LABEL[dept as JobDepartment]}</h3>
+              <div className="rows">
+                {list.map((j) => (
+                  <Link key={j.slug} href={`/careers/${j.slug}`} className="row">
+                    <span>
+                      <span className="row-title" style={{ display: "block" }}>
+                        {j.title}
+                      </span>
+                      <span className="row-body" style={{ display: "block" }}>
+                        {j.shortDescription}
+                      </span>
+                    </span>
+                    <span className="row-meta">
+                      <span className="cr-loc">
+                        {j.location} · {REMOTE[j.remotePolicy] ?? j.remotePolicy}
+                      </span>
+                      <Icon name="arrow" size={16} className="row-arrow" />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
           ))}
-        </div>
-
-        <section className="section" style={{ paddingTop: 56, paddingBottom: 0 }}>
-          <h2 className="section-title">Offene Rollen</h2>
-          {jobs.length === 0 ? (
-            <p className="page-body" style={{ marginTop: 0 }}>
-              Gerade keine offenen Rollen. Schreib an careers@festag.app, wenn du trotzdem
-              passen könntest.
+          <Reveal className="cr-open">
+            <p className="body">
+              Nichts Passendes dabei? Schreib uns trotzdem an{" "}
+              <a href={links.careers} className="accent">
+                careers@festag.app
+              </a>{" "}
+              — kurz, klar, ohne Anschreiben-Theater.
             </p>
-          ) : (
-            <div className="list-clean">
-              {jobs.map((job) => (
-                <Link key={job.slug} href={`/careers/${job.slug}`} className="list-row">
-                  <strong>{job.title}</strong>
-                  <span>
-                    {DEPARTMENT_LABEL[job.department]}, {job.location}, {job.remotePolicy}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          )}
-        </section>
-
-        <div className="cta-band">
-          <h2>Kein Match, aber starkes Signal?</h2>
-          <p>Schick uns trotzdem eine ruhige Notiz — wir lesen mit.</p>
-          <div className="cta-actions">
-            <Btn href="mailto:careers@festag.app" variant="solid" size="lg" external>
-              careers@festag.app
-            </Btn>
-          </div>
+          </Reveal>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <style>{`
+        .cr-group { margin-top: 32px; }
+        .cr-dept { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 8px; }
+        .cr-open { margin-top: 40px; }
+        @media (max-width: 640px) { .cr-loc { display: none; } }
+      `}</style>
+    </>
   );
 }
