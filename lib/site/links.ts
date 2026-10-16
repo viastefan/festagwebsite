@@ -42,6 +42,7 @@ export const productMenu: NavMenuItem[] = [
   { href: "/tagro", label: "Tagro", body: "Der Operations Interpreter, der mitdenkt.", icon: "sparkles" },
   { href: "/connectors", label: "Connectors", body: "GitHub, Linear, Jira, Slack und mehr.", icon: "flow" },
   { href: "/intelligence", label: "Modelle & Intelligence", body: "Leqra, Tagro, Veyra und Company Brain.", icon: "chart" },
+  { href: "/memory", label: "Build Memory", body: "Prompts, Kapitel und Tokens gegen Lieferung.", icon: "clock" },
   { href: "/extension", label: "Chrome Extension", body: "Signale erfassen, wo Arbeit passiert.", icon: "puzzle" },
 ];
 
@@ -98,6 +99,7 @@ export const footerColumns: { title: string; items: (NavItem & { external?: bool
       { href: "/tagro", label: "Tagro" },
       { href: "/connectors", label: "Connectors" },
       { href: "/intelligence", label: "Modelle & Intelligence" },
+      { href: "/memory", label: "Build Memory" },
       { href: "/extension", label: "Chrome Extension" },
       { href: "/changelog", label: "Changelog" },
     ],
