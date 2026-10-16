@@ -16,9 +16,11 @@ export function SectionHead({
   as?: "h1" | "h2";
 }) {
   const H = as;
+  // eyebrow kickers (small uppercase labels) are retired site-wide (2026-10) —
+  // the prop stays for callers but renders nothing.
+  void eyebrow;
   return (
     <Reveal className={`sec-head${center ? " sec-head--center" : ""}`}>
-      {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <H className={as === "h1" ? "display display--sm" : "h2"}>{title}</H>
       {lead ? <p className="lead">{lead}</p> : null}
     </Reveal>
@@ -38,15 +40,11 @@ export function PageHero({
   children?: React.ReactNode;
   center?: boolean;
 }) {
+  void eyebrow;
   return (
     <section className={`page-hero${center ? " page-hero--center" : ""}`}>
       <div className="wrap">
         <Reveal>
-          {eyebrow ? (
-            <span className="eyebrow" style={{ marginBottom: 20, display: "inline-flex" }}>
-              {eyebrow}
-            </span>
-          ) : null}
           <h1 className="display">{title}</h1>
           {lead ? <p className="lead">{lead}</p> : null}
           {children}
