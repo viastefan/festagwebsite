@@ -5,6 +5,7 @@ import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero } from "../_components/ui/Section";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/docs" },
   title: "Guides",
   description: "Einstieg in Festag: Workspace, Connectors, Tagro, Client Panel, White-Label und Datenschutz.",
 };

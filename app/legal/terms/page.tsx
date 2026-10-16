@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalShell } from "../LegalShell";
 
-export const metadata: Metadata = { title: "AGB" };
+export const metadata: Metadata = { title: "AGB", alternates: { canonical: "/legal/terms" } };
 
 export default function TermsPage() {
   return (

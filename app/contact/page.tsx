@@ -5,6 +5,7 @@ import { PageHero } from "../_components/ui/Section";
 import { ContactForm } from "../_components/site/ContactForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Kontakt",
   description: "Sales, Support, Security und Careers — direkt und ruhig.",
 };

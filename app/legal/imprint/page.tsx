@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalShell } from "../LegalShell";
 
-export const metadata: Metadata = { title: "Impressum" };
+export const metadata: Metadata = { title: "Impressum", alternates: { canonical: "/legal/imprint" } };
 
 export default function ImprintPage() {
   return (

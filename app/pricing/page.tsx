@@ -8,6 +8,7 @@ import { Faq } from "../_components/site/Faq";
 import { compare, pricingFaq } from "@/lib/site/pricing";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/pricing" },
   title: "Preise",
   description:
     "Erster Workspace kostenlos, jeder weitere 19 € im Monat — nie pro Kopf. Projekte zum Festpreis ab 1.500 €, bezahlt pro Meilenstein.",

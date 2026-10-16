@@ -2,11 +2,12 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SiteChrome } from "./_components/site/SiteChrome";
+import { links } from "@/lib/site/links";
 
 const aeonik = localFont({
   src: [
-    { path: "../public/fonts/Aeonik-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Aeonik-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/Aeonik-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/Aeonik-Medium.woff2", weight: "500", style: "normal" },
   ],
   variable: "--font-aeonik",
   display: "swap",
@@ -53,10 +54,52 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://festag.app/#organization",
+      name: "Festag",
+      url: "https://festag.app",
+      logo: "https://festag.app/brand/icon-512.png",
+      description: DESCRIPTION,
+      sameAs: [links.linkedin, links.github],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://festag.app/#website",
+      url: "https://festag.app",
+      name: "Festag",
+      inLanguage: "de-DE",
+      publisher: { "@id": "https://festag.app/#organization" },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Festag",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: "https://festag.app",
+      description: DESCRIPTION,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "EUR",
+        description: "Erster Workspace kostenlos",
+      },
+      publisher: { "@id": "https://festag.app/#organization" },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de" className={aeonik.variable}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

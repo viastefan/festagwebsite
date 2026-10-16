@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalShell } from "../LegalShell";
 
-export const metadata: Metadata = { title: "Datenschutz" };
+export const metadata: Metadata = { title: "Datenschutz", alternates: { canonical: "/legal/privacy" } };
 
 export default function PrivacyPage() {
   return (

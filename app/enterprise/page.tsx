@@ -9,6 +9,7 @@ import { ContactForm } from "../_components/site/ContactForm";
 import { IconCard } from "../_components/site/Blocks";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/enterprise" },
   title: "Enterprise",
   description:
     "Festag Enterprise: Full White-Label, SAML SSO & SCIM, Datenresidenz Deutschland, Security Review und dedizierter Onboarding-Pfad.",

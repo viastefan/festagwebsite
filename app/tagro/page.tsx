@@ -10,6 +10,7 @@ import { DecisionDemo } from "../_components/demos/DecisionDemo";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/tagro" },
   title: "Tagro",
   description:
     "Tagro ist Festags Operations Interpreter — kein Chatbot. Antworten mit Kontext, Empfehlung, nächstem Schritt und Quelle.",

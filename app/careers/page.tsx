@@ -8,6 +8,7 @@ import { getAllJobs, DEPARTMENT_LABEL, type JobDepartment } from "@/lib/jobs";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/careers" },
   title: "Karriere",
   description: "Baue mit uns die Kategorie Operational Intelligence. Remote in DACH.",
 };

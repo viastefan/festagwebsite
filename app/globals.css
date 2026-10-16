@@ -797,7 +797,7 @@ ol {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/brand/login-bg-light.png");
+  background-image: url("/brand/texture-light.webp");
   background-size: cover;
   background-position: center 70%;
   opacity: 0.55;
@@ -1526,7 +1526,7 @@ ol {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/brand/login-bg-light.png");
+  background-image: url("/brand/texture-light.webp");
   background-size: cover;
   background-position: center 60%;
   opacity: 0.7;

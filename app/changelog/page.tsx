@@ -8,6 +8,7 @@ import { UpdateArt } from "../_components/site/UpdateArt";
 import { changelog } from "@/lib/site/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/changelog" },
   title: "Changelog",
   description: "Was neu ist in Festag — Connectors, Tagro, Executive, Adaptive Intelligence.",
 };

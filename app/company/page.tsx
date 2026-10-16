@@ -11,6 +11,7 @@ import { changelog, principles } from "@/lib/site/content";
 import { getAllJobs } from "@/lib/jobs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/company" },
   title: "Unternehmen",
   description:
     "Festag baut die Operational-Intelligence-Schicht für moderne Organisationen. Mission, Haltung und was gerade bei uns passiert.",

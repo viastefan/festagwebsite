@@ -7,6 +7,7 @@ import { CtaBand } from "../_components/ui/Section";
 import { VoicesGrid } from "../_components/site/Blocks";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/community" },
   title: "Community",
   description:
     "Agenturen, Studios und Teams, die Delivery neu denken: Early Access, Partner-Programm, Office Hours und Roadmap mit dem Festag-Produktteam.",

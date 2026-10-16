@@ -8,6 +8,7 @@ import { LearningLoop } from "../_components/demos/LearningLoop";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/intelligence" },
   title: "Modelle & Intelligence",
   description:
     "Leqra, Tagro und Veyra: die Intelligenz hinter Festag. Operational Knowledge Model, Company Brain und Adaptive Intelligence — workspace-gebunden.",

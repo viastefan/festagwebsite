@@ -9,6 +9,7 @@ import { IconCard } from "../_components/site/Blocks";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/extension" },
   title: "Chrome Extension",
   description:
     "Status, Entscheidungen und Evidence direkt im Browser erfassen — die Festag Chrome Extension, ohne Kontextwechsel.",

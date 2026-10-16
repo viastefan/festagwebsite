@@ -25,6 +25,7 @@ import { clientQuestions } from "@/lib/site/content";
 
 export const metadata: Metadata = {
   title: { absolute: "Festag — Operational Intelligence für Teams, die liefern" },
+  alternates: { canonical: "/" },
 };
 
 const MODES = [

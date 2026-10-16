@@ -9,6 +9,7 @@ import { connectors, CONNECTOR_STATUS_LABEL, signalTypes } from "@/lib/site/conn
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/connectors" },
   title: "Connectors",
   description:
     "GitHub, Linear, Jira, Slack und mehr — Festag liest Arbeitssignale, ohne eure Workflows zu ersetzen.",

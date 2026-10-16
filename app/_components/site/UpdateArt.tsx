@@ -141,7 +141,7 @@ const UA_CSS = `
   display: flex; align-items: flex-end; justify-content: center; padding: 8% 10% 0;
 }
 .ua::before {
-  content: ""; position: absolute; inset: 0; background-image: url("/brand/login-bg-light.png");
+  content: ""; position: absolute; inset: 0; background-image: url("/brand/texture-light.webp");
   background-size: cover; background-position: center 65%; opacity: 0.7; mix-blend-mode: multiply;
 }
 .ua-win {

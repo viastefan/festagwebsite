@@ -14,6 +14,7 @@ import { links } from "@/lib/site/links";
 import { principles } from "@/lib/site/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/product" },
   title: "Produkt",
   description:
     "Client Panel, Execution Panel, Entscheidungen und Executive Overview — Festag macht aus Arbeitssignalen client-ready Klarheit.",
