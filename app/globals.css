@@ -178,6 +178,26 @@ ol {
   border-radius: 6px;
 }
 
+/* Keyboard skip link — hidden until focused, then pinned top-left over the nav */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--ink, #0f0f14);
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 160ms ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-offset: 2px;
+}
+
 /* ───────────────────────── Layout ───────────────────────── */
 .site-shell {
   flex: 1;
