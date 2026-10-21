@@ -197,7 +197,10 @@ const PP_CSS = `
   display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: var(--r-xl);
   background: var(--surface-2); border: var(--hair) solid var(--line);
 }
-.pp-card.is-featured { background: #fff; box-shadow: 0 0 0 var(--hair) var(--line-strong), var(--sh-md); }
+.pp-card.is-featured {
+  background: linear-gradient(180deg, var(--tone-blue-tint), #fff 38%);
+  box-shadow: 0 0 0 1px rgba(59,111,212,0.28), var(--sh-md);
+}
 .pp-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .pp-name { font-size: 17px; font-weight: 500; color: var(--ink); }
 .pp-badge { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); white-space: nowrap; }

@@ -2,7 +2,7 @@
 
 /* ═══════════════════════════════════════════════════════════════
    Festag Website — Design System
-   Warm paper canvas · Ink · Burgundy accent · Aeonik Regular/Medium
+   Warm paper canvas · Ink · Flow-blue accent + quiet tones · Aeonik Regular/Medium
    Craft bar: Cursor / Linear / Vercel — calm, dense, precise.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -32,10 +32,35 @@
   --sky-2: #7fd8e8;
 
   --slate: #5b647d;
-  --ok: #2e9b52;
-  --ok-soft: rgba(46, 155, 82, 0.1);
-  --warn: #c48a2c;
-  --warn-soft: rgba(214, 163, 79, 0.16);
+  --ok: #24935a;
+  --ok-soft: rgba(36, 147, 90, 0.12);
+  --warn: #c07f1c;
+  --warn-soft: rgba(214, 155, 60, 0.18);
+
+  /* Tones — quiet secondary hues so sections don't all read beige-grey.
+     Each tone = ink colour (icons, numbers) + tint (surfaces). */
+  --tone-blue: #3b6fd4;
+  --tone-blue-tint: #e9effb;
+  --tone-teal: #1d8a86;
+  --tone-teal-tint: #e2f2f0;
+  --tone-green: #24935a;
+  --tone-green-tint: #e5f3ea;
+  --tone-amber: #b7741a;
+  --tone-amber-tint: #f8edda;
+  --tone-wood: #8a684d;
+  --tone-wood-tint: #f2eae1;
+  --tone-slate: #5b647d;
+  --tone-slate-tint: #eceef4;
+
+  /* Painted stage bed — overridden per feature tone */
+  --stage-a: rgba(46, 107, 255, 0.28);
+  --stage-b: rgba(127, 216, 232, 0.35);
+  --stage-top: #eef1f6;
+  --stage-bottom: #dfe6f1;
+
+  /* Deep surface for the closing CTA */
+  --night: #0e1424;
+  --night-2: #16203a;
 
   /* Type — Aeonik only. Regular for text, Medium for headings. */
   --font: var(--font-aeonik), "Aeonik", system-ui, -apple-system, sans-serif;
@@ -781,8 +806,26 @@ ol {
 /* ───────────────────────── Hero ───────────────────────── */
 .hero {
   position: relative;
+  isolation: isolate;
   padding-top: clamp(48px, 8vw, 104px);
   padding-bottom: 0;
+}
+/* Soft colour wash behind hero copy — blue into teal, fades out before the stage */
+.hero::before,
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(720px, 100%);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(46% 64% at 88% 6%, rgba(59, 111, 212, 0.2), transparent 70%),
+    radial-gradient(36% 52% at 62% 0%, rgba(29, 138, 134, 0.13), transparent 70%),
+    radial-gradient(32% 44% at 100% 42%, rgba(214, 155, 60, 0.12), transparent 70%);
+}
+.display-accent {
+  color: var(--accent);
 }
 .hero-copy {
   max-width: 760px;
@@ -804,10 +847,10 @@ ol {
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(110% 80% at 85% 115%, rgba(46, 107, 255, 0.28), transparent 60%),
-    radial-gradient(90% 70% at 0% 100%, rgba(127, 216, 232, 0.35), transparent 60%),
+    radial-gradient(110% 80% at 85% 115%, var(--stage-a), transparent 60%),
+    radial-gradient(90% 70% at 0% 100%, var(--stage-b), transparent 60%),
     radial-gradient(80% 60% at 20% 0%, rgba(255, 255, 255, 0.95), transparent 60%),
-    linear-gradient(180deg, #eef1f6 0%, #dfe6f1 100%);
+    linear-gradient(180deg, var(--stage-top) 0%, var(--stage-bottom) 100%);
   box-shadow: inset 0 0 0 var(--hair) var(--line);
 }
 .stage::before {
@@ -999,6 +1042,10 @@ ol {
   width: 15px;
   height: 15px;
 }
+.chip:hover .chip-icon {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
 .chip-state {
   font-size: 11px;
   color: var(--faint);
@@ -1013,7 +1060,40 @@ ol {
   align-items: center;
   padding: clamp(28px, 4vw, 56px);
   border-radius: var(--r-xl);
-  background: var(--surface-2);
+  background: linear-gradient(135deg, var(--feature-tint, var(--surface-2)) 0%, var(--surface-2) 78%);
+  border: var(--hair) solid var(--line);
+}
+/* Each feature gets its own tone so the long run of demos doesn't read as one grey block */
+.feature:nth-of-type(5n + 1) {
+  --feature-tint: var(--tone-blue-tint);
+}
+.feature:nth-of-type(5n + 2) {
+  --feature-tint: var(--tone-amber-tint);
+  --stage-a: rgba(214, 155, 60, 0.26);
+  --stage-b: rgba(138, 104, 77, 0.18);
+  --stage-top: #f6f1ea;
+  --stage-bottom: #ece2d4;
+}
+.feature:nth-of-type(5n + 3) {
+  --feature-tint: var(--tone-teal-tint);
+  --stage-a: rgba(29, 138, 134, 0.26);
+  --stage-b: rgba(127, 216, 232, 0.38);
+  --stage-top: #edf5f4;
+  --stage-bottom: #d9ebe9;
+}
+.feature:nth-of-type(5n + 4) {
+  --feature-tint: var(--tone-slate-tint);
+  --stage-a: rgba(91, 100, 125, 0.3);
+  --stage-b: rgba(59, 111, 212, 0.2);
+  --stage-top: #eff0f4;
+  --stage-bottom: #dfe2ea;
+}
+.feature:nth-of-type(5n) {
+  --feature-tint: var(--tone-green-tint);
+  --stage-a: rgba(36, 147, 90, 0.22);
+  --stage-b: rgba(127, 216, 232, 0.32);
+  --stage-top: #eef5f0;
+  --stage-bottom: #dcebe1;
 }
 .feature--flip {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -1116,6 +1196,25 @@ ol {
   width: 18px;
   height: 18px;
 }
+/* Rotate icon tones through grids so card rows aren't monochrome */
+:is(.grid-2, .grid-3, .grid-4) > :nth-child(4n + 2) .card-icon {
+  background: var(--tone-teal-tint);
+  color: var(--tone-teal);
+}
+:is(.grid-2, .grid-3, .grid-4) > :nth-child(4n + 3) .card-icon {
+  background: var(--tone-amber-tint);
+  color: var(--tone-amber);
+}
+:is(.grid-2, .grid-3, .grid-4) > :nth-child(4n + 4) .card-icon {
+  background: var(--tone-green-tint);
+  color: var(--tone-green);
+}
+.card--link:hover .card-icon {
+  transform: translateY(-1px) scale(1.04);
+}
+.card-icon {
+  transition: transform var(--dur) var(--ease);
+}
 .card-arrow {
   position: absolute;
   top: 20px;
@@ -1145,8 +1244,14 @@ ol {
   background: var(--surface-2);
   transition: background var(--dur) ease;
 }
+.quote:nth-child(3n + 2) {
+  background: linear-gradient(160deg, var(--tone-blue-tint), var(--surface-2) 70%);
+}
+.quote:nth-child(3n) {
+  background: linear-gradient(160deg, var(--tone-wood-tint), var(--surface-2) 70%);
+}
 .quote:hover {
-  background: #ecebe4;
+  background: var(--surface-3);
 }
 .quote p {
   font-size: 16.5px;
@@ -1177,6 +1282,15 @@ ol {
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--slate));
   flex-shrink: 0;
+}
+.quote:nth-child(4n + 2) .quote-avatar {
+  background: linear-gradient(135deg, var(--tone-teal), #2f6f8f);
+}
+.quote:nth-child(4n + 3) .quote-avatar {
+  background: linear-gradient(135deg, var(--tone-amber), var(--tone-wood));
+}
+.quote:nth-child(4n + 4) .quote-avatar {
+  background: linear-gradient(135deg, var(--tone-green), var(--tone-teal));
 }
 .quote-name {
   font-size: 14px;
@@ -1334,6 +1448,7 @@ ol {
   box-shadow: var(--sh-xs);
 }
 .plan--featured {
+  background: linear-gradient(180deg, var(--tone-blue-tint), var(--surface) 42%);
   border-color: rgba(59, 111, 212, 0.35);
   box-shadow: 0 0 0 1px rgba(59, 111, 212, 0.12), var(--sh-md);
 }
@@ -1583,23 +1698,61 @@ ol {
 
 /* ───────────────────────── CTA (big, light — Cursor "Try now") ───────────────────────── */
 .cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   text-align: center;
-  padding-block: clamp(24px, 5vw, 64px);
+  padding: clamp(48px, 7vw, 96px) clamp(20px, 4vw, 48px);
+  border-radius: var(--r-xl);
   display: grid;
   justify-items: center;
   gap: 18px;
+  background:
+    radial-gradient(60% 90% at 85% 120%, rgba(59, 111, 212, 0.55), transparent 65%),
+    radial-gradient(50% 80% at 10% 120%, rgba(29, 138, 134, 0.4), transparent 65%),
+    radial-gradient(40% 60% at 50% -20%, rgba(214, 155, 60, 0.16), transparent 70%),
+    linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
+  box-shadow: var(--sh-lg);
+}
+.cta::before {
+  /* Signal Cut: one quiet diagonal beam across the panel */
+  content: "";
+  position: absolute;
+  inset: -40% -10%;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 46%, rgba(255, 255, 255, 0.06) 50%, transparent 54%);
+  pointer-events: none;
 }
 .cta-title {
   font-size: clamp(40px, 6.4vw, 84px);
   line-height: 1.02;
   font-weight: 500;
   letter-spacing: -0.035em;
-  color: var(--ink);
+  color: #fff;
   text-wrap: balance;
 }
 .cta .lead {
   max-width: 48ch;
   margin-inline: auto;
+  color: rgba(255, 255, 255, 0.72);
+}
+.cta .btn--solid {
+  background: #fff;
+  color: var(--ink);
+}
+.cta .btn--solid:hover {
+  background: #e9eef8;
+}
+.cta .btn--soft {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+.cta .btn--soft:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+.cta :focus-visible {
+  outline-color: #fff;
 }
 .cta .btn-row {
   justify-content: center;
@@ -1623,6 +1776,18 @@ ol {
   background: var(--surface-2);
   border: var(--hair) solid var(--line);
   transition: background var(--dur) ease, border-color var(--dur) ease;
+}
+.hl-card {
+  border-top: 2px solid var(--hl-tone, var(--tone-blue));
+}
+.hl > :nth-child(4n + 2) .hl-card {
+  --hl-tone: var(--tone-teal);
+}
+.hl > :nth-child(4n + 3) .hl-card {
+  --hl-tone: var(--tone-amber);
+}
+.hl > :nth-child(4n + 4) .hl-card {
+  --hl-tone: var(--tone-green);
 }
 .hl-card:hover {
   background: var(--surface-3);
@@ -1674,7 +1839,7 @@ ol {
   color: var(--muted);
 }
 .hero-proof svg {
-  color: var(--accent);
+  color: var(--ok);
 }
 @media (max-width: 1100px) {
   .hl {
@@ -1689,9 +1854,18 @@ ol {
 
 /* ───────────────────────── Footer ───────────────────────── */
 .footer {
+  position: relative;
   margin-top: var(--section-y);
   background: var(--surface-2);
   padding: 64px 0 36px;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, var(--tone-blue), var(--tone-teal) 40%, var(--tone-amber) 75%, var(--tone-wood));
+  opacity: 0.55;
 }
 .footer-grid {
   display: grid;
@@ -1771,6 +1945,8 @@ ol {
 
 /* ───────────────────────── Page shells ───────────────────────── */
 .page-hero {
+  position: relative;
+  isolation: isolate;
   padding-top: clamp(48px, 7vw, 88px);
   padding-bottom: clamp(32px, 5vw, 56px);
 }
@@ -1876,6 +2052,15 @@ ol {
   letter-spacing: 0.08em;
   color: var(--accent);
   margin-bottom: 16px;
+}
+.step:nth-child(4n + 2)::before {
+  color: var(--tone-teal);
+}
+.step:nth-child(4n + 3)::before {
+  color: var(--tone-amber);
+}
+.step:nth-child(4n + 4)::before {
+  color: var(--tone-green);
 }
 
 /* Form */

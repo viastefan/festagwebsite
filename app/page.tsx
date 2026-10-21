@@ -66,7 +66,7 @@ export default function HomePage() {
             <h1 className="display">
               Das Team arbeitet. Der Kunde rätselt.
               <br />
-              Festag schließt die Lücke.
+              <span className="display-accent">Festag schließt die Lücke.</span>
             </h1>
             <p className="lead">
               Operational Intelligence über GitHub, Linear, Jira und Slack — Tagro übersetzt Arbeit in Status, Risiken und
@@ -247,7 +247,7 @@ export default function HomePage() {
             <RevealGroup className="grid-2">
               {TRUST.map((t) => (
                 <RevealItem key={t.title} className="card card--soft">
-                  <span className="card-icon" style={{ background: "#fff" }}>
+                  <span className="card-icon">
                     <Icon name={t.icon} />
                   </span>
                   <h3 className="h4">{t.title}</h3>
@@ -311,13 +311,19 @@ const HOME_CSS = `
   padding: 16px 18px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line);
   font-size: 17px; line-height: 1.3; color: var(--ink-2); box-shadow: var(--sh-xs);
 }
+.home-q { position: relative; padding-left: 34px; }
+.home-q::before { content: ""; position: absolute; left: 16px; top: 23px; width: 7px; height: 7px; border-radius: 50%; background: var(--q-tone, var(--tone-blue)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--q-tone, var(--tone-blue)) 16%, transparent); }
 .home-q:nth-child(4n+1), .home-q:nth-child(4n) { background: var(--surface-2); border-color: transparent; box-shadow: none; }
+.home-q:nth-child(4n+2) { --q-tone: var(--tone-amber); }
+.home-q:nth-child(4n+3) { --q-tone: var(--tone-teal); }
+.home-q:nth-child(4n) { --q-tone: var(--tone-slate); }
 .home-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
 .home-trust { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .home-trust-copy { position: sticky; top: calc(var(--nav-h) + 32px); }
 .home-team {
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: clamp(16px, 2vw, 24px);
-  padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl); background: var(--surface-2);
+  padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl);
+  background: linear-gradient(135deg, var(--tone-wood-tint), var(--surface-2) 60%);
 }
 .home-team-copy { display: grid; align-content: center; gap: 18px; padding: clamp(14px, 2vw, 28px); }
 .home-team-copy .h3 { font-weight: 500; max-width: 26ch; }
