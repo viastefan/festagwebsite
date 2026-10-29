@@ -63,7 +63,7 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
 - **Preise:** spiegeln die App (`festag-mvp/lib/billing/plan.ts` und `credits.ts`): Free, Pro 7 €/Monat oder 70 €/Jahr,
   14 Tage Test, Aven-Guthaben (Free 1 €, Pro 6 €, Pakete 5/10/25 €). Quelle auf der Website: `lib/site/pricing.ts`.
   Ändert sich die App, hier nachziehen. **API:** `/developers` beschreibt nur, was es in der App wirklich gibt.
-- **Dunkelmodus:** Schalter im Header (`ThemeToggle`), Tokens unter `:root[data-theme="dark"]` in `globals.css`. Neue Farben immer
+- **Dunkelmodus:** Einstellung „Darstellung“ (Hell, Dunkel, System) im Footer (`ThemeSetting`), nie im Header; „Anmelden“ (Textknopf) hat in keinem Zustand einen Hintergrund, Tokens unter `:root[data-theme="dark"]` in `globals.css`. Neue Farben immer
   über Variablen, nie hart codiert. Die Demo-Fenster folgen dem Schalter. **Handy-Videos:** Hochformat, `mobileSrc` an `VideoBand`.
   **Sicherheit:** `/security` nennt nur Verhalten, das die App wirklich hat.
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,

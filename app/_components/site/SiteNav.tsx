@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
-import { ThemeToggle } from "../ui/ThemeToggle";
 import { Icon } from "../ui/Icon";
 import { links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
 
@@ -112,7 +111,6 @@ export function SiteNav() {
           </nav>
 
           <div className="nav-right">
-            <ThemeToggle />
             <Button href={links.login} variant="text">
               Anmelden
             </Button>

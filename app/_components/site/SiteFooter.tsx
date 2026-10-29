@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "../ui/Logo";
 import { Icon } from "../ui/Icon";
+import { ThemeSetting } from "../ui/ThemeToggle";
 import { footerColumns, links } from "@/lib/site/links";
 
 const YEAR = 2026;
@@ -56,6 +57,10 @@ export function SiteFooter() {
             <li key={n}>{n}</li>
           ))}
         </ul>
+
+        <div className="footer-settings">
+          <ThemeSetting />
+        </div>
 
         <div className="footer-bottom">
           <span>© {YEAR} Festag. Alle Rechte vorbehalten.</span>

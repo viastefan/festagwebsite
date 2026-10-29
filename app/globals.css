@@ -3304,26 +3304,6 @@ html body *::after {
 }
 
 /* ───────── Dunkler Modus ───────── */
-.theme-btn {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: background var(--dur) ease, color var(--dur) ease;
-}
-.theme-btn:hover {
-  background: var(--surface-3);
-  color: var(--ink);
-}
-.theme-btn svg {
-  width: 16px;
-  height: 16px;
-}
 :root[data-theme="dark"] {
   color-scheme: dark;
   --canvas: #141210;
@@ -3540,4 +3520,63 @@ html body *::after {
 :root[data-theme="dark"] .skip-link,
 :root[data-theme="dark"] .cf-topics button.is-on {
   color: #17120f;
+}
+
+/* Einstellungen im Footer: Darstellung */
+.footer-settings {
+  display: flex;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: var(--hair) solid var(--line);
+}
+.theme-set {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.theme-set-l {
+  margin-right: 10px;
+  color: var(--faint);
+  font-size: 13px;
+}
+.theme-set button {
+  height: 28px;
+  padding: 0 11px;
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--pill);
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.theme-set button:hover {
+  color: var(--ink);
+}
+.theme-set button.is-on {
+  background: var(--surface-3);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+/* „Anmelden“ (Textknopf) hat in keinem Zustand eine Fläche */
+.btn--text,
+.btn--text:hover,
+.btn--text:active,
+.btn--text:focus,
+.btn--text:focus-visible,
+.nav-right .btn--text,
+.nav-right .btn--text:hover,
+.msheet-cta .btn--text,
+.msheet-cta .btn--text:hover {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn--text:hover,
+.btn--text:focus-visible {
+  color: var(--ink);
 }
