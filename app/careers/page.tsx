@@ -63,7 +63,7 @@ export default function CareersPage() {
           <RevealGroup className="grid-3">
             {VALUES.map((v) => (
               <RevealItem key={v.title} className="card card--soft">
-                <h3 className="h4">{v.title}</h3>
+                <h2 className="h4">{v.title}</h2>
                 <p className="body" style={{ fontSize: 14.5 }}>
                   {v.body}
                 </p>

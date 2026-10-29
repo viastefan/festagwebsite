@@ -35,7 +35,7 @@ export function SiteFooter() {
           </div>
           {footerColumns.map((col) => (
             <div key={col.title}>
-              <h4>{col.title}</h4>
+              <h2>{col.title}</h2>
               <ul>
                 {col.items.map((item) => (
                   <li key={item.label}>

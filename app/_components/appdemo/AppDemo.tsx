@@ -268,7 +268,7 @@ function ExpandRow({
       <div className={`ad-row${ring === "done" ? " is-done" : ""}${onClick ? " is-click" : ""}`} {...click}>
         {seed ? <Thumb seed={seed} /> : null}
         <div className="ad-row-copy">
-          <h4 className="ad-row-title">{title}</h4>
+          <p className="ad-row-title">{title}</p>
           {text ? <p className="ad-row-text">{text}</p> : null}
         </div>
         {when || ring ? (
@@ -467,7 +467,7 @@ function DecisionCard({
             <span className="ad-tag">{d.tag}</span>
             <span className="ad-when">{decided ? "Entschieden" : d.deadline}</span>
           </div>
-          <h3 className="ad-card-title">{decided ? d.decidedTitle(opt) : d.title}</h3>
+          <p className="ad-card-title">{decided ? d.decidedTitle(opt) : d.title}</p>
           {decided ? null : <p className="ad-card-sub">{d.sub}</p>}
         </div>
         <Ring state={decided ? "done" : busy ? "busy" : "open"} />

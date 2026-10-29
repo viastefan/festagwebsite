@@ -112,7 +112,7 @@ export default function MemoryPage() {
                 <span className="card-icon">
                   <Icon name={p.icon} />
                 </span>
-                <h3 className="h4">{p.title}</h3>
+                <h2 className="h4">{p.title}</h2>
                 <p className="body">{p.body}</p>
               </RevealItem>
             ))}

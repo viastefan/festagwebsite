@@ -26,7 +26,7 @@ export function FeatureBlock({
   return (
     <Reveal as="article" className={`feature${flip ? " feature--flip" : ""}`} id={id}>
       <div className="feature-copy">
-        <h3 className="h3">{title}</h3>
+        <h2 className="h3">{title}</h2>
         <p className="body">{sub}</p>
         {link ? <TextLink href={link.href}>{link.label}</TextLink> : null}
       </div>
