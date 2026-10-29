@@ -402,6 +402,52 @@ function DecisionCard({
   );
 }
 
+
+/* Zweites, überlappendes Fenster wie bei Cursor („CLI“): Avens Verlauf. */
+function Peek({ step }: { step: number }) {
+  const theme = useTheme();
+  const lines: [string, string][] = [
+    ["Liest", "Linear ATL-81 … ATL-88"],
+    ["Liest", "Slack #atlas · 3 Threads"],
+    ["Prüft", "GitHub PR #398, #402"],
+  ];
+  return (
+    <div className="ad ad-peek" data-theme={theme} aria-hidden>
+      <div className="adw">
+        <div className="adw-bar">
+          <div className="adw-dots">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="adw-title">Aven</div>
+          <div />
+        </div>
+        <div className="ad-peek-body">
+          {lines.map(([k, v], i) =>
+            step >= 1 + i ? (
+              <div key={v} className="ad-peek-line ad-src">
+                <i />
+                <b>{k}</b> {v}
+              </div>
+            ) : null,
+          )}
+          {step >= 4 ? (
+            <p className="ad-src">
+              Der API-Zugang fehlt seit drei Tagen und blockiert den Login-Meilenstein. Ich habe die Entscheidung vorbereitet.
+            </p>
+          ) : null}
+          {step >= 4 ? (
+            <div className="ad-peek-code ad-src">
+              decision/zahlung.ts <span className="add">+142</span> <span className="del">−18</span>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ───────── Szene 1: Hero — vom Feed zur getroffenen Entscheidung ───────── */
 
 const HERO_STEPS = [1900, 2300, 2700, 1200, 1500, 1500, 1500, 2800] as const;
@@ -412,7 +458,7 @@ export function HeroApp() {
   const decided = step >= 4;
   const stage = Math.min(Math.max(step - 3, 0), 3);
   return (
-    <div ref={ref}>
+    <div ref={ref} className="ad-hero-wrap">
       <Frame height={640} fixed>
         <div className="ad-h">
           <b>Status</b>
@@ -443,6 +489,7 @@ export function HeroApp() {
           ))}
         </div>
       </Frame>
+      <Peek step={step} />
     </div>
   );
 }

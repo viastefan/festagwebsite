@@ -256,10 +256,10 @@ ol {
 
 /* ───────────────────────── Typography ───────────────────────── */
 .display {
-  font-size: clamp(34px, 4.2vw, 58px);
-  line-height: 1.06;
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: 1.16;
   font-weight: 400;
-  letter-spacing: -0.032em;
+  letter-spacing: -0.024em;
   color: var(--ink);
   text-wrap: balance;
   max-width: 24ch;
@@ -843,9 +843,9 @@ ol {
   max-width: 980px;
 }
 .hero .display {
-  font-size: clamp(42px, 5.6vw, 80px);
-  line-height: 1.03;
-  letter-spacing: -0.036em;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.16;
+  letter-spacing: -0.024em;
   max-width: none;
 }
 .hero .lead {
@@ -2626,12 +2626,12 @@ ol {
   }
   .hero .display {
     max-width: none;
-    font-size: clamp(36px, 10.4vw, 46px);
-    line-height: 1.06;
-    letter-spacing: -0.032em;
+    font-size: clamp(30px, 8.4vw, 38px);
+    line-height: 1.14;
+    letter-spacing: -0.026em;
   }
   .display {
-    font-size: clamp(32px, 9vw, 40px);
+    font-size: clamp(28px, 7.6vw, 36px);
   }
   .plan-amount {
     font-size: 34px;
