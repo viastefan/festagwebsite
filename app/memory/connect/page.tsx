@@ -3,6 +3,7 @@ import { Button } from "../../_components/ui/Button";
 import { Icon, type IconName } from "../../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../../_components/ui/Section";
+import { CodeTabs } from "../../_components/ui/CodeTabs";
 import { MemoryNav, MemoryStyles } from "../shared";
 import { links } from "@/lib/site/links";
 
@@ -151,7 +152,7 @@ export default function MemoryConnectPage() {
         <div className="wrap wrap--wide">
           <SectionHead title="Der Hook." lead="Ein Aufruf, im Hintergrund, ohne Rückwirkung auf die Arbeit." />
           <Reveal>
-            <pre className="mem-code">{SNIPPET}</pre>
+            <CodeTabs tabs={[{ label: "Hook", code: SNIPPET }]} />
           </Reveal>
         </div>
       </section>
@@ -163,7 +164,7 @@ export default function MemoryConnectPage() {
             lead="Ein Paket pro Lauf genügt — Festag normalisiert die Feldnamen der gängigen Werkzeuge selbst."
           />
           <Reveal>
-            <pre className="mem-code">{PAYLOAD}</pre>
+            <CodeTabs tabs={[{ label: "Paket (JSON)", code: PAYLOAD }]} />
           </Reveal>
         </div>
       </section>
