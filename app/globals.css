@@ -2610,3 +2610,8 @@ html body *::after {
 .eyebrow {
   display: none;
 }
+
+/* Bühnen-Beschriftung entfernt: sie verdeckte die App-Fenster */
+.stage .stage-caption {
+  display: none;
+}

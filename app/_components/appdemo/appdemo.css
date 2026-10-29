@@ -887,7 +887,7 @@
     display: none;
   }
   .ad-then,
-  .ad-ask {
+  .ad-card .ad-ask {
     display: none;
   }
 }
@@ -1266,4 +1266,58 @@ button.ad-chip:hover {
     background: var(--ad-panel);
     color: var(--ad-ink);
   }
+}
+
+/* Fenster mit fester Höhe scrollen still, wenn der Inhalt länger ist */
+.adw-body.is-fixed .ad-main {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.adw-body.is-fixed .ad-main::-webkit-scrollbar {
+  display: none;
+}
+
+/* Vorschlagskarte im Chat */
+.ad-propose {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 0.5px solid var(--ad-card-border);
+  border-radius: 12px;
+  background: var(--ad-card-fill);
+  box-shadow: var(--ad-card-shadow);
+  max-width: 520px;
+}
+.ad-propose small {
+  display: block;
+  color: var(--ad-ink-3);
+  font-size: 11.5px;
+}
+.ad-propose b {
+  font-weight: 500;
+  font-size: 13.5px;
+}
+.ad-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.ad-ask button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Eingabe und Vorschläge bleiben unten sichtbar, auch bei langen Gesprächen */
+.ad-dock {
+  position: sticky;
+  bottom: -18px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 -4px -18px;
+  padding: 12px 4px 18px;
+  background: linear-gradient(180deg, transparent, var(--ad-canvas) 14px);
 }

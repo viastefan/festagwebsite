@@ -2,6 +2,7 @@
 
 import "./appdemo.css";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { aven, STARTERS, type Ctx, type NavTarget, type Reply } from "./aven-brain";
 
 /* ───────── Theme (Hell / Dunkel wie festag.app), geteilt von allen Demos ───────── */
 
@@ -41,12 +42,17 @@ function useTheme(): Theme {
 
 /* ───────── Steuerung: läuft von allein, bis jemand klickt ───────── */
 
+function subscribeMotion(cb: () => void) {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
 function useReducedMotion() {
-  const [r, setR] = useState(false);
-  useEffect(() => {
-    setR(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
-  return r;
+  return useSyncExternalStore(
+    subscribeMotion,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
 }
 
 function useInView<T extends Element>() {
@@ -65,7 +71,9 @@ function useInView<T extends Element>() {
 /** Spielt `steps` in Schleife ab, solange `active`. Schritt = [Wartezeit in ms, Aktion]. */
 function useScript(active: boolean, steps: [number, () => void][]) {
   const ref = useRef(steps);
-  ref.current = steps;
+  useEffect(() => {
+    ref.current = steps;
+  });
   useEffect(() => {
     if (!active) return;
     let i = 0;
@@ -539,76 +547,47 @@ function DecisionCard({
   );
 }
 
-/* ───────── Aven: Fragen und belegte Antworten ───────── */
+/* ───────── Aven: Fragen, Rückfragen und Vorschläge ───────── */
 
-type QA = { q: string; keys: string[]; a: string; src: string[] };
-const QAS: QA[] = [
-  {
-    q: "Warum hängt der Login-Meilenstein?",
-    keys: ["login", "meilenstein", "hängt", "blockiert", "warum"],
-    a: "Der API-Zugang des Kunden fehlt seit drei Tagen und blockiert den Login-Meilenstein. Ich habe eine Entscheidung vorbereitet und das Update in ruhiger Sprache formuliert.",
-    src: ["Linear ATL-81", "Slack #atlas", "GitHub PR #402"],
-  },
-  {
-    q: "Was kostet Mollie bei 600 Bestellungen?",
-    keys: ["mollie", "stripe", "zahlung", "gebühr", "kosten", "preis"],
-    a: "Bei rund 600 Bestellungen im Monat zahlt ihr mit Mollie etwa 38 € weniger Gebühren als mit Stripe. SEPA-Lastschrift und Klarna sind enthalten.",
-    src: ["Mollie Preisliste", "Stripe Preisliste", "Nordlicht Bestellungen"],
-  },
-  {
-    q: "Wie steht Atlas?",
-    keys: ["atlas", "stand", "steht", "status", "fortschritt"],
-    a: "Atlas liegt bei 68 Prozent in der Build-Phase. Das Dashboard-Modul ist abnahmebereit, offen ist nur der API-Zugang des Kunden.",
-    src: ["Linear ATL-88", "GitHub PR #402"],
-  },
-  {
-    q: "Was sage ich dem Kunden?",
-    keys: ["kunde", "kunden", "sagen", "update", "mail"],
-    a: "Sagt Atlas, dass das Dashboard fertig ist und der Login-Bereich noch auf den API-Zugang wartet. Ohne Zugang verschiebt sich der Meilenstein um drei bis fünf Tage. Den Text habe ich vorbereitet.",
-    src: ["Slack #atlas", "Linear ATL-81"],
-  },
-];
-const FALLBACK: QA = {
-  q: "",
-  keys: [],
-  a: "Dazu habe ich in den verbundenen Tools noch nichts Belegtes gefunden. Ich frage nach und melde mich, sobald es eine Quelle gibt.",
-  src: [],
-};
+type Turn = { id: number; q: string; reply: Reply; thinking: boolean; acted: boolean };
+type Host = { navigate: (v: NavTarget) => void; decide: (optionId: string) => void };
 
-function answerFor(text: string): QA {
-  const t = text.toLowerCase();
-  let best: QA | null = null;
-  let score = 0;
-  for (const qa of QAS) {
-    const n = qa.keys.filter((k) => t.includes(k)).length;
-    if (n > score) {
-      score = n;
-      best = qa;
-    }
-  }
-  return best ?? FALLBACK;
-}
-
-type Turn = { id: number; q: string; qa: QA; thinking: boolean };
-
-function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: number } | null }) {
+function AskPanel({ auto, seed, host }: { auto: boolean; seed?: { text: string; n: number } | null; host?: Host }) {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [draft, setDraft] = useState("");
   const idRef = useRef(0);
   const autoIdx = useRef(0);
+  const ctx = useRef<Ctx>({ lastTopic: null, lastOption: null });
   const timers = useRef<number[]>([]);
+  const turnsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const list = timers.current;
     return () => list.forEach((t) => window.clearTimeout(t));
   }, []);
 
+  // Neue Nachricht: im scrollenden Fenster nach unten (nie die ganze Seite bewegen)
+  useEffect(() => {
+    const box = turnsRef.current?.closest(".ad-main") as HTMLElement | null;
+    if (box && box.scrollHeight > box.clientHeight) box.scrollTo({ top: box.scrollHeight, behavior: "smooth" });
+  }, [turns]);
+
   const ask = useCallback((q: string) => {
+    const reply = aven(q, ctx.current);
+    if (reply.topic) ctx.current = { lastTopic: reply.topic, lastOption: reply.action?.kind === "decide" ? reply.action.optionId : ctx.current.lastOption };
     const id = ++idRef.current;
-    setTurns((ts) => [...ts, { id, q, qa: answerFor(q), thinking: true }].slice(-3));
+    setTurns((ts) => [...ts, { id, q, reply, thinking: true, acted: false }].slice(-4));
     timers.current.push(
-      window.setTimeout(() => setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, thinking: false } : t))), 1100),
+      window.setTimeout(
+        () => setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, thinking: false } : t))),
+        700 + Math.min(reply.text.length, 200) * 3,
+      ),
     );
+  }, []);
+
+  const clear = useCallback(() => {
+    setTurns([]);
+    ctx.current = { lastTopic: null, lastOption: null };
   }, []);
 
   const seeded = useRef(0);
@@ -620,21 +599,38 @@ function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: num
   }, [seed, ask]);
 
   useScript(auto, [
-    [900, () => ask(QAS[autoIdx.current++ % QAS.length].q)],
-    [5600, () => setTurns([])],
+    [900, () => ask(STARTERS[autoIdx.current++ % STARTERS.length])],
+    [6000, clear],
   ]);
 
-  const asked = new Set(turns.map((t) => t.q));
-  const suggestions = QAS.filter((qa) => !asked.has(qa.q)).slice(0, 3);
+  const last = turns[turns.length - 1];
+  const asked = new Set(turns.map((t) => t.q.toLowerCase()));
+  const chips = (last && !last.thinking ? last.reply.follow : STARTERS).filter((q) => !asked.has(q.toLowerCase())).slice(0, 3);
+
+  const act = (t: Turn) => {
+    const a = t.reply.action;
+    if (!a) return;
+    if (a.kind === "decide") {
+      host?.decide(a.optionId);
+      setTurns((ts) => ts.map((x) => (x.id === t.id ? { ...x, acted: true } : x)));
+    } else {
+      host?.navigate(a.view);
+    }
+  };
 
   return (
     <div className="ad-chat">
-      <div className="ad-turns">
-        {turns.length === 0 ? <p className="ad-empty">Frag, was wirklich läuft. Aven antwortet mit Quelle.</p> : null}
+      <div className="ad-turns" ref={turnsRef} aria-live="polite">
+        {turns.length === 0 ? (
+          <p className="ad-empty">Frag, was wirklich läuft. Aven antwortet mit Quelle, versteht Rückfragen und öffnet Ansichten.</p>
+        ) : null}
         {turns.map((t, ti) => {
-          const words = t.qa.a.split(/(\s+)/);
+          const words = t.reply.text.split(/(\s+)/);
           let w = 0;
-          const last = ti === turns.length - 1;
+          const fresh = ti === turns.length - 1;
+          const a = t.reply.action;
+          // Ansichten öffnen geht nur, wenn die Demo eine Navigation hat
+          const showAction = a && (a.kind === "decide" || host);
           return (
             <div key={t.id} className="ad-turn">
               <div className="ad-me">{t.q}</div>
@@ -650,7 +646,7 @@ function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: num
                     <>
                       <p>
                         {words.map((part, i) =>
-                          /^\s+$/.test(part) || !last ? (
+                          /^\s+$/.test(part) || !fresh ? (
                             part
                           ) : (
                             <span key={i} className="ad-word" style={{ "--w": Math.min(w++, 60) } as React.CSSProperties}>
@@ -659,14 +655,44 @@ function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: num
                           ),
                         )}
                       </p>
-                      {t.qa.src.length ? (
+                      {t.reply.src.length ? (
                         <div className="ad-chips ad-src">
-                          {t.qa.src.map((x) => (
+                          {t.reply.src.map((x) => (
                             <span key={x} className="ad-chip is-static">
                               {x}
                             </span>
                           ))}
                         </div>
+                      ) : null}
+                      {showAction && a ? (
+                        a.kind === "decide" ? (
+                          <div className="ad-propose ad-src">
+                            <div>
+                              <small>{t.acted ? "Festgehalten" : "Vorschlag"}</small>
+                              <b>{a.title}</b>
+                            </div>
+                            {t.acted ? (
+                              <span className="ad-done">
+                                <Ring state="done" />
+                                {host ? (
+                                  <button type="button" className="ad-link" onClick={() => host.navigate("decisions")}>
+                                    Ansehen
+                                  </button>
+                                ) : null}
+                              </span>
+                            ) : (
+                              <button type="button" className="ad-cta" onClick={() => act(t)}>
+                                Entscheidung treffen
+                              </button>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="ad-src">
+                            <button type="button" className="ad-chip is-on" onClick={() => act(t)}>
+                              {a.label} →
+                            </button>
+                          </div>
+                        )
                       ) : null}
                     </>
                   )}
@@ -676,12 +702,18 @@ function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: num
           );
         })}
       </div>
+      <div className="ad-dock">
       <div className="ad-suggest">
-        {suggestions.map((qa) => (
-          <button key={qa.q} type="button" className="ad-chip" onClick={() => ask(qa.q)}>
-            {qa.q}
+        {chips.map((q) => (
+          <button key={q} type="button" className="ad-chip" onClick={() => ask(q)}>
+            {q}
           </button>
         ))}
+        {turns.length > 0 ? (
+          <button type="button" className="ad-link" onClick={clear}>
+            Neues Gespräch
+          </button>
+        ) : null}
       </div>
       <form
         className="ad-ask"
@@ -694,11 +726,12 @@ function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: num
           }
         }}
       >
-        <input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder="Frag Aven …" aria-label="Frag Aven" />
-        <button type="submit" aria-label="Senden">
+        <input value={draft} maxLength={200} onChange={(e) => setDraft(e.target.value)} placeholder="Frag Aven …" aria-label="Frag Aven" />
+        <button type="submit" aria-label="Senden" disabled={!draft.trim()}>
           {I.up}
         </button>
       </form>
+      </div>
     </div>
   );
 }
@@ -956,10 +989,28 @@ export function HeroApp() {
     </div>
   );
 
+  const host: Host = {
+    navigate: (v) => go(v),
+    decide: (optionId) => {
+      z.setSel(optionId);
+      z.decide();
+      setOpenId("zahlung");
+      setView("status");
+    },
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const el = e.target as HTMLElement;
+    if (el.closest("input, textarea")) return;
+    const n = NAV.find((x) => x.key.toLowerCase() === e.key.toLowerCase());
+    if (n) go(n.v);
+  };
+
   const peekStep = z.phase === "idle" ? (openId === "zahlung" ? 1 : 0) : z.phase === "deciding" ? 2 : z.stage === 1 ? 3 : 4;
 
   return (
-    <div ref={ref} className="ad-hero-wrap" onPointerDownCapture={onPointerDownCapture}>
+    <div ref={ref} className="ad-hero-wrap" onPointerDownCapture={onPointerDownCapture} onKeyDown={onKeyDown}>
       <Frame height={640} fixed rail={<Rail view={view} onView={go} open={waiting} />}>
         <div className="ad-tabs" role="tablist" aria-label="Ansicht">
           {[...NAV.map((n) => ({ v: n.v, label: n.label })), { v: "aven" as View, label: "Aven" }].map((n) => (
@@ -983,7 +1034,7 @@ export function HeroApp() {
         {view === "projects" ? <ProjectsList /> : null}
         {view === "deliveries" ? <DeliveriesList /> : null}
         {view === "tasks" ? <TasksList /> : null}
-        {view === "aven" ? <AskPanel auto={false} seed={seed} /> : null}
+        {view === "aven" ? <AskPanel auto={false} seed={seed} host={host} /> : null}
       </Frame>
       {(view === "status" || view === "decisions") && peekStep > 0 ? <Peek step={peekStep} /> : null}
     </div>
