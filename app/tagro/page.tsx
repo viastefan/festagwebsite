@@ -6,6 +6,7 @@ import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { AskScene, DecisionScene } from "../_components/appdemo/AppDemo";
 import { FeatureBlock } from "../_components/site/Blocks";
+import { VideoBand } from "../_components/ui/Media";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
@@ -164,6 +165,15 @@ export default function TagroPage() {
                 Request kommt als Signal zurück ins Projekt — nie ohne Freigabe, nie ohne Review.
               </p>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+            <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <SectionHead title="Aven im Gespräch." lead="Fragen, Rückfragen und Befehle: Aven antwortet mit Quelle und bereitet Entscheidungen vor." />
+          <Reveal>
+            <VideoBand src="/media/video/aven-chat.mp4" poster="/media/video/aven-chat.jpg" label="Aven im Chat: Fragen stellen, Entscheidung vorbereiten, Projekte öffnen" caption="Aven im Chat, Dunkel" />
           </Reveal>
         </div>
       </section>

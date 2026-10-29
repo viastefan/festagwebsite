@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button, TextLink } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { MediaBand } from "../_components/ui/Media";
 import { CtaBand } from "../_components/ui/Section";
 import { formatDate } from "../_components/site/Blocks";
 import { UpdateArt } from "../_components/site/UpdateArt";
@@ -77,6 +78,14 @@ export default function CompanyPage() {
           </Reveal>
         </div>
       </section>
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <Reveal>
+            <MediaBand src="/media/team-studio.jpg" alt="Team arbeitet in einem hellen Haus am See" pos="center 40%" ratio="21 / 9" caption="Wir bauen Software, die versteht, wie Organisationen arbeiten." chips={["Landshut, Bayern", "Server in Deutschland"]} priority />
+          </Reveal>
+        </div>
+      </section>
+
 
       <section className="section section--flush-top">
         <div className="wrap co-wrap">

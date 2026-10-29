@@ -12,6 +12,7 @@ import {
   Highlights,
   VoicesGrid,
 } from "./_components/site/Blocks";
+import { VideoBand } from "./_components/ui/Media";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
@@ -94,6 +95,24 @@ export default function HomePage() {
           >
             <HandoffScene />
           </FeatureBlock>
+        </div>
+      </section>
+
+      {/* ───────── Filme ───────── */}
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <div className="vgrid">
+            <Reveal className="vgrid-item">
+              <VideoBand src="/media/video/connectors.mp4" poster="/media/video/connectors.jpg" label="Konnektoren verbinden" caption="Verbinden" />
+              <h3 className="h3">Verbinden.</h3>
+              <p className="body">GitHub, Linear, Slack, Jira und Notion in Minuten verbunden. Festag liest Signale, keine Menschen.</p>
+            </Reveal>
+            <Reveal className="vgrid-item" delay={0.08}>
+              <VideoBand src="/media/video/handoff.mp4" poster="/media/video/handoff.jpg" label="Übergabe an den Coding-Agent" caption="Übergeben" />
+              <h3 className="h3">Übergeben.</h3>
+              <p className="body">Nach der Entscheidung geht der Brief an euren Coding-Agent. Der Pull Request kommt als Beleg zurück.</p>
+            </Reveal>
+          </div>
         </div>
       </section>
 

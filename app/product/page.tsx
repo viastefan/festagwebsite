@@ -6,6 +6,7 @@ import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { DecisionScene, FeedScene, HandoffScene, HeroApp, PortfolioScene } from "../_components/appdemo/AppDemo";
 import { Stage } from "../_components/ui/Window";
 import { FeatureBlock, IconCard } from "../_components/site/Blocks";
+import { VideoBand } from "../_components/ui/Media";
 import { links } from "@/lib/site/links";
 import { principles } from "@/lib/site/content";
 
@@ -196,6 +197,15 @@ export default function ProductPage() {
               </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </section>
+
+            <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <SectionHead title="Der ganze Weg im Film." lead="Von der offenen Frage über die Entscheidung bis zum Pull Request, in 30 Sekunden." />
+          <Reveal>
+            <VideoBand src="/media/video/festag-flow.mp4" poster="/media/video/festag-flow.jpg" label="Festag Produktfilm: Entscheidung treffen und Aven fragen" caption="So arbeitet Festag, Hell" />
+          </Reveal>
         </div>
       </section>
 

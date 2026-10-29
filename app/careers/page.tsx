@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { MediaBand } from "../_components/ui/Media";
 import { Button } from "../_components/ui/Button";
 import { PageHero, SectionHead } from "../_components/ui/Section";
 import { getAllJobs, DEPARTMENT_LABEL, type JobDepartment } from "@/lib/jobs";
@@ -48,6 +49,14 @@ export default function CareersPage() {
           </Button>
         </div>
       </PageHero>
+
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <Reveal>
+            <MediaBand src="/brand/bg-office.jpg" alt="Team arbeitet gemeinsam in einem hellen Studio" pos="center 45%" ratio="21 / 9" caption="Ein kleines Team, eine neue Kategorie." chips={["Remote in DACH", "Ownership", "Equity für erste Rollen"]} priority />
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">

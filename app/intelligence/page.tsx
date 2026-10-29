@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { MediaBand } from "../_components/ui/Media";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { MemoryScene } from "../_components/appdemo/AppDemo";
@@ -120,6 +121,14 @@ export default function IntelligencePage() {
           </Button>
         </div>
       </PageHero>
+
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <Reveal>
+            <MediaBand src="/media/voice-orb.jpg" alt="Festag Intelligence als leuchtende Kugel" pos="center 45%" ratio="21 / 9" caption="Leqra denkt. Festag handelt." chips={["Leqra", "Aven", "Veyra"]} priority />
+          </Reveal>
+        </div>
+      </section>
 
       {/* Models */}
       <section className="section section--flush-top">

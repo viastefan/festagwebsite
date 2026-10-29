@@ -52,6 +52,9 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   Keine bunten Töne (kein Blau, Türkis, Grün, Orange). Status-Grün nur für „erledigt“.
 - **Schrift:** Geist, Medium als Grundschnitt, Buchstabenabstand 0. Überschriften H1/H2 Regular, kompakt
   (H1 bis 46px). Hero ohne Fließtext. Alles kompakt: Buttons 36px, Sektionen ca. 52–92px.
+- **Medien:** Produktvideos (`public/media/video/*.mp4`, aus den klickbaren Demos aufgenommen, unter 600 KB) laufen über
+  `VideoBand`, Bilder über `MediaBand` (beide in `app/_components/ui/Media.tsx`). Videos starten nur im Sichtbereich
+  und respektieren „Bewegung reduzieren“. Keine Stockfotos, keine Platzhalter.
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,
   auch Favicon und App-Icons; kleine Größe im Header.
 - **Aven:** nur als Wort, ohne Symbol, ohne Avatar, ohne Sprecher-Etikett.

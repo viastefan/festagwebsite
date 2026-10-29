@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { MediaBand } from "../_components/ui/Media";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { MEMORY_PAGES, MemoryNav, MemoryStyles } from "./shared";
 import { links } from "@/lib/site/links";
@@ -88,6 +89,14 @@ export default function MemoryPage() {
           </Button>
         </div>
       </PageHero>
+
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <Reveal>
+            <MediaBand tone="light" src="/media/waves-dark.jpg" alt="Signale als Wellen" pos="center 70%" ratio="21 / 9" caption="Gedächtnis, nicht Überwachung." chips={["Kapitel", "Prompts", "Token-Ökonomie"]} priority />
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
