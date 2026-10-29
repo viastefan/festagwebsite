@@ -5,6 +5,7 @@ import { Button, TextLink } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { MediaBand } from "../_components/ui/Media";
+import { KeyList } from "../_components/ui/Blocks2";
 import { CtaBand } from "../_components/ui/Section";
 import { formatDate } from "../_components/site/Blocks";
 import { UpdateArt } from "../_components/site/UpdateArt";
@@ -89,15 +90,7 @@ export default function CompanyPage() {
 
       <section className="section section--flush-top">
         <div className="wrap co-wrap">
-          <RevealGroup className="co-chapters">
-            {CHAPTERS.map((c) => (
-              <RevealItem key={c.n} className="co-chapter">
-                <span className="co-n">{c.n}</span>
-                <h2 className="h4">{c.title}</h2>
-                <p className="body">{c.body}</p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={CHAPTERS.map((c) => ({ k: c.n.replace(/^0/, ""), title: c.title, body: c.body }))} />
         </div>
       </section>
 

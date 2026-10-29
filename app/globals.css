@@ -2788,3 +2788,289 @@ html body *::after {
     font-weight: 500;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   UI-System v3 — App-nah: ruhige Glas-Flächen, schriftgeführt, einheitlich
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --glass-fill: rgba(255, 255, 255, 0.72);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 20px 50px -32px rgba(40, 30, 10, 0.22), 0 1px 2px rgba(40, 30, 10, 0.03);
+  --r-card: 16px;
+}
+
+/* Karten: mattes Glas, kein Icon-Kasten */
+.card {
+  background: var(--glass-fill);
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--r-card);
+  padding: clamp(18px, 2vw, 24px);
+  box-shadow: var(--glass-shadow);
+}
+.card--soft {
+  background: var(--surface-2);
+  border-color: transparent;
+  box-shadow: none;
+}
+.card--link:hover {
+  background: #fff;
+  border-color: var(--line-strong);
+  box-shadow: var(--sh-md);
+  transform: translateY(-1px);
+}
+.card .h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.card .body {
+  font-size: 14px;
+  line-height: 1.55;
+}
+:is(.grid-2, .grid-3, .grid-4) > :nth-child(n) .card-icon,
+.card-icon {
+  width: auto;
+  height: auto;
+  margin-bottom: 14px;
+  border-radius: 0;
+  background: none;
+  color: var(--faint);
+  display: inline-grid;
+}
+.card-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+}
+.card--link:hover .card-icon {
+  transform: none;
+  color: var(--ink);
+}
+
+/* Abschnittskopf: Überschrift links, kurzer Text rechts (Desktop) */
+.sec-head {
+  max-width: none;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: end;
+  gap: 12px clamp(24px, 5vw, 72px);
+  margin-bottom: clamp(24px, 3.6vw, 44px);
+}
+.sec-head .h2 {
+  max-width: 22ch;
+}
+.sec-head .lead {
+  max-width: 46ch;
+  justify-self: end;
+}
+.sec-head--center {
+  grid-template-columns: 1fr;
+  text-align: center;
+  justify-items: center;
+  max-width: 760px;
+}
+.sec-head--center .h2 {
+  max-width: 26ch;
+}
+.sec-head--center .lead {
+  justify-self: center;
+}
+@media (max-width: 860px) {
+  .sec-head {
+    grid-template-columns: 1fr;
+  }
+  .sec-head .lead {
+    justify-self: start;
+  }
+}
+
+/* Schriftgeführte Liste (wie die Seitenleiste der App): Kürzel, Titel, Text, Meta */
+.klist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 0.5px solid var(--line-strong);
+}
+.klist > div {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 18px 4px;
+  border-bottom: 0.5px solid var(--line-strong);
+  transition: background var(--dur) ease;
+}
+.klist > div:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.klist-k {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--surface-3);
+  color: var(--faint);
+  font-size: 11px;
+  align-self: start;
+  margin-top: 2px;
+}
+.klist-t {
+  font-size: 15.5px;
+  color: var(--ink);
+}
+.klist-b {
+  grid-column: 2;
+  margin: 2px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.klist-m {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--faint);
+  font-size: 13px;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .klist > div {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .klist-m {
+    grid-column: 2;
+    grid-row: auto;
+    white-space: normal;
+  }
+}
+
+/* Bento: ungleich große Glas-Zellen */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+.bento > * {
+  grid-column: span 2;
+}
+.bento > .is-wide {
+  grid-column: span 3;
+}
+.bento > .is-full {
+  grid-column: span 6;
+}
+.bento-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(18px, 2vw, 24px);
+  border: 0.5px solid var(--line-strong);
+  border-radius: var(--r-card);
+  background: var(--glass-fill);
+  box-shadow: var(--glass-shadow);
+  min-width: 0;
+}
+.bento-cell h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.bento-cell p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.bento-cell .bento-art {
+  margin-top: auto;
+  padding-top: 8px;
+}
+@media (max-width: 960px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bento > *,
+  .bento > .is-wide {
+    grid-column: span 1;
+  }
+  .bento > .is-full {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .bento > *,
+  .bento > .is-wide,
+  .bento > .is-full {
+    grid-column: span 1;
+  }
+}
+
+/* Kennzahlen-Leiste */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 0.5px solid var(--line-strong);
+  border-bottom: 0.5px solid var(--line-strong);
+}
+.stats > div {
+  padding: 22px 20px 22px 0;
+}
+.stats > div + div {
+  padding-left: 20px;
+  border-left: 0.5px solid var(--line-strong);
+}
+.stats b {
+  display: block;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 500;
+  color: var(--ink);
+}
+.stats span {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+@media (max-width: 640px) {
+  .stats > div + div {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .stats > div:nth-child(n + 3) {
+    border-top: 0.5px solid var(--line-strong);
+  }
+}
+
+/* Feature-Blöcke: Text und eine Bühne, kein Container um die Bühne */
+.feature {
+  padding: 0;
+  background: none;
+  border: 0;
+  gap: clamp(24px, 4.5vw, 64px);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+}
+.feature--flip {
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+}
+.feature + .feature {
+  margin-top: clamp(36px, 5vw, 72px);
+}
+.feature-copy {
+  max-width: 400px;
+}
+@media (max-width: 960px) {
+  .feature,
+  .feature--flip {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0;
+    gap: 20px;
+  }
+  .feature--flip .feature-copy,
+  .feature-copy {
+    order: 0;
+    max-width: none;
+  }
+  .feature--flip .feature-media,
+  .feature-media {
+    order: 1;
+  }
+}

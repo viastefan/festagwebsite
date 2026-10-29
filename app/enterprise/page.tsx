@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { KeyList } from "../_components/ui/Blocks2";
 import { Button } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
@@ -133,16 +134,7 @@ export default function EnterprisePage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <SectionHead eyebrow="Onboarding" title="Vom ersten Call zum ersten Kunden-Report in vier Wochen." />
-          <RevealGroup className="steps">
-            {ONBOARD.map((s) => (
-              <RevealItem key={s.title} className="step">
-                <h3 className="h4">{s.title}</h3>
-                <p className="body" style={{ fontSize: 14.5, marginTop: 6 }}>
-                  {s.body}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={ONBOARD.map((s, i) => ({ k: String(i + 1), title: s.title, body: s.body }))} />
         </div>
       </section>
 

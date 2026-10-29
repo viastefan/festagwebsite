@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
-import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { Reveal } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { AskScene, DecisionScene } from "../_components/appdemo/AppDemo";
 import { FeatureBlock } from "../_components/site/Blocks";
 import { VideoBand } from "../_components/ui/Media";
+import { KeyList } from "../_components/ui/Blocks2";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
@@ -82,36 +83,14 @@ export default function TagroPage() {
             eyebrow="Antwortstruktur"
             title="Jede Antwort hat dieselbe Form. Damit man ihr vertrauen kann."
           />
-          <RevealGroup className="tg-structure">
-            {STRUCTURE.map((s) => (
-              <RevealItem key={s.n} className="tg-struct">
-                <span className="tg-struct-n">{s.n}</span>
-                <span className="h4">{s.label}</span>
-                <span className="small">{s.body}</span>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={STRUCTURE.map((x) => ({ k: x.n.replace(/^0/, ""), title: x.label, body: x.body }))} />
         </div>
       </section>
 
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
-          <div className="tg-questions">
-            <Reveal>
-              <span className="eyebrow">Für jedes Signal</span>
-              <h2 className="h2" style={{ marginTop: 16 }}>
-                Sechs Fragen, bevor irgendetwas beim Kunden landet.
-              </h2>
-            </Reveal>
-            <RevealGroup className="tg-q-list">
-              {QUESTIONS.map((q, i) => (
-                <RevealItem key={q} className="tg-q">
-                  <span className="tg-q-n">{i + 1}</span>
-                  {q}
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
+          <SectionHead title="Sechs Fragen, bevor irgendetwas beim Kunden landet." />
+          <KeyList items={QUESTIONS.map((q, i) => ({ k: String(i + 1), title: q }))} />
         </div>
       </section>
 
@@ -132,9 +111,7 @@ export default function TagroPage() {
           <Reveal className="tg-vs">
             <div className="tg-vs-head">
               <span>Generischer KI-Assistent</span>
-              <span>
-                <Icon name="sparkles" size={14} /> Aven
-              </span>
+              <span>Aven</span>
             </div>
             {VS.map(([a, b]) => (
               <div key={a} className="tg-vs-row">

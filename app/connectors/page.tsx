@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { KeyList } from "../_components/ui/Blocks2";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { ConnectorsScene } from "../_components/appdemo/AppDemo";
@@ -121,16 +122,7 @@ export default function ConnectorsPage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <SectionHead eyebrow="So funktioniert es" title="Verbinden. Lesen. Verstehen." />
-          <RevealGroup className="steps">
-            {STEPS.map((s) => (
-              <RevealItem key={s.title} className="step">
-                <h3 className="h4">{s.title}</h3>
-                <p className="body" style={{ fontSize: 14.5, marginTop: 6 }}>
-                  {s.body}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={STEPS.map((s, i) => ({ k: String(i + 1), title: s.title, body: s.body }))} />
         </div>
       </section>
 

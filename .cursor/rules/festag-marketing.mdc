@@ -92,6 +92,10 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
 - **Medien:** Produktvideos (`public/media/video/*.mp4`, aus den klickbaren Demos aufgenommen, unter 600 KB) laufen über
   `VideoBand`, Bilder über `MediaBand` (beide in `app/_components/ui/Media.tsx`). Videos starten nur im Sichtbereich
   und respektieren „Bewegung reduzieren“. Keine Stockfotos, keine Platzhalter.
+- **UI-System v3:** Karten sind mattes Glas ohne Icon-Kasten (`.card`), Abschnittsköpfe stehen links mit kurzem Text
+  rechts (`SectionHead`), Aufzählungen sind schriftgeführte Listen (`KeyList`), Funktionen als Bento (`Bento`, `BentoCell`),
+  Kennzahlen als `StatStrip` (alle in `app/_components/ui/Blocks2.tsx`). Feature-Blöcke ohne Container um die Bühne.
+  Neue Abschnitte nutzen diese Bausteine, keine eigenen Kartenstile.
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,
   auch Favicon und App-Icons; kleine Größe im Header.
 - **Aven:** nur als Wort, ohne Symbol, ohne Avatar, ohne Sprecher-Etikett.

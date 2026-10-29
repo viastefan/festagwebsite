@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
-import { Icon, type IconName } from "../_components/ui/Icon";
+import { type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { DecisionScene, FeedScene, HandoffScene, HeroApp, PortfolioScene } from "../_components/appdemo/AppDemo";
 import { Stage } from "../_components/ui/Window";
-import { FeatureBlock, IconCard } from "../_components/site/Blocks";
+import { FeatureBlock } from "../_components/site/Blocks";
 import { VideoBand } from "../_components/ui/Media";
+import { Bento, BentoCell, KeyList } from "../_components/ui/Blocks2";
 import { links } from "@/lib/site/links";
 import { principles } from "@/lib/site/content";
 
@@ -78,20 +79,7 @@ export default function ProductPage() {
             eyebrow="Kernlogik"
             title="Alles wird zuerst ein Signal — bevor es Report, Risiko oder Entscheidung wird."
           />
-          <RevealGroup className="grid-4 pl-logic">
-            {LOGIC.map((l, i) => (
-              <RevealItem key={l.label} className="card pl-step">
-                <span className="pl-num">0{i + 1}</span>
-                <span className="card-icon">
-                  <Icon name={l.icon} />
-                </span>
-                <h3 className="h4">{l.label}</h3>
-                <p className="body" style={{ fontSize: 14.5 }}>
-                  {l.body}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={LOGIC.map((l, i) => ({ k: String(i + 1), title: l.label, body: l.body }))} />
         </div>
       </section>
 
@@ -137,13 +125,11 @@ export default function ProductPage() {
             title="Für die, die liefern: weniger Status-Arbeit, nicht mehr."
             lead="Entwickler, Designer, Marketer, Freelancer, PMs. Die Oberfläche passt sich der Projektart an — Software, Design & Marketing oder allgemeine Projekte. Die Intelligenz bleibt dieselbe."
           />
-          <RevealGroup className="grid-3">
+          <Bento>
             {EXECUTION.map((e) => (
-              <RevealItem key={e.title}>
-                <IconCard icon={e.icon} title={e.title} body={e.body} />
-              </RevealItem>
+              <BentoCell key={e.title} title={e.title} body={e.body} />
             ))}
-          </RevealGroup>
+          </Bento>
         </div>
       </section>
 
@@ -187,16 +173,7 @@ export default function ProductPage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <SectionHead eyebrow="Prinzipien" title="Wonach wir jede Funktion beurteilen." />
-          <RevealGroup className="grid-3">
-            {principles.map((p) => (
-              <RevealItem key={p.title} className="card card--soft">
-                <h3 className="h4">{p.title}</h3>
-                <p className="body" style={{ fontSize: 14.5 }}>
-                  {p.body}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={principles.map((p, i) => ({ k: String(i + 1), title: p.title, body: p.body }))} />
         </div>
       </section>
 
@@ -212,13 +189,11 @@ export default function ProductPage() {
       <CtaBand />
 
       <style>{`
-        .pl-step { position: relative; }
-        .pl-num { position: absolute; top: 22px; right: 22px; font-size: 12px; color: var(--faint); letter-spacing: 0.08em; }
-        .pl-wl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+                .pl-wl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .pl-wl-list { display: grid; gap: 10px; }
         .pl-wl-item {
           display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center;
-          padding: 18px 20px; border-radius: 10px; background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-xs);
+          padding: 18px 20px; border-radius: var(--r-card); background: var(--glass-fill); border: 0.5px solid var(--line-strong); box-shadow: var(--glass-shadow);
         }
         .pl-wl-level { display: flex; gap: 3px; align-items: flex-end; height: 22px; }
         .pl-wl-level i { width: 8px; border-radius: 3px; background: var(--surface-3); }

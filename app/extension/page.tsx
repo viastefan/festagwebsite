@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
+import { KeyList } from "../_components/ui/Blocks2";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { FestagMark } from "../_components/ui/Logo";
@@ -142,16 +143,7 @@ export default function ExtensionPage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <SectionHead eyebrow="In drei Schritten" title="Installiert in unter einer Minute." />
-          <RevealGroup className="steps">
-            {STEPS.map((s) => (
-              <RevealItem key={s.title} className="step">
-                <h3 className="h4">{s.title}</h3>
-                <p className="body" style={{ fontSize: 14.5, marginTop: 6 }}>
-                  {s.body}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <KeyList items={STEPS.map((s, i) => ({ k: String(i + 1), title: s.title, body: s.body }))} />
         </div>
       </section>
 

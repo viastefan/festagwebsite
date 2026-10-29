@@ -1270,7 +1270,7 @@ export function MemoryScene() {
   ]);
   return (
     <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
-      <Frame height={470} title="Gedächtnis">
+      <Frame height={330} title="Gedächtnis">
         <div className="ad-h">
           <b>Was Aven über euch weiß</b>
           <span>Tippe, um etwas zu bestätigen</span>
@@ -1317,7 +1317,7 @@ export function ConnectorsScene() {
   const n = on.filter(Boolean).length;
   return (
     <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
-      <Frame height={470} title="Konnektoren">
+      <Frame height={410} title="Konnektoren">
         <div className="ad-h">
           <b>Konnektoren</b>
           <span>{n} von 5 verbunden</span>
