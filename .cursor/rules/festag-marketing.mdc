@@ -109,7 +109,8 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
   Header-Knopf „Kostenlos starten“ ist nur Text, „Anmelden“ nur Text, in jedem Zustand ohne Fläche (Tastatur-Fokus nur als Rahmen).
 - **Knöpfe wie in der App:** Pille, Burgundy-Hauptknopf mit Lichtkante, Glas-Knopf (`btn--ghost`), weicher Lift beim Hover,
   Einfedern beim Drücken, Lichtschimmer, klarer Fokusring. Neue Knöpfe nutzen nur `.btn` mit diesen Varianten.
-- **Pfeile:** Genau ein Pfeil pro Knopf, in einem runden Container (`ShiftArrow`), der beim Hover durchschiebt. Hover-Effekte nur
+- **Pfeile und Knöpfe:** Genau ein kleiner Pfeil (12px, `ShiftArrow`) pro Knopf, **kein runder Container**, schiebt beim Hover durch.
+  Knöpfe klein und kantig: Radius 8px, Höhe 30px (groß 32px, klein 26px), überall gleich, auch am Desktop. Hover-Effekte nur
   mit `@media (hover: hover)`. **Handy:** Suche nur im Menü (Suchfeld mit Schnellwahl), nicht im Header; Knöpfe 34/38px, Menü kompakt.
 - **Fenster wie macOS:** Alle Fenster, Videos, Bilder und Code-Blöcke tragen oben links die Knöpfe rot, gelb, grün.
   Text-Karten bekommen sie nicht. Demos spiegeln das aktuelle App-Dashboard: Seitenleiste mit „Zuletzt ausgeführt“, Mitte,
