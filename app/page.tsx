@@ -3,16 +3,9 @@ import Image from "next/image";
 import { Button, TextLink } from "./_components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "./_components/ui/Reveal";
 import { Stage } from "./_components/ui/Window";
+import { AskScene, DecisionScene, FeedScene, HandoffScene, HeroApp } from "./_components/appdemo/AppDemo";
 import { CtaBand, SectionHead } from "./_components/ui/Section";
 import { Icon } from "./_components/ui/Icon";
-import { HeroStage } from "./_components/demos/HeroStage";
-import { TranslateDemo } from "./_components/demos/TranslateDemo";
-import { DecisionDemo } from "./_components/demos/DecisionDemo";
-import { TagroConsole } from "./_components/demos/TagroConsole";
-import { ExecutiveDemo } from "./_components/demos/ExecutiveDemo";
-import { SignalFlow } from "./_components/demos/SignalFlow";
-import { LearningLoop } from "./_components/demos/LearningLoop";
-import { BentoTrio } from "./_components/demos/BentoTrio";
 import {
   ConnectorMarquee,
   FeatureBlock,
@@ -56,8 +49,8 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal className="hero-stage" delay={0.15} y={24}>
-            <Stage caption="Live-Demo · klick dich durch">
-              <HeroStage />
+            <Stage caption="Live-Demo · so sieht festag.app aus">
+              <HeroApp />
             </Stage>
           </Reveal>
         </div>
@@ -69,81 +62,46 @@ export default function HomePage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <FeatureBlock
-            title="Tagro übersetzt Arbeit in Klarheit."
-            sub="Aus „OAuth-Callback kaputt, PR pending“ wird ein Satz, den euer Kunde versteht — belegt, ruhig, ohne Technik."
-            link={{ href: "/product#client", label: "Mehr über das Client Panel" }}
+            title="Ein Status, den Kunden lesen können."
+            sub="Aus Commits, Tickets und Threads wird ein ruhiger Feed: was entschieden ist, was wartet, was geliefert wurde."
+            link={{ href: "/product#client", label: "Mehr über den Status-Feed" }}
           >
-            <TranslateDemo />
+            <FeedScene />
           </FeatureBlock>
 
           <FeatureBlock
             flip
             title="Entscheidungen statt Status-Theater."
-            sub="Tagro erkennt, wo eine Entscheidung fehlt, rechnet die Optionen durch und schreibt das Ergebnis mit Begründung ins Projekt."
+            sub="Festag formuliert die Frage, rechnet die Optionen durch und empfiehlt eine Richtung. Du entscheidest mit einem Klick."
             link={{ href: "/product#decisions", label: "Wie Entscheidungen funktionieren" }}
           >
-            <DecisionDemo />
+            <DecisionScene />
           </FeatureBlock>
 
           <FeatureBlock
             title="Frag, was wirklich läuft."
-            sub="Kein Chatbot. Ein Interpreter, der eure Organisation kennt — mit Kontext, Empfehlung, nächstem Schritt und Quelle."
-            link={{ href: "/tagro", label: "Tagro kennenlernen" }}
+            sub="Kein Chatbot. Eine Antwort mit Kontext, Empfehlung und Quelle, direkt aus euren Tools belegt."
+            link={{ href: "/tagro", label: "Aven kennenlernen" }}
           >
-            <TagroConsole compact />
+            <AskScene />
           </FeatureBlock>
 
           <FeatureBlock
             flip
-            title="Ein Portfolio. Eine Wahrheit."
-            sub="Für Gründer und Führung: alle Projekte auf einer Seite — Health, Risiken, offene Entscheidungen, Forecast."
-            link={{ href: "/product#executive", label: "Executive Overview ansehen" }}
-          >
-            <ExecutiveDemo />
-          </FeatureBlock>
-
-          <FeatureBlock
-            title="Jedes Signal wird zu Bedeutung."
-            sub="Commits, Tickets, Threads, Kommentare: Festag klassifiziert, verknüpft Belege und entscheidet, wer es wissen muss."
+            title="Vom Entschluss zum Pull Request."
+            sub="Ist entschieden, übergibt Festag den Auftrag an euren Coding-Agent, prüft den Beleg und hält den Kunden auf dem Laufenden."
             link={{ href: "/connectors", label: "Alle Connectors" }}
           >
-            <SignalFlow />
+            <HandoffScene />
           </FeatureBlock>
         </div>
       </section>
-
-      <BentoTrio />
 
       {/* ───────── Voices ───────── */}
       <section className="section">
         <div className="wrap wrap--wide">
           <SectionHead center title="Die neue Art, Kundenprojekte zu führen." />
           <VoicesGrid />
-        </div>
-      </section>
-
-      {/* ───────── Company Brain ───────── */}
-      <section className="section section--flush-top">
-        <div className="wrap wrap--wide">
-          <SectionHead
-            eyebrow="Adaptive Intelligence"
-            title={
-              <>
-                Wird mit jedem Projekt klüger.
-              </>
-            }
-            lead="Festag lernt die Operational DNA eurer Organisation: wie ihr entscheidet, was „fertig“ heißt, wo es staut. Wie ein Kollege, der seit Jahren bei euch arbeitet — nicht wie ein Chatbot, den man fragt."
-          />
-          <Reveal>
-            <Stage pad>
-              <div className="home-loop">
-                <LearningLoop />
-              </div>
-            </Stage>
-          </Reveal>
-          <Reveal style={{ marginTop: 24 }}>
-            <TextLink href="/intelligence">Modelle & Intelligence im Detail</TextLink>
-          </Reveal>
         </div>
       </section>
 
@@ -225,7 +183,6 @@ export default function HomePage() {
 }
 
 const HOME_CSS = `
-.home-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
 .home-trust { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .home-trust-copy { position: sticky; top: calc(var(--nav-h) + 32px); }
 .home-team {
