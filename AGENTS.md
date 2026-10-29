@@ -30,7 +30,7 @@ Never describe Festag as: AI assistant · chatbot · PM software · automation t
 ## Scope of this repo
 
 - Marketing pages, careers, contact, product story, docs marketing surfaces
-- Brand: **Geist Medium** (wie festag.app), Desert Sand, Hauptfarbe dezentes **Burgundy** `#6D2C3C`, calm Linear/Vercel craft
+- Brand: **Geist Medium** (wie festag.app), Desert Sand, Hauptfarbe sehr dunkles, seltenes **Oxblood-Burgundy** `#3F1B24`, calm Linear/Vercel craft
 - Primary product CTA → app login / `https://festag.app` (or configured app URL)
 
 Do **not** rebuild the portal, auth chrome, or app UI rules here. Product app work stays in `festag-mvp`.
@@ -46,7 +46,8 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   `festag-mvp/components/os/os-tokens.ts`, in Hell **und** Dunkel. Die älteren Demos wurden gelöscht. Neue Demos bauen
   auf dem appdemo-Baukasten auf und folgen dem echten App-Look.
 - **Farben:** Desert Sand wie die App im Hellen (Canvas `#F4F2EE`, Flächen `#FFFFFF`/`#EFECE6`, Ink `#15130F`).
-  Hauptfarbe ist dezentes Burgundy (`--accent` `#6D2C3C`): nur Primäraktion, Links, Fokus, ein Akzentwort.
+  Hauptfarbe ist ein sehr dunkles Burgundy (`--accent` `#3F1B24`, wirkt fast schwarz) und wird nur ab und zu eingesetzt:
+  Primärbutton, Links, Fokus. Nie als Fläche, Verlauf oder große Schrift; keine rötlichen Töne.
   Keine bunten Töne (kein Blau, Türkis, Grün, Orange). Status-Grün nur für „erledigt“.
 - **Schrift:** Geist, Medium als Grundschnitt, Buchstabenabstand 0. Überschriften H1/H2 Regular, kompakt
   (H1 bis 46px). Hero ohne Fließtext. Alles kompakt: Buttons 36px, Sektionen ca. 52–92px.

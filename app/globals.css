@@ -21,15 +21,15 @@
   --line-strong: rgba(40, 30, 10, 0.14);
 
   /* Hauptfarbe — dezentes Burgundy (nur Primäraktion, Fokus, Links) */
-  --accent: #6d2c3c;
-  --accent-hover: #5a2331;
-  --accent-deep: #461b26;
-  --accent-soft: rgba(109, 44, 60, 0.08);
-  --accent-tint: #f3e9e9;
-  --accent-glow: rgba(109, 44, 60, 0.2);
+  --accent: #3f1b24;
+  --accent-hover: #2f1119;
+  --accent-deep: #230d13;
+  --accent-soft: rgba(63, 27, 36, 0.06);
+  --accent-tint: #f0ece7;
+  --accent-glow: rgba(63, 27, 36, 0.14);
   /* Nur für gemalte Bühnen, nie für Text */
-  --sky: #8a4150;
-  --sky-2: #d9bfae;
+  --sky: #7a6a5f;
+  --sky-2: #d9ccb8;
 
   --slate: #6a655c;
   --ok: #3f7a52;
@@ -38,8 +38,8 @@
   --warn-soft: rgba(154, 107, 34, 0.14);
 
   /* Töne — alle ruhig, warm, ohne Buntheit: Sand, Stein, Burgundy */
-  --tone-blue: #6d2c3c;
-  --tone-blue-tint: #f3ebe9;
+  --tone-blue: #4a4038;
+  --tone-blue-tint: #f0ece6;
   --tone-teal: #6b6458;
   --tone-teal-tint: #eeeae3;
   --tone-green: #6b6458;
@@ -52,14 +52,14 @@
   --tone-slate-tint: #ebe7df;
 
   /* Gemalte Bühne (Sand mit einem Hauch Burgundy) */
-  --stage-a: rgba(109, 44, 60, 0.1);
+  --stage-a: rgba(63, 27, 36, 0.05);
   --stage-b: rgba(205, 180, 140, 0.34);
   --stage-top: #f7f4ee;
   --stage-bottom: #e9e3d8;
 
   /* Dunkle Fläche (Abschluss-CTA): warm, nicht blau */
-  --night: #1a1311;
-  --night-2: #261a18;
+  --night: #17120f;
+  --night-2: #221a16;
 
   /* Schrift — Geist wie festag.app, Medium als Grundschnitt */
   --font: var(--font-geist), "Geist", system-ui, -apple-system, sans-serif;
@@ -92,7 +92,7 @@
   --max: 1160px;
   --max-wide: 1240px;
   --gutter: clamp(18px, 4vw, 40px);
-  --section-y: clamp(52px, 6.4vw, 92px);
+  --section-y: clamp(46px, 5.6vw, 80px);
   --nav-h: 52px;
 }
 
@@ -255,8 +255,8 @@ ol {
 
 /* ───────────────────────── Typography ───────────────────────── */
 .display {
-  font-size: clamp(30px, 3.1vw, 42px);
-  line-height: 1.14;
+  font-size: clamp(27px, 2.8vw, 37px);
+  line-height: 1.16;
   font-weight: 400;
   letter-spacing: 0;
   color: var(--ink);
@@ -267,14 +267,14 @@ ol {
   /* identical to .display — every page h1 matches the homepage */
 }
 .h2 {
-  font-size: clamp(23px, 2.1vw, 29px);
+  font-size: clamp(21px, 1.85vw, 25px);
   line-height: 1.2;
   font-weight: 400;
   letter-spacing: 0;
   text-wrap: balance;
 }
 .h3 {
-  font-size: clamp(17px, 1.4vw, 20px);
+  font-size: clamp(16px, 1.25vw, 18px);
   line-height: 1.3;
   font-weight: 500;
   letter-spacing: 0;
@@ -287,14 +287,14 @@ ol {
   letter-spacing: 0;
 }
 .lead {
-  font-size: clamp(15.5px, 1.15vw, 17px);
+  font-size: clamp(14.5px, 1.05vw, 16px);
   line-height: 1.55;
   color: var(--muted);
   max-width: 56ch;
   text-wrap: pretty;
 }
 .body {
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.6;
   color: var(--muted);
   max-width: 60ch;
@@ -350,10 +350,10 @@ ol {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  height: 36px;
-  padding: 0 15px;
+  height: 34px;
+  padding: 0 14px;
   border-radius: var(--r-lg);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: var(--ls-ui);
   white-space: nowrap;
@@ -380,9 +380,9 @@ ol {
   transform: translateX(2px);
 }
 .btn--lg {
-  height: 42px;
-  padding: 0 19px;
-  font-size: 14.5px;
+  height: 40px;
+  padding: 0 17px;
+  font-size: 14px;
 }
 .btn--sm {
   height: 30px;
@@ -392,7 +392,7 @@ ol {
 .btn--solid {
   background: var(--accent);
   color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 6px 16px -8px rgba(109, 44, 60, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 4px 12px -8px rgba(30, 20, 15, 0.5);
 }
 .btn--solid:hover {
   background: var(--accent-hover);
@@ -400,7 +400,7 @@ ol {
 .btn--accent {
   background: var(--accent);
   color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 6px 16px -8px rgba(109, 44, 60, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 4px 12px -8px rgba(30, 20, 15, 0.5);
 }
 .btn--accent:hover {
   background: var(--accent-hover);
@@ -507,8 +507,8 @@ ol {
   align-items: center;
   font-size: 11.5px;
   font-weight: 500;
-  color: #fff;
-  background: linear-gradient(135deg, var(--sky), #a35a69);
+  color: #17120f;
+  background: #e6e0d4;
   flex-shrink: 0;
 }
 .announce-text {
@@ -695,7 +695,7 @@ ol {
   gap: 7px;
   align-content: start;
   background:
-    radial-gradient(90% 80% at 90% 110%, rgba(109, 44, 60, 0.12), transparent 60%),
+    radial-gradient(90% 80% at 90% 110%, rgba(63, 27, 36, 0.06), transparent 60%),
     radial-gradient(80% 70% at 0% 100%, rgba(205, 180, 140, 0.4), transparent 60%),
     linear-gradient(180deg, #f7f4ee, #e9e3d8);
 }
@@ -835,12 +835,12 @@ ol {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(46% 64% at 88% 6%, rgba(109, 44, 60, 0.08), transparent 70%),
+    radial-gradient(46% 64% at 88% 6%, rgba(63, 27, 36, 0.04), transparent 70%),
     radial-gradient(36% 52% at 62% 0%, rgba(205, 180, 140, 0.22), transparent 70%),
     radial-gradient(32% 44% at 100% 42%, rgba(180, 150, 110, 0.14), transparent 70%);
 }
 .display-accent {
-  color: var(--accent);
+  color: var(--faint);
 }
 .hero {
   padding-top: clamp(40px, 6vw, 84px);
@@ -849,8 +849,8 @@ ol {
   max-width: 780px;
 }
 .hero .display {
-  font-size: clamp(30px, 3.3vw, 46px);
-  line-height: 1.14;
+  font-size: clamp(27px, 2.9vw, 40px);
+  line-height: 1.15;
   max-width: none;
 }
 .hero .lead {
@@ -894,7 +894,7 @@ ol {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 50% 100%, rgba(109, 44, 60, 0.07), transparent 70%),
+    radial-gradient(60% 50% at 50% 100%, rgba(63, 27, 36, 0.035), transparent 70%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 40%);
   pointer-events: none;
   z-index: -1;
@@ -1095,7 +1095,7 @@ ol {
 .feature:nth-of-type(even) {
   --feature-tint: var(--tone-amber-tint);
   --stage-a: rgba(138, 106, 59, 0.16);
-  --stage-b: rgba(109, 44, 60, 0.08);
+  --stage-b: rgba(138, 106, 59, 0.08);
   --stage-top: #f6f1e8;
   --stage-bottom: #e8dfd0;
 }
@@ -1116,10 +1116,10 @@ ol {
 }
 .feature-copy .h3 {
   margin-bottom: 10px;
-  font-size: clamp(19px, 1.7vw, 24px);
+  font-size: clamp(17px, 1.45vw, 21px);
 }
 .feature-copy .body {
-  font-size: 15px;
+  font-size: 14.5px;
   color: var(--muted);
 }
 .feature-copy .link {
@@ -1445,8 +1445,8 @@ ol {
 }
 .plan--featured {
   background: linear-gradient(180deg, var(--tone-blue-tint), var(--surface) 42%);
-  border-color: rgba(109, 44, 60, 0.35);
-  box-shadow: 0 0 0 1px rgba(109, 44, 60, 0.12), var(--sh-md);
+  border-color: rgba(63, 27, 36, 0.175);
+  box-shadow: 0 0 0 1px rgba(63, 27, 36, 0.06), var(--sh-md);
 }
 .plan-badge {
   position: absolute;
@@ -1647,7 +1647,7 @@ ol {
   overflow: hidden;
   position: relative;
   background:
-    radial-gradient(90% 70% at 70% 115%, rgba(109, 44, 60, 0.1), transparent 60%),
+    radial-gradient(90% 70% at 70% 115%, rgba(63, 27, 36, 0.05), transparent 60%),
     linear-gradient(180deg, #f7f4ee, #e9e3d8);
 }
 .update-art::before {
@@ -1704,8 +1704,8 @@ ol {
   justify-items: center;
   gap: 18px;
   background:
-    radial-gradient(60% 90% at 85% 120%, rgba(139, 52, 72, 0.5), transparent 65%),
-    radial-gradient(50% 80% at 10% 120%, rgba(120, 80, 60, 0.35), transparent 65%),
+    radial-gradient(60% 90% at 85% 120%, rgba(90, 50, 40, 0.25), transparent 65%),
+    radial-gradient(50% 80% at 10% 120%, rgba(120, 90, 60, 0.2), transparent 65%),
     radial-gradient(40% 60% at 50% -20%, rgba(214, 190, 150, 0.12), transparent 70%),
     linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);
   box-shadow: var(--sh-lg);
@@ -1720,8 +1720,8 @@ ol {
   pointer-events: none;
 }
 .cta-title {
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1.1;
+  font-size: clamp(25px, 2.8vw, 36px);
+  line-height: 1.12;
   font-weight: 400;
   letter-spacing: 0;
   color: #fff;
@@ -1860,7 +1860,7 @@ ol {
   position: absolute;
   inset: 0 0 auto;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--tone-wood));
+  background: linear-gradient(90deg, var(--ink-2), var(--tone-wood));
   opacity: 0.55;
 }
 .footer-grid {
@@ -2424,7 +2424,7 @@ ol {
     box-shadow: 0 0 0 3px var(--accent-glow);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(109, 44, 60, 0.06);
+    box-shadow: 0 0 0 6px rgba(63, 27, 36, 0.03);
   }
 }
 @keyframes fs-caret {
@@ -2602,11 +2602,11 @@ ol {
   }
   .hero .display {
     max-width: none;
-    font-size: clamp(28px, 7.8vw, 34px);
+    font-size: clamp(26px, 7.2vw, 31px);
     line-height: 1.16;
   }
   .display {
-    font-size: clamp(26px, 7.2vw, 32px);
+    font-size: clamp(24px, 6.8vw, 29px);
   }
   .plan-amount {
     font-size: 34px;

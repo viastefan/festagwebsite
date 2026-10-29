@@ -219,10 +219,10 @@ function Frame({
 /* ───────── Bausteine ───────── */
 
 const ART: Record<string, [string, string]> = {
-  zahlung: ["#dcc0bd", "#f4e6e3"],
-  api: ["#e2d3b8", "#f6eddc"],
-  dash: ["#d9d3c0", "#efebe0"],
-  farbe: ["#d6c8c3", "#f1e9e5"],
+  zahlung: ["#d8cdc2", "#f2ece4"],
+  api: ["#e0d2b8", "#f5eddc"],
+  dash: ["#d6d2c2", "#efece2"],
+  farbe: ["#d2c8c0", "#f0eae4"],
 };
 
 function Thumb({ seed, lg }: { seed: keyof typeof ART; lg?: boolean }) {
