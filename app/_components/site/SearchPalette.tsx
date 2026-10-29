@@ -31,10 +31,10 @@ function Mark({ text, q }: { text: string; q: string }) {
 }
 
 /** Suche für die ganze Website: ⌘K / Strg+K oder „/“, Pfeiltasten, Enter. Wissen aus dem Such-Index. */
-export function SearchPalette({ startOpen = false }: { startOpen?: boolean }) {
+export function SearchPalette({ startOpen = false, startQuery = "" }: { startOpen?: boolean; startQuery?: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(startOpen);
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState(startQuery);
   const [sel, setSel] = useState(0);
   const [recent, setRecent] = useState<string[]>(() => (startOpen && typeof window !== "undefined" ? readRecent() : []));
   const inputRef = useRef<HTMLInputElement>(null);
@@ -67,7 +67,11 @@ export function SearchPalette({ startOpen = false }: { startOpen?: boolean }) {
         openIt();
       }
     };
-    const onEvt = () => openIt();
+    const onEvt = (e: Event) => {
+      openIt();
+      const nq = (e as CustomEvent<{ q?: string }>).detail?.q;
+      if (nq) setQ(nq);
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("festag:search", onEvt);
     return () => {

@@ -73,6 +73,8 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   Header-Knopf „Kostenlos starten“ ist nur Text, „Anmelden“ nur Text, in jedem Zustand ohne Fläche (Tastatur-Fokus nur als Rahmen).
 - **Knöpfe wie in der App:** Pille, Burgundy-Hauptknopf mit Lichtkante, Glas-Knopf (`btn--ghost`), weicher Lift beim Hover,
   Einfedern beim Drücken, Lichtschimmer, klarer Fokusring. Neue Knöpfe nutzen nur `.btn` mit diesen Varianten.
+- **Pfeile:** Genau ein Pfeil pro Knopf, in einem runden Container (`ShiftArrow`), der beim Hover durchschiebt. Hover-Effekte nur
+  mit `@media (hover: hover)`. **Handy:** Suche nur im Menü (Suchfeld mit Schnellwahl), nicht im Header; Knöpfe 34/38px, Menü kompakt.
 - **Fenster wie macOS:** Alle Fenster, Videos, Bilder und Code-Blöcke tragen oben links die Knöpfe rot, gelb, grün.
   Text-Karten bekommen sie nicht. Demos spiegeln das aktuelle App-Dashboard: Seitenleiste mit „Zuletzt ausgeführt“, Mitte,
   rechts das Panel „Aktuell“ (Umgebung mit Modus-Schalter, Läuft, Kontext, Konnektoren, Ausgaben).

@@ -1,5 +1,18 @@
 import Link from "next/link";
-import { Icon } from "./Icon";
+/** Ein Pfeil in einem runden Container. Beim Hover schiebt der Pfeil hinaus und ein zweiter kommt nach. */
+export function ShiftArrow({ className }: { className?: string }) {
+  const a = (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M3.5 8h9M8.5 4l4 4-4 4" />
+    </svg>
+  );
+  return (
+    <span className={`sarrow${className ? ` ${className}` : ""}`} aria-hidden>
+      {a}
+      {a}
+    </span>
+  );
+}
 
 type Variant = "solid" | "accent" | "ghost" | "soft" | "text";
 type Size = "sm" | "md" | "lg";
@@ -26,7 +39,7 @@ export function Button({
   const inner = (
     <>
       {children}
-      {arrow ? <Icon name="arrow" className="arrow" /> : null}
+      {arrow ? <ShiftArrow /> : null}
     </>
   );
 
@@ -58,7 +71,7 @@ export function TextLink({
   const inner = (
     <>
       {children}
-      <Icon name="arrow" />
+      <ShiftArrow />
     </>
   );
   if (/^(https?:|mailto:)/.test(href)) {
