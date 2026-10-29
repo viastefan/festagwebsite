@@ -19,10 +19,18 @@ export const metadata: Metadata = {
 };
 
 const LOGIC: { icon: IconName; label: string; body: string }[] = [
-  { icon: "signal", label: "Work Signal", body: "PR gemerged, Ticket blockiert, Thread mit Risiko, Freigabe per Mail." },
-  { icon: "sparkles", label: "Bedeutung", body: "Fortschritt, Blocker, Risiko, Entscheidung, Scope-Änderung — oder Rauschen." },
-  { icon: "bolt", label: "Aktion", body: "Entscheidung vorbereiten, Risiko markieren, Next Step vorschlagen." },
-  { icon: "portal", label: "Kunden-Übersetzung", body: "Ruhige Sprache, mit Beleg, nach eurer Freigabe im Client Panel." },
+  { icon: "signal", label: "Idee", body: "Der Kunde oder das Team sagt, was gebraucht wird, in einem Satz, in Slack oder per Mail." },
+  { icon: "decision", label: "Entscheidung", body: "Aven macht daraus eine Frage mit Optionen, Kosten, Risiko und einer klaren Empfehlung." },
+  { icon: "check", label: "Aufgabe", body: "Nach der Wahl entsteht ein Brief mit Ziel, Akzeptanzkriterien und Kontext." },
+  { icon: "bolt", label: "Ausführung", body: "Das Team oder der Coding-Agent (Claude Code, Cursor) setzt um, je nach Modus des Projekts." },
+  { icon: "doc", label: "Beleg", body: "Pull Request, Commits und Tests kommen zurück. Aven prüft, bevor etwas als fertig gilt." },
+  { icon: "portal", label: "Lieferung", body: "Der Kunde sieht das Ergebnis in ruhiger Sprache, nach Freigabe. Danach beginnt die nächste Entscheidung." },
+];
+
+const MODES: { k: string; title: string; body: string }[] = [
+  { k: "M", title: "Manuell", body: "Aven bereitet vor, ihr führt aus. Nichts wird ohne euch gestartet." },
+  { k: "F", title: "Freigabe", body: "Standard. Aven schreibt den Auftrag, ihr gebt ihn frei, dann startet der Agent." },
+  { k: "A", title: "Automatisch", body: "Für Routinearbeit. Einweg-Entscheidungen, hohes Budget und niedrige Sicherheit fallen immer auf Freigabe zurück." },
 ];
 
 const EXECUTION: { icon: IconName; title: string; body: string }[] = [
@@ -77,9 +85,16 @@ export default function ProductPage() {
         <div className="wrap wrap--wide">
           <SectionHead
             eyebrow="Kernlogik"
-            title="Alles wird zuerst ein Signal — bevor es Report, Risiko oder Entscheidung wird."
+            title="Vom Wunsch zur Lieferung, mit Beleg in jedem Schritt."
           />
           <KeyList items={LOGIC.map((l, i) => ({ k: String(i + 1), title: l.label, body: l.body }))} />
+        </div>
+      </section>
+
+      <section className="section section--flush-top">
+        <div className="wrap wrap--wide">
+          <SectionHead title="Ihr bestimmt, wie viel automatisch passiert." lead="Festag erzwingt nie Automatisierung, es bietet sie an. Jedes Projekt hat seinen eigenen Modus." />
+          <KeyList items={MODES} />
         </div>
       </section>
 
@@ -186,7 +201,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Vom Wunsch zur Lieferung, in deinem Projekt." lead="Verbinde GitHub und Linear, stell Aven die erste Frage und triff die erste Entscheidung." facts={["Keine Kreditkarte", "Tools in Minuten verbunden", "Kunden sehen nur Freigegebenes"]} />
 
       <style>{`
                 .pl-wl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }

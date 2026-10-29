@@ -155,7 +155,7 @@ export default function TagroPage() {
         </div>
       </section>
 
-      <CtaBand title="Frag Aven selbst." />
+      <CtaBand title="Frag Aven, was gerade läuft." lead="Jede Antwort mit Quelle. Nichts erreicht den Kunden ohne deine Freigabe." facts={["Antwort mit Beleg", "Merkt sich euren Kontext", "Kein Training auf euren Daten"]} />
 
       <style>{`
         .tg-console-wrap { max-width: 920px; margin: 0 auto; }

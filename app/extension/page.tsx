@@ -147,7 +147,7 @@ export default function ExtensionPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Festag in jedem Tab." lead="Extension laden, Workspace verbinden, Signale erfassen, wo ihr arbeitet." facts={["Kein Tab-Tracking", "Nur, was ihr sendet", "In einer Minute installiert"]} />
 
       <style>{`
         .xt-scene { position: relative; max-width: 980px; margin: 0 auto; padding-bottom: 40px; }

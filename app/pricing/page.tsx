@@ -97,7 +97,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Der erste Workspace kostet nichts." lead="Danach 19 € pro Workspace, nie pro Kopf. Mitglieder und Kunden sind unbegrenzt." facts={["Monatlich kündbar", "Server in Deutschland", "AVV inklusive"]} />
 
       <style>{`
         .pr-note { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--faint); text-align: center; flex-wrap: wrap; }

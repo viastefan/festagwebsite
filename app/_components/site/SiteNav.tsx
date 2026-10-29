@@ -257,7 +257,6 @@ function MGroup({
         <motion.div key={i.href} variants={ITEM}>
           <Link href={i.href} className="msheet-link" aria-current={isActive(i.href) ? "page" : undefined}>
             {i.label}
-            <Icon name="arrow" size={16} />
           </Link>
         </motion.div>
       ))}

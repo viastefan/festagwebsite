@@ -55,16 +55,19 @@ export function PageHero({
 }
 
 export function CtaBand({
-  title = "Festag jetzt testen.",
-  lead = "Erster Workspace kostenlos. Tools verbinden, Aven öffnen — in zehn Minuten sehen, was wirklich läuft.",
+  title = "Sieh, was in deinen Projekten wirklich läuft.",
+  lead = "Erster Workspace kostenlos. Tools verbinden, Aven fragen, die erste Entscheidung treffen, in zehn Minuten.",
+  facts = ["Erster Workspace kostenlos", "Server in Deutschland", "Nichts geht ohne Freigabe raus"],
 }: {
   title?: string;
   lead?: string;
+  facts?: string[];
 }) {
   return (
     <section className="section">
       <div className="wrap">
         <Reveal className="cta">
+          <span className="cta-mark" aria-hidden />
           <h2 className="cta-title">{title}</h2>
           <p className="lead">{lead}</p>
           <div className="btn-row">
@@ -75,6 +78,11 @@ export function CtaBand({
               Demo anfragen
             </Button>
           </div>
+          <ul className="cta-facts">
+            {facts.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

@@ -65,7 +65,7 @@ export default function ChangelogPage() {
           </ol>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand title="Jede Woche ein Stück besser." lead="Festag lernt mit jedem Projekt. Probier aus, was neu ist." />
       <style>{`
         .cl-wrap { max-width: 1040px; }
         .cl { display: grid; }

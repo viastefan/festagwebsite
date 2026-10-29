@@ -3074,3 +3074,201 @@ html body *::after {
     order: 1;
   }
 }
+
+/* ───────── Mobil: deckende Kopfleiste, kompaktes Menü, kleinere Überschriften ───────── */
+@media (max-width: 960px) {
+  .nav,
+  .nav.is-scrolled,
+  .nav.has-menu {
+    background: var(--canvas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: var(--hair) solid var(--line);
+  }
+  .msheet {
+    background: var(--canvas);
+    z-index: 59;
+  }
+  .msheet-inner {
+    gap: 0;
+    padding-top: 6px;
+    min-height: calc(100% - 4px);
+    align-content: start;
+  }
+  .msheet-group {
+    padding: 8px 0 10px;
+    border-bottom: var(--hair) solid var(--line);
+  }
+  .msheet-label {
+    font-size: 12px;
+    padding: 6px 0 2px;
+    color: var(--faint);
+  }
+  .msheet-link {
+    min-height: 40px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .msheet-cta {
+    margin-top: 18px;
+    padding-bottom: 8px;
+  }
+}
+@media (max-width: 640px) {
+  .display,
+  .hero .display,
+  .page-hero .display {
+    font-size: 26px;
+    line-height: 1.08;
+    font-weight: 500;
+  }
+  .h2 {
+    font-size: 20px;
+    line-height: 1.14;
+    font-weight: 500;
+  }
+  .h3,
+  .feature-copy .h3 {
+    font-size: 16.5px;
+    line-height: 1.2;
+  }
+  .cta-title {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+  .lead {
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .sec-head {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+}
+
+/* ───────── Abschluss-Block: tiefes Burgundy, ruhig, mit Zeichen und Fakten ───────── */
+.cta {
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) clamp(28px, 3.4vw, 40px);
+  gap: 16px;
+  border-radius: 20px;
+  background:
+    radial-gradient(70% 90% at 88% -10%, rgba(150, 48, 72, 0.5), transparent 62%),
+    radial-gradient(60% 80% at 4% 120%, rgba(92, 28, 44, 0.55), transparent 66%),
+    linear-gradient(180deg, #1c1013 0%, #130a0d 100%);
+  box-shadow: 0 30px 80px -30px rgba(40, 8, 20, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+.cta::before {
+  background: linear-gradient(115deg, transparent 44%, rgba(255, 255, 255, 0.05) 50%, transparent 56%);
+}
+.cta-mark {
+  position: absolute;
+  right: -40px;
+  bottom: -60px;
+  width: clamp(200px, 28vw, 340px);
+  aspect-ratio: 1;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.045);
+  -webkit-mask: url("/brand/festag-mark.svg") center / contain no-repeat;
+  mask: url("/brand/festag-mark.svg") center / contain no-repeat;
+  transform: rotate(-8deg);
+}
+.cta-title {
+  font-weight: 500;
+  max-width: 20ch;
+}
+.cta .lead {
+  font-size: 15px;
+  max-width: 46ch;
+}
+.cta-facts {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 14px 0 0;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 22px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12.5px;
+}
+.cta-facts li::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  vertical-align: middle;
+}
+.cta .btn--solid {
+  background: #f4f2ee;
+  color: #1c1013;
+  box-shadow: none;
+}
+.cta .btn--solid:hover {
+  background: #fff;
+}
+@media (max-width: 640px) {
+  .cta-title {
+    max-width: none;
+  }
+  .cta-facts {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Mobil: Demo-Fenster füllen die Breite, Bühne nur als schmaler Rahmen */
+@media (max-width: 640px) {
+  .stage {
+    border-radius: 14px;
+  }
+  .stage-inner,
+  .stage--pad,
+  .feature .stage--pad {
+    padding: 8px 8px 0;
+  }
+  .stage--pad,
+  .feature .stage--pad {
+    padding: 8px;
+  }
+  .stage--pad .stage-inner {
+    padding: 0;
+  }
+  .hero-stage {
+    margin-inline: calc(var(--gutter) * -0.5);
+  }
+  .adw {
+    border-radius: 10px;
+  }
+  .ad-main {
+    padding: 14px 12px 14px;
+  }
+  .ad-row-title {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .ad-row-text {
+    font-size: 12.5px;
+    line-height: 17px;
+    -webkit-line-clamp: 2;
+  }
+  .ad-card {
+    padding: 16px 14px 12px;
+    gap: 14px;
+  }
+  .ad-card-title {
+    font-size: 17px;
+  }
+  .vband {
+    border-radius: 12px;
+  }
+  .quote-grid {
+    gap: 10px;
+  }
+}

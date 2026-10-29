@@ -253,7 +253,7 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Software, die versteht, wie ihr arbeitet." lead="Wir bauen Festag mit unseren ersten Teams. Komm dazu oder sprich mit uns." facts={["Gebaut in Niederbayern", "Server in Deutschland", "Antwort in 24 Stunden"]} />
 
       <style>{`
         .co-wrap { max-width: 1040px; }
