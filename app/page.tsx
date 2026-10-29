@@ -45,9 +45,6 @@ export default function HomePage() {
               <br />
               <span className="display-accent">Festag macht es sichtbar.</span>
             </h1>
-            <p className="lead">
-              Aus GitHub, Linear, Jira und Slack werden Status, Risiken und Entscheidungen, die Kunden verstehen.
-            </p>
             <div className="btn-row">
               <Button href={links.register} variant="solid" size="lg" arrow>
                 Kostenlos starten
