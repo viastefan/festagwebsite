@@ -3537,3 +3537,167 @@ html body *::after {
     grid-template-columns: 1fr;
   }
 }
+
+/* Sicherheit: Tabelle */
+.sec-table {
+  border-top: 0.5px solid var(--line-strong);
+}
+.sec-tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) 150px minmax(0, 1.6fr);
+  gap: 16px;
+  align-items: baseline;
+  padding: 16px 2px;
+  border-bottom: 0.5px solid var(--line-strong);
+  font-size: 14px;
+  color: var(--muted);
+}
+.sec-tr b {
+  color: var(--ink);
+  font-weight: 500;
+}
+.sec-th {
+  font-size: 12.5px;
+  color: var(--faint);
+  padding-block: 10px;
+}
+@media (max-width: 760px) {
+  .sec-tr {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .sec-th {
+    display: none;
+  }
+}
+
+/* ───────── Dunkler Modus ───────── */
+.theme-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background var(--dur) ease, color var(--dur) ease;
+}
+.theme-btn:hover {
+  background: var(--surface-3);
+  color: var(--ink);
+}
+.theme-btn svg {
+  width: 16px;
+  height: 16px;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #141210;
+  --surface: #1c1a17;
+  --surface-2: #211f1b;
+  --surface-3: #2b2823;
+  --ink: #efe8dc;
+  --ink-2: #cfc8bb;
+  --muted: #a8a094;
+  --faint: #7f786c;
+  --line: rgba(255, 240, 210, 0.08);
+  --line-strong: rgba(255, 240, 210, 0.15);
+  --accent: #d3a5b0;
+  --accent-hover: #e6c3cb;
+  --accent-deep: #f0d6dc;
+  --accent-soft: rgba(211, 165, 176, 0.1);
+  --accent-tint: rgba(211, 165, 176, 0.12);
+  --accent-glow: rgba(211, 165, 176, 0.2);
+  --tone-blue: #d3a5b0;
+  --tone-blue-tint: #1f1b19;
+  --tone-amber-tint: #211e19;
+  --tone-wood-tint: #211e19;
+  --tone-slate-tint: #1f1d1a;
+  --stage-a: rgba(180, 120, 130, 0.08);
+  --stage-b: rgba(160, 130, 90, 0.1);
+  --stage-top: #1d1b18;
+  --stage-bottom: #14120f;
+  --glass-fill: rgba(255, 240, 210, 0.04);
+  --glass-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.06), 0 24px 60px -30px rgba(0, 0, 0, 0.7);
+  --sh-xs: 0 1px 1px rgba(0, 0, 0, 0.3);
+  --sh-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sh-md: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --sh-lg: 0 30px 80px rgba(0, 0, 0, 0.5);
+  --sh-window: 0 0 0 1px rgba(255, 240, 210, 0.08), 0 30px 70px -24px rgba(0, 0, 0, 0.7);
+}
+:root[data-theme="dark"] .nav,
+:root[data-theme="dark"] .nav.is-scrolled,
+:root[data-theme="dark"] .nav.has-menu {
+  background: rgba(20, 18, 16, 0.86);
+}
+:root[data-theme="dark"] .btn--solid {
+  background: #efe8dc;
+  color: #17120f;
+  box-shadow: none;
+}
+:root[data-theme="dark"] .btn--solid:hover {
+  background: #fff;
+}
+:root[data-theme="dark"] .btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+:root[data-theme="dark"] .btn--ghost:hover {
+  background: var(--surface-2);
+}
+:root[data-theme="dark"] .card--link:hover,
+:root[data-theme="dark"] .klist > div:hover,
+:root[data-theme="dark"] .row:hover {
+  background: var(--surface-2);
+}
+:root[data-theme="dark"] .pp-tab-thumb {
+  background: var(--surface-3);
+}
+:root[data-theme="dark"] .pp-card,
+:root[data-theme="dark"] .pp-usage-box {
+  background: var(--glass-fill);
+}
+:root[data-theme="dark"] .hero::before,
+:root[data-theme="dark"] .page-hero::before {
+  opacity: 0.45;
+}
+:root[data-theme="dark"] .stage::before {
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+:root[data-theme="dark"] .stage-caption,
+:root[data-theme="dark"] .vband-cap,
+:root[data-theme="dark"] .vband-btn {
+  background: rgba(30, 27, 23, 0.8);
+  color: var(--ink-2);
+}
+:root[data-theme="dark"] .window,
+:root[data-theme="dark"] .announce {
+  background: var(--surface);
+}
+:root[data-theme="dark"] .msheet {
+  background: var(--canvas);
+}
+:root[data-theme="dark"] .cta {
+  box-shadow: inset 0 0 0 0.5px rgba(255, 240, 210, 0.14);
+}
+:root[data-theme="dark"] .footer {
+  background: var(--surface);
+}
+:root[data-theme="dark"] .dev code,
+:root[data-theme="dark"] .dev-body code {
+  background: var(--surface-3);
+}
+@media (max-width: 960px) {
+  :root[data-theme="dark"] .nav,
+  :root[data-theme="dark"] .nav.is-scrolled,
+  :root[data-theme="dark"] .nav.has-menu {
+    background: var(--canvas);
+  }
+}
+
+:root[data-theme="dark"] .cmp thead th {
+  background: rgba(20, 18, 16, 0.92);
+}

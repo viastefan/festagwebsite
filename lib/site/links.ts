@@ -132,7 +132,7 @@ export const footerColumns: { title: string; items: (NavItem & { external?: bool
       { href: "/legal/imprint", label: "Impressum" },
       { href: "/legal/privacy", label: "Datenschutz" },
       { href: "/legal/terms", label: "AGB" },
-      { href: links.security, label: "Security", external: true },
+      { href: "/security", label: "Sicherheit" },
     ],
   },
 ];

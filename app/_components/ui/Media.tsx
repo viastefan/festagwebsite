@@ -1,21 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 /**
  * Produktvideo im Rahmen: startet nur im Sichtbereich, pausiert außerhalb, lädt erst kurz davor.
  * Mit „Bewegung reduzieren“ bleibt das Vorschaubild stehen, Abspielen geht per Knopf.
  */
+function subscribeSmall(cb: () => void) {
+  const mq = window.matchMedia("(max-width: 640px)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+function useSmall() {
+  return useSyncExternalStore(
+    subscribeSmall,
+    () => window.matchMedia("(max-width: 640px)").matches,
+    () => false,
+  );
+}
+
 export function VideoBand({
   src,
   poster,
+  mobileSrc,
+  mobilePoster,
   label,
   caption,
   ratio = "16 / 9",
 }: {
   src: string;
   poster: string;
+  /** Hochformat-Version für Handys (bis 640 px Breite) */
+  mobileSrc?: string;
+  mobilePoster?: string;
   label: string;
   caption?: string;
   ratio?: string;
@@ -25,6 +43,9 @@ export function VideoBand({
   const [playing, setPlaying] = useState(false);
   const [near, setNear] = useState(false);
   const manualPause = useRef(false);
+  const small = useSmall() && !!mobileSrc;
+  const useSrc = small ? (mobileSrc as string) : src;
+  const usePoster = small ? (mobilePoster ?? poster) : poster;
 
   useEffect(() => {
     const el = wrap.current;
@@ -59,20 +80,21 @@ export function VideoBand({
   };
 
   return (
-    <figure className="vband" ref={wrap} style={{ aspectRatio: ratio }}>
+    <figure className="vband" ref={wrap} style={{ aspectRatio: small ? "390 / 700" : ratio }}>
       <video
+        key={useSrc}
         ref={vid}
         className="vband-video"
         muted
         loop
         playsInline
         preload={near ? "auto" : "none"}
-        poster={poster}
+        poster={usePoster}
         aria-label={label}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       >
-        {near ? <source src={src} type="video/mp4" /> : null}
+        {near ? <source src={useSrc} type="video/mp4" /> : null}
       </video>
       {caption ? <figcaption className="vband-cap">{caption}</figcaption> : null}
       <button type="button" className="vband-btn" onClick={toggle} aria-label={playing ? "Video pausieren" : "Video abspielen"}>

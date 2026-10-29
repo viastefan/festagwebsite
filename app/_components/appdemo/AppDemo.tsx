@@ -19,7 +19,8 @@ function readTheme(): Theme {
   } catch {
     /* privater Modus */
   }
-  return (current = "light");
+  // Keine eigene Wahl: dem Schalter der Website folgen
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
 function setTheme(t: Theme) {
   current = t;
@@ -32,8 +33,11 @@ function setTheme(t: Theme) {
 }
 function subscribe(f: () => void) {
   subs.add(f);
+  const mo = new MutationObserver(f);
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   return () => {
     subs.delete(f);
+    mo.disconnect();
   };
 }
 function useTheme(): Theme {

@@ -116,7 +116,7 @@ export default function IntelligencePage() {
           <Button href={links.register} variant="solid" size="lg" arrow>
             Kostenlos starten
           </Button>
-          <Button href="/enterprise#security" variant="soft" size="lg">
+          <Button href="/security" variant="soft" size="lg">
             Datenschutz & Kontrolle
           </Button>
         </div>

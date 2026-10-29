@@ -68,7 +68,7 @@ const SECTIONS: { id: string; icon: IconName; title: string; guides: Guide[] }[]
     title: "Security & Datenschutz",
     guides: [
       { title: "Adaptive Intelligence & Datenschutz", body: "Opt-in-Profile, Aggregate statt Rohdaten, Export und Löschung.", href: "/intelligence#privacy", time: "5 Min" },
-      { title: "Enterprise Security", body: "SSO, SCIM, Datenresidenz, DPA.", href: "/enterprise#security", time: "4 Min" },
+      { title: "Enterprise Security", body: "SSO, SCIM, Datenresidenz, DPA.", href: "/security", time: "4 Min" },
       { title: "Datenschutzerklärung", body: "Was wir speichern und warum.", href: "/legal/privacy", time: "6 Min" },
     ],
   },

@@ -150,7 +150,7 @@ export default function TagroPage() {
         <div className="wrap wrap--wide">
           <SectionHead title="Aven im Gespräch." lead="Fragen, Rückfragen und Befehle: Aven antwortet mit Quelle und bereitet Entscheidungen vor." />
           <Reveal>
-            <VideoBand src="/media/video/aven-chat.mp4" poster="/media/video/aven-chat.jpg" label="Aven im Chat: Fragen stellen, Entscheidung vorbereiten, Projekte öffnen" caption="Aven im Chat, Dunkel" />
+            <VideoBand src="/media/video/aven-chat.mp4" poster="/media/video/aven-chat.jpg" mobileSrc="/media/video/aven-chat-m.mp4" mobilePoster="/media/video/aven-chat-m.jpg" label="Aven im Chat: Fragen stellen, Entscheidung vorbereiten, Projekte öffnen" caption="Aven im Chat, Dunkel" />
           </Reveal>
         </div>
       </section>

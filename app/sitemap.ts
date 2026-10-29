@@ -16,6 +16,7 @@ const ROUTES = [
   "/memory/connect",
   "/pricing",
   "/developers",
+  "/security",
   "/enterprise",
   "/extension",
   "/docs",

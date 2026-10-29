@@ -138,7 +138,7 @@ export default function HomePage() {
                 und Löschung jederzeit möglich.
               </p>
               <div style={{ marginTop: 22 }}>
-                <TextLink href="/enterprise#security">Security & Datenschutz</TextLink>
+                <TextLink href="/security">Security & Datenschutz</TextLink>
               </div>
             </Reveal>
             <RevealGroup className="grid-2">

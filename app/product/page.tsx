@@ -196,7 +196,7 @@ export default function ProductPage() {
         <div className="wrap wrap--wide">
           <SectionHead title="Der ganze Weg im Film." lead="Von der offenen Frage über die Entscheidung bis zum Pull Request, in 30 Sekunden." />
           <Reveal>
-            <VideoBand src="/media/video/festag-flow.mp4" poster="/media/video/festag-flow.jpg" label="Festag Produktfilm: Entscheidung treffen und Aven fragen" caption="So arbeitet Festag, Hell" />
+            <VideoBand src="/media/video/festag-flow.mp4" poster="/media/video/festag-flow.jpg" mobileSrc="/media/video/festag-flow-m.mp4" mobilePoster="/media/video/festag-flow-m.jpg" label="Festag Produktfilm: Entscheidung treffen und Aven fragen" caption="So arbeitet Festag, Hell" />
           </Reveal>
         </div>
       </section>
