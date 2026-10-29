@@ -66,7 +66,7 @@ export default function TagroPage() {
       <section className="section section--flush-top" id="demo">
         <div className="wrap wrap--wide">
           <Reveal>
-            <Stage pad caption="Tippe selbst — Beispiel-Workspace">
+            <Stage pad caption="Live-Demo · Beispiel-Workspace">
               <div className="tg-console-wrap">
                 <AskScene />
               </div>

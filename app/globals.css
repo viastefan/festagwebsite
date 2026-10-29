@@ -535,6 +535,16 @@ ol {
   border-bottom-color: var(--line);
   background: rgba(248, 247, 245, 0.78);
 }
+@media (max-width: 960px) {
+  .nav,
+  .nav.is-scrolled,
+  .nav.has-menu {
+    background: rgba(248, 247, 245, 0.94);
+  }
+  .stage .stage-caption {
+    display: none;
+  }
+}
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .nav,
   .nav.is-scrolled {
