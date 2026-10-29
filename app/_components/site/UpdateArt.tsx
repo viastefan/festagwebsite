@@ -150,28 +150,28 @@ const UA_CSS = `
 }
 .ua-bar { height: 26px; display: flex; gap: 5px; align-items: center; padding: 0 10px; border-bottom: var(--hair) solid var(--line); background: var(--surface-2); flex-shrink: 0; }
 .ua-bar span { width: 7px; height: 7px; border-radius: 50%; background: var(--surface-3); }
-.ua-body { min-width: 0; padding: 14px 16px; display: grid; gap: 8px; align-content: start; font-size: 12.5px; color: var(--ink-2); }
-.ua-label { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
-.ua-title { font-size: 15px; color: var(--ink); }
+.ua-body { min-width: 0; padding: 14px 16px; display: grid; gap: 8px; align-content: start; font-size: calc(12.5px * var(--fs, 1)); color: var(--ink-2); }
+.ua-label { font-size: calc(11.5px * var(--fs, 1)); letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+.ua-title { font-size: calc(15px * var(--fs, 1)); color: var(--ink); }
 .ua-row { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-top: var(--hair) solid var(--line); }
-.ua-row em { font-style: normal; color: var(--faint); font-size: 11.5px; }
+.ua-row em { font-style: normal; color: var(--faint); font-size: calc(11.5px * var(--fs, 1)); }
 .ua-fact { display: grid; grid-template-columns: 82px minmax(0, 1fr) 56px; gap: 8px; align-items: center; min-width: 0; }
-.ua-fact span:first-child { color: var(--accent); font-size: 11px; }
+.ua-fact span:first-child { color: var(--accent); font-size: calc(11px * var(--fs, 1)); }
 .ua-fact strong { font-weight: 400; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ua-chat { justify-self: end; padding: 7px 11px; border-radius: 8px 8px 3px 8px; background: var(--ink); color: var(--canvas); }
 .ua-step { display: flex; align-items: center; gap: 7px; color: var(--muted); }
 .ua-step svg { color: var(--accent); }
-.ua-pill { justify-self: start; padding: 4px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); font-size: 11.5px; }
+.ua-pill { justify-self: start; padding: 4px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); font-size: calc(11.5px * var(--fs, 1)); }
 .ua-wave { display: flex; align-items: center; gap: 3px; height: 44px; }
 .ua-wave i { flex: 1; border-radius: 2px; background: var(--accent); }
-.ua-quote {  font-size: 14px; color: var(--ink); line-height: 1.4; }
+.ua-quote {  font-size: calc(14px * var(--fs, 1)); color: var(--ink); line-height: 1.4; }
 .ua-ext { display: flex; align-items: center; gap: 8px; color: var(--ink); }
 .ua-ext-mark { width: 14px; height: 14px; }
 .ua-input { padding: 9px 11px; border-radius: 7px; border: var(--hair) solid var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); color: var(--ink); }
 .ua-icons { display: flex; gap: 6px; }
 .ua-icons span { width: 30px; height: 30px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center; color: var(--ink); }
 .ua-opt { display: flex; justify-content: space-between; padding: 8px 11px; border-radius: 7px; border: var(--hair) solid var(--line-strong); color: var(--ink); }
-.ua-opt em { font-style: normal; font-size: 11.5px; color: var(--muted); }
+.ua-opt em { font-style: normal; font-size: calc(11.5px * var(--fs, 1)); color: var(--muted); }
 .ua-opt.is-rec { border-color: var(--accent); background: var(--accent-tint); }
 .ua-opt.is-rec em { color: var(--accent); }
 @media (max-width: 760px) { .ua { aspect-ratio: 4 / 3; padding: 8% 6% 0; } }

@@ -112,7 +112,7 @@ export default function CompanyPage() {
                 Leqra denkt. Festag handelt.
               </h2>
             </div>
-            <p className="body" style={{ fontSize: 16.5 }}>
+            <p className="body" style={{ fontSize: "calc(16.5px * var(--fs, 1))" }}>
               Leqra ist unsere Intelligence-Engine: Wissen, Prozesse, Entscheidungslogik. Festag ist die sichtbare
               Ausführungsschicht in drei Modi — Delivery, Teams und Agency. Ein System, drei Oberflächen, eine
               operative Wahrheit. <TextLink href="/intelligence">Modelle & Intelligence</TextLink>
@@ -132,7 +132,7 @@ export default function CompanyPage() {
                 <Icon name="check" size={15} />
                 <div>
                   <div className="co-p-title">{p.title}</div>
-                  <p className="small" style={{ marginTop: 4, fontSize: 14.5 }}>
+                  <p className="small" style={{ marginTop: 4, fontSize: "calc(14.5px * var(--fs, 1))" }}>
                     {p.body}
                   </p>
                 </div>
@@ -221,7 +221,7 @@ export default function CompanyPage() {
                       <span className="tag">{e.tags[0]}</span>
                     </div>
                     <div className="co-news-title">{e.title}</div>
-                    <p className="small" style={{ fontSize: 15, marginTop: 6 }}>
+                    <p className="small" style={{ fontSize: "calc(15px * var(--fs, 1))", marginTop: 6 }}>
                       {e.body}
                     </p>
                   </Link>
@@ -259,20 +259,20 @@ export default function CompanyPage() {
         .co-wrap { max-width: 1040px; }
         .co-facts { margin: 44px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: var(--hair) solid var(--line); }
         .co-facts div { padding: 16px 16px 0 0; }
-        .co-facts dt { font-size: 12.5px; color: var(--faint); }
-        .co-facts dd { margin: 4px 0 0; font-size: 15px; color: var(--ink); }
+        .co-facts dt { font-size: calc(12.5px * var(--fs, 1)); color: var(--faint); }
+        .co-facts dd { margin: 4px 0 0; font-size: calc(15px * var(--fs, 1)); color: var(--ink); }
         .co-chapters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
         .co-chapter { padding: 22px; border-radius: var(--r-lg); background: var(--surface-2); border: var(--hair) solid var(--line); display: grid; gap: 8px; align-content: start; }
-        .co-n { font-size: 12px; letter-spacing: 0.08em; color: var(--accent); }
-        .co-chapter .body { font-size: 15px; }
+        .co-n { font-size: calc(12px * var(--fs, 1)); letter-spacing: 0.08em; color: var(--accent); }
+        .co-chapter .body { font-size: calc(15px * var(--fs, 1)); }
         .co-quote { padding: clamp(28px, 5vw, 56px) 0; border-block: var(--hair) solid var(--line); text-align: center; display: grid; gap: 14px; }
-        .co-quote p { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; color: var(--ink); max-width: 26ch; margin-inline: auto; }
+        .co-quote p { font-size: calc(clamp(26px, 3.4vw, 40px) * var(--fs, 1)); line-height: 1.2; color: var(--ink); max-width: 26ch; margin-inline: auto; }
         .co-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
         .co-split .link { display: inline-flex; margin-left: 4px; }
         .co-principles { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
         .co-principle { display: grid; grid-template-columns: 18px 1fr; gap: 12px; padding: 18px 0; border-top: var(--hair) solid var(--line); }
         .co-principle svg { color: var(--accent); margin-top: 3px; }
-        .co-p-title { font-size: 16px; color: var(--ink); }
+        .co-p-title { font-size: calc(16px * var(--fs, 1)); color: var(--ink); }
         .co-news-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
         .co-news { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
         .co-news > li { min-width: 0; }
@@ -284,22 +284,22 @@ export default function CompanyPage() {
         }
         .co-news-link:hover { border-color: var(--line-strong); box-shadow: var(--sh-md); }
         .co-news-art { margin: -8px -8px 16px; }
-        .co-news-meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
-        .co-news-title { margin-top: 10px; font-size: 17px; line-height: 1.35; color: var(--ink); }
-        .is-lead .co-news-title { font-size: 22px; }
+        .co-news-meta { display: flex; align-items: center; gap: 10px; font-size: calc(13px * var(--fs, 1)); color: var(--muted); }
+        .co-news-title { margin-top: 10px; font-size: calc(17px * var(--fs, 1)); line-height: 1.35; color: var(--ink); }
+        .is-lead .co-news-title { font-size: calc(22px * var(--fs, 1)); }
         .co-team-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
         .co-team-head .h3 { max-width: 640px; }
         .co-team-photo { position: relative; height: clamp(240px, 34vw, 420px); border-radius: var(--r-xl); overflow: hidden; }
         .co-team { margin-top: 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
         .co-member { position: relative; display: grid; gap: 12px; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
-        .co-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 500; color: #fff; background: linear-gradient(135deg, var(--accent), #7fd8e8); }
+        .co-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: calc(14px * var(--fs, 1)); font-weight: 500; color: #fff; background: linear-gradient(135deg, var(--accent), #7fd8e8); }
         .co-avatar.is-open { background: var(--surface); color: var(--faint); box-shadow: 0 0 0 var(--hair) var(--line-strong) inset; }
-        .co-member-name { font-size: 15px; font-weight: 500; color: var(--ink); }
-        .co-member-role { margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+        .co-member-name { font-size: calc(15px * var(--fs, 1)); font-weight: 500; color: var(--ink); }
+        .co-member-role { margin-top: 2px; font-size: calc(13.5px * var(--fs, 1)); line-height: 1.45; color: var(--muted); }
         .co-member-link { position: absolute; top: 16px; right: 16px; color: var(--faint); transition: color var(--dur) ease; }
         .co-member-link:hover { color: var(--accent); }
         .co-studio { margin-top: 10px; display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
-        .co-studio-mark { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; font-size: 12px; font-weight: 500; }
+        .co-studio-mark { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; font-size: calc(12px * var(--fs, 1)); font-weight: 500; }
         @media (max-width: 860px) { .co-team { grid-template-columns: 1fr 1fr; } .co-studio { grid-template-columns: 44px 1fr; } .co-studio .link { grid-column: 2; } }
         @media (max-width: 520px) { .co-team { grid-template-columns: 1fr; } }
         .co-join { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: clamp(22px, 3vw, 36px); border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }

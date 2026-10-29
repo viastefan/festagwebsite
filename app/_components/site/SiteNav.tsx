@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
+import { SearchButton, SearchPalette } from "./SearchPalette";
 import { Icon } from "../ui/Icon";
 import { links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
 
@@ -73,6 +74,7 @@ export function SiteNav() {
 
   return (
     <>
+      <SearchPalette />
       <header ref={headerRef} className={`nav${scrolled ? " is-scrolled" : ""}${menu ? " has-menu" : ""}`}>
         <div className="nav-inner">
           <div className="nav-left">
@@ -111,6 +113,7 @@ export function SiteNav() {
           </nav>
 
           <div className="nav-right">
+            <SearchButton />
             <Button href={links.login} variant="text">
               Anmelden
             </Button>
@@ -207,6 +210,21 @@ export function SiteNav() {
               animate="show"
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }}
             >
+              <motion.button
+                type="button"
+                className="msheet-search"
+                variants={ITEM}
+                onClick={() => {
+                  setSheetOpen(false);
+                  window.setTimeout(() => window.dispatchEvent(new Event("festag:search")), 60);
+                }}
+              >
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
+                  <circle cx="9" cy="9" r="5.5" />
+                  <path d="m13.2 13.2 3.3 3.3" />
+                </svg>
+                Suche, oder stelle eine Frage
+              </motion.button>
               <MGroup label="Produkt" items={productMenu} isActive={isActive} />
               <MGroup
                 label="Unternehmen"

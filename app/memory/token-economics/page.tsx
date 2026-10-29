@@ -101,7 +101,7 @@ export default function MemoryTokenEconomicsPage() {
             ))}
           </RevealGroup>
           <Reveal>
-            <p className="body" style={{ marginTop: 16, fontSize: 13.5 }}>
+            <p className="body" style={{ marginTop: 16, fontSize: "calc(13.5px * var(--fs, 1))" }}>
               Beispielwerte aus einem Projektmonat. Eure Zahlen entstehen aus eurer Arbeit — Festag
               schätzt nichts und füllt nichts auf.
             </p>

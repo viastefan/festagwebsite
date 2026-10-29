@@ -66,6 +66,8 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
 - **Dunkelmodus:** Einstellung „Darstellung“ (Hell, Dunkel, System) im Footer (`ThemeSetting`), nie im Header; „Anmelden“ (Textknopf) hat in keinem Zustand einen Hintergrund, Tokens unter `:root[data-theme="dark"]` in `globals.css`. Neue Farben immer
   über Variablen, nie hart codiert. Die Demo-Fenster folgen dem Schalter. **Handy-Videos:** Hochformat, `mobileSrc` an `VideoBand`.
   **Sicherheit:** `/security` nennt nur Verhalten, das die App wirklich hat.
+- **Handy-Schrift:** alle Schriftgrößen laufen über `calc(Npx * var(--fs, 1))`, `--fs` ist 1,2 bis 640px. Neue Größen
+  immer so schreiben. **Suche:** ⌘K, Index in `lib/site/search-index.ts` (neue Seiten/Antworten dort eintragen).
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,
   auch Favicon und App-Icons; kleine Größe im Header.
 - **Aven:** nur als Wort, ohne Symbol, ohne Avatar, ohne Sprecher-Etikett.

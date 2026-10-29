@@ -158,7 +158,7 @@ function Usage() {
       <div className="pp-calc">
         <div className="pp-calc-copy">
           <h3 className="h3">Was brauche ich?</h3>
-          <p className="small" style={{ fontSize: 14.5, marginTop: 8 }}>
+          <p className="small" style={{ fontSize: "calc(14.5px * var(--fs, 1))", marginTop: 8 }}>
             Schätze, wie oft ihr Aven im Monat fragt. Wir zeigen, was dazu passt.
           </p>
         </div>
@@ -189,12 +189,13 @@ function Usage() {
 }
 
 const PP_CSS = `
+@media (max-width: 640px) { .pp-tabs { max-width: 100%; overflow-x: auto; scrollbar-width: none; } .pp-tabs button { padding: 0 12px; flex-shrink: 0; } }
 .pp-usage { display: grid; gap: 16px; }
 .pp-usage-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .pp-usage-box { padding: 22px; border-radius: var(--r-card); background: var(--glass-fill); border: 0.5px solid var(--line-strong); box-shadow: var(--glass-shadow); }
-.pp-usage-box .small { margin-top: 12px; font-size: 13px; color: var(--muted); }
+.pp-usage-box .small { margin-top: 12px; font-size: calc(13px * var(--fs, 1)); color: var(--muted); }
 .pp-kv { list-style: none; margin: 14px 0 0; padding: 0; }
-.pp-kv li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 0.5px solid var(--line-strong); font-size: 14px; }
+.pp-kv li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 0.5px solid var(--line-strong); font-size: calc(14px * var(--fs, 1)); }
 .pp-kv span { color: var(--muted); }
 .pp-kv b { font-weight: 500; text-align: right; }
 @media (max-width: 760px) { .pp-usage-cols { grid-template-columns: 1fr; } }
@@ -204,11 +205,11 @@ const PP_CSS = `
 }
 .pp { display: grid; justify-items: center; }
 .pp > div:not(.pp-tabs) { width: 100%; }
-.pp-tabs button { position: relative; height: 34px; padding: 0 16px; border-radius: 999px; font-size: 14px; color: var(--muted); transition: color var(--dur) ease; }
+.pp-tabs button { position: relative; height: 34px; padding: 0 16px; white-space: nowrap; border-radius: 999px; font-size: calc(14px * var(--fs, 1)); color: var(--muted); transition: color var(--dur) ease; }
 .pp-tabs button[aria-selected="true"] { color: var(--ink); }
 .pp-tab-thumb { position: absolute; inset: 0; border-radius: 999px; background: var(--surface); box-shadow: var(--sh-sm); }
 .pp-tab-label { position: relative; }
-.pp-sub { margin: 14px 0 36px; font-size: 14.5px; color: var(--muted); text-align: center; max-width: 60ch; }
+.pp-sub { margin: 14px 0 36px; font-size: calc(14.5px * var(--fs, 1)); color: var(--muted); text-align: center; max-width: 60ch; }
 .pp-grid { display: grid; gap: 10px; }
 .pp-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .pp-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -221,27 +222,27 @@ const PP_CSS = `
   box-shadow: 0 0 0 1px rgba(59,111,212,0.28), var(--sh-md);
 }
 .pp-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.pp-name { font-size: 17px; font-weight: 500; color: var(--ink); }
-.pp-badge { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); white-space: nowrap; }
+.pp-name { font-size: calc(17px * var(--fs, 1)); font-weight: 500; color: var(--ink); }
+.pp-badge { font-size: calc(12px * var(--fs, 1)); padding: 3px 9px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); white-space: nowrap; }
 .pp-price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.pp-amount { font-size: 34px; font-weight: 500; letter-spacing: -0.025em; color: var(--ink); line-height: 1.1; }
-.pp-unit { font-size: 13.5px; color: var(--muted); }
-.pp-tagline { font-size: 14.5px; line-height: 1.5; color: var(--muted); min-height: 4.5em; }
+.pp-amount { font-size: calc(34px * var(--fs, 1)); font-weight: 500; letter-spacing: -0.025em; color: var(--ink); line-height: 1.1; }
+.pp-unit { font-size: calc(13.5px * var(--fs, 1)); color: var(--muted); }
+.pp-tagline { font-size: calc(14.5px * var(--fs, 1)); line-height: 1.5; color: var(--muted); min-height: 4.5em; }
 .pp-card .btn { width: 100%; }
 .pp-features { display: grid; gap: 10px; padding-top: 4px; }
-.pp-lead { font-size: 13px; color: var(--faint); }
+.pp-lead { font-size: calc(13px * var(--fs, 1)); color: var(--faint); }
 .pp-features ul { display: grid; gap: 9px; }
-.pp-features li { display: grid; grid-template-columns: 16px 1fr; gap: 9px; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.pp-features li { display: grid; grid-template-columns: 16px 1fr; gap: 9px; font-size: calc(14px * var(--fs, 1)); line-height: 1.45; color: var(--ink-2); }
 .pp-features li svg { color: var(--accent); margin-top: 2px; }
 .pp-addons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .pp-addon {
   display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 18px 20px; border-radius: var(--r-lg);
   background: var(--surface-2); border: var(--hair) solid var(--line);
 }
-.pp-addon-cat { grid-column: 1 / -1; font-size: 12px; color: var(--faint); }
-.pp-addon-name { font-size: 15.5px; font-weight: 500; color: var(--ink); }
-.pp-addon-price { grid-row: 2; grid-column: 2; font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
-.pp-addon-body { grid-column: 1 / -1; font-size: 13.5px; color: var(--muted); }
+.pp-addon-cat { grid-column: 1 / -1; font-size: calc(12px * var(--fs, 1)); color: var(--faint); }
+.pp-addon-name { font-size: calc(15.5px * var(--fs, 1)); font-weight: 500; color: var(--ink); }
+.pp-addon-price { grid-row: 2; grid-column: 2; font-size: calc(15px * var(--fs, 1)); color: var(--ink); font-variant-numeric: tabular-nums; }
+.pp-addon-body { grid-column: 1 / -1; font-size: calc(13.5px * var(--fs, 1)); color: var(--muted); }
 .pp-calc {
   margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; align-items: center;
   padding: clamp(20px, 3vw, 32px); border-radius: var(--r-xl);
@@ -251,18 +252,18 @@ const PP_CSS = `
     var(--surface-2);
   border: var(--hair) solid var(--line);
 }
-.pp-calc-kicker { font-size: 13px; color: var(--accent); font-weight: 500; }
+.pp-calc-kicker { font-size: calc(13px * var(--fs, 1)); color: var(--accent); font-weight: 500; }
 .pp-calc-copy .h3 { margin-top: 8px; }
 .pp-calc-ui { display: grid; gap: 16px; padding: 20px; border-radius: var(--r-lg); background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); box-shadow: 0 0 0 var(--hair) var(--line), var(--sh-sm); }
-.pp-range { display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+.pp-range { display: grid; gap: 8px; font-size: calc(14px * var(--fs, 1)); color: var(--muted); }
 .pp-range span { display: flex; justify-content: space-between; }
 .pp-range strong { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
 .pp-range input { width: 100%; accent-color: var(--accent); }
 .pp-calc-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 6px; border-top: var(--hair) solid var(--line); }
 .pp-calc-out div { display: grid; gap: 2px; padding-top: 10px; }
-.pp-calc-out div > span { font-size: 13px; color: var(--muted); }
-.pp-calc-out strong { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
-.pp-calc-out em { font-style: normal; font-size: 13px; color: var(--faint); font-weight: 400; letter-spacing: 0; }
+.pp-calc-out div > span { font-size: calc(13px * var(--fs, 1)); color: var(--muted); }
+.pp-calc-out strong { font-size: calc(26px * var(--fs, 1)); font-weight: 500; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.pp-calc-out em { font-style: normal; font-size: calc(13px * var(--fs, 1)); color: var(--faint); font-weight: 400; letter-spacing: 0; }
 .pp-calc-out .is-muted strong { color: var(--faint); text-decoration: line-through; text-decoration-thickness: 1px; }
 @media (max-width: 1100px) { .pp-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pp-addons { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 860px) { .pp-grid--3 { grid-template-columns: 1fr; } .pp-calc { grid-template-columns: 1fr; } }

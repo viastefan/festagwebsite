@@ -77,7 +77,7 @@ export default function ConnectorsPage() {
                     {CONNECTOR_STATUS_LABEL[c.status]}
                   </span>
                 </div>
-                <p className="body" style={{ fontSize: 14.5, marginTop: 14 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))", marginTop: 14 }}>
                   {c.short}
                 </p>
                 <ul className="cn-signals">
@@ -137,15 +137,15 @@ export default function ConnectorsPage() {
         .cn-head { display: flex; align-items: center; gap: 12px; }
         .cn-icon { width: 42px; height: 42px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center; flex-shrink: 0; }
         .cn-signals { display: grid; gap: 6px; margin-top: 14px; }
-        .cn-signals li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+        .cn-signals li { display: flex; align-items: center; gap: 8px; font-size: calc(13px * var(--fs, 1)); color: var(--ink-2); }
         .cn-signals svg { color: var(--accent); }
-        .cn-never { margin-top: auto; padding-top: 14px; display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; color: var(--faint); border-top: var(--hair) solid var(--line); margin-top: 16px; }
+        .cn-never { margin-top: auto; padding-top: 14px; display: flex; gap: 8px; align-items: flex-start; font-size: calc(12.5px * var(--fs, 1)); color: var(--faint); border-top: var(--hair) solid var(--line); margin-top: 16px; }
         .cn-never svg { flex-shrink: 0; margin-top: 2px; }
         .cn-tax { border-radius: 10px; border: var(--hair) solid var(--line); background: var(--surface); overflow: hidden; }
         .cn-tax-row { display: grid; grid-template-columns: 240px 1fr; gap: 20px; padding: 14px 20px; border-top: var(--hair) solid var(--line); align-items: center; }
         .cn-tax-row:first-child { border-top: 0; }
-        .cn-tax-row .status { font-size: 14px; color: var(--ink); }
-        .cn-tax-ex { font-size: 14px; color: var(--muted); }
+        .cn-tax-row .status { font-size: calc(14px * var(--fs, 1)); color: var(--ink); }
+        .cn-tax-ex { font-size: calc(14px * var(--fs, 1)); color: var(--muted); }
         @media (max-width: 640px) { .cn-tax-row { grid-template-columns: 1fr; gap: 4px; } }
       `}</style>
     </>

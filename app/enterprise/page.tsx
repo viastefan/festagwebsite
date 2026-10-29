@@ -98,7 +98,7 @@ export default function EnterprisePage() {
                 <h3 className="h4" style={{ marginTop: 16 }}>
                   {w.name}
                 </h3>
-                <p className="body" style={{ fontSize: 14.5 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))" }}>
                   {w.body}
                 </p>
                 <ul className="plan-list" style={{ marginTop: 18 }}>
@@ -172,7 +172,7 @@ export default function EnterprisePage() {
         .ent-wl-top { border-color: rgba(59, 111, 212,0.3); box-shadow: 0 0 0 1px rgba(59, 111, 212,0.1), var(--sh-md); }
         .ent-contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
         .ent-list { display: grid; gap: 10px; margin-top: 24px; }
-        .ent-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-2); }
+        .ent-list li { display: flex; align-items: center; gap: 10px; font-size: calc(15px * var(--fs, 1)); color: var(--ink-2); }
         .ent-list svg { color: var(--accent); }
         @media (max-width: 960px) { .ent-contact { grid-template-columns: 1fr; } }
       `}</style>

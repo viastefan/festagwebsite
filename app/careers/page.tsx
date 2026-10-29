@@ -64,7 +64,7 @@ export default function CareersPage() {
             {VALUES.map((v) => (
               <RevealItem key={v.title} className="card card--soft">
                 <h2 className="h4">{v.title}</h2>
-                <p className="body" style={{ fontSize: 14.5 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))" }}>
                   {v.body}
                 </p>
               </RevealItem>
@@ -115,7 +115,7 @@ export default function CareersPage() {
 
       <style>{`
         .cr-group { margin-top: 32px; }
-        .cr-dept { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+        .cr-dept { font-size: calc(13px * var(--fs, 1)); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
         .cr-open { margin-top: 40px; }
         @media (max-width: 640px) { .cr-loc { display: none; } }
       `}</style>

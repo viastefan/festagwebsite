@@ -146,7 +146,7 @@ export default function IntelligencePage() {
                   {m.name}
                 </div>
                 <div className="in-model-role">{m.role}</div>
-                <p className="body" style={{ fontSize: 14.5, marginTop: 14 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))", marginTop: 14 }}>
                   {m.body}
                 </p>
                 <dl className="in-model-facts">
@@ -257,7 +257,7 @@ export default function IntelligencePage() {
                   <Icon name={m.icon} />
                 </span>
                 <h3 className="h4">{m.name}</h3>
-                <p className="body" style={{ fontSize: 14.5 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))" }}>
                   {m.body}
                 </p>
               </RevealItem>
@@ -302,33 +302,33 @@ export default function IntelligencePage() {
         }
         .in-model-top { display: flex; align-items: center; justify-content: space-between; }
         .in-model-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; }
-        .in-model-name { margin-top: 26px; font-size: 40px; line-height: 1; color: var(--ink); }
-        .in-model-role { margin-top: 8px; font-size: 14px; color: var(--accent); }
+        .in-model-name { margin-top: 26px; font-size: calc(40px * var(--fs, 1)); line-height: 1; color: var(--ink); }
+        .in-model-role { margin-top: 8px; font-size: calc(14px * var(--fs, 1)); color: var(--accent); }
         .in-model-facts { margin: 20px 0 0; padding-top: 16px; border-top: var(--hair) solid var(--line); display: grid; gap: 10px; margin-top: auto; }
         .in-model .body { margin-bottom: 20px; }
-        .in-model-facts div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: 13.5px; }
+        .in-model-facts div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: calc(13.5px * var(--fs, 1)); }
         .in-model-facts dt { color: var(--faint); }
         .in-model-facts dd { margin: 0; color: var(--ink-2); }
-        .in-tagline { margin-top: 40px; text-align: center; font-size: clamp(24px, 3vw, 36px); color: var(--ink); }
+        .in-tagline { margin-top: 40px; text-align: center; font-size: calc(clamp(24px, 3vw, 36px) * var(--fs, 1)); color: var(--ink); }
         .in-pipe { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
         .in-pipe-step { display: flex; align-items: center; gap: 10px; }
         .in-pipe-step span {
-          padding: 14px 22px; border-radius: 999px; font-size: 17px; background: var(--surface); border: var(--hair) solid var(--line);
+          padding: 14px 22px; border-radius: 999px; font-size: calc(17px * var(--fs, 1)); background: var(--surface); border: var(--hair) solid var(--line);
           color: var(--ink); box-shadow: var(--sh-xs);
         }
         .in-pipe-step:last-child span { background: var(--accent); border-color: var(--accent); color: #fff; }
         .in-pipe-step svg { color: var(--faint); }
         .in-okm { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .in-okm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .in-okm-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line); font-size: 14.5px; color: var(--ink); }
+        .in-okm-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 8px; background: var(--surface); border: var(--hair) solid var(--line); font-size: calc(14.5px * var(--fs, 1)); color: var(--ink); }
         .in-okm-item svg { color: var(--accent); }
         .in-loop { background: rgba(255,255,255,0.78); backdrop-filter: blur(8px); border-radius: 10px; padding: clamp(18px, 3vw, 36px); border: var(--hair) solid var(--line); }
-        .in-predict { display: grid; grid-template-columns: 18px 1fr; gap: 14px; padding: 22px; border-radius: 10px; background: var(--surface-2); font-size: 19px; line-height: 1.4; color: var(--ink); }
+        .in-predict { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 14px; padding: 22px; overflow-wrap: anywhere; border-radius: 10px; background: var(--surface-2); font-size: calc(19px * var(--fs, 1)); line-height: 1.4; color: var(--ink); }
         .in-predict svg { color: var(--accent); margin-top: 5px; }
         .in-privacy { border-radius: 10px; border: var(--hair) solid var(--line); background: var(--surface); overflow: hidden; }
-        .in-privacy-row { display: grid; grid-template-columns: 1.2fr 0.5fr 2fr; gap: 16px; padding: 16px 20px; border-top: var(--hair) solid var(--line); align-items: center; font-size: 14.5px; color: var(--muted); }
+        .in-privacy-row { display: grid; grid-template-columns: 1.2fr 0.5fr 2fr; gap: 16px; padding: 16px 20px; border-top: var(--hair) solid var(--line); align-items: center; font-size: calc(14.5px * var(--fs, 1)); color: var(--muted); }
         .in-privacy-row span:first-child { color: var(--ink); }
-        .in-privacy-head { border-top: 0; background: var(--surface-2); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+        .in-privacy-head { border-top: 0; background: var(--surface-2); font-size: calc(12px * var(--fs, 1)); letter-spacing: 0.06em; text-transform: uppercase; }
         .in-privacy-head span:first-child { color: var(--faint); }
         @media (max-width: 960px) { .in-okm { grid-template-columns: 1fr; } }
         @media (max-width: 640px) {

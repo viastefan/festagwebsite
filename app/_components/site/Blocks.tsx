@@ -114,8 +114,8 @@ export function UpdateCard({ entry }: { entry: ChangelogEntry }) {
             <span className="card-icon" style={{ margin: 0, width: 28, height: 28 }}>
               <Icon name={ART_ICON[entry.art]} size={15} />
             </span>
-            <span style={{ fontSize: 12, color: "var(--ink)" }}>{entry.tags[0]}</span>
-            <span className="tag" style={{ marginLeft: "auto", height: 20, fontSize: 11 }}>
+            <span style={{ fontSize: "calc(12px * var(--fs, 1))", color: "var(--ink)" }}>{entry.tags[0]}</span>
+            <span className="tag" style={{ marginLeft: "auto", height: 20, fontSize: "calc(11px * var(--fs, 1))" }}>
               v{entry.version}
             </span>
           </div>

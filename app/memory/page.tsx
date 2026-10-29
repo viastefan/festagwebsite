@@ -131,7 +131,7 @@ export default function MemoryPage() {
               <RevealItem key={f.step} className="mem-flow-step">
                 <span className="mem-step-no">{f.step}</span>
                 <h3 className="h4">{f.title}</h3>
-                <p className="body" style={{ fontSize: 14.5 }}>{f.body}</p>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))" }}>{f.body}</p>
               </RevealItem>
             ))}
           </RevealGroup>

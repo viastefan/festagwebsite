@@ -66,7 +66,7 @@ export default function ContactPage() {
           background: var(--surface-2); transition: background var(--dur) ease;
         }
         .ct-channel:hover { background: var(--surface-3); }
-        .ct-mail { display: inline-block; margin-top: 8px; font-size: 14px; color: var(--accent); }
+        .ct-mail { display: inline-block; margin-top: 8px; font-size: calc(14px * var(--fs, 1)); color: var(--accent); }
         @media (max-width: 960px) { .ct { grid-template-columns: 1fr; } }
       `}</style>
     </>

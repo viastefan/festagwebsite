@@ -116,13 +116,13 @@ const CF_CSS = `
 .cf { display: grid; gap: 18px; padding: clamp(20px, 3vw, 32px); border-radius: var(--r-xl); background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-sm); }
 .cf-topics { display: flex; flex-wrap: wrap; gap: 6px; }
 .cf-topics button {
-  height: 34px; padding: 0 14px; border-radius: 999px; font-size: 13.5px; color: var(--ink-2);
+  height: 34px; padding: 0 14px; border-radius: 999px; font-size: calc(13.5px * var(--fs, 1)); color: var(--ink-2);
   background: var(--surface-2); border: 1px solid transparent; transition: all var(--dur) ease;
 }
 .cf-topics button:hover { border-color: var(--line-strong); }
 .cf-topics button.is-on { background: var(--ink); color: var(--canvas); }
 .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .cf-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
-.cf-sent { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 7px; background: var(--ok-soft); color: var(--ok); font-size: 13.5px; }
+.cf-sent { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 7px; background: var(--ok-soft); color: var(--ok); font-size: calc(13.5px * var(--fs, 1)); }
 @media (max-width: 640px) { .cf-grid { grid-template-columns: 1fr; } }
 `;

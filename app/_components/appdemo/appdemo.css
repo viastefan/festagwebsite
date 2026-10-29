@@ -45,7 +45,7 @@
 
   position: relative;
   color: var(--ad-ink);
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
   line-height: 19px;
   text-align: left;
 }
@@ -121,7 +121,7 @@
   background: var(--ad-canvas-3);
 }
 .adw-title {
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
   color: var(--ad-ink-3);
 }
 .adw-tools {
@@ -181,7 +181,7 @@
   align-items: center;
   gap: 8px;
   padding: 0 8px 16px;
-  font-size: 15px;
+  font-size: calc(15px * var(--fs, 1));
   font-weight: 500;
 }
 .ad-mark {
@@ -206,7 +206,7 @@
   border: 1px solid transparent;
   border-radius: 8px;
   color: var(--ad-nav-ink);
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-nav.is-active {
   background: var(--ad-nav-active-bg);
@@ -223,7 +223,7 @@
   border-radius: 5px;
   background: var(--ad-keycap-bg);
   color: var(--ad-keycap-ink);
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--fs, 1));
   line-height: 1;
 }
 .ad-nav .n {
@@ -233,7 +233,7 @@
   border-radius: 999px;
   background: var(--ad-badge-bg);
   color: var(--ad-badge-ink);
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--fs, 1));
   line-height: 18px;
   text-align: center;
 }
@@ -242,7 +242,7 @@
 }
 .ad-rail-more {
   margin: 10px 8px 2px;
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   letter-spacing: 0.04em;
   color: var(--ad-ink-3);
 }
@@ -258,7 +258,7 @@
   padding: 10px 8px 0;
   border-top: 1px solid var(--ad-hair);
   margin-top: 8px;
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
 }
 .ad-user i {
   display: grid;
@@ -268,14 +268,14 @@
   border-radius: 50%;
   background: var(--ad-accent);
   color: #fff;
-  font-size: 10px;
+  font-size: calc(10px * var(--fs, 1));
   font-style: normal;
   font-weight: 500;
 }
 .ad-user small {
   display: block;
   color: var(--ad-ink-3);
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   line-height: 14px;
 }
 
@@ -299,13 +299,13 @@
   margin-bottom: 18px;
 }
 .ad-h b {
-  font-size: 18px;
+  font-size: calc(18px * var(--fs, 1));
   font-weight: 500;
   letter-spacing: -0.016em;
 }
 .ad-h span {
   color: var(--ad-ink-3);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
 }
 .ad-list {
   display: flex;
@@ -338,7 +338,7 @@
 .ad-row-title {
   margin: 0;
   color: var(--ad-ink);
-  font-size: 15px;
+  font-size: calc(15px * var(--fs, 1));
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: 0.01em;
@@ -346,7 +346,7 @@
 .ad-row-text {
   margin: 0;
   color: var(--ad-ink-2);
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
   line-height: 19px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -369,7 +369,7 @@
 }
 .ad-when {
   color: var(--ad-ink-2);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
   white-space: nowrap;
 }
 
@@ -506,14 +506,14 @@
   border-radius: 999px;
   background: var(--ad-tag-bg);
   color: var(--ad-tag-ink);
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   font-weight: 500;
   white-space: nowrap;
 }
 .ad-card-title {
   margin: 0;
   color: var(--ad-ink);
-  font-size: clamp(19px, 2vw, 24px);
+  font-size: calc(clamp(19px, 2vw, 24px) * var(--fs, 1));
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.016em;
@@ -522,7 +522,7 @@
 .ad-card-sub {
   margin: 0;
   color: var(--ad-ink-2);
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-panel {
   display: flex;
@@ -543,18 +543,18 @@
   gap: 6px;
   margin-bottom: 6px;
   color: var(--ad-ink-3);
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--fs, 1));
 }
 .ad-panel strong {
   display: block;
-  font-size: 15px;
+  font-size: calc(15px * var(--fs, 1));
   font-weight: 500;
 }
 .ad-panel p {
   margin: 4px 0 0;
   max-width: 44ch;
   color: var(--ad-ink-3);
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
   line-height: 19px;
 }
 .ad-cta {
@@ -569,7 +569,7 @@
   background: var(--ad-accent);
   color: var(--ad-accent-ink);
   font: inherit;
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
   white-space: nowrap;
   box-shadow: var(--ad-lit), 0 6px 16px -8px rgba(30, 20, 15, 0.45);
   transition: transform 0.15s ease, filter 0.15s ease;
@@ -594,7 +594,7 @@
   border-radius: 999px;
   background: var(--ad-chip-bg);
   color: var(--ad-chip-ink);
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   box-shadow: var(--ad-lit);
 }
 .ad-chip.is-on {
@@ -610,7 +610,7 @@
   border-radius: 10px;
   background: var(--ad-accent-soft);
   color: var(--ad-ink-3);
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
   line-height: 21px;
   animation: adIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -621,7 +621,7 @@
 .ad-then {
   margin: 0;
   color: var(--ad-ink-3);
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
 }
 .ad-then b {
   color: var(--ad-ink-2);
@@ -636,7 +636,7 @@
   border: 1px solid var(--ad-input-border);
   border-radius: 999px;
   color: var(--ad-ink-3);
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
 }
 .ad-ask span {
   flex: 1;
@@ -691,12 +691,12 @@
 }
 .ad-tl b {
   display: block;
-  font-size: 14px;
+  font-size: calc(14px * var(--fs, 1));
   font-weight: 500;
 }
 .ad-tl small {
   color: var(--ad-ink-3);
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
 }
 .ad-agent {
   display: inline-flex;
@@ -707,7 +707,7 @@
   border: 0.5px solid var(--ad-chip-border);
   border-radius: 999px;
   color: var(--ad-chip-ink);
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--fs, 1));
 }
 .ad-agent i {
   width: 6px;
@@ -721,7 +721,7 @@
   border-radius: 10px;
   background: var(--ad-panel);
   color: var(--ad-ink-3);
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
   line-height: 20px;
 }
 .ad-brief b {
@@ -738,12 +738,12 @@
   padding: 12px 14px;
   border: 0.5px solid var(--ad-card-border);
   border-radius: 10px;
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
 }
 .ad-pr em {
   font-style: normal;
   color: var(--ad-ink-3);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
 }
 .ad-pr .add {
   color: var(--ad-good);
@@ -761,7 +761,7 @@
   padding: 10px 16px;
   border-radius: 18px 18px 4px 18px;
   background: var(--ad-panel);
-  font-size: 14px;
+  font-size: calc(14px * var(--fs, 1));
 }
 .ad-aven {
   display: flex;
@@ -777,7 +777,7 @@
 .ad-aven-body p {
   margin: 0;
   max-width: 52ch;
-  font-size: 14.5px;
+  font-size: calc(14.5px * var(--fs, 1));
   line-height: 23px;
 }
 .ad-word {
@@ -912,7 +912,7 @@
   min-height: 190px;
   padding: 16px 18px 18px;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs, 1));
   line-height: 19px;
   color: var(--ad-ink-2);
 }
@@ -967,14 +967,14 @@
     padding: 10px 4px;
   }
   .ad-row-title {
-    font-size: 14.5px;
+    font-size: calc(14.5px * var(--fs, 1));
   }
   .ad-h {
     flex-wrap: wrap;
     gap: 6px 12px;
   }
   .ad-h b {
-    font-size: 16px;
+    font-size: calc(16px * var(--fs, 1));
   }
   .ad-agent {
     white-space: nowrap;
@@ -1027,7 +1027,7 @@
 .ad-detail p {
   margin: 0;
   color: var(--ad-ink-2);
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
   line-height: 19px;
 }
 .ad-detail p + .ad-bar,
@@ -1068,7 +1068,7 @@
   background: transparent;
   color: var(--ad-ink-2);
   font: inherit;
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
   text-decoration: underline;
   text-decoration-color: var(--ad-hair);
   text-underline-offset: 3px;
@@ -1079,7 +1079,7 @@
 }
 button.ad-chip {
   font: inherit;
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   cursor: pointer;
 }
 button.ad-chip:hover {
@@ -1138,19 +1138,19 @@ button.ad-chip:hover {
 }
 .ad-opt b {
   font-weight: 500;
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-opt em {
   margin-left: 8px;
   font-style: normal;
-  font-size: 11px;
+  font-size: calc(11px * var(--fs, 1));
   color: var(--ad-ink-3);
 }
 .ad-opt small {
   display: block;
   margin-top: 2px;
   color: var(--ad-ink-3);
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--fs, 1));
   line-height: 18px;
 }
 .ad-radio {
@@ -1180,7 +1180,7 @@ button.ad-chip:hover {
   background: transparent;
   color: var(--ad-ink);
   font: inherit;
-  font-size: 13px;
+  font-size: calc(13px * var(--fs, 1));
 }
 .ad-ask input::placeholder {
   color: var(--ad-ink-3);
@@ -1229,7 +1229,7 @@ button.ad-chip:hover {
 .ad-empty {
   margin: auto 0;
   color: var(--ad-ink-3);
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-suggest {
   display: flex;
@@ -1259,7 +1259,7 @@ button.ad-chip:hover {
     background: transparent;
     color: var(--ad-ink-2);
     font: inherit;
-    font-size: 12px;
+    font-size: calc(12px * var(--fs, 1));
     cursor: pointer;
   }
   .ad-tabs button.is-on {
@@ -1293,11 +1293,11 @@ button.ad-chip:hover {
 .ad-propose small {
   display: block;
   color: var(--ad-ink-3);
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--fs, 1));
 }
 .ad-propose b {
   font-weight: 500;
-  font-size: 13.5px;
+  font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-done {
   display: inline-flex;

@@ -164,13 +164,13 @@ export default function ExtensionPage() {
           background: var(--surface); border-radius: 10px; border: var(--hair) solid var(--line); box-shadow: var(--sh-lg);
           padding: 16px; display: grid; gap: 12px; animation: fs-float 6s ease-in-out infinite;
         }
-        .xt-popup-head { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); }
+        .xt-popup-head { display: flex; align-items: center; gap: 8px; font-size: calc(14px * var(--fs, 1)); color: var(--ink); }
         .xt-popup-mark { width: 18px; height: 18px; }
         .xt-popup-tabs { display: flex; gap: 4px; }
-        .xt-popup-tabs span { height: 28px; padding: 0 10px; display: inline-flex; align-items: center; border-radius: 999px; font-size: 12.5px; color: var(--muted); }
+        .xt-popup-tabs span { height: 28px; padding: 0 10px; display: inline-flex; align-items: center; border-radius: 999px; font-size: calc(12.5px * var(--fs, 1)); color: var(--muted); }
         .xt-popup-tabs span.is-on { background: var(--surface-2); color: var(--ink); }
-        .xt-popup-input { padding: 12px 14px; border-radius: 7px; border: 1px solid var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); font-size: 13.5px; line-height: 1.5; color: var(--ink); }
-        .xt-popup-detect { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+        .xt-popup-input { padding: 12px 14px; border-radius: 7px; border: 1px solid var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); font-size: calc(13.5px * var(--fs, 1)); line-height: 1.5; color: var(--ink); }
+        .xt-popup-detect { display: flex; align-items: center; gap: 8px; font-size: calc(12.5px * var(--fs, 1)); color: var(--muted); }
         .xt-popup-detect svg { color: var(--accent); }
         .xt-popup-detect strong { font-weight: 400; color: var(--accent); }
         .xt-popup-foot { display: flex; align-items: center; justify-content: space-between; }

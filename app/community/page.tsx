@@ -109,7 +109,7 @@ export default function CommunityPage() {
                   <Icon name={p.icon} size={18} />
                 </span>
                 <h3 className="h4">{p.title}</h3>
-                <p className="body" style={{ fontSize: 14.5 }}>
+                <p className="body" style={{ fontSize: "calc(14.5px * var(--fs, 1))" }}>
                   {p.body}
                 </p>
                 <TextLink href={p.cta.href}>{p.cta.label}</TextLink>
@@ -176,7 +176,7 @@ export default function CommunityPage() {
           display: grid; gap: 10px; align-content: start; padding: 22px; border-radius: var(--r-xl);
           background: var(--surface-2); border: var(--hair) solid var(--line);
         }
-        .cm-program .link { margin-top: 6px; font-size: 14.5px; }
+        .cm-program .link { margin-top: 6px; font-size: calc(14.5px * var(--fs, 1)); }
         .cm-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--surface); color: var(--accent); display: grid; place-items: center; box-shadow: 0 0 0 var(--hair) var(--line), var(--sh-xs); margin-bottom: 6px; }
         .cm-split {
           display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 5fr); gap: clamp(16px, 2vw, 24px);
@@ -186,8 +186,8 @@ export default function CommunityPage() {
         .cm-split-copy { display: grid; align-content: center; gap: 20px; padding: clamp(14px, 2vw, 28px); }
         .cm-principles { margin: 0; display: grid; gap: 14px; }
         .cm-principles div { display: grid; gap: 2px; padding-top: 12px; border-top: var(--hair) solid var(--line); }
-        .cm-principles dt { font-size: 15px; font-weight: 500; color: var(--ink); }
-        .cm-principles dd { margin: 0; font-size: 14.5px; color: var(--muted); }
+        .cm-principles dt { font-size: calc(15px * var(--fs, 1)); font-weight: 500; color: var(--ink); }
+        .cm-principles dd { margin: 0; font-size: calc(14.5px * var(--fs, 1)); color: var(--muted); }
         @media (max-width: 1100px) { .cm-programs { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 960px) { .cm-split { grid-template-columns: 1fr; } }
         @media (max-width: 760px) {

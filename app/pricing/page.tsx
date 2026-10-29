@@ -100,16 +100,16 @@ export default function PricingPage() {
       <CtaBand title="Starte kostenlos, wechsle zu Pro, wenn es passt." lead="Free für immer, Pro 14 Tage testen. Mitglieder und Kunden sind immer unbegrenzt." facts={["Monatlich kündbar", "Server in Deutschland", "AVV inklusive"]} />
 
       <style>{`
-        .pr-note { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--faint); text-align: center; flex-wrap: wrap; }
+        .pr-note { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: calc(13px * var(--fs, 1)); color: var(--faint); text-align: center; flex-wrap: wrap; }
         .pr-table-wrap { overflow-x: auto; }
         .pr-table-wrap .cmp { min-width: 720px; }
         .pr-faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         @media (max-width: 860px) { .pr-faq { grid-template-columns: 1fr; } .cmp thead th { position: static; } }
         @media (max-width: 640px) {
-          .pr-table-wrap .cmp { min-width: 0; font-size: 12.5px; }
+          .pr-table-wrap .cmp { min-width: 600px; font-size: calc(12.5px * var(--fs, 1)); }
           .pr-table-wrap .cmp th, .pr-table-wrap .cmp td { padding: 10px 4px; }
-          .pr-table-wrap .cmp th[scope="row"] { width: 34%; font-size: 12.5px; }
+          .pr-table-wrap .cmp th[scope="row"] { width: 34%; font-size: calc(12.5px * var(--fs, 1)); }
           .pr-table-wrap .cmp td:not(:first-child), .pr-table-wrap .cmp th:not(:first-child) { width: 22%; }
         }
       `}</style>
