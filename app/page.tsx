@@ -64,13 +64,12 @@ export default function HomePage() {
         <div className="wrap wrap--wide">
           <Reveal className="hero-copy">
             <h1 className="display">
-              Das Team arbeitet. Der Kunde rätselt.
+              Das Team arbeitet.
               <br />
-              <span className="display-accent">Festag schließt die Lücke.</span>
+              <span className="display-accent">Festag macht es sichtbar.</span>
             </h1>
             <p className="lead">
-              Operational Intelligence über GitHub, Linear, Jira und Slack — Tagro übersetzt Arbeit in Status, Risiken und
-              Entscheidungen, die Kunden und Führung verstehen.
+              Aus GitHub, Linear, Jira und Slack werden Status, Risiken und Entscheidungen, die Kunden verstehen.
             </p>
             <div className="btn-row">
               <Button href={links.register} variant="solid" size="lg" arrow>
