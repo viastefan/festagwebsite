@@ -1,10 +1,9 @@
 "use client";
 
 import "./appdemo.css";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { useTimeline } from "./hooks";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
-/* ───────── Theme (Hell / Dunkel wie festag.app) — geteilt von allen Demos ───────── */
+/* ───────── Theme (Hell / Dunkel wie festag.app), geteilt von allen Demos ───────── */
 
 type Theme = "light" | "dark";
 const KEY = "festag-demo-theme";
@@ -40,6 +39,8 @@ function useTheme(): Theme {
   return useSyncExternalStore(subscribe, readTheme, () => "light");
 }
 
+/* ───────── Steuerung: läuft von allein, bis jemand klickt ───────── */
+
 function useReducedMotion() {
   const [r, setR] = useState(false);
   useEffect(() => {
@@ -61,12 +62,37 @@ function useInView<T extends Element>() {
   return [ref, v] as const;
 }
 
-/** Läuft nur im Sichtbereich; mit reduzierter Bewegung steht der Endzustand. */
-function useScene(durations: readonly number[]) {
+/** Spielt `steps` in Schleife ab, solange `active`. Schritt = [Wartezeit in ms, Aktion]. */
+function useScript(active: boolean, steps: [number, () => void][]) {
+  const ref = useRef(steps);
+  ref.current = steps;
+  useEffect(() => {
+    if (!active) return;
+    let i = 0;
+    let t = 0;
+    const run = () => {
+      const [ms, fn] = ref.current[i];
+      t = window.setTimeout(() => {
+        fn();
+        i = (i + 1) % ref.current.length;
+        run();
+      }, ms);
+    };
+    run();
+    return () => window.clearTimeout(t);
+  }, [active]);
+}
+
+/** Jede Szene: Autoplay im Sichtbereich; der erste Klick darin übergibt die Steuerung an die Person. */
+function useDemo() {
   const [ref, inView] = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
-  const [step] = useTimeline(durations, inView && !reduced);
-  return { ref, step: reduced ? durations.length - 2 : step };
+  const [manual, setManual] = useState(false);
+  const auto = inView && !manual && !reduced;
+  const onPointerDownCapture = useCallback((e: React.PointerEvent) => {
+    if (!(e.target as HTMLElement).closest(".ad-theme")) setManual(true);
+  }, []);
+  return { ref, auto, onPointerDownCapture };
 }
 
 /* ───────── Icons ───────── */
@@ -93,26 +119,9 @@ const I = {
       <path d="m3 4.5 3 3 3-3" />
     </svg>
   ),
-  info: (
-    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
-      <circle cx="6" cy="6" r="4.6" />
-      <path d="M6 5.4V8.4M6 3.8v.1" />
-    </svg>
-  ),
-  mark: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4" />
-      <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
-    </svg>
-  ),
   up: (
     <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 10V2.5M2.8 5.5 6 2.3l3.2 3.2" />
-    </svg>
-  ),
-  logo: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4 6.5C4 5.1 5.1 4 6.5 4H17a3 3 0 0 1 0 6H9.5v2H15a3 3 0 0 1 0 6h-4.5v2.5a1.5 1.5 0 0 1-3 0V14H6.5A2.5 2.5 0 0 1 4 11.5v-5Z" />
     </svg>
   ),
 };
@@ -132,69 +141,22 @@ function ThemeSwitch({ theme }: { theme: Theme }) {
   );
 }
 
-function Rail() {
-  return (
-    <aside className="ad-rail" aria-hidden>
-      <div className="ad-rail-mark">
-        <span className="ad-mark" />
-        festag
-      </div>
-      <div className="ad-nav is-active">
-        Status
-        <span className="k">S</span>
-      </div>
-      <div className="ad-nav">
-        Entscheidungen
-        <span className="n">2</span>
-        <span className="k">E</span>
-      </div>
-      <div className="ad-nav">
-        Projekte<span className="k">P</span>
-      </div>
-      <div className="ad-nav">
-        Lieferungen<span className="k">L</span>
-      </div>
-      <div className="ad-nav">
-        Aufgaben<span className="k">A</span>
-      </div>
-      <div className="ad-rail-more">Mehr</div>
-      <div className="ad-nav">Aktivität</div>
-      <div className="ad-nav">Team</div>
-      <div className="ad-rail-foot">
-        <div className="ad-nav">Aven</div>
-        <div className="ad-user">
-          <i>SN</i>
-          <span>
-            Sara Nord<small>Studio Nord</small>
-          </span>
-        </div>
-      </div>
-    </aside>
-  );
-}
-
 function Frame({
   children,
-  rail = true,
+  rail,
   title = "Festag",
   height,
   fixed,
-  className,
 }: {
   children: React.ReactNode;
-  rail?: boolean;
+  rail?: React.ReactNode;
   title?: string;
   height?: number;
   fixed?: boolean;
-  className?: string;
 }) {
   const theme = useTheme();
   return (
-    <div
-      className={`ad ${className ?? ""}`}
-      data-theme={theme}
-      style={height ? ({ "--ad-h": `${height}px` } as React.CSSProperties) : undefined}
-    >
+    <div className="ad" data-theme={theme} style={height ? ({ "--ad-h": `${height}px` } as React.CSSProperties) : undefined}>
       <div className="adw">
         <div className="adw-bar">
           <div className="adw-dots" aria-hidden>
@@ -208,7 +170,7 @@ function Frame({
           </div>
         </div>
         <div className={`adw-body${rail ? "" : " no-rail"}${fixed ? " is-fixed" : ""}`}>
-          {rail ? <Rail /> : null}
+          {rail}
           <div className="ad-main">{children}</div>
         </div>
       </div>
@@ -224,8 +186,9 @@ const ART: Record<string, [string, string]> = {
   dash: ["#d6d2c2", "#efece2"],
   farbe: ["#d2c8c0", "#f0eae4"],
 };
+type ArtKey = keyof typeof ART;
 
-function Thumb({ seed, lg }: { seed: keyof typeof ART; lg?: boolean }) {
+function Thumb({ seed, lg }: { seed: ArtKey; lg?: boolean }) {
   const [c1, c2] = ART[seed];
   return (
     <span className={`ad-thumb${lg ? " is-lg" : ""}`} aria-hidden style={{ "--c1": c1, "--c2": c2 } as React.CSSProperties}>
@@ -238,7 +201,9 @@ function Thumb({ seed, lg }: { seed: keyof typeof ART; lg?: boolean }) {
   );
 }
 
-function Ring({ state }: { state: "open" | "busy" | "done" }) {
+type RingState = "open" | "busy" | "done";
+
+function Ring({ state }: { state: RingState }) {
   return (
     <span className={`ad-ring${state === "done" ? " is-done" : state === "busy" ? " is-busy" : ""}`} aria-hidden>
       {state === "done" ? I.check : null}
@@ -246,80 +211,197 @@ function Ring({ state }: { state: "open" | "busy" | "done" }) {
   );
 }
 
-type RowData = {
-  key: string;
-  seed: keyof typeof ART;
+/** Zeile im Feed: antippbar, klappt Details auf, der Ring lässt sich einzeln abhaken. */
+function ExpandRow({
+  title,
+  text,
+  when,
+  seed,
+  ring,
+  onRing,
+  open,
+  onClick,
+  detail,
+  dim,
+  isNew,
+}: {
   title: string;
-  text: string;
-  when: string;
-  done?: boolean;
-};
-
-function Row({ r, dim, isNew }: { r: RowData; dim?: boolean; isNew?: boolean }) {
+  text?: string;
+  when?: string;
+  seed?: ArtKey;
+  ring?: RingState;
+  onRing?: () => void;
+  open?: boolean;
+  onClick?: () => void;
+  detail?: React.ReactNode;
+  dim?: boolean;
+  isNew?: boolean;
+}) {
+  const click = onClick
+    ? {
+        role: "button" as const,
+        tabIndex: 0,
+        "aria-expanded": detail ? !!open : undefined,
+        onClick,
+        onKeyDown: (e: React.KeyboardEvent) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onClick();
+          }
+        },
+      }
+    : {};
   return (
-    <div className={`ad-row${r.done ? " is-done" : ""}${dim ? " is-dim" : ""}${isNew ? " is-new" : ""}`}>
-      <Thumb seed={r.seed} />
-      <div className="ad-row-copy">
-        <h4 className="ad-row-title">{r.title}</h4>
-        <p className="ad-row-text">{r.text}</p>
+    <div className={`ad-rowwrap${dim ? " is-dim" : ""}${isNew ? " is-new" : ""}`}>
+      <div className={`ad-row${ring === "done" ? " is-done" : ""}${onClick ? " is-click" : ""}`} {...click}>
+        {seed ? <Thumb seed={seed} /> : null}
+        <div className="ad-row-copy">
+          <h4 className="ad-row-title">{title}</h4>
+          {text ? <p className="ad-row-text">{text}</p> : null}
+        </div>
+        {when || ring ? (
+          <div className="ad-row-side">
+            <span className="ad-when">{when}</span>
+            {ring ? (
+              onRing ? (
+                <button
+                  type="button"
+                  className="ad-ringbtn"
+                  aria-label={ring === "done" ? "Als offen markieren" : "Abhaken"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRing();
+                  }}
+                >
+                  <Ring state={ring} />
+                </button>
+              ) : (
+                <Ring state={ring} />
+              )
+            ) : null}
+          </div>
+        ) : null}
       </div>
-      <div className="ad-row-side">
-        <span className="ad-when">{r.when}</span>
-        <Ring state={r.done ? "done" : "open"} />
-      </div>
+      {open && detail ? <div className="ad-detail">{detail}</div> : null}
     </div>
   );
 }
 
-const ROWS: RowData[] = [
-  {
-    key: "api",
-    seed: "api",
-    title: "Zugang zur Kunden-API",
-    text: "Atlas Kundenportal: Der Login-Meilenstein hängt seit drei Tagen am fehlenden Zugang.",
-    when: "34 Min.",
-  },
-  {
-    key: "dash",
-    seed: "dash",
-    title: "Dashboard-Modul abgenommen",
-    text: "Belegt durch PR #402. Das Update an den Kunden ist formuliert und wartet auf Freigabe.",
-    when: "2 Std.",
-    done: true,
-  },
-  {
-    key: "farbe",
-    seed: "farbe",
-    title: "Farben und Schriften erteilt",
-    text: "Entscheidung erteilt. Die Umsetzung ist an das Team übergeben.",
-    when: "Gestern",
-    done: true,
-  },
-];
+/* ───────── Entscheidungen (Daten + Zustand) ───────── */
 
-/* Die eine Entscheidung, um die sich alles dreht. */
-const DECISION = {
+type Opt = { id: string; label: string; note: string; rec?: boolean };
+type Dec = {
+  id: string;
+  seed: ArtKey;
+  tag: string;
+  deadline: string;
+  title: string;
+  sub: string;
+  rowText: string;
+  when: string;
+  opts: Opt[];
+  why: (o: Opt) => string;
+  then: string;
+  decidedTitle: (o: Opt) => string;
+  steps: (o: Opt) => { t: string; s: string }[];
+};
+
+const ZAHLUNG: Dec = {
+  id: "zahlung",
+  seed: "zahlung",
   tag: "Nordlicht Checkout",
   deadline: "Deadline 14. Oktober",
   title: "Zahlungsanbieter wählen",
-  decidedTitle: "Mollie als Zahlungsmethode wählen",
   sub: "Nordlicht wartet auf deine Wahl. Ohne Anbieter steht der Checkout still.",
-  rec: "Mollie",
-  recText: "Günstigere Gebühren bei eurem Volumen, SEPA und Klarna ohne Zusatzvertrag.",
-  why: (
-    <>
-      <b>Warum Mollie:</b> Bei rund 600 Bestellungen im Monat spart ihr gegenüber Stripe etwa 38 € Gebühren. SEPA-Lastschrift und
-      Klarna sind enthalten, die Anbindung dauert einen Tag statt drei.
-    </>
-  ),
+  rowText: "Nordlicht Checkout wartet auf deine Wahl. Aven empfiehlt Mollie.",
+  when: "jetzt",
+  opts: [
+    { id: "mollie", label: "Mollie", note: "Günstigere Gebühren bei eurem Volumen, SEPA und Klarna ohne Zusatzvertrag.", rec: true },
+    { id: "stripe", label: "Stripe", note: "Größtes Ökosystem, bei eurem Volumen etwa 38 € mehr Gebühren im Monat." },
+    { id: "adyen", label: "Adyen", note: "Lohnt sich erst bei deutlich höherem Volumen, teurere Einrichtung." },
+  ],
+  why: (o) =>
+    o.id === "mollie"
+      ? "Bei rund 600 Bestellungen im Monat spart ihr gegenüber Stripe etwa 38 € Gebühren. SEPA-Lastschrift und Klarna sind enthalten, die Anbindung dauert einen Tag statt drei."
+      : o.id === "stripe"
+        ? "Stripe hat das größte Ökosystem und die beste Dokumentation, kostet bei eurem Volumen aber etwa 38 € mehr im Monat. Die Anbindung dauert drei Tage."
+        : "Adyen ist für Händler mit sehr hohem Volumen gebaut. Bei 600 Bestellungen zahlt ihr vor allem die Einrichtung und bekommt wenig dafür.",
+  then: "Aven übergibt die Aufgabe an Claude Code und prüft den Pull Request.",
+  decidedTitle: (o) => `${o.label} als Zahlungsmethode wählen`,
+  steps: (o) => [
+    { t: "An Claude Code weitergegeben", s: "Aven hat den Brief mit Kontext und Akzeptanzkriterien übergeben." },
+    { t: "Pull Request #402 geöffnet", s: `${o.label}-Checkout, +142 −18, Tests grün` },
+    { t: "Gemerged und live in der Vorschau", s: "Aven prüft den Beleg und schreibt das Update für Nordlicht." },
+  ],
 };
 
-function Timeline({ stage }: { stage: number }) {
-  const items = [
-    { t: "An Claude Code weitergegeben", s: "Aven hat den Brief mit Kontext und Akzeptanzkriterien übergeben." },
-    { t: "Pull Request #402 geöffnet", s: "Mollie-Checkout, +142 −18, Tests grün" },
-    { t: "Gemerged und live in der Vorschau", s: "Aven prüft den Beleg und schreibt das Update für Nordlicht." },
-  ];
+const API: Dec = {
+  id: "api",
+  seed: "api",
+  tag: "Atlas Kundenportal",
+  deadline: "Deadline 16. Oktober",
+  title: "Zugang zur Kunden-API",
+  sub: "Der Login-Meilenstein hängt seit drei Tagen am fehlenden Zugang.",
+  rowText: "Atlas Kundenportal: Der Login-Meilenstein hängt seit drei Tagen am fehlenden Zugang.",
+  when: "34 Min.",
+  opts: [
+    { id: "mail", label: "Zugang per Mail anfragen", note: "Aven entwirft die Mail, du sendest sie an den Kunden.", rec: true },
+    { id: "sandbox", label: "Mit Sandbox-Zugang weiterbauen", note: "Der Login-Meilenstein läuft weiter, die echte Anbindung folgt später." },
+    { id: "shift", label: "Meilenstein verschieben", note: "Launch eine Woche später, das Risiko sinkt um 42 %." },
+  ],
+  why: (o) =>
+    o.id === "mail"
+      ? "Der Zugang fehlt seit drei Tagen und blockiert drei Aufgaben. Eine klare Mail mit Frist ist der schnellste Weg, der Plan bleibt unverändert."
+      : o.id === "sandbox"
+        ? "Mit Sandbox-Daten kann das Team weiterarbeiten, muss die Anbindung aber später nachziehen. Das Risiko bleibt bestehen."
+        : "Ein späterer Launch nimmt den Druck, verschiebt aber auch das Update an den Kunden um eine Woche.",
+  then: "Aven legt die Aufgabe an und informiert den Kunden in ruhiger Sprache.",
+  decidedTitle: (o) => `Atlas: ${o.label}`,
+  steps: (o) => [
+    { t: "Entscheidung festgehalten", s: `${o.label}. Aven hat die Begründung im Projekt abgelegt.` },
+    { t: "An das Team übergeben", s: "Die Aufgabe liegt bei Claude Code, Aven prüft den Beleg." },
+    { t: "Kunde informiert", s: "Aven hat das Update in ruhiger Sprache formuliert." },
+  ],
+};
+
+type Phase = "idle" | "deciding" | "decided";
+
+function useDecision(d: Dec) {
+  const rec = d.opts.find((o) => o.rec) ?? d.opts[0];
+  const [sel, setSel] = useState(rec.id);
+  const [why, setWhy] = useState(false);
+  const [others, setOthers] = useState(false);
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [stage, setStage] = useState(0);
+
+  useEffect(() => {
+    if (phase === "deciding") {
+      const t = window.setTimeout(() => {
+        setPhase("decided");
+        setStage(1);
+      }, 900);
+      return () => window.clearTimeout(t);
+    }
+    if (phase === "decided" && stage < 3) {
+      const t = window.setTimeout(() => setStage((s) => s + 1), 1400);
+      return () => window.clearTimeout(t);
+    }
+  }, [phase, stage]);
+
+  const decide = useCallback(() => setPhase((p) => (p === "idle" ? "deciding" : p)), []);
+  const reset = useCallback(() => {
+    setPhase("idle");
+    setStage(0);
+    setWhy(false);
+    setOthers(false);
+    setSel(rec.id);
+  }, [rec.id]);
+
+  return { d, rec, sel, setSel, why, setWhy, others, setOthers, phase, stage, decide, reset, opt: d.opts.find((o) => o.id === sel) ?? rec };
+}
+type DecState = ReturnType<typeof useDecision>;
+
+function Timeline({ items, stage }: { items: { t: string; s: string }[]; stage: number }) {
   return (
     <ol className="ad-tl">
       {items.map((it, i) => {
@@ -340,69 +422,383 @@ function Timeline({ stage }: { stage: number }) {
 }
 
 function DecisionCard({
-  press,
-  busy,
-  decided,
-  why,
-  stage,
+  s,
+  onClose,
+  onAsk,
 }: {
-  press?: boolean;
-  busy?: boolean;
-  decided?: boolean;
-  why?: boolean;
-  stage?: number;
+  s: DecState;
+  onClose?: () => void;
+  onAsk?: (q: string) => void;
 }) {
+  const { d, opt, phase, stage } = s;
+  const decided = phase === "decided";
+  const busy = phase === "deciding";
+  const [draft, setDraft] = useState("");
   return (
-    <article className="ad-card" aria-label="Entscheidung">
-      <div className="ad-card-head">
-        <Thumb seed="zahlung" lg />
+    <article className="ad-card" aria-label={d.title}>
+      <div
+        className={`ad-card-head${onClose ? " is-click" : ""}`}
+        onClick={onClose}
+        role={onClose ? "button" : undefined}
+        tabIndex={onClose ? 0 : undefined}
+        onKeyDown={(e) => {
+          if (onClose && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            onClose();
+          }
+        }}
+        aria-label={onClose ? "Karte schließen" : undefined}
+      >
+        <Thumb seed={d.seed} lg />
         <div className="ad-card-titles">
           <div className="ad-card-meta">
-            <span className="ad-tag">{DECISION.tag}</span>
-            <span className="ad-when">{decided ? "Entschieden" : DECISION.deadline}</span>
+            <span className="ad-tag">{d.tag}</span>
+            <span className="ad-when">{decided ? "Entschieden" : d.deadline}</span>
           </div>
-          <h3 className="ad-card-title">{decided ? DECISION.decidedTitle : DECISION.title}</h3>
-          {decided ? null : <p className="ad-card-sub">{DECISION.sub}</p>}
+          <h3 className="ad-card-title">{decided ? d.decidedTitle(opt) : d.title}</h3>
+          {decided ? null : <p className="ad-card-sub">{d.sub}</p>}
         </div>
         <Ring state={decided ? "done" : busy ? "busy" : "open"} />
       </div>
 
       {decided ? (
-        <Timeline stage={stage ?? 0} />
+        <>
+          <Timeline items={d.steps(opt)} stage={stage} />
+          <button type="button" className="ad-link" onClick={s.reset}>
+            Noch einmal durchspielen
+          </button>
+        </>
       ) : (
         <>
           <div className="ad-panel">
             <div>
-              <small>
-                Aven empfiehlt
-              </small>
-              <strong>{DECISION.rec}</strong>
-              <p>{DECISION.recText}</p>
+              <small>{opt.rec ? "Aven empfiehlt" : "Deine Wahl"}</small>
+              <strong>{opt.label}</strong>
+              <p>{opt.note}</p>
             </div>
-            <span className={`ad-cta${press ? " is-press" : ""}`}>Entscheidung treffen</span>
+            <button type="button" className={`ad-cta${busy ? " is-press" : ""}`} onClick={s.decide} disabled={busy}>
+              {busy ? "Wird festgehalten …" : "Entscheidung treffen"}
+            </button>
           </div>
-          {why ? <div className="ad-why">{DECISION.why}</div> : null}
+          {s.why ? <div className="ad-why"><b>Warum {opt.label}:</b> {d.why(opt)}</div> : null}
+          {s.others ? (
+            <div className="ad-opts" role="radiogroup" aria-label="Optionen">
+              {d.opts.map((o) => (
+                <button
+                  key={o.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={o.id === s.sel}
+                  className={`ad-opt${o.id === s.sel ? " is-on" : ""}`}
+                  onClick={() => s.setSel(o.id)}
+                >
+                  <span className="ad-radio" aria-hidden />
+                  <span>
+                    <b>{o.label}</b>
+                    {o.rec ? <em>Empfohlen</em> : null}
+                    <small>{o.note}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : null}
           <div className="ad-chips">
-            <span className="ad-chip">Andere Optionen {I.caret}</span>
+            <button type="button" className={`ad-chip${s.others ? " is-on" : ""}`} aria-expanded={s.others} onClick={() => s.setOthers(!s.others)}>
+              Andere Optionen {I.caret}
+            </button>
             <span className="ad-chip is-static">Zahlung</span>
-            <span className={`ad-chip${why ? " is-on" : ""}`}>Warum {I.caret}</span>
+            <button type="button" className={`ad-chip${s.why ? " is-on" : ""}`} aria-expanded={s.why} onClick={() => s.setWhy(!s.why)}>
+              Warum {I.caret}
+            </button>
           </div>
           <p className="ad-then">
-            Dann passiert: <b>Aven übergibt die Aufgabe an Claude Code</b> und prüft den Pull Request.
+            Dann passiert: <b>{d.then}</b>
           </p>
         </>
       )}
 
-      <div className="ad-ask">
-        <span>Frag Aven …</span>
-        <i>{I.up}</i>
-      </div>
+      {onAsk ? (
+        <form
+          className="ad-ask"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const q = draft.trim();
+            if (q) {
+              onAsk(q);
+              setDraft("");
+            }
+          }}
+        >
+          <input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder="Frag Aven …" aria-label="Frag Aven" />
+          <button type="submit" aria-label="Senden">
+            {I.up}
+          </button>
+        </form>
+      ) : null}
     </article>
   );
 }
 
+/* ───────── Aven: Fragen und belegte Antworten ───────── */
 
-/* Zweites, überlappendes Fenster wie bei Cursor („CLI“): Avens Verlauf. */
+type QA = { q: string; keys: string[]; a: string; src: string[] };
+const QAS: QA[] = [
+  {
+    q: "Warum hängt der Login-Meilenstein?",
+    keys: ["login", "meilenstein", "hängt", "blockiert", "warum"],
+    a: "Der API-Zugang des Kunden fehlt seit drei Tagen und blockiert den Login-Meilenstein. Ich habe eine Entscheidung vorbereitet und das Update in ruhiger Sprache formuliert.",
+    src: ["Linear ATL-81", "Slack #atlas", "GitHub PR #402"],
+  },
+  {
+    q: "Was kostet Mollie bei 600 Bestellungen?",
+    keys: ["mollie", "stripe", "zahlung", "gebühr", "kosten", "preis"],
+    a: "Bei rund 600 Bestellungen im Monat zahlt ihr mit Mollie etwa 38 € weniger Gebühren als mit Stripe. SEPA-Lastschrift und Klarna sind enthalten.",
+    src: ["Mollie Preisliste", "Stripe Preisliste", "Nordlicht Bestellungen"],
+  },
+  {
+    q: "Wie steht Atlas?",
+    keys: ["atlas", "stand", "steht", "status", "fortschritt"],
+    a: "Atlas liegt bei 68 Prozent in der Build-Phase. Das Dashboard-Modul ist abnahmebereit, offen ist nur der API-Zugang des Kunden.",
+    src: ["Linear ATL-88", "GitHub PR #402"],
+  },
+  {
+    q: "Was sage ich dem Kunden?",
+    keys: ["kunde", "kunden", "sagen", "update", "mail"],
+    a: "Sagt Atlas, dass das Dashboard fertig ist und der Login-Bereich noch auf den API-Zugang wartet. Ohne Zugang verschiebt sich der Meilenstein um drei bis fünf Tage. Den Text habe ich vorbereitet.",
+    src: ["Slack #atlas", "Linear ATL-81"],
+  },
+];
+const FALLBACK: QA = {
+  q: "",
+  keys: [],
+  a: "Dazu habe ich in den verbundenen Tools noch nichts Belegtes gefunden. Ich frage nach und melde mich, sobald es eine Quelle gibt.",
+  src: [],
+};
+
+function answerFor(text: string): QA {
+  const t = text.toLowerCase();
+  let best: QA | null = null;
+  let score = 0;
+  for (const qa of QAS) {
+    const n = qa.keys.filter((k) => t.includes(k)).length;
+    if (n > score) {
+      score = n;
+      best = qa;
+    }
+  }
+  return best ?? FALLBACK;
+}
+
+type Turn = { id: number; q: string; qa: QA; thinking: boolean };
+
+function AskPanel({ auto, seed }: { auto: boolean; seed?: { text: string; n: number } | null }) {
+  const [turns, setTurns] = useState<Turn[]>([]);
+  const [draft, setDraft] = useState("");
+  const idRef = useRef(0);
+  const autoIdx = useRef(0);
+  const timers = useRef<number[]>([]);
+
+  useEffect(() => {
+    const list = timers.current;
+    return () => list.forEach((t) => window.clearTimeout(t));
+  }, []);
+
+  const ask = useCallback((q: string) => {
+    const id = ++idRef.current;
+    setTurns((ts) => [...ts, { id, q, qa: answerFor(q), thinking: true }].slice(-3));
+    timers.current.push(
+      window.setTimeout(() => setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, thinking: false } : t))), 1100),
+    );
+  }, []);
+
+  const seeded = useRef(0);
+  useEffect(() => {
+    if (seed && seed.n !== seeded.current) {
+      seeded.current = seed.n;
+      ask(seed.text);
+    }
+  }, [seed, ask]);
+
+  useScript(auto, [
+    [900, () => ask(QAS[autoIdx.current++ % QAS.length].q)],
+    [5600, () => setTurns([])],
+  ]);
+
+  const asked = new Set(turns.map((t) => t.q));
+  const suggestions = QAS.filter((qa) => !asked.has(qa.q)).slice(0, 3);
+
+  return (
+    <div className="ad-chat">
+      <div className="ad-turns">
+        {turns.length === 0 ? <p className="ad-empty">Frag, was wirklich läuft. Aven antwortet mit Quelle.</p> : null}
+        {turns.map((t, ti) => {
+          const words = t.qa.a.split(/(\s+)/);
+          let w = 0;
+          const last = ti === turns.length - 1;
+          return (
+            <div key={t.id} className="ad-turn">
+              <div className="ad-me">{t.q}</div>
+              <div className="ad-aven">
+                <div className="ad-aven-body">
+                  {t.thinking ? (
+                    <span className="ad-dots" aria-label="Aven denkt nach">
+                      <span />
+                      <span />
+                      <span />
+                    </span>
+                  ) : (
+                    <>
+                      <p>
+                        {words.map((part, i) =>
+                          /^\s+$/.test(part) || !last ? (
+                            part
+                          ) : (
+                            <span key={i} className="ad-word" style={{ "--w": Math.min(w++, 60) } as React.CSSProperties}>
+                              {part}
+                            </span>
+                          ),
+                        )}
+                      </p>
+                      {t.qa.src.length ? (
+                        <div className="ad-chips ad-src">
+                          {t.qa.src.map((x) => (
+                            <span key={x} className="ad-chip is-static">
+                              {x}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="ad-suggest">
+        {suggestions.map((qa) => (
+          <button key={qa.q} type="button" className="ad-chip" onClick={() => ask(qa.q)}>
+            {qa.q}
+          </button>
+        ))}
+      </div>
+      <form
+        className="ad-ask"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const q = draft.trim();
+          if (q) {
+            ask(q);
+            setDraft("");
+          }
+        }}
+      >
+        <input value={draft} onChange={(e) => setDraft(e.target.value)} placeholder="Frag Aven …" aria-label="Frag Aven" />
+        <button type="submit" aria-label="Senden">
+          {I.up}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+/* ───────── Listen für Projekte, Lieferungen, Aufgaben ───────── */
+
+const PROJECTS = [
+  { id: "atlas", n: "Atlas Kundenportal", s: "Build, 68 %", h: 72, k: "1 Entscheidung wartet", seed: "api" as ArtKey, detail: "Phase Build. Offen: Zugang zur Kunden-API. Nächster Schritt: Login-Meilenstein, sobald der Zugang da ist." },
+  { id: "nord", n: "Nordlicht Checkout", s: "Review, 81 %", h: 88, k: "Zahlungsanbieter offen", seed: "zahlung" as ArtKey, detail: "Phase Review. Offen: Wahl des Zahlungsanbieters. Danach geht der Checkout in die Vorschau." },
+  { id: "velo", n: "Velo Preview", s: "Live, 100 %", h: 94, k: "Alles geliefert", seed: "dash" as ArtKey, detail: "Phase Live. Alle Lieferungen sind belegt und beim Kunden angekommen." },
+  { id: "kontor", n: "Kontor Relaunch", s: "Discovery, 22 %", h: 54, k: "Risiko: Inhalte fehlen", seed: "farbe" as ArtKey, detail: "Phase Discovery. Risiko: Die Inhalte vom Kunden fehlen, das verschiebt den Start um etwa zwei Wochen." },
+];
+
+function ProjectsList({ auto }: { auto?: boolean }) {
+  const [open, setOpen] = useState<string | null>(null);
+  useScript(!!auto, [
+    [1200, () => setOpen("atlas")],
+    [2200, () => setOpen("nord")],
+    [2200, () => setOpen("kontor")],
+    [2600, () => setOpen(null)],
+  ]);
+  return (
+    <div className="ad-list">
+      {PROJECTS.map((p) => (
+        <ExpandRow
+          key={p.id}
+          seed={p.seed}
+          title={p.n}
+          text={`${p.s}, ${p.k}`}
+          when={`Health ${p.h}`}
+          ring={p.h >= 85 ? "done" : "open"}
+          open={open === p.id}
+          onClick={() => setOpen(open === p.id ? null : p.id)}
+          detail={
+            <>
+              <div className="ad-bar" aria-hidden>
+                <i style={{ width: `${p.h}%` }} />
+              </div>
+              <p>{p.detail}</p>
+            </>
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
+const LIEFER = [
+  { id: "dash", t: "Dashboard-Modul", s: "PR #402, gemerged", w: "2 Std.", seed: "dash" as ArtKey, d: "Belegt durch Tests und Vorschau. Das Update an den Kunden ist formuliert und wartet auf Freigabe." },
+  { id: "rollen", t: "Rollen und Rechte", s: "PR #398, gemerged", w: "Mo.", seed: "farbe" as ArtKey, d: "Vom Kunden abgenommen. Aven hat den Beleg ins Projekt gelegt." },
+  { id: "velo", t: "Velo Preview", s: "Live seit einer Stunde", w: "1 Std.", seed: "api" as ArtKey, d: "Die Vorschau läuft, der Kunde hat den Link bekommen." },
+];
+
+function DeliveriesList() {
+  const [open, setOpen] = useState<string | null>("dash");
+  return (
+    <div className="ad-list">
+      {LIEFER.map((l) => (
+        <ExpandRow
+          key={l.id}
+          seed={l.seed}
+          title={l.t}
+          text={l.s}
+          when={l.w}
+          ring="done"
+          open={open === l.id}
+          onClick={() => setOpen(open === l.id ? null : l.id)}
+          detail={<p>{l.d}</p>}
+        />
+      ))}
+    </div>
+  );
+}
+
+function TasksList() {
+  const [done, setDone] = useState<Record<string, boolean>>({ dash: true });
+  const tasks = [
+    { id: "hooks", t: "Mollie-Webhooks testen", s: "Nordlicht Checkout, Claude Code" },
+    { id: "mail", t: "Zugang zur Atlas-API anfragen", s: "Atlas Kundenportal, du" },
+    { id: "dash", t: "Dashboard-Modul abnehmen", s: "Atlas Kundenportal, erledigt" },
+    { id: "copy", t: "Texte für Kontor sammeln", s: "Kontor Relaunch, Kunde" },
+  ];
+  return (
+    <div className="ad-list">
+      {tasks.map((x) => (
+        <ExpandRow
+          key={x.id}
+          title={x.t}
+          text={x.s}
+          ring={done[x.id] ? "done" : "open"}
+          onClick={() => setDone({ ...done, [x.id]: !done[x.id] })}
+          onRing={() => setDone({ ...done, [x.id]: !done[x.id] })}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ───────── Zweites, überlappendes Fenster (Hero) ───────── */
+
 function Peek({ step }: { step: number }) {
   const theme = useTheme();
   const lines: [string, string][] = [
@@ -447,77 +843,213 @@ function Peek({ step }: { step: number }) {
   );
 }
 
-/* ───────── Szene 1: Hero — vom Feed zur getroffenen Entscheidung ───────── */
+/* ───────── Szene 1: Hero, eine kleine klickbare App ───────── */
 
-const HERO_STEPS = [1900, 2300, 2700, 1200, 1500, 1500, 1500, 2800] as const;
+type View = "status" | "decisions" | "projects" | "deliveries" | "tasks" | "aven";
+const NAV: { v: View; label: string; key: string }[] = [
+  { v: "status", label: "Status", key: "S" },
+  { v: "decisions", label: "Entscheidungen", key: "E" },
+  { v: "projects", label: "Projekte", key: "P" },
+  { v: "deliveries", label: "Lieferungen", key: "L" },
+  { v: "tasks", label: "Aufgaben", key: "A" },
+];
+
+function Rail({ view, onView, open }: { view: View; onView: (v: View) => void; open: number }) {
+  return (
+    <aside className="ad-rail" aria-label="Navigation">
+      <div className="ad-rail-mark">
+        <span className="ad-mark" />
+        festag
+      </div>
+      {NAV.map((n) => (
+        <button key={n.v} type="button" className={`ad-nav${view === n.v ? " is-active" : ""}`} onClick={() => onView(n.v)}>
+          {n.label}
+          {n.v === "decisions" && open > 0 ? <span className="n">{open}</span> : null}
+          <span className="k">{n.key}</span>
+        </button>
+      ))}
+      <div className="ad-rail-more">Mehr</div>
+      <div className="ad-nav is-static">Aktivität</div>
+      <div className="ad-nav is-static">Team</div>
+      <div className="ad-rail-foot">
+        <button type="button" className={`ad-nav${view === "aven" ? " is-active" : ""}`} onClick={() => onView("aven")}>
+          Aven
+        </button>
+        <div className="ad-user">
+          <i>SN</i>
+          <span>
+            Sara Nord<small>Studio Nord</small>
+          </span>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+const VIEW_TITLE: Record<View, string> = {
+  status: "Status",
+  decisions: "Entscheidungen",
+  projects: "Projekte",
+  deliveries: "Lieferungen",
+  tasks: "Aufgaben",
+  aven: "Aven",
+};
+
+const DONE_ROWS = [
+  { id: "dash", seed: "dash" as ArtKey, title: "Dashboard-Modul abgenommen", text: "Belegt durch PR #402. Das Update an den Kunden ist formuliert und wartet auf Freigabe.", when: "2 Std." },
+  { id: "farbe", seed: "farbe" as ArtKey, title: "Farben und Schriften erteilt", text: "Entscheidung erteilt. Die Umsetzung ist an das Team übergeben.", when: "Gestern" },
+];
 
 export function HeroApp() {
-  const { ref, step } = useScene(HERO_STEPS);
-  const open = step >= 1;
-  const decided = step >= 4;
-  const stage = Math.min(Math.max(step - 3, 0), 3);
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const [view, setView] = useState<View>("status");
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [seed, setSeed] = useState<{ text: string; n: number } | null>(null);
+  const z = useDecision(ZAHLUNG);
+  const a = useDecision(API);
+  const decs = [z, a];
+  const waiting = decs.filter((s) => s.phase !== "decided").length;
+
+  useScript(auto, [
+    [1700, () => setOpenId("zahlung")],
+    [2300, () => z.setWhy(true)],
+    [2700, () => z.decide()],
+    [6600, () => {
+      z.reset();
+      setOpenId(null);
+    }],
+  ]);
+
+  const go = (v: View) => {
+    setView(v);
+    if (v !== "status" && v !== "decisions") setOpenId(null);
+  };
+  const ask = (text: string) => {
+    setSeed({ text, n: (seed?.n ?? 0) + 1 });
+    setView("aven");
+  };
+
+  const renderDecisions = (only: boolean) => (
+    <div className="ad-list">
+      {decs.map((s) => {
+        const open = openId === s.d.id;
+        return open ? (
+          <DecisionCard key={s.d.id} s={s} onClose={() => setOpenId(null)} onAsk={ask} />
+        ) : (
+          <ExpandRow
+            key={s.d.id}
+            seed={s.d.seed}
+            title={s.phase === "decided" ? s.d.decidedTitle(s.opt) : s.d.title}
+            text={s.d.rowText}
+            when={s.phase === "decided" ? "Erledigt" : s.d.when}
+            ring={s.phase === "decided" ? "done" : "open"}
+            dim={openId !== null}
+            onClick={() => setOpenId(s.d.id)}
+          />
+        );
+      })}
+      {only
+        ? null
+        : DONE_ROWS.map((r) => (
+            <ExpandRow key={r.id} seed={r.seed} title={r.title} text={r.text} when={r.when} ring="done" dim={openId !== null} />
+          ))}
+    </div>
+  );
+
+  const peekStep = z.phase === "idle" ? (openId === "zahlung" ? 1 : 0) : z.phase === "deciding" ? 2 : z.stage === 1 ? 3 : 4;
+
   return (
-    <div ref={ref} className="ad-hero-wrap">
-      <Frame height={640} fixed>
-        <div className="ad-h">
-          <b>Status</b>
-          <span>2 Entscheidungen warten auf dich</span>
-        </div>
-        <div className="ad-list">
-          {open ? (
-            <DecisionCard
-              press={step === 3}
-              busy={step === 3}
-              decided={decided}
-              why={step === 2 || step === 3}
-              stage={stage}
-            />
-          ) : (
-            <Row
-              r={{
-                key: "zahlung",
-                seed: "zahlung",
-                title: DECISION.title,
-                text: "Nordlicht Checkout wartet auf deine Wahl. Aven empfiehlt Mollie.",
-                when: "jetzt",
-              }}
-            />
-          )}
-          {ROWS.map((r, i) => (
-            <Row key={r.key} r={r} dim={open} isNew={false} />
+    <div ref={ref} className="ad-hero-wrap" onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={640} fixed rail={<Rail view={view} onView={go} open={waiting} />}>
+        <div className="ad-tabs" role="tablist" aria-label="Ansicht">
+          {[...NAV.map((n) => ({ v: n.v, label: n.label })), { v: "aven" as View, label: "Aven" }].map((n) => (
+            <button key={n.v} type="button" role="tab" aria-selected={view === n.v} className={view === n.v ? "is-on" : ""} onClick={() => go(n.v)}>
+              {n.label}
+            </button>
           ))}
         </div>
+        <div className="ad-h">
+          <b>{VIEW_TITLE[view]}</b>
+          <span>
+            {view === "status" || view === "decisions"
+              ? `${waiting} ${waiting === 1 ? "Entscheidung wartet" : "Entscheidungen warten"} auf dich`
+              : view === "aven"
+                ? "Antworten mit Quelle"
+                : "Tippe auf eine Zeile"}
+          </span>
+        </div>
+        {view === "status" ? renderDecisions(false) : null}
+        {view === "decisions" ? renderDecisions(true) : null}
+        {view === "projects" ? <ProjectsList /> : null}
+        {view === "deliveries" ? <DeliveriesList /> : null}
+        {view === "tasks" ? <TasksList /> : null}
+        {view === "aven" ? <AskPanel auto={false} seed={seed} /> : null}
       </Frame>
-      <Peek step={step} />
+      {(view === "status" || view === "decisions") && peekStep > 0 ? <Peek step={peekStep} /> : null}
     </div>
   );
 }
 
 /* ───────── Szene 2: Status-Feed lebt ───────── */
 
-const FEED_STEPS = [1400, 1800, 1800, 2600] as const;
+const FEED_ROWS = [
+  { id: "api", seed: "api" as ArtKey, title: "Zugang zur Kunden-API", text: "Atlas Kundenportal: Der Login-Meilenstein hängt seit drei Tagen am fehlenden Zugang.", when: "34 Min.", detail: "Linear ATL-81, Slack #atlas, drei Threads. Aven hat den Zusammenhang belegt." },
+  { id: "dash", seed: "dash" as ArtKey, title: "Dashboard-Modul abgenommen", text: "Belegt durch PR #402. Das Update an den Kunden ist formuliert und wartet auf Freigabe.", when: "2 Std.", detail: "Tests grün, Vorschau abgenommen. Das Update liegt als Entwurf bereit." },
+  { id: "farbe", seed: "farbe" as ArtKey, title: "Farben und Schriften erteilt", text: "Entscheidung erteilt. Die Umsetzung ist an das Team übergeben.", when: "Gestern", detail: "Entschieden von Sara Nord, umgesetzt in PR #391." },
+];
 
 export function FeedScene() {
-  const { ref, step } = useScene(FEED_STEPS);
-  const fresh: RowData = {
-    key: "risiko",
-    seed: "zahlung",
-    title: "Risiko erkannt: API-Zugang fehlt",
-    text: "Aven hat den Zusammenhang belegt und eine Entscheidung vorbereitet.",
-    when: "jetzt",
-  };
-  const rows: RowData[] = ROWS.map((r) => (r.key === "api" && step >= 2 ? { ...r, done: true, when: "jetzt" } : r));
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const [fresh, setFresh] = useState(false);
+  const [done, setDone] = useState<Record<string, boolean>>({ dash: true, farbe: true });
+  const [open, setOpen] = useState<string | null>(null);
+
+  useScript(auto, [
+    [1400, () => setFresh(true)],
+    [1800, () => setDone((d) => ({ ...d, api: true }))],
+    [2800, () => {
+      setFresh(false);
+      setDone({ dash: true, farbe: true });
+    }],
+  ]);
+
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={470}>
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={500}>
         <div className="ad-h">
           <b>Status</b>
-          <span>Alles, was heute zählt</span>
+          <button type="button" className="ad-link" onClick={() => setFresh(!fresh)}>
+            {fresh ? "Signal zurücknehmen" : "Neues Signal auslösen"}
+          </button>
         </div>
         <div className="ad-list">
-          {step >= 1 ? <Row key="fresh" r={fresh} isNew /> : null}
-          {rows.map((r) => (
-            <Row key={r.key} r={r} />
+          {fresh ? (
+            <ExpandRow
+              key="fresh"
+              isNew
+              seed="zahlung"
+              title="Risiko erkannt: API-Zugang fehlt"
+              text="Aven hat den Zusammenhang belegt und eine Entscheidung vorbereitet."
+              when="jetzt"
+              ring="open"
+              open={open === "fresh"}
+              onClick={() => setOpen(open === "fresh" ? null : "fresh")}
+              detail={<p>Drei Aufgaben hängen am fehlenden Zugang. Empfehlung: Zugang per Mail anfragen, Frist in zwei Tagen.</p>}
+            />
+          ) : null}
+          {FEED_ROWS.map((r) => (
+            <ExpandRow
+              key={r.id}
+              seed={r.seed}
+              title={r.title}
+              text={r.text}
+              when={done[r.id] && r.id === "api" ? "jetzt" : r.when}
+              ring={done[r.id] ? "done" : "open"}
+              onRing={() => setDone({ ...done, [r.id]: !done[r.id] })}
+              open={open === r.id}
+              onClick={() => setOpen(open === r.id ? null : r.id)}
+              detail={<p>{r.detail}</p>}
+            />
           ))}
         </div>
       </Frame>
@@ -527,21 +1059,18 @@ export function FeedScene() {
 
 /* ───────── Szene 3: Entscheidung treffen ───────── */
 
-const DEC_STEPS = [1500, 2600, 1100, 1300, 3000] as const;
-
 export function DecisionScene() {
-  const { ref, step } = useScene(DEC_STEPS);
-  const decided = step >= 3;
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const z = useDecision(ZAHLUNG);
+  useScript(auto, [
+    [1400, () => z.setWhy(true)],
+    [2400, () => z.decide()],
+    [7000, () => z.reset()],
+  ]);
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={500} title="Entscheidungen">
-        <DecisionCard
-          why={step === 1 || step === 2}
-          press={step === 2}
-          busy={step === 2}
-          decided={decided}
-          stage={decided ? (step === 3 ? 1 : 3) : 0}
-        />
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={600} title="Entscheidungen">
+        <DecisionCard s={z} />
       </Frame>
     </div>
   );
@@ -549,56 +1078,12 @@ export function DecisionScene() {
 
 /* ───────── Szene 4: Aven fragen ───────── */
 
-const ANSWER =
-  "Der API-Zugang des Kunden fehlt seit drei Tagen und blockiert den Login-Meilenstein. Ich habe eine Entscheidung vorbereitet und das Update in ruhiger Sprache formuliert.";
-
 export function AskScene() {
-  const { ref, step } = useScene([900, 1200, 3400, 3000] as const);
-  const words = ANSWER.split(/(\s+)/);
-  let w = 0;
+  const { ref, auto, onPointerDownCapture } = useDemo();
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={470} title="Aven">
-        <div className="ad-chat">
-          <div className="ad-me">Warum hängt der Login-Meilenstein?</div>
-          {step >= 1 ? (
-            <div className="ad-aven">
-              <div className="ad-aven-body">
-                {step === 1 ? (
-                  <span className="ad-dots" aria-label="Aven denkt nach">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
-                ) : (
-                  <p>
-                    {words.map((part, i) =>
-                      /^\s+$/.test(part) ? (
-                        part
-                      ) : (
-                        <span key={i} className="ad-word" style={{ "--w": Math.min(w++, 60) } as React.CSSProperties}>
-                          {part}
-                        </span>
-                      ),
-                    )}
-                  </p>
-                )}
-                {step >= 3 ? (
-                  <>
-                    <div className="ad-chips ad-src">
-                      <span className="ad-chip">Linear ATL-81</span>
-                      <span className="ad-chip">Slack #atlas</span>
-                      <span className="ad-chip">GitHub PR #402</span>
-                    </div>
-                    <span className="ad-cta ad-src" style={{ alignSelf: "flex-start" }}>
-                      Entscheidung ansehen
-                    </span>
-                  </>
-                ) : null}
-              </div>
-            </div>
-          ) : null}
-        </div>
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={500} title="Aven">
+        <AskPanel auto={auto} />
       </Frame>
     </div>
   );
@@ -606,77 +1091,90 @@ export function AskScene() {
 
 /* ───────── Szene 5: Übergabe an den Coding-Agent ───────── */
 
+const AGENTS = [
+  { id: "claude", label: "Claude Code" },
+  { id: "cursor", label: "Cursor Cloud Agent" },
+];
+
 export function HandoffScene() {
-  const { ref, step } = useScene([1200, 1500, 1500, 1500, 3000] as const);
-  const stage = Math.min(step, 3);
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const [agent, setAgent] = useState("claude");
+  const [stage, setStage] = useState(0);
+  const name = AGENTS.find((x) => x.id === agent)?.label ?? "Claude Code";
+
+  useEffect(() => {
+    if (stage > 0 && stage < 3) {
+      const t = window.setTimeout(() => setStage((s) => s + 1), 1500);
+      return () => window.clearTimeout(t);
+    }
+  }, [stage]);
+
+  useScript(auto, [
+    [1400, () => setStage((s) => (s === 0 ? 1 : s))],
+    [7200, () => setStage(0)],
+  ]);
+
+  const items = [
+    { t: `An ${name} weitergegeben`, s: "Aven hat den Brief mit Kontext und Akzeptanzkriterien übergeben." },
+    { t: "Pull Request #402 geöffnet", s: "Mollie-Checkout, +142 −18, Tests grün" },
+    { t: "Gemerged und live in der Vorschau", s: "Aven prüft den Beleg und schreibt das Update für Nordlicht." },
+  ];
+
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={500} title="Lieferungen">
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={540} title="Lieferungen">
         <div className="ad-h">
           <b>Mollie als Zahlungsmethode wählen</b>
-          <span className="ad-agent">
-            <i />
-            Claude Code
-          </span>
         </div>
-        <div className="ad-list" style={{ gap: 18 }}>
+        <div className="ad-chips" role="radiogroup" aria-label="Coding-Agent" style={{ marginBottom: 16 }}>
+          {AGENTS.map((x) => (
+            <button
+              key={x.id}
+              type="button"
+              role="radio"
+              aria-checked={agent === x.id}
+              className={`ad-chip${agent === x.id ? " is-on" : ""}`}
+              onClick={() => {
+                setAgent(x.id);
+                setStage(0);
+              }}
+            >
+              <i className="ad-dot" />
+              {x.label}
+            </button>
+          ))}
+        </div>
+        <div className="ad-list" style={{ gap: 16 }}>
           <div className="ad-brief">
             <b>Brief von Aven</b>
             Mollie-Checkout für Nordlicht einbauen: SEPA und Klarna, Webhooks, Testmodus. Akzeptiert, wenn alle Zahlungswege im
             Staging grün sind.
           </div>
-          <Timeline stage={stage} />
-          {stage >= 2 ? (
-            <div className="ad-pr ad-src">
-              <span>
-                #402 Mollie-Checkout <em>Nordlicht</em>
-              </span>
-              <span>
-                <span className="add">+142</span> <em>−18</em>
-              </span>
+          {stage === 0 ? (
+            <div>
+              <button type="button" className="ad-cta" onClick={() => setStage(1)}>
+                Brief an {name} senden
+              </button>
             </div>
-          ) : null}
-        </div>
-      </Frame>
-    </div>
-  );
-}
-
-/* ───────── Szene 6: Portfolio (Führung) ───────── */
-
-const PORTFOLIO = [
-  { n: "Atlas Kundenportal", s: "Build, 68 %", h: 72, k: "1 Entscheidung wartet", seed: "api" as const },
-  { n: "Nordlicht Checkout", s: "Review, 81 %", h: 88, k: "Zahlungsanbieter offen", seed: "zahlung" as const },
-  { n: "Velo Preview", s: "Live, 100 %", h: 94, k: "Alles geliefert", seed: "dash" as const },
-  { n: "Kontor Relaunch", s: "Discovery, 22 %", h: 54, k: "Risiko: Inhalte fehlen", seed: "farbe" as const },
-];
-
-export function PortfolioScene() {
-  const { ref, step } = useScene([1200, 1000, 1000, 1000, 1000, 2800] as const);
-  return (
-    <div ref={ref}>
-      <Frame rail={false} height={470} title="Projekte">
-        <div className="ad-h">
-          <b>Projekte</b>
-          <span>4 aktiv, Health im Schnitt 77</span>
-        </div>
-        <div className="ad-list">
-          {PORTFOLIO.map((p, i) =>
-            step >= i ? (
-              <div key={p.n} className="ad-row is-new">
-                <Thumb seed={p.seed} />
-                <div className="ad-row-copy">
-                  <h4 className="ad-row-title">{p.n}</h4>
-                  <p className="ad-row-text">
-                    {p.s}, {p.k}
-                  </p>
+          ) : (
+            <>
+              <Timeline items={items} stage={stage} />
+              {stage >= 2 ? (
+                <div className="ad-pr ad-src">
+                  <span>
+                    #402 Mollie-Checkout <em>Nordlicht</em>
+                  </span>
+                  <span>
+                    <span className="add">+142</span> <em>−18</em>
+                  </span>
                 </div>
-                <div className="ad-row-side">
-                  <span className="ad-when">Health {p.h}</span>
-                  <Ring state={p.h >= 85 ? "done" : "open"} />
-                </div>
-              </div>
-            ) : null,
+              ) : null}
+              {stage >= 3 ? (
+                <button type="button" className="ad-link" onClick={() => setStage(0)}>
+                  Noch einmal durchspielen
+                </button>
+              ) : null}
+            </>
           )}
         </div>
       </Frame>
@@ -684,33 +1182,60 @@ export function PortfolioScene() {
   );
 }
 
-/* ───────── Szene 7: Gelerntes (Adaptive Intelligence) ───────── */
+/* ───────── Szene 6: Portfolio ───────── */
+
+export function PortfolioScene() {
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  return (
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={500} title="Projekte">
+        <div className="ad-h">
+          <b>Projekte</b>
+          <span>4 aktiv, Health im Schnitt 77</span>
+        </div>
+        <ProjectsList auto={auto} />
+      </Frame>
+    </div>
+  );
+}
+
+/* ───────── Szene 7: Gelerntes ───────── */
+
+const LEARNED = [
+  { t: "Gelernt aus „Mollie gewählt“", s: "Ihr entscheidet bei Zahlungen nach Gebühren, nicht nach Markenbekanntheit." },
+  { t: "Gelernt aus 3 Lieferungen", s: "„Fertig“ heißt bei euch: Tests grün und Vorschau abgenommen." },
+  { t: "Regel vorgeschlagen", s: "Entscheidungen unter 500 € bereitet Aven direkt zur Freigabe vor." },
+];
 
 export function MemoryScene() {
-  const { ref, step } = useScene([1200, 1400, 1400, 1400, 2800] as const);
-  const items = [
-    ["Gelernt aus „Mollie gewählt“", "Ihr entscheidet bei Zahlungen nach Gebühren, nicht nach Markenbekanntheit."],
-    ["Gelernt aus 3 Lieferungen", "„Fertig“ heißt bei euch: Tests grün und Vorschau abgenommen."],
-    ["Regel vorgeschlagen", "Entscheidungen unter 500 € bereitet Aven direkt zur Freigabe vor."],
-  ];
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const [ok, setOk] = useState<boolean[]>([false, false, false]);
+  const set = (i: number, v: boolean) => setOk((o) => o.map((x, k) => (k === i ? v : x)));
+  useScript(auto, [
+    [1200, () => set(0, true)],
+    [1400, () => set(1, true)],
+    [1400, () => set(2, true)],
+    [2800, () => setOk([false, false, false])],
+  ]);
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={470} title="Gedächtnis">
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={470} title="Gedächtnis">
         <div className="ad-h">
           <b>Was Aven über euch weiß</b>
-          <span>Wächst mit jedem Projekt</span>
+          <span>Tippe, um etwas zu bestätigen</span>
         </div>
-        <ol className="ad-tl" style={{ gap: 4 }}>
-          {items.map(([t, d], i) => (
-            <li key={t} className={step > i ? "is-on" : ""}>
-              <Ring state={step > i + 1 ? "done" : step > i ? "busy" : "open"} />
-              <div>
-                <b>{t}</b>
-                <small>{d}</small>
-              </div>
-            </li>
+        <div className="ad-list">
+          {LEARNED.map((l, i) => (
+            <ExpandRow
+              key={l.t}
+              title={l.t}
+              text={l.s}
+              ring={ok[i] ? "done" : "open"}
+              onClick={() => set(i, !ok[i])}
+              onRing={() => set(i, !ok[i])}
+            />
           ))}
-        </ol>
+        </div>
       </Frame>
     </div>
   );
@@ -718,33 +1243,44 @@ export function MemoryScene() {
 
 /* ───────── Szene 8: Connectors ───────── */
 
+const TOOLS: [string, string][] = [
+  ["GitHub", "Commits, Pull Requests, Reviews"],
+  ["Linear", "Tickets, Zyklen, Status"],
+  ["Slack", "Kanäle und Threads, nur ausgewählte"],
+  ["Jira", "Epics, Sprints, Blocker"],
+  ["Notion", "Dokumente und Entscheidungen"],
+];
+
 export function ConnectorsScene() {
-  const { ref, step } = useScene([1000, 900, 900, 900, 900, 2800] as const);
-  const tools: [string, string][] = [
-    ["GitHub", "Commits, Pull Requests, Reviews"],
-    ["Linear", "Tickets, Zyklen, Status"],
-    ["Slack", "Kanäle und Threads, nur ausgewählte"],
-    ["Jira", "Epics, Sprints, Blocker"],
-    ["Notion", "Dokumente und Entscheidungen"],
-  ];
+  const { ref, auto, onPointerDownCapture } = useDemo();
+  const [on, setOn] = useState<boolean[]>(TOOLS.map(() => false));
+  const set = (i: number, v: boolean) => setOn((o) => o.map((x, k) => (k === i ? v : x)));
+  useScript(auto, [
+    [1000, () => set(0, true)],
+    [900, () => set(1, true)],
+    [900, () => set(2, true)],
+    [900, () => set(3, true)],
+    [900, () => set(4, true)],
+    [2800, () => setOn(TOOLS.map(() => false))],
+  ]);
+  const n = on.filter(Boolean).length;
   return (
-    <div ref={ref}>
-      <Frame rail={false} height={470} title="Konnektoren">
+    <div ref={ref} onPointerDownCapture={onPointerDownCapture}>
+      <Frame height={470} title="Konnektoren">
         <div className="ad-h">
           <b>Konnektoren</b>
-          <span>{Math.max(0, Math.min(step - 1, 5))} von 5 verbunden</span>
+          <span>{n} von 5 verbunden</span>
         </div>
         <div className="ad-list">
-          {tools.map(([n, d], i) => (
-            <div key={n} className="ad-row" style={{ gap: 16 }}>
-              <div className="ad-row-copy">
-                <h4 className="ad-row-title">{n}</h4>
-                <p className="ad-row-text">{d}</p>
-              </div>
-              <div className="ad-row-side" style={{ justifyContent: "center" }}>
-                <Ring state={step > i + 1 ? "done" : step > i ? "busy" : "open"} />
-              </div>
-            </div>
+          {TOOLS.map(([name, desc], i) => (
+            <ExpandRow
+              key={name}
+              title={name}
+              text={on[i] ? `${desc}. Verbunden.` : desc}
+              ring={on[i] ? "done" : "open"}
+              onClick={() => set(i, !on[i])}
+              onRing={() => set(i, !on[i])}
+            />
           ))}
         </div>
       </Frame>

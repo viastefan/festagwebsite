@@ -80,8 +80,9 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
 
 - **Motion / animierte Demos:** Maßgeblich ist ausschließlich `app/_components/appdemo/*` — es spiegelt
   festag.app (Status-Feed, Entscheidungskarte, Aven, Übergabe an den Coding-Agent) mit den Tokens aus
-  `festag-mvp/components/os/os-tokens.ts`, in Hell **und** Dunkel. Die älteren Demos wurden gelöscht. Neue Demos bauen
-  auf dem appdemo-Baukasten auf und folgen dem echten App-Look.
+  `festag-mvp/components/os/os-tokens.ts`, in Hell **und** Dunkel. Die älteren Demos wurden gelöscht. Alle Demos sind klickbar: sie laufen von allein, bis jemand klickt, dann
+  übernimmt die Person (Navigation, Optionen, Entscheidung, Aven-Fragen). Neue Demos bauen auf dem
+  appdemo-Baukasten auf und folgen dem echten App-Look. Kein Info-Banner über dem Header.
 - **Farben:** Desert Sand wie die App im Hellen (Canvas `#F4F2EE`, Flächen `#FFFFFF`/`#EFECE6`, Ink `#15130F`).
   Hauptfarbe ist ein sehr dunkles Burgundy (`--accent` `#3F1B24`, wirkt fast schwarz) und wird nur ab und zu eingesetzt:
   Primärbutton, Links, Fokus. Nie als Fläche, Verlauf oder große Schrift; keine rötlichen Töne.

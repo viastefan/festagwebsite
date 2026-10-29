@@ -49,7 +49,7 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal className="hero-stage" delay={0.15} y={24}>
-            <Stage caption="Live-Demo · so sieht festag.app aus">
+            <Stage caption="Live-Demo, klick dich durch">
               <HeroApp />
             </Stage>
           </Reveal>

@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { announcement, links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
+import { links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 type MenuId = "product" | "resources";
@@ -73,14 +73,6 @@ export function SiteNav() {
 
   return (
     <>
-      <div className="announce">
-        <Link href={announcement.href} className="announce-link">
-          <span className="announce-tag">{announcement.label}</span>
-          <span className="announce-text">{announcement.text}</span>
-          <Icon name="arrow" size={13} />
-        </Link>
-      </div>
-
       <header ref={headerRef} className={`nav${scrolled ? " is-scrolled" : ""}${menu ? " has-menu" : ""}`}>
         <div className="nav-inner">
           <div className="nav-left">

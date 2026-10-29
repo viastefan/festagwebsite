@@ -193,6 +193,11 @@
   mask: url("/brand/festag-mark.svg") center / contain no-repeat;
 }
 .ad-nav {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -317,10 +322,10 @@
   border-radius: 14px;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
 }
-.ad-row.is-dim {
+.ad-rowwrap.is-dim {
   opacity: 0.45;
 }
-.ad-row.is-new {
+.ad-rowwrap.is-new {
   animation: adIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .ad-row-copy {
@@ -893,6 +898,7 @@
   padding-bottom: 0;
 }
 .ad-peek {
+  pointer-events: none;
   position: absolute;
   right: -2%;
   bottom: -64px;
@@ -981,5 +987,283 @@
   }
   .adw-body.is-fixed {
     height: min(var(--ad-h, 560px), 520px);
+  }
+}
+
+/* ── Klickbare Demo ── */
+.ad-nav:hover:not(.is-active):not(.is-static) {
+  background: var(--ad-nav-active-bg);
+}
+.ad-nav.is-static {
+  cursor: default;
+}
+.ad-nav:focus-visible,
+.ad-row:focus-visible,
+.ad-chip:focus-visible,
+.ad-cta:focus-visible,
+.ad-link:focus-visible,
+.ad-opt:focus-visible,
+.ad-card-head:focus-visible {
+  outline: 2px solid var(--ad-accent-text);
+  outline-offset: 2px;
+}
+.ad-rowwrap {
+  border-radius: 14px;
+  transition: opacity 0.4s ease, background 0.2s ease;
+}
+.ad-row.is-click {
+  cursor: pointer;
+}
+.ad-rowwrap:hover > .ad-row.is-click {
+  background: var(--ad-nav-active-bg);
+}
+.ad-detail {
+  margin: -2px 8px 8px 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--ad-panel);
+  animation: adIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.ad-detail p {
+  margin: 0;
+  color: var(--ad-ink-2);
+  font-size: 13px;
+  line-height: 19px;
+}
+.ad-detail p + .ad-bar,
+.ad-bar + p {
+  margin-top: 10px;
+}
+.ad-bar {
+  height: 4px;
+  border-radius: 99px;
+  background: var(--ad-canvas-3);
+  overflow: hidden;
+}
+.ad-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--ad-accent);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ad-ringbtn {
+  display: inline-grid;
+  place-items: center;
+  padding: 6px;
+  margin: -6px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.ad-ringbtn:hover .ad-ring:not(.is-done) {
+  border-style: solid;
+  border-color: var(--ad-ink-2);
+}
+.ad-link {
+  align-self: flex-start;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ad-ink-2);
+  font: inherit;
+  font-size: 12.5px;
+  text-decoration: underline;
+  text-decoration-color: var(--ad-hair);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.ad-link:hover {
+  color: var(--ad-ink);
+}
+button.ad-chip {
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+button.ad-chip:hover {
+  color: var(--ad-ink);
+  border-color: var(--ad-card-border);
+}
+.ad-chip.is-on {
+  color: var(--ad-ink);
+  border-color: var(--ad-ink-3);
+}
+.ad-chip[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.ad-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ad-good);
+}
+.ad-cta {
+  cursor: pointer;
+}
+.ad-cta:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+.ad-card-head.is-click {
+  cursor: pointer;
+}
+.ad-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: adIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.ad-opt {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 12px 14px;
+  border: 0.5px solid var(--ad-chip-border);
+  border-radius: 10px;
+  background: var(--ad-chip-bg);
+  color: var(--ad-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.ad-opt:hover {
+  border-color: var(--ad-ink-3);
+}
+.ad-opt.is-on {
+  border-color: var(--ad-ink-2);
+  background: var(--ad-panel);
+}
+.ad-opt b {
+  font-weight: 500;
+  font-size: 13.5px;
+}
+.ad-opt em {
+  margin-left: 8px;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--ad-ink-3);
+}
+.ad-opt small {
+  display: block;
+  margin-top: 2px;
+  color: var(--ad-ink-3);
+  font-size: 12.5px;
+  line-height: 18px;
+}
+.ad-radio {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border: 1.5px solid var(--ad-dash);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.ad-opt.is-on .ad-radio {
+  border-color: var(--ad-accent);
+  background: radial-gradient(circle, var(--ad-accent) 0 38%, transparent 42%);
+}
+.ad[data-theme="dark"] .ad-opt.is-on .ad-radio {
+  border-color: var(--ad-ink);
+  background: radial-gradient(circle, var(--ad-ink) 0 38%, transparent 42%);
+}
+
+/* Eingabefeld (echt) */
+.ad-ask input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ad-ink);
+  font: inherit;
+  font-size: 13px;
+}
+.ad-ask input::placeholder {
+  color: var(--ad-ink-3);
+}
+.ad-ask button {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ad-canvas-3);
+  color: var(--ad-ink-3);
+  cursor: pointer;
+}
+.ad-ask button:hover {
+  color: var(--ad-ink);
+}
+.ad-ask svg {
+  width: 12px;
+  height: 12px;
+}
+.ad-ask:focus-within {
+  border-color: var(--ad-ink-3);
+}
+
+/* Aven-Gespräch */
+.ad-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: calc(var(--ad-h, 500px) - 120px);
+}
+.ad-turns {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+.ad-turn {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ad-empty {
+  margin: auto 0;
+  color: var(--ad-ink-3);
+  font-size: 13.5px;
+}
+.ad-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Mobil: Ansicht wechseln, wenn die Seitenleiste fehlt */
+.ad-tabs {
+  display: none;
+}
+@media (max-width: 820px) {
+  .ad-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 0 -16px 14px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ad-tabs button {
+    flex-shrink: 0;
+    height: 28px;
+    padding: 0 12px;
+    border: 0.5px solid var(--ad-chip-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ad-ink-2);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .ad-tabs button.is-on {
+    background: var(--ad-panel);
+    color: var(--ad-ink);
   }
 }

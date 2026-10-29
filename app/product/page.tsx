@@ -63,7 +63,7 @@ export default function ProductPage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <Reveal>
-            <Stage caption="Live-Demo · so sieht festag.app aus">
+            <Stage caption="Live-Demo, klick dich durch">
               <HeroApp />
             </Stage>
           </Reveal>

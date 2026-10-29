@@ -471,51 +471,6 @@ ol {
 }
 
 /* ───────────────────────── Announcement ───────────────────────── */
-.announce {
-  position: relative;
-  z-index: 61;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 13px;
-}
-.announce-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  max-width: calc(100vw - 32px);
-  transition: color var(--dur) ease;
-}
-.announce-link:hover {
-  color: #fff;
-}
-.announce-link svg {
-  transition: transform var(--dur) var(--ease);
-  flex-shrink: 0;
-}
-.announce-link:hover svg {
-  transform: translateX(2px);
-}
-.announce-tag {
-  height: 20px;
-  padding: 0 8px;
-  border-radius: var(--pill);
-  display: inline-flex;
-  align-items: center;
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #17120f;
-  background: #e6e0d4;
-  flex-shrink: 0;
-}
-.announce-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 /* ───────────────────────── Nav (frosted glass) ───────────────────────── */
 .nav {
