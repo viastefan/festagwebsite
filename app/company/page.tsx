@@ -293,7 +293,7 @@ export default function CompanyPage() {
         .co-team { margin-top: 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
         .co-member { position: relative; display: grid; gap: 12px; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
         .co-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 500; color: #fff; background: linear-gradient(135deg, var(--accent), #7fd8e8); }
-        .co-avatar.is-open { background: #fff; color: var(--faint); box-shadow: 0 0 0 var(--hair) var(--line-strong) inset; }
+        .co-avatar.is-open { background: var(--surface); color: var(--faint); box-shadow: 0 0 0 var(--hair) var(--line-strong) inset; }
         .co-member-name { font-size: 15px; font-weight: 500; color: var(--ink); }
         .co-member-role { margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
         .co-member-link { position: absolute; top: 16px; right: 16px; color: var(--faint); transition: color var(--dur) ease; }

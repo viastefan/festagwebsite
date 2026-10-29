@@ -154,14 +154,14 @@ export default function ExtensionPage() {
         .xt-browser { max-width: 820px; }
         .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--accent-soft); }
         .xt-ext-mark { width: 13px; height: 13px; }
-        .xt-page { padding: 28px; min-height: 340px; background: #fff; }
+        .xt-page { padding: 28px; min-height: 340px; background: var(--surface); }
         .xt-issue { max-width: 460px; }
         .xt-lines { display: grid; gap: 10px; margin-top: 18px; }
         .xt-lines span { height: 9px; display: block; }
         .xt-meta { display: flex; gap: 16px; align-items: center; margin-top: 22px; }
         .xt-popup {
           position: absolute; right: 0; top: 56px; width: min(360px, 90%);
-          background: #fff; border-radius: 10px; border: var(--hair) solid var(--line); box-shadow: var(--sh-lg);
+          background: var(--surface); border-radius: 10px; border: var(--hair) solid var(--line); box-shadow: var(--sh-lg);
           padding: 16px; display: grid; gap: 12px; animation: fs-float 6s ease-in-out infinite;
         }
         .xt-popup-head { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); }

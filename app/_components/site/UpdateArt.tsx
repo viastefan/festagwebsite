@@ -145,20 +145,20 @@ const UA_CSS = `
   background-size: cover; background-position: center 65%; opacity: 0.7; mix-blend-mode: multiply;
 }
 .ua-win {
-  position: relative; width: 100%; min-width: 0; max-width: 520px; height: 100%; background: #fff;
+  position: relative; width: 100%; min-width: 0; max-width: 520px; height: 100%; background: var(--surface);
   border-radius: 8px 8px 0 0; box-shadow: var(--sh-window); overflow: hidden; display: flex; flex-direction: column;
 }
-.ua-bar { height: 26px; display: flex; gap: 5px; align-items: center; padding: 0 10px; border-bottom: var(--hair) solid var(--line); background: #fbfaf8; flex-shrink: 0; }
-.ua-bar span { width: 7px; height: 7px; border-radius: 50%; background: #dcd9d2; }
+.ua-bar { height: 26px; display: flex; gap: 5px; align-items: center; padding: 0 10px; border-bottom: var(--hair) solid var(--line); background: var(--surface-2); flex-shrink: 0; }
+.ua-bar span { width: 7px; height: 7px; border-radius: 50%; background: var(--surface-3); }
 .ua-body { min-width: 0; padding: 14px 16px; display: grid; gap: 8px; align-content: start; font-size: 12.5px; color: var(--ink-2); }
-.ua-label { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+.ua-label { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
 .ua-title { font-size: 15px; color: var(--ink); }
 .ua-row { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-top: var(--hair) solid var(--line); }
 .ua-row em { font-style: normal; color: var(--faint); font-size: 11.5px; }
 .ua-fact { display: grid; grid-template-columns: 82px minmax(0, 1fr) 56px; gap: 8px; align-items: center; min-width: 0; }
 .ua-fact span:first-child { color: var(--accent); font-size: 11px; }
 .ua-fact strong { font-weight: 400; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ua-chat { justify-self: end; padding: 7px 11px; border-radius: 8px 8px 3px 8px; background: var(--ink); color: #fff; }
+.ua-chat { justify-self: end; padding: 7px 11px; border-radius: 8px 8px 3px 8px; background: var(--ink); color: var(--canvas); }
 .ua-step { display: flex; align-items: center; gap: 7px; color: var(--muted); }
 .ua-step svg { color: var(--accent); }
 .ua-pill { justify-self: start; padding: 4px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); font-size: 11.5px; }

@@ -206,7 +206,7 @@ const PP_CSS = `
 .pp > div:not(.pp-tabs) { width: 100%; }
 .pp-tabs button { position: relative; height: 34px; padding: 0 16px; border-radius: 999px; font-size: 14px; color: var(--muted); transition: color var(--dur) ease; }
 .pp-tabs button[aria-selected="true"] { color: var(--ink); }
-.pp-tab-thumb { position: absolute; inset: 0; border-radius: 999px; background: #fff; box-shadow: var(--sh-sm); }
+.pp-tab-thumb { position: absolute; inset: 0; border-radius: 999px; background: var(--surface); box-shadow: var(--sh-sm); }
 .pp-tab-label { position: relative; }
 .pp-sub { margin: 14px 0 36px; font-size: 14.5px; color: var(--muted); text-align: center; max-width: 60ch; }
 .pp-grid { display: grid; gap: 10px; }

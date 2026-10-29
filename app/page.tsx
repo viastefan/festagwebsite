@@ -103,12 +103,12 @@ export default function HomePage() {
         <div className="wrap wrap--wide">
           <div className="vgrid">
             <Reveal className="vgrid-item">
-              <VideoBand src="/media/video/connectors.mp4" poster="/media/video/connectors.jpg" label="Konnektoren verbinden" caption="Verbinden" />
+              <VideoBand src="/media/video/connectors.mp4" poster="/media/video/connectors.jpg" mobileSrc="/media/video/connectors-m.mp4" mobilePoster="/media/video/connectors-m.jpg" mobileRatio="390 / 560" label="Konnektoren verbinden" caption="Verbinden" />
               <h3 className="h3">Verbinden.</h3>
               <p className="body">GitHub, Linear, Slack, Jira und Notion in Minuten verbunden. Festag liest Signale, keine Menschen.</p>
             </Reveal>
             <Reveal className="vgrid-item" delay={0.08}>
-              <VideoBand src="/media/video/handoff.mp4" poster="/media/video/handoff.jpg" label="Übergabe an den Coding-Agent" caption="Übergeben" />
+              <VideoBand src="/media/video/handoff.mp4" poster="/media/video/handoff.jpg" mobileSrc="/media/video/handoff-m.mp4" mobilePoster="/media/video/handoff-m.jpg" mobileRatio="390 / 560" label="Übergabe an den Coding-Agent" caption="Übergeben" />
               <h3 className="h3">Übergeben.</h3>
               <p className="body">Nach der Entscheidung geht der Brief an euren Coding-Agent. Der Pull Request kommt als Beleg zurück.</p>
             </Reveal>

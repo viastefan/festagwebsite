@@ -25,6 +25,7 @@ export function VideoBand({
   poster,
   mobileSrc,
   mobilePoster,
+  mobileRatio = "390 / 700",
   label,
   caption,
   ratio = "16 / 9",
@@ -34,6 +35,7 @@ export function VideoBand({
   /** Hochformat-Version für Handys (bis 640 px Breite) */
   mobileSrc?: string;
   mobilePoster?: string;
+  mobileRatio?: string;
   label: string;
   caption?: string;
   ratio?: string;
@@ -80,7 +82,7 @@ export function VideoBand({
   };
 
   return (
-    <figure className="vband" ref={wrap} style={{ aspectRatio: small ? "390 / 700" : ratio }}>
+    <figure className="vband" ref={wrap} style={{ aspectRatio: small ? mobileRatio : ratio }}>
       <video
         key={useSrc}
         ref={vid}

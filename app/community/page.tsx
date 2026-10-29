@@ -177,7 +177,7 @@ export default function CommunityPage() {
           background: var(--surface-2); border: var(--hair) solid var(--line);
         }
         .cm-program .link { margin-top: 6px; font-size: 14.5px; }
-        .cm-icon { width: 38px; height: 38px; border-radius: 10px; background: #fff; color: var(--accent); display: grid; place-items: center; box-shadow: 0 0 0 var(--hair) var(--line), var(--sh-xs); margin-bottom: 6px; }
+        .cm-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--surface); color: var(--accent); display: grid; place-items: center; box-shadow: 0 0 0 var(--hair) var(--line), var(--sh-xs); margin-bottom: 6px; }
         .cm-split {
           display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 5fr); gap: clamp(16px, 2vw, 24px);
           padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl); background: var(--surface-2);

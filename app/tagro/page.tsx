@@ -165,7 +165,7 @@ export default function TagroPage() {
         .tg-questions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
         .tg-q-list { display: grid; gap: 8px; }
         .tg-q { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: 8px; background: var(--surface-2); font-size: 20px; color: var(--ink); }
-        .tg-q-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #fff; font-size: 12px; color: var(--accent); flex-shrink: 0; }
+        .tg-q-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); font-size: 12px; color: var(--accent); flex-shrink: 0; }
         .tg-vs { border-radius: 10px; overflow: hidden; border: var(--hair) solid var(--line); background: var(--surface); }
         .tg-vs-head, .tg-vs-row { display: grid; grid-template-columns: 1fr 1fr; }
         .tg-vs-head span { padding: 14px 20px; font-size: 13px; color: var(--faint); background: var(--surface-2); display: flex; align-items: center; gap: 8px; }
