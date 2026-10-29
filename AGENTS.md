@@ -38,3 +38,14 @@ Do **not** rebuild the portal, auth chrome, or app UI rules here. Product app wo
 ## Sync note
 
 Product docs are copied from `festag-mvp/docs/`. When north-star positioning changes in the app repo, re-copy those three files into `docs/` here.
+
+## Master-Regeln (vom Inhaber, gelten bis er sie ändert)
+
+- **Motion / animierte Demos:** Alle bestehenden Motion-Designs und Demo-Animationen auf der Website
+  (`app/_components/demos/*`, Hero-Stage, Marquee, Reveal-Choreografie) sind **veraltet und nicht mehr
+  maßgeblich**. Sie nicht als Vorlage übernehmen, nicht erweitern, nicht neu erfinden. Neue Motion-Designs
+  kommen ausschließlich nach Vorgabe des Inhabers.
+- **Header-Färbungen:** Die Farbgebung im Header-/Hero-Bereich (Farbverläufe, Washes, Akzentfarben) wird
+  **nicht verändert**, außer der Inhaber sagt es ausdrücklich.
+- **Überschriften:** Größe wie Login in festag.app (26px / 32px), Medium, Laufweite -0.028em. Hero ohne Fließtext.
+- **Mobil:** „Anmelden“ nur als Text, ohne Hintergrund-Container.

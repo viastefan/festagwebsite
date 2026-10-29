@@ -230,7 +230,7 @@ export function SiteNav() {
                 <Button href={links.register} variant="solid" size="lg" arrow>
                   Kostenlos starten
                 </Button>
-                <Button href={links.login} variant="ghost" size="lg">
+                <Button href={links.login} variant="text" size="lg" className="msheet-login">
                   Anmelden
                 </Button>
               </motion.div>

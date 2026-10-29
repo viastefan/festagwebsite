@@ -802,6 +802,13 @@ ol {
 .msheet-cta .btn {
   width: 100%;
 }
+/* Mobil: „Anmelden“ nur als Text — kein Container, kein Hintergrund */
+.msheet-cta .msheet-login,
+.msheet-cta .msheet-login:hover {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
 
 /* ───────────────────────── Hero ───────────────────────── */
 .hero {

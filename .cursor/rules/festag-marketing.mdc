@@ -75,3 +75,14 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
 - This repo ≠ `festag-mvp`. Do not port portal docks, auth sheets, or app chrome here.
 - When a change needs real product behavior, point to the app — do not fake it on the marketing site.
 - Jobs / careers content stays in `lib/jobs.ts` until a CMS is wired.
+
+## Master-Regeln (vom Inhaber, gelten bis er sie ändert)
+
+- **Motion / animierte Demos:** Alle bestehenden Motion-Designs und Demo-Animationen auf der Website
+  (`app/_components/demos/*`, Hero-Stage, Marquee, Reveal-Choreografie) sind **veraltet und nicht mehr
+  maßgeblich**. Sie nicht als Vorlage übernehmen, nicht erweitern, nicht neu erfinden. Neue Motion-Designs
+  kommen ausschließlich nach Vorgabe des Inhabers.
+- **Header-Färbungen:** Die Farbgebung im Header-/Hero-Bereich (Farbverläufe, Washes, Akzentfarben) wird
+  **nicht verändert**, außer der Inhaber sagt es ausdrücklich.
+- **Überschriften:** Größe wie Login in festag.app (26px / 32px), Medium, Laufweite -0.028em. Hero ohne Fließtext.
+- **Mobil:** „Anmelden“ nur als Text, ohne Hintergrund-Container.
