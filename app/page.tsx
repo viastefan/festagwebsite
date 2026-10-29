@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Button, TextLink } from "./_components/ui/Button";
-import { Reveal, RevealGroup, RevealItem } from "./_components/ui/Reveal";
+import { Reveal } from "./_components/ui/Reveal";
 import { Stage } from "./_components/ui/Window";
 import { AskScene, DecisionScene, FeedScene, HandoffScene, HeroApp } from "./_components/appdemo/AppDemo";
 import { CtaBand, SectionHead } from "./_components/ui/Section";
-import { Icon } from "./_components/ui/Icon";
+import { StatStrip } from "./_components/ui/Blocks2";
 import {
   ConnectorMarquee,
   FeatureBlock,
@@ -20,12 +20,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const TRUST = [
-  { icon: "server" as const, title: "Server in Deutschland", body: "Hosting und Verarbeitung in der EU, DSGVO-konform, AVV inklusive." },
-  { icon: "eye" as const, title: "Keine Überwachung", body: "Keine Screenshots, kein Tracking, keine Personen-Scores. Signale, nicht Menschen." },
-  { icon: "check" as const, title: "Freigabe vor Versand", body: "Nichts erreicht Kunden, bevor jemand aus eurem Team es freigegeben hat." },
-  { icon: "lock" as const, title: "Kein Training auf euren Daten", body: "Festag trainiert keine öffentlichen Modelle auf eurem Workspace." },
-];
 
 export default function HomePage() {
   return (
@@ -120,41 +114,25 @@ export default function HomePage() {
       <section className="section">
         <div className="wrap wrap--wide">
           <SectionHead center title="Die neue Art, Kundenprojekte zu führen." />
-          <VoicesGrid />
+          <VoicesGrid limit={3} />
         </div>
       </section>
 
-      {/* ───────── Trust ───────── */}
+      {/* ───────── Vertrauen (Kurzfassung, Details unter /security) ───────── */}
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
-          <div className="home-trust">
-            <Reveal className="home-trust-copy">
-              <span className="eyebrow">Vertrauen ist das Produkt</span>
-              <h2 className="h2" style={{ marginTop: 16 }}>
-                Operative Sichtbarkeit. Keine Überwachung.
-              </h2>
-              <p className="body" style={{ marginTop: 16 }}>
-                Festag sieht, was Arbeit produziert — nicht, was Menschen tun. Persönliche Profile sind Opt-in, Export
-                und Löschung jederzeit möglich.
-              </p>
-              <div style={{ marginTop: 22 }}>
-                <TextLink href="/security">Security & Datenschutz</TextLink>
-              </div>
-            </Reveal>
-            <RevealGroup className="grid-2">
-              {TRUST.map((t) => (
-                <RevealItem key={t.title} className="card card--soft">
-                  <span className="card-icon">
-                    <Icon name={t.icon} />
-                  </span>
-                  <h3 className="h4">{t.title}</h3>
-                  <p className="body" style={{ fontSize: 14.5 }}>
-                    {t.body}
-                  </p>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
+          <SectionHead title="Operative Sichtbarkeit. Keine Überwachung." lead="Festag sieht, was Arbeit produziert, nicht, was Menschen tun." />
+          <StatStrip
+            items={[
+              { v: "Deutschland", l: "Hosting und Verarbeitung" },
+              { v: "Freigabe", l: "Vor jedem Versand an Kunden" },
+              { v: "Kein Training", l: "Auf euren Daten" },
+              { v: "Opt-in", l: "Persönliche Profile" },
+            ]}
+          />
+          <Reveal style={{ marginTop: 20 }}>
+            <TextLink href="/security">Sicherheit und Datenschutz im Detail</TextLink>
+          </Reveal>
         </div>
       </section>
 
@@ -202,8 +180,6 @@ export default function HomePage() {
 }
 
 const HOME_CSS = `
-.home-trust { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
-.home-trust-copy { position: sticky; top: calc(var(--nav-h) + 32px); }
 .home-team {
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: clamp(16px, 2vw, 24px);
   padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl);
@@ -219,9 +195,7 @@ const HOME_CSS = `
 @media (max-width: 960px) {
   .home-team { grid-template-columns: 1fr; }
   .home-team-copy { padding: 10px 6px 4px; }
-  .home-trust { grid-template-columns: 1fr; }
-  .home-trust-copy { position: static; }
-}
+    }
 @media (max-width: 520px) {
   .home-updates-head { flex-direction: column; align-items: flex-start; gap: 0; }
 }
