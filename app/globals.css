@@ -93,7 +93,12 @@
   --max-wide: 1240px;
   --gutter: clamp(18px, 4vw, 40px);
   --section-y: clamp(46px, 5.6vw, 80px);
-  --nav-h: 52px;
+  --nav-h: 44px;
+  /* Überschriften: H1 = H2 + 1,2px, überall gleiche Schrift */
+  --h2-size: clamp(21px, 1.85vw, 25px);
+  --h1-size: calc(var(--h2-size) + 1.2px);
+  --head-lh: 1.2;
+  --head-weight: 400;
 }
 
 /* Retina: true hairlines, like Cursor. */
@@ -255,10 +260,6 @@ ol {
 
 /* ───────────────────────── Typography ───────────────────────── */
 .display {
-  font-size: clamp(27px, 2.8vw, 37px);
-  line-height: 1.16;
-  font-weight: 400;
-  letter-spacing: 0;
   color: var(--ink);
   text-wrap: balance;
   max-width: 24ch;
@@ -267,10 +268,6 @@ ol {
   /* identical to .display — every page h1 matches the homepage */
 }
 .h2 {
-  font-size: clamp(21px, 1.85vw, 25px);
-  line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: 0;
   text-wrap: balance;
 }
 .h3 {
@@ -804,8 +801,6 @@ ol {
   max-width: 780px;
 }
 .hero .display {
-  font-size: clamp(27px, 2.9vw, 40px);
-  line-height: 1.15;
   max-width: none;
 }
 .hero .lead {
@@ -1675,10 +1670,6 @@ ol {
   pointer-events: none;
 }
 .cta-title {
-  font-size: clamp(25px, 2.8vw, 36px);
-  line-height: 1.12;
-  font-weight: 400;
-  letter-spacing: 0;
   color: #fff;
   text-wrap: balance;
 }
@@ -2526,7 +2517,7 @@ ol {
 }
 @media (max-width: 640px) {
   :root {
-    --nav-h: 54px;
+    --nav-h: 48px;
   }
   .grid-2,
   .grid-3,
@@ -2557,11 +2548,6 @@ ol {
   }
   .hero .display {
     max-width: none;
-    font-size: clamp(26px, 7.2vw, 31px);
-    line-height: 1.16;
-  }
-  .display {
-    font-size: clamp(24px, 6.8vw, 29px);
   }
   .plan-amount {
     font-size: 34px;
@@ -2740,7 +2726,7 @@ html body *::after {
 /* ───────── Mobil: Header schlank, „Kostenlos starten“ nur als kleiner Text ───────── */
 @media (max-width: 960px) {
   :root {
-    --nav-h: 56px;
+    --nav-h: 48px;
   }
   .nav-right {
     gap: 14px;
@@ -2766,25 +2752,9 @@ html body *::after {
 
 /* Mobil: Überschriften etwas kräftiger, rund 30px */
 @media (max-width: 640px) {
-  .display,
-  .hero .display,
-  .page-hero .display {
-    font-size: 30px;
-    line-height: 1.14;
-    font-weight: 500;
-  }
-  .h2 {
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 500;
-  }
   .h3,
   .feature-copy .h3 {
     font-size: 18px;
-    font-weight: 500;
-  }
-  .cta-title {
-    font-size: 28px;
     font-weight: 500;
   }
 }
@@ -3116,26 +3086,10 @@ html body *::after {
   }
 }
 @media (max-width: 640px) {
-  .display,
-  .hero .display,
-  .page-hero .display {
-    font-size: 26px;
-    line-height: 1.08;
-    font-weight: 500;
-  }
-  .h2 {
-    font-size: 20px;
-    line-height: 1.14;
-    font-weight: 500;
-  }
   .h3,
   .feature-copy .h3 {
     font-size: 16.5px;
     line-height: 1.2;
-  }
-  .cta-title {
-    font-size: 24px;
-    line-height: 1.1;
   }
   .lead {
     font-size: 14.5px;
@@ -3174,7 +3128,6 @@ html body *::after {
   transform: rotate(-8deg);
 }
 .cta-title {
-  font-weight: 500;
   max-width: 20ch;
 }
 .cta .lead {
@@ -3700,6 +3653,63 @@ html body *::after {
 
 :root[data-theme="dark"] .cmp thead th {
   background: rgba(20, 18, 16, 0.92);
+}
+/* ───────── Überschriften-Regel: eine Schrift, H1 = H2 + 1,2px, auf jeder Seite ───────── */
+.display,
+.hero .display,
+.page-hero .display,
+.cta-title {
+  font-size: var(--h1-size);
+  line-height: var(--head-lh);
+  font-weight: var(--head-weight);
+  letter-spacing: 0;
+}
+.h2 {
+  font-size: var(--h2-size);
+  line-height: var(--head-lh);
+  font-weight: var(--head-weight);
+  letter-spacing: 0;
+}
+@media (max-width: 640px) {
+  :root {
+    --h2-size: 20px;
+  }
+}
+
+/* ───────── Header schlank ───────── */
+.nav-inner {
+  gap: 12px;
+}
+.nav-link {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+.nav-right {
+  gap: 4px;
+}
+.nav-right .btn {
+  height: 28px;
+  padding: 0 11px;
+  font-size: 13px;
+}
+.logo {
+  gap: 7px;
+}
+.logo-mark {
+  width: 16px;
+  height: 16px;
+}
+.logo-word {
+  font-size: 15px;
+}
+@media (max-width: 960px) {
+  .nav-right .btn--solid,
+  .nav-right .btn--solid:hover,
+  .nav-right .btn--solid:active {
+    height: auto;
+    padding: 6px 0;
+  }
 }
 
 /* Mobil: Tipp-Flächen mindestens 36px, Optik unverändert */

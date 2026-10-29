@@ -50,8 +50,9 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   Hauptfarbe ist ein sehr dunkles Burgundy (`--accent` `#3F1B24`, wirkt fast schwarz) und wird nur ab und zu eingesetzt:
   Primärbutton, Links, Fokus. Nie als Fläche, Verlauf oder große Schrift; keine rötlichen Töne.
   Keine bunten Töne (kein Blau, Türkis, Grün, Orange). Status-Grün nur für „erledigt“.
-- **Schrift:** Geist, Medium als Grundschnitt, Buchstabenabstand 0. Überschriften H1/H2 Regular, kompakt
-  (H1 bis 46px). Hero ohne Fließtext. Alles kompakt: Buttons 36px, Sektionen ca. 52–92px.
+- **Schrift:** Geist, Medium als Grundschnitt, Buchstabenabstand 0. Überschriften H1/H2 Regular, gleiche Schrift,
+  H1 ist immer genau 1,2px größer als H2 (Tokens `--h2-size`/`--h1-size` in `globals.css`), auf jeder Seite gleich.
+  Header schlank (44px Desktop, 48px mobil, Links 13px). Hero ohne Fließtext. Alles kompakt: Buttons 36px, Sektionen ca. 52–92px.
 - **Medien:** Produktvideos (`public/media/video/*.mp4`, aus den klickbaren Demos aufgenommen, unter 600 KB) laufen über
   `VideoBand`, Bilder über `MediaBand` (beide in `app/_components/ui/Media.tsx`). Videos starten nur im Sichtbereich
   und respektieren „Bewegung reduzieren“. Keine Stockfotos, keine Platzhalter.
