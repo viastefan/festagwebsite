@@ -78,11 +78,12 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
 
 ## Master-Regeln (vom Inhaber, gelten bis er sie ändert)
 
-- **Motion / animierte Demos:** Alle bestehenden Motion-Designs und Demo-Animationen auf der Website
-  (`app/_components/demos/*`, Hero-Stage, Marquee, Reveal-Choreografie) sind **veraltet und nicht mehr
-  maßgeblich**. Sie nicht als Vorlage übernehmen, nicht erweitern, nicht neu erfinden. Neue Motion-Designs
-  kommen ausschließlich nach Vorgabe des Inhabers.
+- **Motion / animierte Demos:** Maßgeblich ist ausschließlich `app/_components/appdemo/*` — es spiegelt
+  festag.app (Status-Feed, Entscheidungskarte, Aven, Übergabe an den Coding-Agent) mit den Tokens aus
+  `festag-mvp/components/os/os-tokens.ts`, in Hell **und** Dunkel. Die älteren Demos in
+  `app/_components/demos/*` sind veraltet und nicht mehr zu verwenden oder zu erweitern. Neue Demos bauen
+  auf dem appdemo-Baukasten auf und folgen dem echten App-Look.
 - **Header-Färbungen:** Die Farbgebung im Header-/Hero-Bereich (Farbverläufe, Washes, Akzentfarben) wird
   **nicht verändert**, außer der Inhaber sagt es ausdrücklich.
-- **Überschriften:** Größe wie Login in festag.app (26px / 32px), Medium, Laufweite -0.028em. Hero ohne Fließtext.
+- **Überschriften:** Groß und leicht (Regular 400, enge Laufweite); Hero-H1 bis 80px, ohne Fließtext.
 - **Mobil:** „Anmelden“ nur als Text, ohne Hintergrund-Container.
