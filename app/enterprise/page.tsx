@@ -4,7 +4,7 @@ import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
-import { ExecutiveDemo } from "../_components/demos/ExecutiveDemo";
+import { PortfolioScene } from "../_components/appdemo/AppDemo";
 import { ContactForm } from "../_components/site/ContactForm";
 import { IconCard } from "../_components/site/Blocks";
 
@@ -76,7 +76,7 @@ export default function EnterprisePage() {
           <Reveal>
             <Stage pad caption="Executive Overview · Beispiel-Portfolio">
               <div style={{ maxWidth: 1040, margin: "0 auto" }}>
-                <ExecutiveDemo />
+                <PortfolioScene />
               </div>
             </Stage>
           </Reveal>

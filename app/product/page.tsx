@@ -3,13 +3,9 @@ import { Button } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
+import { DecisionScene, FeedScene, HandoffScene, HeroApp, PortfolioScene } from "../_components/appdemo/AppDemo";
 import { Stage } from "../_components/ui/Window";
 import { FeatureBlock, IconCard } from "../_components/site/Blocks";
-import { TranslateDemo } from "../_components/demos/TranslateDemo";
-import { DecisionDemo } from "../_components/demos/DecisionDemo";
-import { ExecutiveDemo } from "../_components/demos/ExecutiveDemo";
-import { SignalFlow } from "../_components/demos/SignalFlow";
-import { HeroStage } from "../_components/demos/HeroStage";
 import { links } from "@/lib/site/links";
 import { principles } from "@/lib/site/content";
 
@@ -68,7 +64,7 @@ export default function ProductPage() {
         <div className="wrap wrap--wide">
           <Reveal>
             <Stage caption="Ein Workspace · drei Ansichten">
-              <HeroStage />
+              <HeroApp />
             </Stage>
           </Reveal>
         </div>
@@ -105,7 +101,7 @@ export default function ProductPage() {
             title="Client Panel."
             sub="Kunden sehen Status, Fortschritt, Phase, Risiken, offene Entscheidungen und nächste Schritte — übersetzt, belegt, ohne Slack-Chaos oder Jira-Rauschen."
           >
-            <TranslateDemo />
+            <FeedScene />
           </FeatureBlock>
           <FeatureBlock
             id="decisions"
@@ -113,21 +109,21 @@ export default function ProductPage() {
             title="Entscheidungen & Freigaben."
             sub="Tagro erkennt fehlende Entscheidungen, stellt Optionen mit Auswirkung gegenüber und dokumentiert das Ergebnis mit Begründung."
           >
-            <DecisionDemo />
+            <DecisionScene />
           </FeatureBlock>
           <FeatureBlock
             id="executive"
             title="Executive Overview."
             sub="Portfolio-Health für Gründer und CEOs: was läuft, was blockiert, wo entschieden werden muss — und was sich voraussichtlich verschiebt."
           >
-            <ExecutiveDemo />
+            <PortfolioScene />
           </FeatureBlock>
           <FeatureBlock
             flip
             title="Activity Intelligence."
             sub="Arbeitssignale, Issues und Ereignisse aus allen Connectors auf einer Seite — klassifiziert und mit Belegen verknüpft."
           >
-            <SignalFlow />
+            <HandoffScene />
           </FeatureBlock>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
-import { LearningLoop } from "../_components/demos/LearningLoop";
+import { MemoryScene } from "../_components/appdemo/AppDemo";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
@@ -211,7 +211,7 @@ export default function IntelligencePage() {
           <Reveal>
             <Stage pad>
               <div className="in-loop">
-                <LearningLoop />
+                <MemoryScene />
               </div>
             </Stage>
           </Reveal>

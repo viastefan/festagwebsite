@@ -4,7 +4,7 @@ import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
-import { ConnectorGraph } from "../_components/demos/ConnectorGraph";
+import { ConnectorsScene } from "../_components/appdemo/AppDemo";
 import { connectors, CONNECTOR_STATUS_LABEL, signalTypes } from "@/lib/site/connectors";
 import { links } from "@/lib/site/links";
 
@@ -48,7 +48,7 @@ export default function ConnectorsPage() {
           <Reveal>
             <Stage pad caption="Klick auf einen Connector">
               <div className="cn-graph">
-                <ConnectorGraph />
+                <ConnectorsScene />
               </div>
             </Stage>
           </Reveal>

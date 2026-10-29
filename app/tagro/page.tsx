@@ -4,9 +4,8 @@ import { Icon } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
-import { TagroConsole } from "../_components/demos/TagroConsole";
+import { AskScene, DecisionScene } from "../_components/appdemo/AppDemo";
 import { FeatureBlock } from "../_components/site/Blocks";
-import { DecisionDemo } from "../_components/demos/DecisionDemo";
 import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
@@ -69,7 +68,7 @@ export default function TagroPage() {
           <Reveal>
             <Stage pad caption="Tippe selbst — Beispiel-Workspace">
               <div className="tg-console-wrap">
-                <TagroConsole />
+                <AskScene />
               </div>
             </Stage>
           </Reveal>
@@ -121,7 +120,7 @@ export default function TagroPage() {
             title="Decision Mode."
             sub="Tagro beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt."
           >
-            <DecisionDemo />
+            <DecisionScene />
           </FeatureBlock>
         </div>
       </section>

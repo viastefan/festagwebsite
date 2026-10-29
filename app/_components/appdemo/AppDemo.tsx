@@ -2,7 +2,7 @@
 
 import "./appdemo.css";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { useTimeline } from "../demos/hooks";
+import { useTimeline } from "./hooks";
 
 /* ───────── Theme (Hell / Dunkel wie festag.app) — geteilt von allen Demos ───────── */
 
@@ -644,3 +644,112 @@ export function HandoffScene() {
   );
 }
 
+/* ───────── Szene 6: Portfolio (Führung) ───────── */
+
+const PORTFOLIO = [
+  { n: "Atlas Kundenportal", s: "Build · 68 %", h: 72, k: "1 Entscheidung wartet", seed: "api" as const },
+  { n: "Nordlicht Checkout", s: "Review · 81 %", h: 88, k: "Zahlungsanbieter offen", seed: "zahlung" as const },
+  { n: "Velo Preview", s: "Live · 100 %", h: 94, k: "Alles geliefert", seed: "dash" as const },
+  { n: "Kontor Relaunch", s: "Discovery · 22 %", h: 54, k: "Risiko: Inhalte fehlen", seed: "farbe" as const },
+];
+
+export function PortfolioScene() {
+  const { ref, step } = useScene([1200, 1000, 1000, 1000, 1000, 2800] as const);
+  return (
+    <div ref={ref}>
+      <Frame rail={false} height={470} title="Projekte">
+        <div className="ad-h">
+          <b>Projekte</b>
+          <span>4 aktiv · Health im Schnitt 77</span>
+        </div>
+        <div className="ad-list">
+          {PORTFOLIO.map((p, i) =>
+            step >= i ? (
+              <div key={p.n} className="ad-row is-new">
+                <Thumb seed={p.seed} />
+                <div className="ad-row-copy">
+                  <h4 className="ad-row-title">{p.n}</h4>
+                  <p className="ad-row-text">
+                    {p.s} · {p.k}
+                  </p>
+                </div>
+                <div className="ad-row-side">
+                  <span className="ad-when">Health {p.h}</span>
+                  <Ring state={p.h >= 85 ? "done" : "open"} />
+                </div>
+              </div>
+            ) : null,
+          )}
+        </div>
+      </Frame>
+    </div>
+  );
+}
+
+/* ───────── Szene 7: Gelerntes (Adaptive Intelligence) ───────── */
+
+export function MemoryScene() {
+  const { ref, step } = useScene([1200, 1400, 1400, 1400, 2800] as const);
+  const items = [
+    ["Gelernt aus „Mollie gewählt“", "Ihr entscheidet bei Zahlungen nach Gebühren, nicht nach Markenbekanntheit."],
+    ["Gelernt aus 3 Lieferungen", "„Fertig“ heißt bei euch: Tests grün und Vorschau abgenommen."],
+    ["Regel vorgeschlagen", "Entscheidungen unter 500 € bereitet Aven direkt zur Freigabe vor."],
+  ];
+  return (
+    <div ref={ref}>
+      <Frame rail={false} height={470} title="Aven · Gedächtnis">
+        <div className="ad-h">
+          <b>Was Aven über euch weiß</b>
+          <span>Wächst mit jedem Projekt</span>
+        </div>
+        <ol className="ad-tl" style={{ gap: 4 }}>
+          {items.map(([t, d], i) => (
+            <li key={t} className={step > i ? "is-on" : ""}>
+              <Ring state={step > i + 1 ? "done" : step > i ? "busy" : "open"} />
+              <div>
+                <b>{t}</b>
+                <small>{d}</small>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Frame>
+    </div>
+  );
+}
+
+/* ───────── Szene 8: Connectors ───────── */
+
+export function ConnectorsScene() {
+  const { ref, step } = useScene([1000, 900, 900, 900, 900, 2800] as const);
+  const tools: [string, string][] = [
+    ["GitHub", "Commits, Pull Requests, Reviews"],
+    ["Linear", "Tickets, Zyklen, Status"],
+    ["Slack", "Kanäle und Threads, nur ausgewählte"],
+    ["Jira", "Epics, Sprints, Blocker"],
+    ["Notion", "Dokumente und Entscheidungen"],
+  ];
+  return (
+    <div ref={ref}>
+      <Frame rail={false} height={470} title="Konnektoren">
+        <div className="ad-h">
+          <b>Konnektoren</b>
+          <span>{Math.max(0, Math.min(step - 1, 5))} von 5 verbunden</span>
+        </div>
+        <div className="ad-list">
+          {tools.map(([n, d], i) => (
+            <div key={n} className="ad-row" style={{ gap: 16 }}>
+              <div className="ad-row-copy">
+                <h4 className="ad-row-title">{n}</h4>
+                <p className="ad-row-text">{d}</p>
+              </div>
+              <div className="ad-row-side" style={{ justifyContent: "center" }}>
+                <Ring state={step > i + 1 ? "done" : step > i ? "busy" : "open"} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </Frame>
+    </div>
+  );
+}
