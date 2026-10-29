@@ -136,7 +136,7 @@ function Rail() {
   return (
     <aside className="ad-rail" aria-hidden>
       <div className="ad-rail-mark">
-        {I.logo}
+        <span className="ad-mark" />
         festag
       </div>
       <div className="ad-nav is-active">
@@ -219,10 +219,10 @@ function Frame({
 /* ───────── Bausteine ───────── */
 
 const ART: Record<string, [string, string]> = {
-  zahlung: ["#c6d3ee", "#eaf0fb"],
-  api: ["#e7d8c1", "#f8f0e2"],
-  dash: ["#cde3da", "#ebf5f0"],
-  farbe: ["#d9d2e8", "#f0ecf8"],
+  zahlung: ["#dcc0bd", "#f4e6e3"],
+  api: ["#e2d3b8", "#f6eddc"],
+  dash: ["#d9d3c0", "#efebe0"],
+  farbe: ["#d6c8c3", "#f1e9e5"],
 };
 
 function Thumb({ seed, lg }: { seed: keyof typeof ART; lg?: boolean }) {
@@ -317,7 +317,7 @@ const DECISION = {
 function Timeline({ stage }: { stage: number }) {
   const items = [
     { t: "An Claude Code weitergegeben", s: "Aven hat den Brief mit Kontext und Akzeptanzkriterien übergeben." },
-    { t: "Pull Request #402 geöffnet", s: "Mollie-Checkout · +142 −18 · Tests grün" },
+    { t: "Pull Request #402 geöffnet", s: "Mollie-Checkout, +142 −18, Tests grün" },
     { t: "Gemerged und live in der Vorschau", s: "Aven prüft den Beleg und schreibt das Update für Nordlicht." },
   ];
   return (
@@ -374,8 +374,7 @@ function DecisionCard({
           <div className="ad-panel">
             <div>
               <small>
-                <span style={{ width: 12, height: 12, display: "inline-flex" }}>{I.mark}</span>
-                Avens Empfehlung
+                Aven empfiehlt
               </small>
               <strong>{DECISION.rec}</strong>
               <p>{DECISION.recText}</p>
@@ -408,7 +407,7 @@ function Peek({ step }: { step: number }) {
   const theme = useTheme();
   const lines: [string, string][] = [
     ["Liest", "Linear ATL-81 … ATL-88"],
-    ["Liest", "Slack #atlas · 3 Threads"],
+    ["Liest", "Slack #atlas, 3 Threads"],
     ["Prüft", "GitHub PR #398, #402"],
   ];
   return (
@@ -510,7 +509,7 @@ export function FeedScene() {
   const rows: RowData[] = ROWS.map((r) => (r.key === "api" && step >= 2 ? { ...r, done: true, when: "jetzt" } : r));
   return (
     <div ref={ref}>
-      <Frame height={470}>
+      <Frame rail={false} height={470}>
         <div className="ad-h">
           <b>Status</b>
           <span>Alles, was heute zählt</span>
@@ -564,7 +563,6 @@ export function AskScene() {
           <div className="ad-me">Warum hängt der Login-Meilenstein?</div>
           {step >= 1 ? (
             <div className="ad-aven">
-              <i>{I.mark}</i>
               <div className="ad-aven-body">
                 {step === 1 ? (
                   <span className="ad-dots" aria-label="Aven denkt nach">
@@ -631,7 +629,7 @@ export function HandoffScene() {
           {stage >= 2 ? (
             <div className="ad-pr ad-src">
               <span>
-                #402 Mollie-Checkout <em>· Nordlicht</em>
+                #402 Mollie-Checkout <em>Nordlicht</em>
               </span>
               <span>
                 <span className="add">+142</span> <em>−18</em>
@@ -647,10 +645,10 @@ export function HandoffScene() {
 /* ───────── Szene 6: Portfolio (Führung) ───────── */
 
 const PORTFOLIO = [
-  { n: "Atlas Kundenportal", s: "Build · 68 %", h: 72, k: "1 Entscheidung wartet", seed: "api" as const },
-  { n: "Nordlicht Checkout", s: "Review · 81 %", h: 88, k: "Zahlungsanbieter offen", seed: "zahlung" as const },
-  { n: "Velo Preview", s: "Live · 100 %", h: 94, k: "Alles geliefert", seed: "dash" as const },
-  { n: "Kontor Relaunch", s: "Discovery · 22 %", h: 54, k: "Risiko: Inhalte fehlen", seed: "farbe" as const },
+  { n: "Atlas Kundenportal", s: "Build, 68 %", h: 72, k: "1 Entscheidung wartet", seed: "api" as const },
+  { n: "Nordlicht Checkout", s: "Review, 81 %", h: 88, k: "Zahlungsanbieter offen", seed: "zahlung" as const },
+  { n: "Velo Preview", s: "Live, 100 %", h: 94, k: "Alles geliefert", seed: "dash" as const },
+  { n: "Kontor Relaunch", s: "Discovery, 22 %", h: 54, k: "Risiko: Inhalte fehlen", seed: "farbe" as const },
 ];
 
 export function PortfolioScene() {
@@ -660,7 +658,7 @@ export function PortfolioScene() {
       <Frame rail={false} height={470} title="Projekte">
         <div className="ad-h">
           <b>Projekte</b>
-          <span>4 aktiv · Health im Schnitt 77</span>
+          <span>4 aktiv, Health im Schnitt 77</span>
         </div>
         <div className="ad-list">
           {PORTFOLIO.map((p, i) =>
@@ -670,7 +668,7 @@ export function PortfolioScene() {
                 <div className="ad-row-copy">
                   <h4 className="ad-row-title">{p.n}</h4>
                   <p className="ad-row-text">
-                    {p.s} · {p.k}
+                    {p.s}, {p.k}
                   </p>
                 </div>
                 <div className="ad-row-side">
@@ -697,7 +695,7 @@ export function MemoryScene() {
   ];
   return (
     <div ref={ref}>
-      <Frame rail={false} height={470} title="Aven · Gedächtnis">
+      <Frame rail={false} height={470} title="Gedächtnis">
         <div className="ad-h">
           <b>Was Aven über euch weiß</b>
           <span>Wächst mit jedem Projekt</span>

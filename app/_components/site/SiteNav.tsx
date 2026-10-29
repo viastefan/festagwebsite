@@ -176,7 +176,7 @@ export function SiteNav() {
               <Link href={menu === "product" ? "/tagro" : "/changelog"} className="mega-feature">
                 <span className="mega-feature-art" aria-hidden>
                   <span className="mega-feature-chip">
-                    <Icon name="sparkles" size={12} /> Aven
+                    Aven
                   </span>
                   <span className="mega-feature-line" />
                   <span className="mega-feature-line mega-feature-line--short" />

@@ -68,7 +68,8 @@ const STROKE: Partial<Record<IconName, React.ReactNode>> = {
   send: <path d="M12 19V5m-6 6 6-6 6 6" />,
   sparkles: (
     <>
-      <path d="M12 3.5 13.6 9a2 2 0 0 0 1.4 1.4l5.5 1.6-5.5 1.6a2 2 0 0 0-1.4 1.4L12 20.5l-1.6-5.5A2 2 0 0 0 9 13.6L3.5 12 9 10.4A2 2 0 0 0 10.4 9z" />
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="2.5" />
     </>
   ),
   book: <path d="M5 4.5h9.5A4.5 4.5 0 0 1 19 9v10.5H9.5A4.5 4.5 0 0 1 5 15zM5 15a4.5 4.5 0 0 1 4.5-4.5H19" />,

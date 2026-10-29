@@ -137,7 +137,7 @@ const UA_CSS = `
   position: relative; width: 100%; aspect-ratio: 2.6 / 1; border-radius: 10px; overflow: hidden;
   background:
     radial-gradient(90% 70% at 70% 115%, rgba(46,107,255,0.22), transparent 60%),
-    linear-gradient(180deg, #eef1f6, #dfe6f1);
+    linear-gradient(180deg, #f7f4ee, #e9e3d8);
   display: flex; align-items: flex-end; justify-content: center; padding: 8% 10% 0;
 }
 .ua::before {

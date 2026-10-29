@@ -4,12 +4,13 @@ import "./globals.css";
 import { SiteChrome } from "./_components/site/SiteChrome";
 import { links } from "@/lib/site/links";
 
-const aeonik = localFont({
+const geist = localFont({
   src: [
-    { path: "../public/fonts/Aeonik-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../public/fonts/Aeonik-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/Geist-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/Geist-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/Geist-SemiBold.ttf", weight: "600", style: "normal" },
   ],
-  variable: "--font-aeonik",
+  variable: "--font-geist",
   display: "swap",
   fallback: ["system-ui", "sans-serif"],
 });
@@ -94,7 +95,7 @@ const JSON_LD = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={aeonik.variable}>
+    <html lang="de" className={geist.variable}>
       <body>
         <script
           type="application/ld+json"
