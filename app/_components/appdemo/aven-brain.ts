@@ -154,8 +154,8 @@ const TOPICS: Topic[] = [
   {
     id: "preis",
     keys: ["preis", "preise", "festag kostet", "was kostet festag", "workspace", "abo", "bezahlen"],
-    text: "Der erste Workspace ist kostenlos, danach kostet jeder Workspace 19 € im Monat, nie pro Kopf. Mitglieder und Kunden sind immer unbegrenzt.",
-    why: "Bezahlt wird pro Workspace, weil Festag pro Projektumfeld Wissen aufbaut und nicht pro Person.",
+    text: "Free kostet nichts. Pro kostet 7 € im Monat oder 70 € im Jahr, pro Workspace und nie pro Kopf. Dazu kommt ein monatliches Aven-Guthaben, aufladbar mit 5, 10 oder 25 €.",
+    why: "Jede Aven-Antwort kostet echtes Geld. Free enthält 1 € im Monat, Pro 6 €, das sind etwa 70 beziehungsweise 420 Antworten mit dem mittleren Modell.",
     src: ["Preise"],
     follow: ["Was passiert mit meinen Daten?", "Was kannst du?"],
   },

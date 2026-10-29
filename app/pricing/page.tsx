@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing" },
   title: "Preise",
   description:
-    "Erster Workspace kostenlos, jeder weitere 19 € im Monat — nie pro Kopf. Projekte zum Festpreis ab 1.500 €, bezahlt pro Meilenstein.",
+    "Free kostet nichts, Pro 7 € im Monat, nie pro Kopf. Aven-Guthaben im Plan, aufladbar. Projekte zum Festpreis ab 1.500 €.",
 };
 
 function Cell({ v }: { v: string | boolean }) {
@@ -36,7 +36,7 @@ export default function PricingPage() {
       <PageHero
         center
         title="Preise"
-        lead="Klarheit wird nicht teurer, je mehr Menschen sie sehen. Erster Workspace kostenlos — danach 19 € pro Workspace, nie pro Kopf."
+        lead="Free kostet nichts. Pro kostet 7 € im Monat, pro Workspace, nie pro Kopf. Wer Aven mehr nutzt, lädt Guthaben auf."
       />
 
       <section className="section section--flush-top">
@@ -46,7 +46,7 @@ export default function PricingPage() {
           </Reveal>
           <Reveal className="pr-note">
             <Icon name="shield" size={14} />
-            Alle Preise netto zzgl. USt. Server in Deutschland. Kein Kreditkarten-Zwang für den ersten Workspace.
+            Alle Preise netto zzgl. USt. Server in Deutschland. Kein Kreditkarten-Zwang für Free und den 14-Tage-Test.
           </Reveal>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function PricingPage() {
                   <th scope="col">
                     <span className="sr-only">Funktion</span>
                   </th>
-                  {["Hobby", "Workspace", "Enterprise"].map((n) => (
+                  {["Free", "Pro", "Enterprise"].map((n) => (
                     <th key={n} scope="col">
                       {n}
                     </th>
@@ -97,7 +97,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <CtaBand title="Der erste Workspace kostet nichts." lead="Danach 19 € pro Workspace, nie pro Kopf. Mitglieder und Kunden sind unbegrenzt." facts={["Monatlich kündbar", "Server in Deutschland", "AVV inklusive"]} />
+      <CtaBand title="Starte kostenlos, wechsle zu Pro, wenn es passt." lead="Free für immer, Pro 14 Tage testen. Mitglieder und Kunden sind immer unbegrenzt." facts={["Monatlich kündbar", "Server in Deutschland", "AVV inklusive"]} />
 
       <style>{`
         .pr-note { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--faint); text-align: center; flex-wrap: wrap; }

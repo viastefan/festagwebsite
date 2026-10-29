@@ -15,6 +15,7 @@ const ROUTES = [
   "/memory/token-economics",
   "/memory/connect",
   "/pricing",
+  "/developers",
   "/enterprise",
   "/extension",
   "/docs",

@@ -4,12 +4,13 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "../ui/Icon";
 import { Button } from "../ui/Button";
-import { addons, deliveryPlans, workspacePlans, WORKSPACE_PRICE, type Plan } from "@/lib/site/pricing";
+import { addons, ALLOWANCE_EUR, ANSWERS_PER_EUR, creditPacks, deliveryPlans, workspacePlans, type Plan } from "@/lib/site/pricing";
 import { links } from "@/lib/site/links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const TABS = [
-  { id: "ws", label: "Workspaces" },
+  { id: "ws", label: "Pläne" },
+  { id: "usage", label: "Nutzung" },
   { id: "delivery", label: "Projekte" },
   { id: "addons", label: "Add-ons" },
 ] as const;
@@ -38,10 +39,12 @@ export function PricingPlans() {
       </div>
       <p className="pp-sub">
         {tab === "ws"
-          ? "Bezahlt wird pro Workspace — nie pro Kopf. Mitglieder und Kunden sind immer unbegrenzt."
-          : tab === "delivery"
-            ? "Festag liefert auch selbst: Festpreis, in Meilensteine geteilt, bezahlt erst nach Abnahme."
-            : "Gezielte Erweiterungen für eure Projekte — Aven schlägt sie vor, wenn sie passen."}
+          ? "Bezahlt wird pro Workspace, nie pro Kopf. Mitglieder und Kunden sind immer unbegrenzt."
+          : tab === "usage"
+            ? "Aven kostet pro Antwort echtes Geld. Jeder Plan enthält ein Monatsguthaben, mehr lässt sich aufladen."
+            : tab === "delivery"
+              ? "Festag liefert auch selbst: Festpreis, in Meilensteine geteilt, bezahlt erst nach Abnahme."
+              : "Gezielte Erweiterungen für eure Projekte, Aven schlägt sie vor, wenn sie passen."}
       </p>
 
       <AnimatePresence mode="wait">
@@ -54,14 +57,14 @@ export function PricingPlans() {
         >
           {tab === "ws" ? (
             <>
-              <div className="pp-grid pp-grid--4">
+              <div className="pp-grid pp-grid--3">
                 {workspacePlans.map((p) => (
                   <PlanCard key={p.id} plan={p} />
                 ))}
               </div>
-              <Calculator />
             </>
           ) : null}
+          {tab === "usage" ? <Usage /> : null}
           {tab === "delivery" ? (
             <div className="pp-grid pp-grid--3">
               {deliveryPlans.map((p) => (
@@ -119,58 +122,65 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
-/** Per-workspace vs. per-seat — the reason the model exists, made tangible. */
-function Calculator() {
-  const [ws, setWs] = useState(3);
-  const [people, setPeople] = useState(25);
-  const festag = Math.max(0, ws - 1) * WORKSPACE_PRICE;
-  const perSeat = people * 20;
+/** Nutzung: Monatsguthaben, Aufladepakete und ein Rechner für Aven-Antworten. */
+function Usage() {
+  const [answers, setAnswers] = useState(250);
+  const need = answers / ANSWERS_PER_EUR;
+  const plan = need <= ALLOWANCE_EUR.free ? "Free" : need <= ALLOWANCE_EUR.pro ? "Pro" : "Pro plus Aufladung";
+  const extra = Math.max(0, need - ALLOWANCE_EUR.pro);
   return (
-    <div className="pp-calc">
-      <div className="pp-calc-copy">
-        <span className="pp-calc-kicker">Rechner</span>
-        <h3 className="h3">Wachsen, ohne pro Kopf zu zahlen.</h3>
-        <p className="small" style={{ fontSize: 14.5, marginTop: 8 }}>
-          Lade Kunden, Freelancer und Führung ein, so viele ihr wollt. Es zählt nur, wie viele Workspaces ihr nutzt.
-        </p>
+    <div className="pp-usage">
+      <div className="pp-usage-cols">
+        <div className="pp-usage-box">
+          <h3 className="h3">Monatsguthaben</h3>
+          <ul className="pp-kv">
+            <li><span>Free</span><b>{eur(ALLOWANCE_EUR.free)} · ca. {ALLOWANCE_EUR.free * ANSWERS_PER_EUR} Antworten</b></li>
+            <li><span>Test (14 Tage)</span><b>{eur(ALLOWANCE_EUR.trial)} · ca. {ALLOWANCE_EUR.trial * ANSWERS_PER_EUR} Antworten</b></li>
+            <li><span>Pro</span><b>{eur(ALLOWANCE_EUR.pro)} · ca. {ALLOWANCE_EUR.pro * ANSWERS_PER_EUR} Antworten</b></li>
+          </ul>
+          <p className="small">Antworten mit dem mittleren Modell. Gründliche Antworten kosten mehr, schnelle weniger.</p>
+        </div>
+        <div className="pp-usage-box">
+          <h3 className="h3">Aufladen</h3>
+          <ul className="pp-kv">
+            {creditPacks.map((c) => (
+              <li key={c.price}>
+                <span>{eur(c.price)}</span>
+                <b>
+                  {eur(c.credits)} Guthaben{c.note ? ` (${c.note})` : ""}
+                </b>
+              </li>
+            ))}
+          </ul>
+          <p className="small">Aufladungen verfallen 12 Monate nicht und werden nach dem Monatsguthaben verbraucht.</p>
+        </div>
       </div>
-      <div className="pp-calc-ui">
-        <label className="pp-range">
-          <span>
-            Workspaces <strong>{ws}</strong>
-          </span>
-          <input type="range" min={1} max={20} value={ws} onChange={(e) => setWs(+e.target.value)} />
-        </label>
-        <label className="pp-range">
-          <span>
-            Personen inkl. Kunden <strong>{people}</strong>
-          </span>
-          <input type="range" min={1} max={200} value={people} onChange={(e) => setPeople(+e.target.value)} />
-        </label>
-        <div className="pp-calc-out">
-          <div>
-            <span>Festag</span>
-            <strong>
-              <AnimatePresence mode="popLayout" initial={false}>
-                <motion.span
-                  key={festag}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  style={{ display: "inline-block" }}
-                >
-                  {eur(festag)}
-                </motion.span>
-              </AnimatePresence>
-              <em> / Monat</em>
-            </strong>
-          </div>
-          <div className="is-muted">
-            <span>Typisches Pro-Kopf-Tool à 20 €</span>
-            <strong>
-              {eur(perSeat)}
-              <em> / Monat</em>
-            </strong>
+      <div className="pp-calc">
+        <div className="pp-calc-copy">
+          <h3 className="h3">Was brauche ich?</h3>
+          <p className="small" style={{ fontSize: 14.5, marginTop: 8 }}>
+            Schätze, wie oft ihr Aven im Monat fragt. Wir zeigen, was dazu passt.
+          </p>
+        </div>
+        <div className="pp-calc-ui">
+          <label className="pp-range">
+            <span>
+              Aven-Antworten pro Monat <strong>{answers.toLocaleString("de-DE")}</strong>
+            </span>
+            <input type="range" min={20} max={1500} step={10} value={answers} onChange={(e) => setAnswers(+e.target.value)} />
+          </label>
+          <div className="pp-calc-out">
+            <div>
+              <span>Passender Plan</span>
+              <strong>{plan}</strong>
+            </div>
+            <div className="is-muted">
+              <span>Zusätzliches Guthaben</span>
+              <strong>
+                {extra > 0 ? eur(Math.ceil(extra)) : "0 €"}
+                <em> / Monat</em>
+              </strong>
+            </div>
           </div>
         </div>
       </div>
@@ -179,6 +189,15 @@ function Calculator() {
 }
 
 const PP_CSS = `
+.pp-usage { display: grid; gap: 16px; }
+.pp-usage-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pp-usage-box { padding: 22px; border-radius: var(--r-card); background: var(--glass-fill); border: 0.5px solid var(--line-strong); box-shadow: var(--glass-shadow); }
+.pp-usage-box .small { margin-top: 12px; font-size: 13px; color: var(--muted); }
+.pp-kv { list-style: none; margin: 14px 0 0; padding: 0; }
+.pp-kv li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 0.5px solid var(--line-strong); font-size: 14px; }
+.pp-kv span { color: var(--muted); }
+.pp-kv b { font-weight: 500; text-align: right; }
+@media (max-width: 760px) { .pp-usage-cols { grid-template-columns: 1fr; } }
 .pp-tabs {
   position: relative; display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px;
   background: var(--surface-2); border: var(--hair) solid var(--line); margin: 0 auto;

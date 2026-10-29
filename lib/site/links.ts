@@ -33,6 +33,7 @@ export const primaryNav: (NavItem & { menu?: "product" | "resources" })[] = [
   { href: "/product", label: "Produkt", menu: "product" },
   { href: "/enterprise", label: "Enterprise" },
   { href: "/pricing", label: "Preise" },
+  { href: "/developers", label: "API" },
   { href: "/community", label: "Community" },
   { href: "/docs", label: "Ressourcen", menu: "resources" },
 ];

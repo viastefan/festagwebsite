@@ -59,6 +59,9 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   rechts (`SectionHead`), Aufzählungen sind schriftgeführte Listen (`KeyList`), Funktionen als Bento (`Bento`, `BentoCell`),
   Kennzahlen als `StatStrip` (alle in `app/_components/ui/Blocks2.tsx`). Feature-Blöcke ohne Container um die Bühne.
   Neue Abschnitte nutzen diese Bausteine, keine eigenen Kartenstile.
+- **Preise:** spiegeln die App (`festag-mvp/lib/billing/plan.ts` und `credits.ts`): Free, Pro 7 €/Monat oder 70 €/Jahr,
+  14 Tage Test, Aven-Guthaben (Free 1 €, Pro 6 €, Pakete 5/10/25 €). Quelle auf der Website: `lib/site/pricing.ts`.
+  Ändert sich die App, hier nachziehen. **API:** `/developers` beschreibt nur, was es in der App wirklich gibt.
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,
   auch Favicon und App-Icons; kleine Größe im Header.
 - **Aven:** nur als Wort, ohne Symbol, ohne Avatar, ohne Sprecher-Etikett.

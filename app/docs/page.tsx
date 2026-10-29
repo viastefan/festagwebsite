@@ -20,7 +20,7 @@ const SECTIONS: { id: string; icon: IconName; title: string; guides: Guide[] }[]
     guides: [
       { title: "Was Festag ist — und was nicht", body: "Operational Intelligence über eurer Delivery. Kein PM-Tool, kein Chatbot.", href: "/product", time: "3 Min" },
       { title: "Workspace anlegen", body: "Organisation, Modus (Delivery, Teams, Agency) und erste Projekte.", href: "/product#execution", time: "5 Min" },
-      { title: "Preise & Pläne", body: "Hobby, Workspace, Partner, Enterprise — und warum Festag pro Workspace statt pro Kopf kostet.", href: "/pricing", time: "2 Min" },
+      { title: "Preise & Pläne", body: "Free, Pro, Enterprise, Aven-Guthaben und Projektpreise — und warum Festag pro Workspace statt pro Kopf kostet.", href: "/pricing", time: "2 Min" },
     ],
   },
   {
