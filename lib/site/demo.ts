@@ -70,9 +70,9 @@ export const demoDecisions: DemoDecision[] = [
     ],
     due: "Heute, 17:00",
     outcome: {
-      shift: "Entschieden: Launch auf 21. Okt. Tagro informiert den Kunden mit Begründung und aktualisiert die Timeline. Risiko-Score sinkt von 58 auf 81.",
-      keep: "Entschieden: Termin bleibt. Tagro markiert das Freigabe-Risiko als akzeptiert und legt einen Checkpoint für Mittwoch an.",
-      cut: "Entschieden: Export-Modul in Phase 2. Tagro schlägt dem Kunden eine Scope-Vereinbarung zur Freigabe vor.",
+      shift: "Entschieden: Launch auf 21. Okt. Aven informiert den Kunden mit Begründung und aktualisiert die Timeline. Risiko-Score sinkt von 58 auf 81.",
+      keep: "Entschieden: Termin bleibt. Aven markiert das Freigabe-Risiko als akzeptiert und legt einen Checkpoint für Mittwoch an.",
+      cut: "Entschieden: Export-Modul in Phase 2. Aven schlägt dem Kunden eine Scope-Vereinbarung zur Freigabe vor.",
     },
   },
   {
@@ -86,8 +86,8 @@ export const demoDecisions: DemoDecision[] = [
     ],
     due: "Morgen",
     outcome: {
-      stripe: "Entschieden: Stripe. Tagro schreibt die Entscheidung mit Begründung ins Projekt und legt „Rechnungskauf“ als Phase-2-Objective an.",
-      adyen: "Entschieden: Adyen. Tagro verschiebt den Staging-Termin um 8 Tage und informiert den Kunden über den Grund.",
+      stripe: "Entschieden: Stripe. Aven schreibt die Entscheidung mit Begründung ins Projekt und legt „Rechnungskauf“ als Phase-2-Objective an.",
+      adyen: "Entschieden: Adyen. Aven verschiebt den Staging-Termin um 8 Tage und informiert den Kunden über den Grund.",
     },
   },
 ];
@@ -125,7 +125,7 @@ export const demoTranslations: { raw: string; client: string; source: string }[]
   },
 ];
 
-/** Tagro console — scripted answers for the typeable demo. */
+/** Aven console — scripted answers for the typeable demo. */
 export type TagroAnswer = {
   keys: string[];
   summary: string;

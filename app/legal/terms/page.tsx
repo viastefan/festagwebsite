@@ -13,7 +13,7 @@ export default function TermsPage() {
       </p>
       <h2>Verantwortung</h2>
       <p>
-        Ihr bleibt verantwortlich für Inhalte und verbundene Tools in eurem Workspace. Von Tagro erstellte Reports und
+        Ihr bleibt verantwortlich für Inhalte und verbundene Tools in eurem Workspace. Von Aven erstellte Reports und
         Kunden-Updates werden vor der Veröffentlichung von euch freigegeben. Festag ersetzt keine Rechts-, Steuer- oder
         Sicherheitsberatung.
       </p>

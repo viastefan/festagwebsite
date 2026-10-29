@@ -23,7 +23,7 @@ export const voices: Voice[] = [
   },
   {
     quote:
-      "Tagro sagt nicht „alles gut“. Es sagt: Der Login-Meilenstein ist gefährdet, drei Tasks hängen am API-Zugang, Entscheidung bis heute. Das ist der Unterschied.",
+      "Aven sagt nicht „alles gut“. Es sagt: Der Login-Meilenstein ist gefährdet, drei Tasks hängen am API-Zugang, Entscheidung bis heute. Das ist der Unterschied.",
     name: "Engineering Manager",
     role: "SaaS-Team, 11 Entwickler · Early Access",
     initials: "EM",
@@ -78,13 +78,13 @@ export const changelog: ChangelogEntry[] = [
     date: "2026-10-02",
     version: "2.6",
     title: "Adaptive Intelligence: Operational DNA ist persistent",
-    body: "Entscheidungsmuster werden als workspace-gebundene OKM-Fakten gespeichert — aggregiert, ohne Namen oder Freitext. Tagro nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext.",
+    body: "Entscheidungsmuster werden als workspace-gebundene OKM-Fakten gespeichert — aggregiert, ohne Namen oder Freitext. Aven nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext.",
     tags: ["Intelligence", "Datenschutz"],
     art: "okm",
     highlights: [
       "Decisions → Decision-, Quality- und Delivery-DNA auf /decide, /delegate und /apply",
-      "Tagro nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext",
-      "Neue Übersicht gespeicherter Fakten unter Einstellungen → Tagro & Klarheit, inklusive Löschen",
+      "Aven nutzt bis zu zehn Fakten mit höchster Konfidenz im Kontext",
+      "Neue Übersicht gespeicherter Fakten unter Einstellungen → Aven & Klarheit, inklusive Löschen",
       "Persönliche Profile bleiben standardmäßig aus (Opt-in)",
     ],
   },
@@ -105,8 +105,8 @@ export const changelog: ChangelogEntry[] = [
   {
     date: "2026-09-04",
     version: "2.4",
-    title: "Tagro delegiert an Cursor Cloud Agents (Beta)",
-    body: "Klar umrissene Dev-Tasks können aus Tagro an einen Cursor Cloud Agent übergeben werden. Der PR kommt als Signal zurück ins Projekt — nie ohne Review.",
+    title: "Aven delegiert an Cursor Cloud Agents (Beta)",
+    body: "Klar umrissene Dev-Tasks können aus Aven an einen Cursor Cloud Agent übergeben werden. Der PR kommt als Signal zurück ins Projekt — nie ohne Review.",
     tags: ["Execution", "Beta"],
     art: "cursor",
     highlights: [
@@ -119,13 +119,13 @@ export const changelog: ChangelogEntry[] = [
     date: "2026-08-21",
     version: "2.3",
     title: "Objectives: Arbeit mit dem Warum verbinden",
-    body: "Projekte und Issues lassen sich strategischen Zielen zuordnen. Tagro erklärt Fortschritt und Risiko jetzt im Kontext des Ziels, nicht nur des Tickets.",
+    body: "Projekte und Issues lassen sich strategischen Zielen zuordnen. Aven erklärt Fortschritt und Risiko jetzt im Kontext des Ziels, nicht nur des Tickets.",
     tags: ["Produkt"],
     art: "objectives",
     highlights: [
       "Objectives unter /objectives",
       "Issues und Projekte mit Zielen verknüpfen",
-      "Tagro begründet Prioritäten mit dem Objective",
+      "Aven begründet Prioritäten mit dem Objective",
     ],
   },
   {
@@ -171,9 +171,9 @@ export const changelog: ChangelogEntry[] = [
   {
     date: "2026-06-05",
     version: "1.9",
-    title: "Tagro Decision Mode",
-    body: "Tagro beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt.",
-    tags: ["Tagro"],
+    title: "Aven Decision Mode",
+    body: "Aven beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt.",
+    tags: ["Aven"],
     art: "tagro",
     highlights: [
       "Optionen mit Risiko-Delta",
@@ -197,7 +197,7 @@ export const clientQuestions = [
 export const principles = [
   { title: "Klarheit für Kunden vor interner Flexibilität", body: "Jede Funktion muss die Frage beantworten: Versteht der Kunde das Projekt dadurch besser?" },
   { title: "Übersetzung vor Dokumentation", body: "Niemand muss alles aufschreiben. Festag liest, was ohnehin entsteht — und macht es verständlich." },
-  { title: "Status mit Beleg", body: "Jede Aussage hat eine Quelle: ein PR, ein Issue, ein Thread, eine Datei. Tagro nennt sie immer." },
+  { title: "Status mit Beleg", body: "Jede Aussage hat eine Quelle: ein PR, ein Issue, ein Thread, eine Datei. Aven nennt sie immer." },
   { title: "Keine Überwachung", body: "Keine Screenshots, kein Tracking, keine Personen-Scores. Signale, nicht Menschen." },
   { title: "Ruhig, präzise, premium", body: "Keine Hype-Sprache, keine Partikel, keine KI-Lila-Verläufe. Ein System, kein Spielzeug." },
   { title: "System, nicht Tool", body: "Festag ersetzt nichts. Es sitzt über eurem Stack und wird mit jedem Projekt klüger." },

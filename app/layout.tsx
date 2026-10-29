@@ -15,7 +15,7 @@ const aeonik = localFont({
 });
 
 const DESCRIPTION =
-  "Festag ist die Operational-Intelligence-Schicht über GitHub, Linear, Jira und Slack. Tagro übersetzt Arbeitssignale in Status, Risiken und Entscheidungen — klar für Kunden und Führung.";
+  "Festag ist die Operational-Intelligence-Schicht über GitHub, Linear, Jira und Slack. Aven übersetzt Arbeitssignale in Status, Risiken und Entscheidungen — klar für Kunden und Führung.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://festag.app"),

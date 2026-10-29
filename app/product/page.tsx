@@ -24,8 +24,8 @@ const LOGIC: { icon: IconName; label: string; body: string }[] = [
 ];
 
 const EXECUTION: { icon: IconName; title: string; body: string }[] = [
-  { icon: "check", title: "Update senden", body: "Status-Note, Voice-Note oder Screenshot — Tagro macht daraus das Update." },
-  { icon: "risk", title: "Blocker melden", body: "Mit einem Klick. Tagro prüft Abhängigkeiten und Auswirkung auf den Termin." },
+  { icon: "check", title: "Update senden", body: "Status-Note, Voice-Note oder Screenshot — Aven macht daraus das Update." },
+  { icon: "risk", title: "Blocker melden", body: "Mit einem Klick. Aven prüft Abhängigkeiten und Auswirkung auf den Termin." },
   { icon: "decision", title: "Entscheidung anfragen", body: "Mit Kontext und Optionen — der Kunde entscheidet im Portal." },
   { icon: "github", title: "PR & Design verknüpfen", body: "GitHub-PRs und Figma-Frames als Beleg direkt an Aufgaben." },
   { icon: "doc", title: "Lieferobjekt hochladen", body: "Dateien, Nachweise, Rechnungen — als Evidence im Projekt." },
@@ -34,7 +34,7 @@ const EXECUTION: { icon: IconName; title: string; body: string }[] = [
 
 const WHITE_LABEL = [
   { name: "Co-branded", body: "„Powered by Festag“ sichtbar. Ideal für den Start.", plan: "Workspace" },
-  { name: "Subtle-branded", body: "Eure Marke vorne, Tagro als Briefing-Engine sichtbar.", plan: "Partner" },
+  { name: "Subtle-branded", body: "Eure Marke vorne, Aven als Briefing-Engine sichtbar.", plan: "Partner" },
   { name: "Full White-Label", body: "Kein Festag-Branding für Kunden. Eigene Domain.", plan: "Enterprise" },
 ];
 
@@ -107,7 +107,7 @@ export default function ProductPage() {
             id="decisions"
             flip
             title="Entscheidungen & Freigaben."
-            sub="Tagro erkennt fehlende Entscheidungen, stellt Optionen mit Auswirkung gegenüber und dokumentiert das Ergebnis mit Begründung."
+            sub="Aven erkennt fehlende Entscheidungen, stellt Optionen mit Auswirkung gegenüber und dokumentiert das Ergebnis mit Begründung."
           >
             <DecisionScene />
           </FeatureBlock>

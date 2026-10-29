@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Festag — Operational Intelligence",
     short_name: "Festag",
     description:
-      "Operational Intelligence über GitHub, Linear, Jira und Slack. Tagro übersetzt Arbeit in Status, Risiken und Entscheidungen.",
+      "Operational Intelligence über GitHub, Linear, Jira und Slack. Aven übersetzt Arbeit in Status, Risiken und Entscheidungen.",
     start_url: "/",
     display: "standalone",
     background_color: "#f8f7f5",

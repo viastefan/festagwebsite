@@ -10,9 +10,9 @@ import { links } from "@/lib/site/links";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/tagro" },
-  title: "Tagro",
+  title: "Aven",
   description:
-    "Tagro ist Festags Operations Interpreter — kein Chatbot. Antworten mit Kontext, Empfehlung, nächstem Schritt und Quelle.",
+    "Aven ist Festags Operations Interpreter — kein Chatbot. Antworten mit Kontext, Empfehlung, nächstem Schritt und Quelle.",
 };
 
 const STRUCTURE = [
@@ -45,17 +45,17 @@ export default function TagroPage() {
   return (
     <>
       <PageHero
-        eyebrow="Tagro · Operations Interpreter"
+        eyebrow="Aven · Operations Interpreter"
         title={
           <>
             Wie ein Kollege, der seit Jahren bei euch arbeitet.
           </>
         }
-        lead="Tagro liest Signale aus GitHub, Linear, Jira und Slack, versteht, was sie bedeuten, und übersetzt sie in ruhige, entscheidungsreife Sprache. Kein Chatbot, den man fragt — ein Interpreter, der mitdenkt."
+        lead="Aven liest Signale aus GitHub, Linear, Jira und Slack, versteht, was sie bedeuten, und übersetzt sie in ruhige, entscheidungsreife Sprache. Kein Chatbot, den man fragt — ein Interpreter, der mitdenkt."
       >
         <div className="btn-row">
           <Button href={links.register} variant="solid" size="lg" arrow>
-            Tagro ausprobieren
+            Aven ausprobieren
           </Button>
           <Button href="#demo" variant="soft" size="lg">
             Live-Demo unten
@@ -118,7 +118,7 @@ export default function TagroPage() {
         <div className="wrap wrap--wide">
           <FeatureBlock
             title="Decision Mode."
-            sub="Tagro beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt."
+            sub="Aven beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt."
           >
             <DecisionScene />
           </FeatureBlock>
@@ -127,12 +127,12 @@ export default function TagroPage() {
 
       <section className="section section--tight">
         <div className="wrap wrap--wide">
-          <SectionHead title="Tagro ist kein Chatbot." lead="Der Unterschied liegt nicht im Modell, sondern im Kontext und in der Verantwortung." />
+          <SectionHead title="Aven ist kein Chatbot." lead="Der Unterschied liegt nicht im Modell, sondern im Kontext und in der Verantwortung." />
           <Reveal className="tg-vs">
             <div className="tg-vs-head">
               <span>Generischer KI-Assistent</span>
               <span>
-                <Icon name="sparkles" size={14} /> Tagro
+                <Icon name="sparkles" size={14} /> Aven
               </span>
             </div>
             {VS.map(([a, b]) => (
@@ -157,10 +157,10 @@ export default function TagroPage() {
             <div>
               <span className="tag tag--warn">Beta</span>
               <h3 className="h3" style={{ marginTop: 12 }}>
-                Tagro delegiert an Cursor Cloud Agents.
+                Aven delegiert an Cursor Cloud Agents.
               </h3>
               <p className="body" style={{ marginTop: 10 }}>
-                Klar umrissene Dev-Tasks können aus Tagro an einen Cursor Cloud Agent übergeben werden. Der Pull
+                Klar umrissene Dev-Tasks können aus Aven an einen Cursor Cloud Agent übergeben werden. Der Pull
                 Request kommt als Signal zurück ins Projekt — nie ohne Freigabe, nie ohne Review.
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function TagroPage() {
         </div>
       </section>
 
-      <CtaBand title="Frag Tagro selbst." />
+      <CtaBand title="Frag Aven selbst." />
 
       <style>{`
         .tg-console-wrap { max-width: 920px; margin: 0 auto; }

@@ -94,12 +94,12 @@ const JOBS: JobPosting[] = [
     seniority: "founding",
     sortOrder: 10,
     shortDescription:
-      "Build the core systems behind projects, decisions, proof, reports and Tagro intelligence.",
+      "Build the core systems behind projects, decisions, proof, reports and Aven intelligence.",
     mission:
-      "Du baust die Kern-Applikationsschicht hinter Projects, Decisions, ProofGrid, Reports, Notifications und der Tagro Briefing Intelligence.",
+      "Du baust die Kern-Applikationsschicht hinter Projects, Decisions, ProofGrid, Reports, Notifications und der Aven Briefing Intelligence.",
     responsibilities: [
       "Projekt-Kontrollschicht und Datenmodell weiterentwickeln",
-      "Decision-Inbox, ProofGrid und Tagro-Queue als verlässliche Systeme bauen",
+      "Decision-Inbox, ProofGrid und Aven-Queue als verlässliche Systeme bauen",
       "Client- und Execution-Panel skalieren — eine Datenwahrheit, mehrere Surfaces",
       "Integrationen, Notifications und Handoff-Flows entwerfen",
       "Architektur-Entscheidungen treffen, dokumentieren und mit der Designarbeit verzahnen",
@@ -156,12 +156,12 @@ const JOBS: JobPosting[] = [
     seniority: "senior",
     sortOrder: 30,
     shortDescription:
-      "Build Tagro workflows for reports, decisions, PDF handoffs and project briefings.",
+      "Build Aven workflows for reports, decisions, PDF handoffs and project briefings.",
     mission:
-      "Du baust Tagro-Workflows für Reports, Decisions, PDF-Handoffs, Projekt-Briefings und kontextuelles Schreiben — calm AI, kein Spielzeug.",
+      "Du baust Aven-Workflows für Reports, Decisions, PDF-Handoffs, Projekt-Briefings und kontextuelles Schreiben — calm AI, kein Spielzeug.",
     responsibilities: [
       "Briefing-, Report- und Decision-Workflows mit LLM-Backends entwerfen",
-      "Quellen-Tracking und Evidence-Bindung umsetzen (Tagro nennt immer die Quelle)",
+      "Quellen-Tracking und Evidence-Bindung umsetzen (Aven nennt immer die Quelle)",
       "Eval-Setups bauen, Modelle benchmarken, Costs steuern",
     ],
     requirements: [
@@ -209,7 +209,7 @@ const JOBS: JobPosting[] = [
       "Du baust eine Motion-Sprache, die Festags Produktlogik präzise und zurückhaltend erklärt — keine Partikel, keine Spielzeug-Animationen.",
     responsibilities: [
       "Hero-, Section- und Produkt-Animationen für Web und App",
-      "System-Diagramm-Motion (Decisions, ProofGrid, Tagro)",
+      "System-Diagramm-Motion (Decisions, ProofGrid, Aven)",
       "Reduced-Motion-Fallbacks mitdenken",
     ],
     requirements: [

@@ -37,7 +37,7 @@ export const workspacePlans: Plan[] = [
     features: [
       "1 Workspace mit eigener Domain",
       "Projekte, Entscheidungen, Aufgaben",
-      "Tagro im Workspace",
+      "Aven im Workspace",
       "Client Portal für eure Kunden",
       "Connectors: GitHub, Linear, Jira, Slack",
     ],
@@ -104,7 +104,7 @@ export const deliveryPlans: Plan[] = [
     features: [
       "Festpreis, in Meilensteine geteilt",
       "Bezahlung pro Meilenstein nach Abnahme",
-      "Client Portal und Tagro-Briefings inklusive",
+      "Client Portal und Aven-Briefings inklusive",
       "Workspace während des Projekts inklusive",
     ],
   },
@@ -176,7 +176,7 @@ export const compare: CompareGroup[] = [
   {
     group: "Intelligence",
     rows: [
-      { label: "Tagro im Workspace", values: [true, true, true] },
+      { label: "Aven im Workspace", values: [true, true, true] },
       { label: "Entscheidungen mit Optionen und Risiko", values: [true, true, true] },
       { label: "Reports mit Freigabe vor Versand", values: [true, true, true] },
       { label: "Audio-Briefings mit Transkript", values: [false, true, true] },
@@ -210,7 +210,7 @@ export const pricingFaq: { q: string; a: string }[] = [
   },
   {
     q: "Was ist im kostenlosen Hobby-Workspace enthalten?",
-    a: "Dein erster eigener Workspace ist dauerhaft kostenlos: Projekte, Entscheidungen, Tagro, Client Portal und Connectors. Erst ab dem zweiten Workspace greift der Workspace-Plan für 19 € pro Monat.",
+    a: "Dein erster eigener Workspace ist dauerhaft kostenlos: Projekte, Entscheidungen, Aven, Client Portal und Connectors. Erst ab dem zweiten Workspace greift der Workspace-Plan für 19 € pro Monat.",
   },
   {
     q: "Wie funktionieren die Projektpreise?",

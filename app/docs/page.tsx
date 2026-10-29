@@ -7,7 +7,7 @@ import { CtaBand, PageHero } from "../_components/ui/Section";
 export const metadata: Metadata = {
   alternates: { canonical: "/docs" },
   title: "Guides",
-  description: "Einstieg in Festag: Workspace, Connectors, Tagro, Client Panel, White-Label und Datenschutz.",
+  description: "Einstieg in Festag: Workspace, Connectors, Aven, Client Panel, White-Label und Datenschutz.",
 };
 
 type Guide = { title: string; body: string; href: string; time: string };
@@ -30,15 +30,15 @@ const SECTIONS: { id: string; icon: IconName; title: string; guides: Guide[] }[]
     guides: [
       { title: "GitHub, Linear, Jira, Slack verbinden", body: "Scopes, Kanäle, Repos — und was Festag bewusst nicht liest.", href: "/connectors", time: "6 Min" },
       { title: "Die Signal-Taxonomie", body: "Elf Bedeutungen, die jedes Signal bekommen kann.", href: "/connectors", time: "4 Min" },
-      { title: "Cursor Cloud Agents (Beta)", body: "Dev-Tasks aus Tagro delegieren — mit Review und Freigabe.", href: "/tagro", time: "4 Min" },
+      { title: "Cursor Cloud Agents (Beta)", body: "Dev-Tasks aus Aven delegieren — mit Review und Freigabe.", href: "/tagro", time: "4 Min" },
     ],
   },
   {
     id: "tagro",
     icon: "sparkles",
-    title: "Tagro & Intelligence",
+    title: "Aven & Intelligence",
     guides: [
-      { title: "So antwortet Tagro", body: "Zusammenfassung, Kontext, Wirkung, Empfehlung, nächster Schritt.", href: "/tagro", time: "4 Min" },
+      { title: "So antwortet Aven", body: "Zusammenfassung, Kontext, Wirkung, Empfehlung, nächster Schritt.", href: "/tagro", time: "4 Min" },
       { title: "Decision Mode", body: "Optionen, Risiko-Delta und dokumentierte Entscheidungen.", href: "/tagro#demo", time: "3 Min" },
       { title: "Operational DNA & Company Brain", body: "Wie Festag lernt — und wie ihr es steuert.", href: "/intelligence", time: "7 Min" },
     ],
@@ -49,7 +49,7 @@ const SECTIONS: { id: string; icon: IconName; title: string; guides: Guide[] }[]
     title: "Client Experience",
     guides: [
       { title: "Client Panel einrichten", body: "Was Kunden sehen, was intern bleibt, wie Freigaben laufen.", href: "/product#client", time: "5 Min" },
-      { title: "Reports mit Freigabe", body: "Tagro schreibt, ihr gebt frei — nichts geht automatisch raus.", href: "/product#decisions", time: "3 Min" },
+      { title: "Reports mit Freigabe", body: "Aven schreibt, ihr gebt frei — nichts geht automatisch raus.", href: "/product#decisions", time: "3 Min" },
       { title: "White-Label-Stufen", body: "Co-branded, subtle-branded, full White-Label.", href: "/enterprise#white-label", time: "4 Min" },
     ],
   },

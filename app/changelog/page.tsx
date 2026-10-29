@@ -10,7 +10,7 @@ import { changelog } from "@/lib/site/content";
 export const metadata: Metadata = {
   alternates: { canonical: "/changelog" },
   title: "Changelog",
-  description: "Was neu ist in Festag — Connectors, Tagro, Executive, Adaptive Intelligence.",
+  description: "Was neu ist in Festag — Connectors, Aven, Executive, Adaptive Intelligence.",
 };
 
 export default function ChangelogPage() {

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const SECURITY: { icon: IconName; title: string; body: string }[] = [
   { icon: "server", title: "Datenresidenz Deutschland", body: "Hosting und Verarbeitung in Deutschland. Vertraglich zugesichert in Enterprise." },
   { icon: "key", title: "SAML SSO & SCIM", body: "SAML 2.0 mit eurem Identity Provider. Provisioning und Deprovisioning über SCIM." },
-  { icon: "lock", title: "Permission-aware", body: "Tagro sieht nur, was die fragende Person sehen darf. Workspace-Isolation per Row-Level-Security." },
+  { icon: "lock", title: "Permission-aware", body: "Aven sieht nur, was die fragende Person sehen darf. Workspace-Isolation per Row-Level-Security." },
   { icon: "eye", title: "Keine Überwachung", body: "Keine Screenshots, kein Activity-Tracking, keine Personen-Scores. Signale, nicht Menschen." },
   { icon: "brain", title: "Kein Training auf euren Daten", body: "Keine öffentlichen Modelle werden auf eurem Workspace trainiert. Dokumentierte Auftragsverarbeiter." },
   { icon: "doc", title: "DPA & Security Review", body: "AVV nach DSGVO, Security-Fragebögen, Architektur-Review mit eurem Team." },
@@ -28,11 +28,11 @@ const WL: { name: string; body: string; points: string[] }[] = [
   {
     name: "Co-branded",
     body: "Für den Start: „Powered by Festag“ im Portal.",
-    points: ["Euer Logo & Farben", "Festag-Domain", "Tagro sichtbar"],
+    points: ["Euer Logo & Farben", "Festag-Domain", "Aven sichtbar"],
   },
   {
     name: "Subtle-branded",
-    body: "Eure Marke vorne, Tagro als Briefing-Engine.",
+    body: "Eure Marke vorne, Aven als Briefing-Engine.",
     points: ["Eigene Domain", "Mehrere Marken", "Eigene E-Mail-Absender"],
   },
   {

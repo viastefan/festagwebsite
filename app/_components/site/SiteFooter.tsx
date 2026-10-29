@@ -8,7 +8,7 @@ const YEAR = 2026;
 const NOTES = [
   "Alle Preise netto zzgl. gesetzlicher USt. Projektpreise sind Richtwerte und werden im Angebot verbindlich.",
   "Die Produkt-Demos auf dieser Website zeigen einen Beispiel-Workspace mit fiktiven Projekten, Kunden und Zahlen.",
-  "Antworten von Tagro sind Entscheidungsvorlagen, keine verbindliche Rechts-, Steuer- oder Finanzberatung.",
+  "Antworten von Aven sind Entscheidungsvorlagen, keine verbindliche Rechts-, Steuer- oder Finanzberatung.",
   "Kundenstimmen stammen aus dem Early-Access-Programm und sind nach Rolle statt Namen gekennzeichnet.",
   "GitHub, Linear, Jira, Slack, Notion, Figma, Google und Cursor sind Marken ihrer jeweiligen Inhaber.",
 ];

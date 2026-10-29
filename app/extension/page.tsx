@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 };
 
 const FEATURES: { icon: IconName; title: string; body: string }[] = [
-  { icon: "signal", title: "Status-Note in Sekunden", body: "Ein Satz reicht. Tagro ordnet ihn dem Projekt zu und macht daraus Fortschritt." },
+  { icon: "signal", title: "Status-Note in Sekunden", body: "Ein Satz reicht. Aven ordnet ihn dem Projekt zu und macht daraus Fortschritt." },
   { icon: "decision", title: "Entscheidung anfragen", body: "Aus Slack Web, Jira oder Linear heraus — mit Kontext der aktuellen Seite." },
   { icon: "eye", title: "Screenshot als Evidence", body: "Bereich markieren, Projekt wählen — der Beleg hängt am richtigen Meilenstein." },
-  { icon: "sparkles", title: "Tagro fragen", body: "Wie steht Atlas? Was blockiert? Antworten mit Quelle, ohne Tab-Wechsel." },
+  { icon: "sparkles", title: "Aven fragen", body: "Wie steht Atlas? Was blockiert? Antworten mit Quelle, ohne Tab-Wechsel." },
   { icon: "lock", title: "Nur was ihr sendet", body: "Kein Tab-Tracking, kein Seiten-Mitlesen. Die Extension sieht nur, was ihr aktiv teilt." },
   { icon: "bolt", title: "Tastenkürzel", body: "⌘⇧F öffnet Festag überall. Enter sendet. Esc schließt." },
 ];
@@ -27,7 +27,7 @@ const FEATURES: { icon: IconName; title: string; body: string }[] = [
 const STEPS = [
   { title: "Installieren", body: "Extension laden und mit eurem Festag-Workspace verbinden — in unter einer Minute." },
   { title: "Signale erfassen", body: "Status, Entscheidungen und Notizen dort erfassen, wo ihr arbeitet." },
-  { title: "Klarheit behalten", body: "Tagro und Dashboard bleiben synchron — ohne ein weiteres Tool zu stapeln." },
+  { title: "Klarheit behalten", body: "Aven und Dashboard bleiben synchron — ohne ein weiteres Tool zu stapeln." },
 ];
 
 export default function ExtensionPage() {
@@ -113,7 +113,7 @@ export default function ExtensionPage() {
                   </div>
                   <div className="xt-popup-detect">
                     <Icon name="sparkles" size={13} />
-                    Tagro erkennt: <strong>Blocker</strong> · verknüpft mit ATL-88
+                    Aven erkennt: <strong>Blocker</strong> · verknüpft mit ATL-88
                   </div>
                   <div className="xt-popup-foot">
                     <span className="kbd">⌘ Enter</span>

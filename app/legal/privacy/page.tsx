@@ -53,7 +53,7 @@ export default function PrivacyPage() {
         </tbody>
       </table>
       <p>
-        Alle Einstellungen findet ihr in der App unter Einstellungen → Tagro & Klarheit / Datenschutz. Gespeicherte
+        Alle Einstellungen findet ihr in der App unter Einstellungen → Aven & Klarheit / Datenschutz. Gespeicherte
         Fakten lassen sich dort einsehen und löschen.
       </p>
 

@@ -176,13 +176,13 @@ export function SiteNav() {
               <Link href={menu === "product" ? "/tagro" : "/changelog"} className="mega-feature">
                 <span className="mega-feature-art" aria-hidden>
                   <span className="mega-feature-chip">
-                    <Icon name="sparkles" size={12} /> Tagro
+                    <Icon name="sparkles" size={12} /> Aven
                   </span>
                   <span className="mega-feature-line" />
                   <span className="mega-feature-line mega-feature-line--short" />
                   <span className="mega-feature-opt">Eine Woche verschieben · Risiko −42 %</span>
                 </span>
-                <span className="mega-title">{menu === "product" ? "Tagro live ausprobieren" : "Was ist neu"}</span>
+                <span className="mega-title">{menu === "product" ? "Aven live ausprobieren" : "Was ist neu"}</span>
                 <span className="mega-body">
                   {menu === "product"
                     ? "Frag den Interpreter selbst — mit Beispiel-Workspace."

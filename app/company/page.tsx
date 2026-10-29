@@ -27,7 +27,7 @@ const FACTS = [
 const TEAM: { name?: string; initials?: string; role: string; href?: string }[] = [
   { name: "Stefan Dirnberger", initials: "SD", role: "Gründer · Produkt & Entwicklung", href: "https://www.dirnberger-soehne.dev/unternehmen" },
   { role: "Product Design · Systems & UI" },
-  { role: "AI Product Engineering · Tagro" },
+  { role: "AI Product Engineering · Aven" },
   { role: "Customer Success & Betrieb" },
 ];
 

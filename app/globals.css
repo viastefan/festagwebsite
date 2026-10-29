@@ -760,9 +760,7 @@ ol {
   position: fixed;
   inset: 0;
   z-index: 58;
-  background: rgba(248, 247, 245, 0.86);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  background: var(--canvas);
   overflow-y: auto;
   overscroll-behavior: contain;
 }

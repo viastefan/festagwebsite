@@ -56,7 +56,7 @@ export function PageHero({
 
 export function CtaBand({
   title = "Festag jetzt testen.",
-  lead = "Erster Workspace kostenlos. Tools verbinden, Tagro öffnen — in zehn Minuten sehen, was wirklich läuft.",
+  lead = "Erster Workspace kostenlos. Tools verbinden, Aven öffnen — in zehn Minuten sehen, was wirklich läuft.",
 }: {
   title?: string;
   lead?: string;

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const STEPS = [
   { title: "Verbinden", body: "OAuth in unter einer Minute. Ihr wählt Repos, Teams und Kanäle — nichts darüber hinaus." },
   { title: "Lesen", body: "Festag liest Ereignisse, keine Postfächer. Signale werden klassifiziert und Projekten zugeordnet." },
-  { title: "Verstehen", body: "Tagro verknüpft Belege, erkennt Risiken und entscheidet, wer was wissen muss." },
+  { title: "Verstehen", body: "Aven verknüpft Belege, erkennt Risiken und entscheidet, wer was wissen muss." },
 ];
 
 export default function ConnectorsPage() {

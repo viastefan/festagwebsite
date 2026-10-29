@@ -39,9 +39,9 @@ export const primaryNav: (NavItem & { menu?: "product" | "resources" })[] = [
 
 export const productMenu: NavMenuItem[] = [
   { href: "/product", label: "Plattform", body: "Client Panel, Entscheidungen, Executive.", icon: "portal" },
-  { href: "/tagro", label: "Tagro", body: "Der Operations Interpreter, der mitdenkt.", icon: "sparkles" },
+  { href: "/tagro", label: "Aven", body: "Der Operations Interpreter, der mitdenkt.", icon: "sparkles" },
   { href: "/connectors", label: "Connectors", body: "GitHub, Linear, Jira, Slack und mehr.", icon: "flow" },
-  { href: "/intelligence", label: "Modelle & Intelligence", body: "Leqra, Tagro, Veyra und Company Brain.", icon: "chart" },
+  { href: "/intelligence", label: "Modelle & Intelligence", body: "Leqra, Aven, Veyra und Company Brain.", icon: "chart" },
   { href: "/memory", label: "Build Memory", body: "Prompts, Kapitel und Tokens gegen Lieferung.", icon: "clock" },
   { href: "/extension", label: "Chrome Extension", body: "Signale erfassen, wo Arbeit passiert.", icon: "puzzle" },
 ];
@@ -96,7 +96,7 @@ export const footerColumns: { title: string; items: (NavItem & { external?: bool
     title: "Produkt",
     items: [
       { href: "/product", label: "Produkt" },
-      { href: "/tagro", label: "Tagro" },
+      { href: "/tagro", label: "Aven" },
       { href: "/connectors", label: "Connectors" },
       { href: "/intelligence", label: "Modelle & Intelligence" },
       { href: "/memory", label: "Build Memory" },

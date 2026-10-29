@@ -41,7 +41,7 @@ export function PricingPlans() {
           ? "Bezahlt wird pro Workspace — nie pro Kopf. Mitglieder und Kunden sind immer unbegrenzt."
           : tab === "delivery"
             ? "Festag liefert auch selbst: Festpreis, in Meilensteine geteilt, bezahlt erst nach Abnahme."
-            : "Gezielte Erweiterungen für eure Projekte — Tagro schlägt sie vor, wenn sie passen."}
+            : "Gezielte Erweiterungen für eure Projekte — Aven schlägt sie vor, wenn sie passen."}
       </p>
 
       <AnimatePresence mode="wait">

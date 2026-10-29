@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/intelligence" },
   title: "Modelle & Intelligence",
   description:
-    "Leqra, Tagro und Veyra: die Intelligenz hinter Festag. Operational Knowledge Model, Company Brain und Adaptive Intelligence — workspace-gebunden.",
+    "Leqra, Aven und Veyra: die Intelligenz hinter Festag. Operational Knowledge Model, Company Brain und Adaptive Intelligence — workspace-gebunden.",
 };
 
 const MODELS: {
@@ -35,7 +35,7 @@ const MODELS: {
     ],
   },
   {
-    name: "Tagro",
+    name: "Aven",
     role: "Operations Interpreter",
     body: "Liest Signale, versteht Bedeutung, erkennt Risiken und fehlende Entscheidungen. Antwortet mit Zusammenfassung, Kontext, Wirkung, Empfehlung und nächstem Schritt — immer mit Quelle.",
     icon: "sparkles",
@@ -87,7 +87,7 @@ const PIPELINE = [
 ];
 
 const PRIVACY: [string, string, string][] = [
-  ["Adaptive Intelligence", "An", "Workspace darf OKM und Operational DNA für Tagro nutzen"],
+  ["Adaptive Intelligence", "An", "Workspace darf OKM und Operational DNA für Aven nutzen"],
   ["Projektübergreifende Muster", "An", "Lieferungsmuster innerhalb des Workspaces lernen"],
   ["Persönliche Profile", "Aus", "Kunden- und Entwicklerprofile nur per Opt-in"],
   ["Predictive Hints", "An", "Vorausschauende Hinweise, wenn Adaptive Intelligence aktiv ist"],
