@@ -4,7 +4,6 @@ import { Button, TextLink } from "../_components/ui/Button";
 import { Icon, type IconName } from "../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { CtaBand } from "../_components/ui/Section";
-import { VoicesGrid } from "../_components/site/Blocks";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/community" },
@@ -147,16 +146,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="section section--flush-top">
-        <div className="wrap wrap--wide">
-          <Reveal>
-            <h2 className="h3" style={{ marginBottom: 24 }}>
-              Aus dem Early Access
-            </h2>
-          </Reveal>
-          <VoicesGrid limit={3} />
-        </div>
-      </section>
 
       <CtaBand title="Bau mit uns." lead="Schreib uns, woran ihr arbeitet — wir melden uns innerhalb von 24 Stunden." />
 

@@ -104,6 +104,22 @@ Unique visual language so Festag does not look like Vercel / Linear / OpenAI clo
   **Sicherheit:** `/security` nennt nur Verhalten, das die App wirklich hat.
 - **Handy-Schrift:** alle Schriftgrößen laufen über `calc(Npx * var(--fs, 1))`, `--fs` ist 1,2 bis 640px. Neue Größen
   immer so schreiben. **Suche:** ⌘K, Index in `lib/site/search-index.ts` (neue Seiten/Antworten dort eintragen).
+- **Header und Texte (Regel des Inhabers):** Unter Abschnittsköpfen steht **kein** Text (`SectionHead` ignoriert `lead`).
+  Erklärungen stehen nur in Containern oder als Beschreibung darin. Seriös, einfach, kurz: liest eh keiner viel.
+  Header-Knopf „Kostenlos starten“ ist nur Text, „Anmelden“ nur Text, in jedem Zustand ohne Fläche (Tastatur-Fokus nur als Rahmen).
+- **Knöpfe wie in der App:** Pille, Burgundy-Hauptknopf mit Lichtkante, Glas-Knopf (`btn--ghost`), weicher Lift beim Hover,
+  Einfedern beim Drücken, Lichtschimmer, klarer Fokusring. Neue Knöpfe nutzen nur `.btn` mit diesen Varianten.
+- **Fenster wie macOS:** Alle Fenster, Videos, Bilder und Code-Blöcke tragen oben links die Knöpfe rot, gelb, grün.
+  Text-Karten bekommen sie nicht. Demos spiegeln das aktuelle App-Dashboard: Seitenleiste mit „Zuletzt ausgeführt“, Mitte,
+  rechts das Panel „Aktuell“ (Umgebung mit Modus-Schalter, Läuft, Kontext, Konnektoren, Ausgaben).
+- **Wenige Icons:** Keine Icons in Karten (`.card-icon` ist aus), nie ein Icon in einem hellen Container im Dunkelmodus.
+  Konnektoren und Agents zeigen **Markenzeichen** (`BrandLogo`, Daten in `lib/site/brand-logos.ts`, simple-icons CC0),
+  ohne Kasten. Claude und Festag-Zeichen wo es passt.
+- **Keine erfundenen Belege:** Keine Kundenstimmen, Zahlen oder Referenzen ohne echte Quelle. Die früheren Zitate sind entfernt.
+- **Videos:** Hauptfilme in 1920×1080 (Aufnahme mit `html{zoom:1.5}` im 1920er-Fenster), Handy-Versionen im Hochformat,
+  alle aus den klickbaren Demos aufgenommen, `preload="none"`, laden erst im Sichtbereich. Suche lädt erst beim ersten Öffnen.
+- **Deployment:** festag.app gehört bei Vercel zum Projekt **festag** (die App). Die Website liegt auf **festagwebsite.vercel.app**.
+  Änderungen an der Domain-Zuordnung nur nach ausdrücklicher Freigabe des Inhabers.
 - **Logo:** das neue Zeichen (abgerundetes Sechseck mit drei Balken, `public/brand/festag-mark.svg`) überall,
   auch Favicon und App-Icons; kleine Größe im Header.
 - **Aven:** nur als Wort, ohne Symbol, ohne Avatar, ohne Sprecher-Etikett.

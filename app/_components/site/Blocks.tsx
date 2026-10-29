@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "../ui/BrandLogo";
 import { Icon, type IconName } from "../ui/Icon";
 import { FestagMark } from "../ui/Logo";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
@@ -37,6 +38,8 @@ export function FeatureBlock({
   );
 }
 
+const CHIP_LOGO: Record<string, string> = { mail: "ionos", cursor: "claude" };
+
 export function ConnectorMarquee({ label }: { label?: string }) {
   const list = [...connectors, ...connectors];
   return (
@@ -54,7 +57,7 @@ export function ConnectorMarquee({ label }: { label?: string }) {
                 aria-hidden={i >= connectors.length ? true : undefined}
               >
                 <span className="chip-icon">
-                  <Icon name={c.id} />
+                  <BrandLogo name={CHIP_LOGO[c.id] ?? c.id} size={16} />
                 </span>
                 {c.name}
                 {c.status !== "live" ? <span className="chip-state">{CONNECTOR_STATUS_LABEL[c.status]}</span> : null}

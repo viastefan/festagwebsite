@@ -17,12 +17,13 @@ export function SectionHead({
 }) {
   const H = as;
   // eyebrow kickers (small uppercase labels) are retired site-wide (2026-10) —
-  // the prop stays for callers but renders nothing.
+  // the prop stays for callers but renders nothing. Ebenso `lead`: unter Abschnittsköpfen steht kein Text
+  // (Regel des Inhabers, 2026-10): Text gehört in Container oder Beschreibungen, nicht unter die Überschrift.
   void eyebrow;
+  void lead;
   return (
     <Reveal className={`sec-head${center ? " sec-head--center" : ""}`}>
       <H className={as === "h1" ? "display display--sm" : "h2"}>{title}</H>
-      {lead ? <p className="lead">{lead}</p> : null}
     </Reveal>
   );
 }

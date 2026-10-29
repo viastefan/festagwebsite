@@ -31,12 +31,12 @@ function Mark({ text, q }: { text: string; q: string }) {
 }
 
 /** Suche für die ganze Website: ⌘K / Strg+K oder „/“, Pfeiltasten, Enter. Wissen aus dem Such-Index. */
-export function SearchPalette() {
+export function SearchPalette({ startOpen = false }: { startOpen?: boolean }) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(startOpen);
   const [q, setQ] = useState("");
   const [sel, setSel] = useState(0);
-  const [recent, setRecent] = useState<string[]>([]);
+  const [recent, setRecent] = useState<string[]>(() => (startOpen && typeof window !== "undefined" ? readRecent() : []));
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
@@ -229,15 +229,3 @@ export function SearchPalette() {
   );
 }
 
-export function SearchButton({ className }: { className?: string }) {
-  return (
-    <button type="button" className={`search-btn${className ? ` ${className}` : ""}`} aria-label="Suche öffnen" onClick={() => window.dispatchEvent(new Event("festag:search"))}>
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden>
-        <circle cx="9" cy="9" r="5.5" />
-        <path d="m13.2 13.2 3.3 3.3" />
-      </svg>
-      <span className="search-btn-l">Suche</span>
-      <kbd>⌘K</kbd>
-    </button>
-  );
-}

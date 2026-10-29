@@ -2,6 +2,7 @@
 
 import "./appdemo.css";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { BrandLogo } from "../ui/BrandLogo";
 import { aven, STARTERS, type Ctx, type NavTarget, type Reply } from "./aven-brain";
 
 /* ───────── Theme (Hell / Dunkel wie festag.app), geteilt von allen Demos ───────── */
@@ -156,12 +157,14 @@ function ThemeSwitch({ theme }: { theme: Theme }) {
 function Frame({
   children,
   rail,
+  aside,
   title = "Festag",
   height,
   fixed,
 }: {
   children: React.ReactNode;
   rail?: React.ReactNode;
+  aside?: React.ReactNode;
   title?: string;
   height?: number;
   fixed?: boolean;
@@ -181,9 +184,10 @@ function Frame({
             <ThemeSwitch theme={theme} />
           </div>
         </div>
-        <div className={`adw-body${rail ? "" : " no-rail"}${fixed ? " is-fixed" : ""}`}>
+        <div className={`adw-body${rail ? "" : " no-rail"}${fixed ? " is-fixed" : ""}${aside ? " has-aside" : ""}`}>
           {rail}
           <div className="ad-main">{children}</div>
+          {aside}
         </div>
       </div>
     </div>
@@ -908,6 +912,12 @@ function Rail({ view, onView, open }: { view: View; onView: (v: View) => void; o
       <div className="ad-rail-more">Mehr</div>
       <div className="ad-nav is-static">Aktivität</div>
       <div className="ad-nav is-static">Team</div>
+      <div className="ad-recent">
+        <span>Zuletzt ausgeführt</span>
+        <i>Entscheidung erteilt: Farben und Schriften<small>14 Min.</small></i>
+        <i>Zahlung von 2080 EUR genehmigt<small>5 Std.</small></i>
+        <i>Aven-Aufgabe erteilt und angestoßen<small>3 Tage</small></i>
+      </div>
       <div className="ad-rail-foot">
         <button type="button" className={`ad-nav${view === "aven" ? " is-active" : ""}`} onClick={() => onView("aven")}>
           Aven
@@ -937,8 +947,75 @@ const DONE_ROWS = [
   { id: "farbe", seed: "farbe" as ArtKey, title: "Farben und Schriften erteilt", text: "Entscheidung erteilt. Die Umsetzung ist an das Team übergeben.", when: "Gestern" },
 ];
 
+
+/* Rechtes Panel „Aktuell“ wie in der App: Umgebung, Kontext, Konnektoren, Ausgaben, Läuft */
+function useSeconds(active: boolean) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    const t = window.setInterval(() => setN((x) => x + 1), 1000);
+    return () => {
+      window.clearInterval(t);
+      setN(0);
+    };
+  }, [active]);
+  return n;
+}
+
+function Aside({ running, mode, onMode, known, done }: { running: boolean; mode: boolean; onMode: () => void; known: number; done: number }) {
+  const sec = useSeconds(running);
+  const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+  const ss = String(sec % 60).padStart(2, "0");
+  return (
+    <aside className="ad-aside" aria-label="Aktuell">
+      <div className="ad-acard">
+        <b>Umgebung</b>
+        <p>Nordlicht Checkout</p>
+        <small>Studio Nord, Entwickler-Ansicht</small>
+        <button type="button" className="ad-switch" role="switch" aria-checked={mode} onClick={onMode}>
+          <span>{mode ? "Aven führt Freigegebenes selbst aus" : "Aven wartet auf dein Okay"}</span>
+          <i aria-hidden />
+        </button>
+      </div>
+      <div className="ad-acard">
+        <b>Läuft</b>
+        {running ? (
+          <p className="ad-ac-row ad-run">
+            <span className="ad-pulse" aria-hidden /> Mollie-Checkout <em>{mm}:{ss}</em>
+          </p>
+        ) : (
+          <p className="ad-muted">Nichts läuft gerade.</p>
+        )}
+      </div>
+      <div className="ad-acard">
+        <b>Kontext</b>
+        <p>
+          {done} von {known} geklärt
+        </p>
+        <div className="ad-bar" aria-hidden>
+          <i style={{ width: `${(done / known) * 100}%` }} />
+        </div>
+      </div>
+      <div className="ad-acard">
+        <b>Konnektoren</b>
+        <p className="ad-ac-row">
+          <BrandLogo name="claude" size={14} /> Claude Code <em>verbunden</em>
+        </p>
+        <p className="ad-ac-row">
+          <BrandLogo name="github" size={14} /> GitHub <em>verbunden</em>
+        </p>
+      </div>
+      <div className="ad-acard">
+        <b>Ausgaben</b>
+        <p>Dashboard-Modul, PR #402</p>
+        <p>Rollen und Rechte, PR #398</p>
+      </div>
+    </aside>
+  );
+}
+
 export function HeroApp() {
-  const { ref, auto, onPointerDownCapture } = useDemo();
+  const { ref: demoRef, auto, onPointerDownCapture } = useDemo();
   const [view, setView] = useState<View>("status");
   const [openId, setOpenId] = useState<string | null>(null);
   const [seed, setSeed] = useState<{ text: string; n: number } | null>(null);
@@ -947,11 +1024,39 @@ export function HeroApp() {
   const decs = [z, a];
   const waiting = decs.filter((s) => s.phase !== "decided").length;
 
+  const [autoMode, setAutoMode] = useState(false);
+  const [cur, setCur] = useState<{ x: number; y: number; down: boolean; show: boolean }>({ x: 0, y: 0, down: false, show: false });
+
+  /** Mauszeiger zu einem Element fahren (Mitte, leicht nach unten rechts) */
+  const aim = useCallback((find: () => Element | null | undefined) => {
+    const el = find();
+    const w = demoRef.current;
+    if (!el || !w) return;
+    const a = el.getBoundingClientRect();
+    const b = w.getBoundingClientRect();
+    setCur({ x: a.left - b.left + Math.min(a.width * 0.5, 120), y: a.top - b.top + a.height * 0.55, down: false, show: true });
+  }, [demoRef]);
+  const press = useCallback(() => {
+    setCur((c) => ({ ...c, down: true }));
+    window.setTimeout(() => setCur((c) => ({ ...c, down: false })), 180);
+  }, []);
+  const q = (sel: string, text?: RegExp) => () => {
+    const all = Array.from(demoRef.current?.querySelectorAll(sel) ?? []);
+    return text ? all.find((e) => text.test(e.textContent ?? "")) : all[0];
+  };
+
   useScript(auto, [
-    [1700, () => setOpenId("zahlung")],
-    [2300, () => z.setWhy(true)],
-    [2700, () => z.decide()],
-    [6600, () => {
+    [1300, () => aim(q(".ad-row.is-click"))],
+    [1500, () => press()],
+    [150, () => setOpenId("zahlung")],
+    [1100, () => aim(q(".ad-chip", /^Warum/))],
+    [1300, () => press()],
+    [150, () => z.setWhy(true)],
+    [1500, () => aim(q(".ad-cta"))],
+    [1300, () => press()],
+    [150, () => z.decide()],
+    [1200, () => setCur((c) => ({ ...c, show: false }))],
+    [5200, () => {
       z.reset();
       setOpenId(null);
     }],
@@ -1014,8 +1119,26 @@ export function HeroApp() {
   const peekStep = z.phase === "idle" ? (openId === "zahlung" ? 1 : 0) : z.phase === "deciding" ? 2 : z.stage === 1 ? 3 : 4;
 
   return (
-    <div ref={ref} className="ad-hero-wrap" onPointerDownCapture={onPointerDownCapture} onKeyDown={onKeyDown}>
-      <Frame height={640} fixed rail={<Rail view={view} onView={go} open={waiting} />}>
+    <div
+      ref={demoRef}
+      className="ad-hero-wrap"
+      onPointerDownCapture={onPointerDownCapture}
+      onKeyDown={onKeyDown}
+    >
+      <Frame
+        height={640}
+        fixed
+        rail={<Rail view={view} onView={go} open={waiting} />}
+        aside={
+          <Aside
+            running={z.phase === "decided" && z.stage < 3}
+            mode={autoMode}
+            onMode={() => setAutoMode((m) => !m)}
+            known={9}
+            done={5 + decs.filter((s) => s.phase === "decided").length}
+          />
+        }
+      >
         <div className="ad-tabs" role="tablist" aria-label="Ansicht">
           {[...NAV.map((n) => ({ v: n.v, label: n.label })), { v: "aven" as View, label: "Aven" }].map((n) => (
             <button key={n.v} type="button" role="tab" aria-selected={view === n.v} className={view === n.v ? "is-on" : ""} onClick={() => go(n.v)}>
@@ -1041,6 +1164,13 @@ export function HeroApp() {
         {view === "aven" ? <AskPanel auto={false} seed={seed} host={host} /> : null}
       </Frame>
       {(view === "status" || view === "decisions") && peekStep > 0 ? <Peek step={peekStep} /> : null}
+      {cur.show && auto ? (
+        <span className={`ad-cursor${cur.down ? " is-down" : ""}`} style={{ transform: `translate(${cur.x}px, ${cur.y}px)` }} aria-hidden>
+          <svg viewBox="0 0 20 24" width="20" height="24">
+            <path d="M3 2v17l4.5-4.2 3 6.4 2.7-1.2-3-6.3H17z" fill="#15130f" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
+          </svg>
+        </span>
+      ) : null}
     </div>
   );
 }
@@ -1147,8 +1277,8 @@ export function AskScene() {
 /* ───────── Szene 5: Übergabe an den Coding-Agent ───────── */
 
 const AGENTS = [
-  { id: "claude", label: "Claude Code" },
-  { id: "cursor", label: "Cursor" },
+  { id: "claude", label: "Claude Code", logo: "claude" },
+  { id: "cursor", label: "Cursor", logo: "cursor" },
 ];
 
 export function HandoffScene() {
@@ -1194,7 +1324,7 @@ export function HandoffScene() {
                 setStage(0);
               }}
             >
-              <i className="ad-dot" />
+              <BrandLogo name={x.logo} size={13} />
               {x.label}
             </button>
           ))}

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
-import { SearchButton, SearchPalette } from "./SearchPalette";
+import { SearchButton, SearchHost } from "./SearchButton";
 import { Icon } from "../ui/Icon";
 import { links, primaryNav, productMenu, resourcesMenu } from "@/lib/site/links";
 
@@ -74,7 +74,7 @@ export function SiteNav() {
 
   return (
     <>
-      <SearchPalette />
+      <SearchHost />
       <header ref={headerRef} className={`nav${scrolled ? " is-scrolled" : ""}${menu ? " has-menu" : ""}`}>
         <div className="nav-inner">
           <div className="nav-left">

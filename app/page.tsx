@@ -10,7 +10,6 @@ import {
   ConnectorMarquee,
   FeatureBlock,
   Highlights,
-  VoicesGrid,
 } from "./_components/site/Blocks";
 import { VideoBand } from "./_components/ui/Media";
 import { links } from "@/lib/site/links";
@@ -107,14 +106,6 @@ export default function HomePage() {
               <p className="body">Nach der Entscheidung geht der Brief an euren Coding-Agent. Der Pull Request kommt als Beleg zurück.</p>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ───────── Voices ───────── */}
-      <section className="section">
-        <div className="wrap wrap--wide">
-          <SectionHead center title="Die neue Art, Kundenprojekte zu führen." />
-          <VoicesGrid limit={3} />
         </div>
       </section>
 

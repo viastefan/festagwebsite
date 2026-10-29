@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Button } from "../_components/ui/Button";
 import { Icon } from "../_components/ui/Icon";
+import { BrandLogo } from "../_components/ui/BrandLogo";
 import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { KeyList } from "../_components/ui/Blocks2";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
@@ -21,6 +22,8 @@ const STEPS = [
   { title: "Lesen", body: "Festag liest Ereignisse, keine Postfächer. Signale werden klassifiziert und Projekten zugeordnet." },
   { title: "Verstehen", body: "Aven verknüpft Belege, erkennt Risiken und entscheidet, wer was wissen muss." },
 ];
+
+const LOGO: Record<string, string> = { mail: "ionos", cursor: "claude" };
 
 export default function ConnectorsPage() {
   return (
@@ -64,7 +67,7 @@ export default function ConnectorsPage() {
               <RevealItem key={c.id} className="card cn-card">
                 <div className="cn-head">
                   <span className="cn-icon">
-                    <Icon name={c.id} size={20} />
+                    <BrandLogo name={LOGO[c.id] ?? c.id} size={22} />
                   </span>
                   <div>
                     <div className="h4">{c.name}</div>

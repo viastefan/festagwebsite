@@ -3912,3 +3912,225 @@ html body *::after {
     box-shadow: none;
   }
 }
+
+/* ═══════════════ Knöpfe wie in der App: Pille, Glas, weiche Bewegung ═══════════════ */
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.3s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn:hover::after {
+  transform: translateX(120%);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0) scale(0.975);
+  transition-duration: 0.08s;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--canvas), 0 0 0 4px var(--accent-glow), 0 0 0 5px var(--accent);
+}
+.btn--solid {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 1px 2px rgba(30, 10, 15, 0.35), 0 8px 20px -10px rgba(63, 27, 36, 0.7);
+}
+.btn--solid:hover {
+  background: var(--accent-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 4px rgba(30, 10, 15, 0.3), 0 14px 28px -12px rgba(63, 27, 36, 0.8);
+}
+.btn--ghost {
+  background: var(--glass-fill);
+  border-color: var(--line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn--ghost:hover {
+  background: var(--surface);
+  border-color: rgba(40, 30, 10, 0.28);
+  box-shadow: 0 8px 20px -12px rgba(40, 30, 10, 0.35);
+}
+.btn--soft {
+  background: var(--surface-2);
+  border-color: var(--line);
+}
+.btn--soft:hover {
+  background: var(--surface-3);
+}
+.btn svg.arrow {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover svg.arrow {
+  transform: translateX(3px);
+}
+:root[data-theme="dark"] .btn--ghost {
+  background: rgba(255, 240, 210, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.06);
+}
+:root[data-theme="dark"] .btn--ghost:hover {
+  background: rgba(255, 240, 210, 0.09);
+  border-color: rgba(255, 240, 210, 0.3);
+  box-shadow: none;
+}
+:root[data-theme="dark"] .btn--solid {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+}
+:root[data-theme="dark"] .btn--soft:hover {
+  background: var(--surface-3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::after {
+    transition: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* Header: „Kostenlos starten“ nur als Text, überall und in jedem Zustand */
+.nav-right .btn--solid,
+.nav-right .btn--solid:hover,
+.nav-right .btn--solid:active,
+.nav-right .btn--solid:focus-visible,
+:root[data-theme="dark"] .nav-right .btn--solid,
+:root[data-theme="dark"] .nav-right .btn--solid:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  color: var(--ink) !important;
+  font-weight: 500;
+  padding-inline: 10px;
+  transform: none;
+}
+.nav-right .btn--solid::after,
+.btn--text::after {
+  display: none;
+}
+.nav-right .btn--solid:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+/* Wenig Icons: Karten-Icons entfallen, Konnektoren zeigen Markenzeichen ohne Kasten */
+.card-icon,
+.pl-wl-level {
+  display: none !important;
+}
+.cn-icon,
+.chip-icon {
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  color: var(--ink) !important;
+  display: inline-grid;
+  place-items: center;
+}
+.cn-icon svg,
+.chip-icon svg {
+  display: block;
+}
+.chip-state {
+  color: var(--faint);
+}
+
+/* ═══════════ Fenster wie macOS: rot, gelb, grün oben links ═══════════ */
+.adw-dots span,
+.window-dots span,
+.ua-bar span {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+}
+.adw-dots span:nth-child(1),
+.window-dots span:nth-child(1),
+.ua-bar span:nth-child(1) {
+  background: #ff5f57 !important;
+}
+.adw-dots span:nth-child(2),
+.window-dots span:nth-child(2),
+.ua-bar span:nth-child(2) {
+  background: #febc2e !important;
+}
+.adw-dots span:nth-child(3),
+.window-dots span:nth-child(3),
+.ua-bar span:nth-child(3) {
+  background: #28c840 !important;
+}
+.adw-dots {
+  gap: 8px;
+}
+/* Video, Bild und Code bekommen dieselben Knöpfe als Titelzeile */
+.vband::before,
+.mband::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  left: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 18px 0 0 #febc2e, 36px 0 0 #28c840, inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+.vband::after,
+.mband::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(30, 20, 12, 0.28), transparent);
+  pointer-events: none;
+}
+.code-bar::before {
+  content: "";
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-right: 46px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 18px 0 0 #febc2e, 36px 0 0 #28c840;
+}
+.code-bar {
+  justify-content: flex-start;
+}
+.code-copy {
+  margin-left: auto;
+}
+.code-tabs,
+.code-title {
+  flex: 1;
+}
+
+/* Tastatur-Fokus der Textknöpfe: nur ein Rahmen, keine Fläche */
+.btn--text:focus-visible,
+.nav-right .btn--solid:focus-visible,
+.nav-right .btn--text:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
