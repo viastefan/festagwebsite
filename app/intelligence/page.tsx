@@ -44,7 +44,7 @@ const MODELS: {
     facts: [
       ["Spricht mit", "Teams, PMs, Gründern, CEOs"],
       ["Liefert", "Briefings, Entscheidungen, Forecasts"],
-      ["Delegiert an", "Cursor Cloud Agents (Beta)"],
+      ["Übergibt an", "Claude Code, Cursor, Codex"],
     ],
   },
   {

@@ -1148,7 +1148,7 @@ export function AskScene() {
 
 const AGENTS = [
   { id: "claude", label: "Claude Code" },
-  { id: "cursor", label: "Cursor Cloud Agent" },
+  { id: "cursor", label: "Cursor" },
 ];
 
 export function HandoffScene() {

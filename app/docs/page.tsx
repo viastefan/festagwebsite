@@ -30,7 +30,7 @@ const SECTIONS: { id: string; icon: IconName; title: string; guides: Guide[] }[]
     guides: [
       { title: "GitHub, Linear, Jira, Slack verbinden", body: "Scopes, Kanäle, Repos — und was Festag bewusst nicht liest.", href: "/connectors", time: "6 Min" },
       { title: "Die Signal-Taxonomie", body: "Elf Bedeutungen, die jedes Signal bekommen kann.", href: "/connectors", time: "4 Min" },
-      { title: "Cursor Cloud Agents (Beta)", body: "Dev-Tasks aus Aven delegieren — mit Review und Freigabe.", href: "/tagro", time: "4 Min" },
+      { title: "Coding-Agents und API", body: "Claude Code, Cursor und Codex anbinden, Token erstellen, Nachrichten senden.", href: "/developers", time: "5 Min" },
     ],
   },
   {

@@ -14,6 +14,7 @@ export type ConnectorIcon =
   | "notion"
   | "figma"
   | "gmail"
+  | "mail"
   | "drive"
   | "calendar"
   | "meet"
@@ -95,10 +96,19 @@ export const connectors: Connector[] = [
     id: "gmail",
     name: "Gmail",
     category: "Kommunikation",
-    status: "soon",
-    short: "Kundenanfragen und Scope-Änderungen per Mail landen als Signal im Projekt.",
+    status: "live",
+    short: "Aven liest projektbezogene Mails, schreibt Antworten als Entwurf und legt Entscheidungen und Aufträge im Projekt an.",
     signals: ["Änderungswunsch", "Freigabe per Mail", "Rückfrage des Kunden"],
-    never: "Nur projektbezogene Labels, keine Postfach-Volltexte.",
+    never: "Nur projektbezogene Nachrichten. Gesendet wird nur mit eurer Freigabe.",
+  },
+  {
+    id: "mail",
+    name: "IONOS Mail",
+    category: "Kommunikation",
+    status: "live",
+    short: "Dasselbe für das eigene Postfach per IMAP und SMTP. Zugangsdaten werden verschlüsselt gespeichert.",
+    signals: ["Anfrage eines Kunden", "Freigabe per Mail", "Entwurf wartet auf dich"],
+    never: "Kein Mail-Client in Festag. Nur, was daraus im Projekt entsteht.",
   },
   {
     id: "drive",
@@ -129,12 +139,12 @@ export const connectors: Connector[] = [
   },
   {
     id: "cursor",
-    name: "Cursor Cloud Agent",
+    name: "Coding-Agents (Plugin)",
     category: "Execution",
-    status: "beta",
-    short: "Aven delegiert klar umrissene Dev-Tasks an Cursor Cloud Agents — mit Rückmeldung ins Projekt.",
-    signals: ["Task delegiert", "PR vom Agent geöffnet", "Review nötig"],
-    never: "Nie ohne Freigabe. Nie ohne Review.",
+    status: "live",
+    short: "Claude Code, Cursor, Codex und weitere MCP-Hosts bekommen Aufgaben mit Brief von Aven und melden Pull Requests als Beleg zurück.",
+    signals: ["Task übergeben", "PR vom Agent geöffnet", "Lieferung gemeldet"],
+    never: "Nie ohne Freigabe, außer ihr stellt das Projekt auf automatisch. Rechte lassen sich pro Verbindung einschränken.",
   },
   {
     id: "chrome",

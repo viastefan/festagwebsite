@@ -64,7 +64,7 @@ const BODY: Record<ChangelogEntry["art"], React.ReactNode> = {
     <>
       <div className="ua-chat">Behebe den OAuth-Callback in Staging (ATL-88).</div>
       <div className="ua-step">
-        <Icon name="cursor" size={12} /> Delegiert an Cursor Cloud Agent
+        <Icon name="cursor" size={12} /> An Cursor übergeben
       </div>
       <div className="ua-step">
         <Icon name="github" size={12} /> PR #418 geöffnet · Review nötig

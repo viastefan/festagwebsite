@@ -133,13 +133,13 @@ export default function TagroPage() {
               <Icon name="cursor" size={22} />
             </span>
             <div>
-              <span className="tag tag--warn">Beta</span>
+              <span className="tag">Live</span>
               <h3 className="h3" style={{ marginTop: 12 }}>
-                Aven delegiert an Cursor Cloud Agents.
+                Aven übergibt an euren Coding-Agent.
               </h3>
               <p className="body" style={{ marginTop: 10 }}>
-                Klar umrissene Dev-Tasks können aus Aven an einen Cursor Cloud Agent übergeben werden. Der Pull
-                Request kommt als Signal zurück ins Projekt — nie ohne Freigabe, nie ohne Review.
+                Nach der Entscheidung schreibt Aven einen Brief mit Ziel und Akzeptanzkriterien und gibt ihn an Claude Code, Cursor
+                oder Codex. Der Pull Request kommt als Beleg zurück ins Projekt. Im Modus Freigabe startet nichts ohne dein Okay.
               </p>
             </div>
           </Reveal>
