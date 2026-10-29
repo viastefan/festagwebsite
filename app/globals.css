@@ -93,7 +93,7 @@
   --max: 1200px;
   --max-wide: 1320px;
   --gutter: clamp(20px, 4vw, 48px);
-  --section-y: clamp(64px, 8vw, 112px);
+  --section-y: clamp(72px, 10vw, 144px);
   --nav-h: 56px;
 }
 
@@ -827,17 +827,28 @@ ol {
 .display-accent {
   color: var(--accent);
 }
+.hero {
+  padding-top: clamp(56px, 9vw, 128px);
+}
 .hero-copy {
-  max-width: 760px;
+  max-width: 900px;
+}
+.hero .display {
+  font-size: clamp(40px, 4.8vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.032em;
+  max-width: none;
 }
 .hero .lead {
-  margin-top: 22px;
+  margin-top: 26px;
+  font-size: clamp(17px, 1.5vw, 21px);
+  max-width: 46ch;
 }
 .hero .btn-row {
-  margin-top: 32px;
+  margin-top: 36px;
 }
 .hero-stage {
-  margin-top: clamp(40px, 6vw, 72px);
+  margin-top: clamp(56px, 8vw, 104px);
 }
 
 /* The "stage": painterly bed behind a product window (Cursor-style) */
