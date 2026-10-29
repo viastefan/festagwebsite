@@ -174,7 +174,7 @@ export default function TagroPage() {
         .tg-vs-row span:last-child { color: var(--ink); background: rgba(247,234,238,0.35); }
         .tg-vs-row span:last-child svg { color: var(--accent); margin-top: 3px; flex-shrink: 0; }
         .tg-cursor { display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; padding: clamp(24px, 4vw, 44px); border-radius: var(--r-xl); background: var(--surface-2); }
-        .tg-cursor-icon { width: 64px; height: 64px; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+        .tg-cursor-icon { width: 64px; height: 64px; border-radius: 10px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; }
         @media (max-width: 1100px) { .tg-structure { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         @media (max-width: 860px) { .tg-questions { grid-template-columns: 1fr; } }
         @media (max-width: 640px) {

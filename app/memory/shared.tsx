@@ -67,7 +67,7 @@ export function MemoryStyles() {
         transition: color 160ms ease, background 160ms ease;
       }
       .mem-nav-link:hover { color: var(--ink); background: var(--surface-2); }
-      .mem-nav-link[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+      .mem-nav-link[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: var(--canvas); }
 
       .mem-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
       .mem-flow-step {
@@ -130,7 +130,7 @@ export function MemoryStyles() {
       .mem-stepline::before {
         counter-increment: mem; content: counter(mem);
         width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center;
-        background: var(--ink); color: #fff; font-size: 13px;
+        background: var(--ink); color: var(--canvas); font-size: 13px;
       }
       .mem-stepline h3 { margin: 0 0 6px; font-size: 16px; color: var(--ink); }
       .mem-stepline p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }

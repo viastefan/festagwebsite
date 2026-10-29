@@ -120,7 +120,7 @@ const CF_CSS = `
   background: var(--surface-2); border: 1px solid transparent; transition: all var(--dur) ease;
 }
 .cf-topics button:hover { border-color: var(--line-strong); }
-.cf-topics button.is-on { background: var(--ink); color: #fff; }
+.cf-topics button.is-on { background: var(--ink); color: var(--canvas); }
 .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .cf-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
 .cf-sent { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 7px; background: var(--ok-soft); color: var(--ok); font-size: 13.5px; }

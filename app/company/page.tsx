@@ -299,7 +299,7 @@ export default function CompanyPage() {
         .co-member-link { position: absolute; top: 16px; right: 16px; color: var(--faint); transition: color var(--dur) ease; }
         .co-member-link:hover { color: var(--accent); }
         .co-studio { margin-top: 10px; display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; padding: 18px; border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }
-        .co-studio-mark { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 500; }
+        .co-studio-mark { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; font-size: 12px; font-weight: 500; }
         @media (max-width: 860px) { .co-team { grid-template-columns: 1fr 1fr; } .co-studio { grid-template-columns: 44px 1fr; } .co-studio .link { grid-column: 2; } }
         @media (max-width: 520px) { .co-team { grid-template-columns: 1fr; } }
         .co-join { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: clamp(22px, 3vw, 36px); border-radius: var(--r-xl); background: var(--surface-2); border: var(--hair) solid var(--line); }

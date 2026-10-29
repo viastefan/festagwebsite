@@ -15,7 +15,7 @@
   --ink: #15130f;
   --ink-2: #2e2a24;
   --muted: #4b463e;
-  --faint: #736d62;
+  --faint: #675f54;
   --line: rgba(40, 30, 10, 0.08);
   --hair: 1px;
   --line-strong: rgba(40, 30, 10, 0.14);
@@ -32,9 +32,9 @@
   --sky-2: #d9ccb8;
 
   --slate: #6a655c;
-  --ok: #3f7a52;
+  --ok: #2f6a43;
   --ok-soft: rgba(63, 122, 82, 0.12);
-  --warn: #9a6b22;
+  --warn: #86581a;
   --warn-soft: rgba(154, 107, 34, 0.14);
 
   /* Töne — alle ruhig, warm, ohne Buntheit: Sand, Stein, Burgundy */
@@ -216,7 +216,7 @@ ol {
   padding: 10px 16px;
   border-radius: 8px;
   background: var(--ink, #0f0f14);
-  color: #fff;
+  color: var(--canvas);
   font-size: 14px;
   text-decoration: none;
   transform: translateY(-150%);
@@ -1757,7 +1757,7 @@ ol {
   height: 22px;
   border-radius: 50%;
   background: var(--ink);
-  color: #fff;
+  color: var(--canvas);
   display: grid;
   place-items: center;
 }
@@ -2294,7 +2294,7 @@ ol {
   height: 32px;
   border-radius: 6px;
   background: var(--ink);
-  color: #fff;
+  color: var(--canvas);
   display: grid;
   place-items: center;
   transition: background var(--dur) ease, transform var(--dur) var(--ease);
@@ -3555,7 +3555,7 @@ html body *::after {
   --ink: #efe8dc;
   --ink-2: #cfc8bb;
   --muted: #a8a094;
-  --faint: #7f786c;
+  --faint: #9d9588;
   --line: rgba(255, 240, 210, 0.08);
   --line-strong: rgba(255, 240, 210, 0.15);
   --accent: #d3a5b0;
@@ -3750,4 +3750,16 @@ html body *::after {
     display: inline-flex;
     align-items: center;
   }
+}
+
+/* Kontrast: Status- und Warnfarben im Dunkeln heller, Skip-Link, aktive Tabs */
+:root[data-theme="dark"] {
+  --ok: #86caa0;
+  --ok-soft: rgba(134, 202, 160, 0.14);
+  --warn: #dfae62;
+  --warn-soft: rgba(223, 174, 98, 0.16);
+}
+:root[data-theme="dark"] .skip-link,
+:root[data-theme="dark"] .cf-topics button.is-on {
+  color: #17120f;
 }

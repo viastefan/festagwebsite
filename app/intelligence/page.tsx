@@ -301,7 +301,7 @@ export default function IntelligencePage() {
           background: var(--surface); border: var(--hair) solid var(--line); box-shadow: var(--sh-xs);
         }
         .in-model-top { display: flex; align-items: center; justify-content: space-between; }
-        .in-model-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+        .in-model-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; }
         .in-model-name { margin-top: 26px; font-size: 40px; line-height: 1; color: var(--ink); }
         .in-model-role { margin-top: 8px; font-size: 14px; color: var(--accent); }
         .in-model-facts { margin: 20px 0 0; padding-top: 16px; border-top: var(--hair) solid var(--line); display: grid; gap: 10px; margin-top: auto; }

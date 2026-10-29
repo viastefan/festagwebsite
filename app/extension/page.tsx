@@ -152,7 +152,7 @@ export default function ExtensionPage() {
       <style>{`
         .xt-scene { position: relative; max-width: 980px; margin: 0 auto; padding-bottom: 40px; }
         .xt-browser { max-width: 820px; }
-        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px var(--accent-soft); }
+        .xt-ext { justify-self: end; width: 26px; height: 26px; border-radius: 5px; background: var(--ink); color: var(--canvas); display: grid; place-items: center; box-shadow: 0 0 0 3px var(--accent-soft); }
         .xt-ext-mark { width: 13px; height: 13px; }
         .xt-page { padding: 28px; min-height: 340px; background: var(--surface); }
         .xt-issue { max-width: 460px; }
