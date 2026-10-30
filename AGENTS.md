@@ -52,7 +52,7 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
   Keine bunten Töne (kein Blau, Türkis, Grün, Orange). Status-Grün nur für „erledigt“.
 - **Schrift:** Geist, Medium als Grundschnitt, Buchstabenabstand 0. Überschriften H1/H2 Regular, gleiche Schrift,
   H1 ist immer genau 1,2px größer als H2 (Tokens `--h2-size`/`--h1-size` in `globals.css`), auf jeder Seite gleich.
-  Header schlank (44px Desktop, 48px mobil, Links 13px). Hero ohne Fließtext. Alles kompakt: Buttons 36px, Sektionen ca. 52–92px.
+  Header schlank (44px Desktop, 48px mobil, Links 13px). Hero ohne Fließtext. Alles kompakt: Knöpfe 30px, Sektionen ca. 52–92px.
 - **Medien:** Produktvideos (`public/media/video/*.mp4`, aus den klickbaren Demos aufgenommen, unter 600 KB) laufen über
   `VideoBand`, Bilder über `MediaBand` (beide in `app/_components/ui/Media.tsx`). Videos starten nur im Sichtbereich
   und respektieren „Bewegung reduzieren“. Keine Stockfotos, keine Platzhalter.
@@ -71,11 +71,12 @@ Product docs are copied from `festag-mvp/docs/`. When north-star positioning cha
 - **Header und Texte (Regel des Inhabers):** Unter Abschnittsköpfen steht **kein** Text (`SectionHead` ignoriert `lead`).
   Erklärungen stehen nur in Containern oder als Beschreibung darin. Seriös, einfach, kurz: liest eh keiner viel.
   Header-Knopf „Kostenlos starten“ ist nur Text, „Anmelden“ nur Text, in jedem Zustand ohne Fläche (Tastatur-Fokus nur als Rahmen).
-- **Knöpfe wie in der App:** Pille, Burgundy-Hauptknopf mit Lichtkante, Glas-Knopf (`btn--ghost`), weicher Lift beim Hover,
+  Das gilt für Desktop **und** Handy.
+- **Knöpfe wie in der App:** kantig (8px, keine Pille), Burgundy-Hauptknopf mit Lichtkante, Glas-Knopf (`btn--ghost`), weicher Lift beim Hover,
   Einfedern beim Drücken, Lichtschimmer, klarer Fokusring. Neue Knöpfe nutzen nur `.btn` mit diesen Varianten.
 - **Pfeile und Knöpfe:** Genau ein kleiner Pfeil (12px, `ShiftArrow`) pro Knopf, **kein runder Container**, schiebt beim Hover durch.
   Knöpfe klein und kantig: Radius 8px, Höhe 30px (groß 32px, klein 26px), überall gleich, auch am Desktop. Hover-Effekte nur
-  mit `@media (hover: hover)`. **Handy:** Suche nur im Menü (Suchfeld mit Schnellwahl), nicht im Header; Knöpfe 34/38px, Menü kompakt.
+  mit `@media (hover: hover)`. **Handy:** Suche nur im Menü (Suchfeld mit Schnellwahl), nicht im Header; Knöpfe wie am Desktop (30/32px), Menü kompakt.
 - **Fenster wie macOS:** Alle Fenster, Videos, Bilder und Code-Blöcke tragen oben links die Knöpfe rot, gelb, grün.
   Text-Karten bekommen sie nicht. Demos spiegeln das aktuelle App-Dashboard: Seitenleiste mit „Zuletzt ausgeführt“, Mitte,
   rechts das Panel „Aktuell“ (Umgebung mit Modus-Schalter, Läuft, Kontext, Konnektoren, Ausgaben).
