@@ -965,9 +965,6 @@ ol {
   .app {
     grid-template-columns: 1fr;
   }
-  .app-side {
-    display: none;
-  }
 }
 
 /* ───────────────────────── Connector strip ───────────────────────── */
@@ -1092,15 +1089,6 @@ ol {
 .feature .stage--pad {
   padding: clamp(14px, 2.6vw, 36px);
 }
-.feature-stage {
-  padding: clamp(16px, 3vw, 36px) clamp(12px, 3vw, 36px) 0;
-  min-height: 420px;
-  display: flex;
-  align-items: flex-end;
-}
-.feature-stage .window {
-  width: 100%;
-}
 
 /* ───────────────────────── Cards & grids ───────────────────────── */
 .grid-3 {
@@ -1111,11 +1099,6 @@ ol {
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 .card {
@@ -1378,49 +1361,6 @@ ol {
   background: var(--surface);
   border: var(--hair) solid var(--line);
   box-shadow: var(--sh-xs);
-}
-.plan--featured {
-  background: linear-gradient(180deg, var(--tone-blue-tint), var(--surface) 42%);
-  border-color: rgba(63, 27, 36, 0.175);
-  box-shadow: 0 0 0 1px rgba(63, 27, 36, 0.06), var(--sh-md);
-}
-.plan-badge {
-  position: absolute;
-  top: -12px;
-  left: 24px;
-}
-.plan-name {
-  font-size: calc(18px * var(--fs, 1));
-  color: var(--ink);
-}
-.plan-for {
-  margin-top: 4px;
-  font-size: calc(13.5px * var(--fs, 1));
-  color: var(--muted);
-  min-height: 2.8em;
-}
-.plan-price {
-  margin-top: 20px;
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-.plan-amount {
-  font-size: calc(40px * var(--fs, 1));
-  line-height: 1;
-  letter-spacing: var(--ls-display);
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.plan-unit {
-  font-size: calc(13px * var(--fs, 1));
-  color: var(--muted);
-}
-.plan-note {
-  margin-top: 6px;
-  font-size: calc(12.5px * var(--fs, 1));
-  color: var(--faint);
-  min-height: 1.4em;
 }
 .plan .btn {
   margin-top: 20px;
@@ -1750,24 +1690,6 @@ ol {
 .hl-av .fmark {
   width: 11px;
   height: 11px;
-}
-
-/* Hero proof row */
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: 22px;
-}
-.hero-proof li {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: calc(13.5px * var(--fs, 1));
-  color: var(--muted);
-}
-.hero-proof svg {
-  color: var(--ok);
 }
 @media (max-width: 1100px) {
   .hl {
@@ -2243,12 +2165,6 @@ ol {
   .nav-center {
     justify-content: center;
   }
-  .plans {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .footer-grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -2287,9 +2203,6 @@ ol {
   .feature .stage--pad {
   padding: clamp(14px, 2.6vw, 36px);
 }
-.feature-stage {
-    min-height: 360px;
-  }
   .grid-3,
   .quote-grid,
   .updates,
@@ -2337,9 +2250,6 @@ ol {
   }
   .hero .display {
     max-width: none;
-  }
-  .plan-amount {
-    font-size: calc(34px * var(--fs, 1));
   }
 }
 
