@@ -16,10 +16,10 @@
   --ad-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 20px 50px -32px rgba(17, 24, 39, 0.22),
     0 1px 2px rgba(17, 24, 39, 0.03);
   --ad-panel: #f1eee8;
-  --ad-accent: #3f1b24;
-  --ad-accent-text: #3f1b24;
-  --ad-accent-ink: #fff;
-  --ad-accent-soft: rgba(63, 27, 36, 0.05);
+  --ad-accent: #d3a5b0;
+  --ad-accent-text: #7a4452;
+  --ad-accent-ink: #1a1214;
+  --ad-accent-soft: rgba(211, 165, 176, 0.22);
   --ad-chip-border: rgba(17, 24, 39, 0.1);
   --ad-chip-bg: rgba(17, 24, 39, 0.03);
   --ad-chip-ink: #4e5054;
@@ -45,12 +45,16 @@
 
   position: relative;
   color: var(--ad-ink);
+  font-family: var(--font-geist-header), var(--font);
+  font-weight: 550;
+  font-synthesis: none;
   font-size: calc(13.5px * var(--fs, 1));
   line-height: 19px;
   text-align: left;
 }
 .ad[data-theme="dark"] {
-  --ad-accent: #5a2b36;
+  --ad-accent: #d3a5b0;
+  --ad-accent-ink: #1a1214;
   --ad-canvas: #161512;
   --ad-canvas-2: #1c1a17;
   --ad-canvas-3: #25231f;
@@ -62,8 +66,8 @@
   --ad-card-fill: rgba(255, 240, 210, 0.025);
   --ad-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 60px -30px rgba(0, 0, 0, 0.6);
   --ad-panel: #25231f;
-  --ad-accent-text: #c9b3b6;
-  --ad-accent-soft: rgba(255, 240, 230, 0.06);
+  --ad-accent-text: #d3a5b0;
+  --ad-accent-soft: rgba(211, 165, 176, 0.16);
   --ad-chip-border: rgba(236, 234, 231, 0.16);
   --ad-chip-bg: rgba(255, 255, 255, 0.02);
   --ad-chip-ink: #c5cad3;
@@ -182,7 +186,7 @@
   gap: 8px;
   padding: 0 8px 16px;
   font-size: calc(15px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-mark {
   display: inline-block;
@@ -270,7 +274,7 @@
   color: #fff;
   font-size: calc(10px * var(--fs, 1));
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-user small {
   display: block;
@@ -300,7 +304,7 @@
 }
 .ad-h b {
   font-size: calc(18px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: -0.016em;
 }
 .ad-h span {
@@ -339,7 +343,7 @@
   margin: 0;
   color: var(--ad-ink);
   font-size: calc(15px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
   line-height: 1.25;
   letter-spacing: 0.01em;
 }
@@ -507,14 +511,14 @@
   background: var(--ad-tag-bg);
   color: var(--ad-tag-ink);
   font-size: calc(11px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
   white-space: nowrap;
 }
 .ad-card-title {
   margin: 0;
   color: var(--ad-ink);
   font-size: calc(clamp(19px, 2vw, 24px) * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
   line-height: 1.2;
   letter-spacing: -0.016em;
   text-wrap: balance;
@@ -548,7 +552,7 @@
 .ad-panel strong {
   display: block;
   font-size: calc(15px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-panel p {
   margin: 4px 0 0;
@@ -616,7 +620,7 @@
 }
 .ad-why b {
   color: var(--ad-ink);
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-then {
   margin: 0;
@@ -625,7 +629,7 @@
 }
 .ad-then b {
   color: var(--ad-ink-2);
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-ask {
   display: flex;
@@ -692,7 +696,7 @@
 .ad-tl b {
   display: block;
   font-size: calc(14px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-tl small {
   color: var(--ad-ink-3);
@@ -728,7 +732,7 @@
   display: block;
   margin-bottom: 4px;
   color: var(--ad-ink);
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-pr {
   display: flex;
@@ -839,11 +843,9 @@
 @keyframes adWord {
   from {
     opacity: 0;
-    filter: blur(4px);
   }
   to {
     opacity: 1;
-    filter: blur(0);
   }
 }
 @keyframes adDot {
@@ -1137,7 +1139,7 @@ button.ad-chip:hover {
   background: var(--ad-panel);
 }
 .ad-opt b {
-  font-weight: 500;
+  font-weight: 550;
   font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-opt em {
@@ -1296,7 +1298,7 @@ button.ad-chip:hover {
   font-size: calc(11.5px * var(--fs, 1));
 }
 .ad-propose b {
-  font-weight: 500;
+  font-weight: 550;
   font-size: calc(13.5px * var(--fs, 1));
 }
 .ad-done {
@@ -1348,7 +1350,7 @@ button.ad-chip:hover {
   margin-bottom: 6px;
   color: var(--ad-ink-3);
   font-size: calc(11.5px * var(--fs, 1));
-  font-weight: 500;
+  font-weight: 550;
 }
 .ad-acard p {
   margin: 0 0 3px;
@@ -1489,23 +1491,11 @@ button.ad-chip:hover {
   top: 0;
   z-index: 8;
   pointer-events: none;
-  transition: transform 1s cubic-bezier(0.22, 0.9, 0.3, 1);
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.ad-cursor::after {
-  content: "";
-  position: absolute;
-  left: -9px;
-  top: -9px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 2px solid rgba(63, 27, 36, 0.55);
-  opacity: 0;
-  transform: scale(0.4);
-}
+.ad-cursor::after,
 .ad-cursor.is-down::after {
-  animation: adRipple 0.5s ease-out;
+  display: none;
 }
 .ad-cursor.is-down svg {
   transform: scale(0.88);

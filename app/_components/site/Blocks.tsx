@@ -5,7 +5,7 @@ import { FestagMark } from "../ui/Logo";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { Stage } from "../ui/Window";
 import { TextLink } from "../ui/Button";
-import { connectors, CONNECTOR_STATUS_LABEL } from "@/lib/site/connectors";
+import { connectors } from "@/lib/site/connectors";
 import { changelog, voices, type ChangelogEntry } from "@/lib/site/content";
 
 /** Cursor-style alternating feature: copy on one side, live demo on a painted stage. */
@@ -41,11 +41,13 @@ export function FeatureBlock({
 const CHIP_LOGO: Record<string, string> = { mail: "ionos", cursor: "claude" };
 
 export function ConnectorMarquee({ label }: { label?: string }) {
-  const list = [...connectors, ...connectors];
+  const shown = connectors.filter((c) => c.status !== "soon");
+  const list = [...shown, ...shown];
   return (
     <section className="strip" aria-label="Connectors">
       <div className="wrap wrap--wide">
         {label ? <p className="strip-label">{label}</p> : null}
+        <div className="strip-rail">
         <div className="marquee">
           <div className="marquee-track">
             {list.map((c, i) => (
@@ -53,17 +55,17 @@ export function ConnectorMarquee({ label }: { label?: string }) {
                 key={`${c.id}-${i}`}
                 href="/connectors"
                 className="chip"
-                tabIndex={i >= connectors.length ? -1 : undefined}
-                aria-hidden={i >= connectors.length ? true : undefined}
+                tabIndex={i >= shown.length ? -1 : undefined}
+                aria-hidden={i >= shown.length ? true : undefined}
               >
                 <span className="chip-icon">
-                  <BrandLogo name={CHIP_LOGO[c.id] ?? c.id} size={16} />
+                  <BrandLogo name={CHIP_LOGO[c.id] ?? c.id} size={15} />
                 </span>
                 {c.name}
-                {c.status !== "live" ? <span className="chip-state">{CONNECTOR_STATUS_LABEL[c.status]}</span> : null}
               </Link>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -4,8 +4,6 @@ import { Icon, type IconName } from "../../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../../_components/ui/Section";
 import { MemoryNav, MemoryStyles } from "../shared";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/memory/chapters" },
   title: "Kapitel — Container für KI-Arbeit",
@@ -58,9 +56,6 @@ export default function MemoryChaptersPage() {
         lead="Einzelne Prompts sagen wenig. Vierzig Prompts an einem Nachmittag sagen, wie eine Entscheidung zustande kam — wenn sie jemand ordnet."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
           <Button href="/memory/token-economics" variant="soft" size="lg">
             Zur Token-Ökonomie
           </Button>

@@ -8,7 +8,6 @@ import { Stage } from "../_components/ui/Window";
 import { FeatureBlock } from "../_components/site/Blocks";
 import { VideoBand } from "../_components/ui/Media";
 import { Bento, BentoCell, KeyList } from "../_components/ui/Blocks2";
-import { links } from "@/lib/site/links";
 import { principles } from "@/lib/site/content";
 
 export const metadata: Metadata = {
@@ -61,11 +60,8 @@ export default function ProductPage() {
         lead="Festag ersetzt keine Tools. Es sitzt über ihnen und macht aus verstreuter Arbeit verständlichen Projektstand — für Kunden, Gründer und Führung."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
-          <Button href="/contact" variant="soft" size="lg">
-            Demo anfragen
+          <Button href="/contact" variant="solid" size="lg" arrow>
+            Demo ansehen
           </Button>
         </div>
       </PageHero>
@@ -102,30 +98,30 @@ export default function ProductPage() {
         <div className="wrap wrap--wide">
           <FeatureBlock
             id="client"
-            title="Client Panel."
-            sub="Kunden sehen Status, Fortschritt, Phase, Risiken, offene Entscheidungen und nächste Schritte — übersetzt, belegt, ohne Slack-Chaos oder Jira-Rauschen."
+            title="Beim Client."
+            sub="Die Lieferung liegt in vier Schritten: entworfen, freigegeben, beim Client, abgenommen. Der Kunde sieht den Satz, nicht das Board."
           >
             <FeedScene />
           </FeatureBlock>
           <FeatureBlock
             id="decisions"
             flip
-            title="Entscheidungen & Freigaben."
-            sub="Aven erkennt fehlende Entscheidungen, stellt Optionen mit Auswirkung gegenüber und dokumentiert das Ergebnis mit Begründung."
+            title="Wartet auf dich."
+            sub="Was eine Entscheidung braucht, liegt als Karte in der Orchestration. Aven sagt, warum die Lieferung so rausgeht."
           >
             <DecisionScene />
           </FeatureBlock>
           <FeatureBlock
             id="executive"
-            title="Executive Overview."
-            sub="Portfolio-Health für Gründer und CEOs: was läuft, was blockiert, wo entschieden werden muss — und was sich voraussichtlich verschiebt."
+            title="Stand über alle Projekte."
+            sub="Entscheidungen, Lieferungen, Freigaben, Aufgaben, Risiken. Ein Blick, kein Status-Meeting."
           >
             <PortfolioScene />
           </FeatureBlock>
           <FeatureBlock
             flip
-            title="Activity Intelligence."
-            sub="Arbeitssignale, Issues und Ereignisse aus allen Connectors auf einer Seite — klassifiziert und mit Belegen verknüpft."
+            title="Aus einem Satz wird ein Projekt."
+            sub="Ein Satz im Chat wird zum Projekt, mit Plan, Phasen und den Tools, die schon verbunden sind."
           >
             <HandoffScene />
           </FeatureBlock>

@@ -6,8 +6,6 @@ import { MediaBand } from "../_components/ui/Media";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { Stage } from "../_components/ui/Window";
 import { MemoryScene } from "../_components/appdemo/AppDemo";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/intelligence" },
   title: "Modelle & Intelligence",
@@ -113,9 +111,6 @@ export default function IntelligencePage() {
         lead="Festag ist ein selbstlernendes Operational-Intelligence-System. Drei spezialisierte Interpreter, ein gemeinsames Wissensmodell — und jede Interaktion macht es klüger."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
           <Button href="/security" variant="soft" size="lg">
             Datenschutz & Kontrolle
           </Button>

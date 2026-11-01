@@ -4,8 +4,6 @@ import { Icon, type IconName } from "../../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../../_components/ui/Section";
 import { MemoryNav, MemoryStyles } from "../shared";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/memory/prompts" },
   title: "Prompt-Historie — jede Eingabe als Entscheidung",
@@ -78,9 +76,6 @@ export default function MemoryPromptsPage() {
         lead="Deshalb behandelt Festag ihn wie eine: aufgenommen, bereinigt, eingeordnet und mit dem verbunden, was daraus wurde."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
           <Button href="/memory/connect" variant="soft" size="lg">
             Werkzeug verbinden
           </Button>

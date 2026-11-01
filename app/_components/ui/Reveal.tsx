@@ -24,9 +24,9 @@ export function Reveal({
   return (
     <Comp
       className={className}
-      initial={reduced ? false : { opacity: 0, y }}
+      initial={reduced ? false : { opacity: 0, y: Math.min(y, 10) }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.7, delay, ease: EASE }}
       {...rest}
     >
@@ -64,8 +64,8 @@ export function RevealItem({ children, className }: { children: React.ReactNode;
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 14 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+        hidden: { opacity: 0, y: 8 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
       }}
     >
       {children}

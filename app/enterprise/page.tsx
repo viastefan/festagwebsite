@@ -75,7 +75,7 @@ export default function EnterprisePage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <Reveal>
-            <Stage pad caption="Executive Overview · Beispiel-Portfolio">
+            <Stage pad caption="Stand · alle Projekte">
               <div style={{ maxWidth: 1040, margin: "0 auto" }}>
                 <PortfolioScene />
               </div>

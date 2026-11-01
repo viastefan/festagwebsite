@@ -6,8 +6,6 @@ import { Reveal, RevealGroup, RevealItem } from "../_components/ui/Reveal";
 import { MediaBand } from "../_components/ui/Media";
 import { CtaBand, PageHero, SectionHead } from "../_components/ui/Section";
 import { MEMORY_PAGES, MemoryNav, MemoryStyles } from "./shared";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/memory" },
   title: "Build Memory — das Gedächtnis eurer KI-Arbeit",
@@ -81,9 +79,6 @@ export default function MemoryPage() {
         lead="Build Memory ist das Gedächtnis eurer KI-gestützten Entwicklung: Prompts werden zu Kapiteln, Kapitel zu Entscheidungen, Entscheidungen zu einer Zahl, die man einem Kunden zeigen kann."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
           <Button href="/memory/connect" variant="soft" size="lg">
             Werkzeug verbinden
           </Button>

@@ -51,11 +51,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <ul className="footer-notes">
-          {NOTES.map((n) => (
-            <li key={n}>{n}</li>
-          ))}
-        </ul>
+        <p className="footer-legal">{NOTES.join(" ")}</p>
 
         <div className="footer-settings">
           <ThemeSetting />

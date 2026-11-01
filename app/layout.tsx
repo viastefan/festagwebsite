@@ -15,6 +15,15 @@ const geist = localFont({
   fallback: ["system-ui", "sans-serif"],
 });
 
+/** Variable Geist für Navigation und Überschriften, damit Zwischengewichte echt sitzen. */
+const geistHeader = localFont({
+  src: "../public/fonts/GeistHeader-Variable.woff2",
+  variable: "--font-geist-header",
+  weight: "100 900",
+  display: "swap",
+  fallback: ["Geist", "system-ui", "sans-serif"],
+});
+
 const DESCRIPTION =
   "Festag ist die Operational-Intelligence-Schicht über GitHub, Linear, Jira und Slack. Aven übersetzt Arbeitssignale in Status, Risiken und Entscheidungen — klar für Kunden und Führung.";
 
@@ -95,12 +104,12 @@ const JSON_LD = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={geist.variable} suppressHydrationWarning>
+    <html lang="de" className={`${geist.variable} ${geistHeader.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html:
-              'try{var t=localStorage.getItem("festag-site-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.dataset.theme="dark"}catch(e){}',
+              'try{var t=localStorage.getItem("festag-site-theme");if(t==="dark"||(t==="system"&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.dataset.theme="dark"}catch(e){}',
           }}
         />
       </head>

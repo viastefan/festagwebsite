@@ -1,7 +1,5 @@
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";
-import { links } from "@/lib/site/links";
-
 export function SectionHead({
   eyebrow,
   title,
@@ -58,32 +56,28 @@ export function PageHero({
 export function CtaBand({
   title = "Sieh, was in deinen Projekten wirklich läuft.",
   lead = "Erster Workspace kostenlos. Tools verbinden, Aven fragen, die erste Entscheidung treffen, in zehn Minuten.",
-  facts = ["Erster Workspace kostenlos", "Server in Deutschland", "Nichts geht ohne Freigabe raus"],
+  facts = ["Server in Deutschland", "Nichts geht ohne Freigabe raus"],
 }: {
   title?: string;
   lead?: string;
   facts?: string[];
 }) {
+  const fine = [lead, ...facts]
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => (/[.!?]$/.test(part) ? part : `${part}.`))
+    .join(" ");
   return (
     <section className="section">
       <div className="wrap">
         <Reveal className="cta">
-          <span className="cta-mark" aria-hidden />
           <h2 className="cta-title">{title}</h2>
-          <p className="lead">{lead}</p>
+          <p className="cta-fine">{fine}</p>
           <div className="btn-row">
-            <Button href={links.register} variant="solid" size="lg" arrow>
-              Kostenlos starten
-            </Button>
-            <Button href="/contact" variant="soft" size="lg">
-              Demo anfragen
+            <Button href="/contact" variant="solid" size="lg" arrow>
+              Demo ansehen
             </Button>
           </div>
-          <ul className="cta-facts">
-            {facts.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
         </Reveal>
       </div>
     </section>

@@ -12,8 +12,6 @@ import {
   Highlights,
 } from "./_components/site/Blocks";
 import { VideoBand } from "./_components/ui/Media";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   title: { absolute: "Festag — Operational Intelligence für Teams, die liefern" },
   alternates: { canonical: "/" },
@@ -33,17 +31,14 @@ export default function HomePage() {
               <span className="display-accent">Festag macht es sichtbar.</span>
             </h1>
             <div className="btn-row">
-              <Button href={links.register} variant="solid" size="lg" arrow>
-                Kostenlos starten
-              </Button>
-              <Button href="/contact" variant="soft" size="lg" arrow>
-                Demo anfragen
+              <Button href="/contact" variant="text" size="lg" arrow>
+                Demo ansehen
               </Button>
             </div>
           </Reveal>
 
           <Reveal className="hero-stage" delay={0.15} y={24}>
-            <Stage caption="Live-Demo, klick dich durch">
+            <Stage>
               <HeroApp />
             </Stage>
           </Reveal>
@@ -56,8 +51,8 @@ export default function HomePage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <FeatureBlock
-            title="Ein Status, den Kunden lesen können."
-            sub="Aus Commits, Tickets und Threads wird ein ruhiger Feed: was entschieden ist, was wartet, was geliefert wurde."
+            title="Eine Lieferung, die der Kunde lesen kann."
+            sub="Developer sieht die Änderung im Code. Client sieht denselben Stand, in einem Satz."
             link={{ href: "/product#client", label: "Mehr über den Status-Feed" }}
           >
             <FeedScene />
@@ -65,16 +60,16 @@ export default function HomePage() {
 
           <FeatureBlock
             flip
-            title="Entscheidungen statt Status-Theater."
-            sub="Festag formuliert die Frage, rechnet die Optionen durch und empfiehlt eine Richtung. Du entscheidest mit einem Klick."
+            title="Was auf dich wartet, liegt oben."
+            sub="Die offene Lieferung liegt oben. Sie geht erst raus, wenn jemand sie freigibt."
             link={{ href: "/product#decisions", label: "Wie Entscheidungen funktionieren" }}
           >
             <DecisionScene />
           </FeatureBlock>
 
           <FeatureBlock
-            title="Frag, was wirklich läuft."
-            sub="Kein Chatbot. Eine Antwort mit Kontext, Empfehlung und Quelle, direkt aus euren Tools belegt."
+            title="Was soll passieren?"
+            sub="Vier Fragen. Stand, Entscheidung, Termin, letzte Lieferung."
             link={{ href: "/tagro", label: "Aven kennenlernen" }}
           >
             <AskScene />
@@ -82,9 +77,9 @@ export default function HomePage() {
 
           <FeatureBlock
             flip
-            title="Vom Entschluss zum Pull Request."
-            sub="Ist entschieden, übergibt Festag den Auftrag an euren Coding-Agent, prüft den Beleg und hält den Kunden auf dem Laufenden."
-            link={{ href: "/connectors", label: "Alle Connectors" }}
+            title="Aus einem Satz wird ein Projekt."
+            sub="Ein Satz reicht. Daraus werden Projekt, Plan und die erste Lieferung."
+            link={{ href: "/product", label: "Wie ein Projekt entsteht" }}
           >
             <HandoffScene />
           </FeatureBlock>
@@ -98,12 +93,12 @@ export default function HomePage() {
             <Reveal className="vgrid-item">
               <VideoBand src="/media/video/connectors.mp4" poster="/media/video/connectors.jpg" mobileSrc="/media/video/connectors-m.mp4" mobilePoster="/media/video/connectors-m.jpg" mobileRatio="390 / 560" label="Konnektoren verbinden" caption="Verbinden" />
               <h3 className="h3">Verbinden.</h3>
-              <p className="body">GitHub, Linear, Slack, Jira und Notion in Minuten verbunden. Festag liest Signale, keine Menschen.</p>
+              <p className="body">GitHub, Linear, Slack, Jira, Notion. Festag liest die Arbeit, nicht die Leute.</p>
             </Reveal>
             <Reveal className="vgrid-item" delay={0.08}>
               <VideoBand src="/media/video/handoff.mp4" poster="/media/video/handoff.jpg" mobileSrc="/media/video/handoff-m.mp4" mobilePoster="/media/video/handoff-m.jpg" mobileRatio="390 / 560" label="Übergabe an den Coding-Agent" caption="Übergeben" />
               <h3 className="h3">Übergeben.</h3>
-              <p className="body">Nach der Entscheidung geht der Brief an euren Coding-Agent. Der Pull Request kommt als Beleg zurück.</p>
+              <p className="body">Die Freigabe wird zum Auftrag. Der Pull Request kommt als Beleg zurück.</p>
             </Reveal>
           </div>
         </div>
@@ -112,7 +107,9 @@ export default function HomePage() {
       {/* ───────── Vertrauen (Kurzfassung, Details unter /security) ───────── */}
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
-          <SectionHead title="Operative Sichtbarkeit. Keine Überwachung." lead="Festag sieht, was Arbeit produziert, nicht, was Menschen tun." />
+          <SectionHead title="Operative Sichtbarkeit. Keine Überwachung." />
+          <div className="ledger">
+            <p>Festag sieht, was Arbeit produziert. Nicht, was Menschen tun.</p>
           <StatStrip
             items={[
               { v: "Deutschland", l: "Hosting und Verarbeitung" },
@@ -121,6 +118,7 @@ export default function HomePage() {
               { v: "Opt-in", l: "Persönliche Profile" },
             ]}
           />
+          </div>
           <Reveal style={{ marginTop: 20 }}>
             <TextLink href="/security">Sicherheit und Datenschutz im Detail</TextLink>
           </Reveal>
@@ -172,11 +170,13 @@ export default function HomePage() {
 
 const HOME_CSS = `
 .home-team {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: clamp(16px, 2vw, 24px);
-  padding: clamp(12px, 1.4vw, 18px); border-radius: var(--r-xl);
-  background: linear-gradient(135deg, var(--tone-wood-tint), var(--surface-2) 60%);
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 56px);
+  align-items: end; padding: 0; background: none;
 }
-.home-team-copy { display: grid; align-content: center; gap: 18px; padding: clamp(14px, 2vw, 28px); }
+.ledger { border-top: 0.5px solid var(--line-strong); }
+.ledger > p { margin: 0; padding: 16px 0 4px; max-width: 42ch; color: var(--muted); font-size: calc(14.5px * var(--fs, 1)); }
+.ledger .stats { border-top: 0; }
+.home-team-copy { display: grid; align-content: end; gap: 18px; padding: 0 0 8px; }
 .home-team-copy .h3 { font-weight: 500; max-width: 26ch; }
 .home-team-media { position: relative; min-height: clamp(280px, 34vw, 480px); border-radius: var(--r-lg); overflow: hidden; }
 .home-team-img { object-fit: cover; object-position: center 40%; }

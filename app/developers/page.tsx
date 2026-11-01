@@ -29,13 +29,14 @@ const TOOLS: [string, string][] = [
   ["festag_list_projects", "Projekte mit deiner Rolle."],
   ["festag_get_item", "Eine Aufgabe oder Entscheidung mit Brief, Antwort, Links und Dateien."],
   ["festag_start_item", "Meldet, dass die Arbeit an einer Aufgabe beginnt."],
-  ["festag_progress", "Fortschritt zu einer Aufgabe nach jedem Schritt."],
+  ["festag_progress", "Eine Zeile Fortschritt, live in Festag. Die Antwort kann Anweisungen aus der App enthalten."],
+  ["festag_report_progress", "Kurzer Zwischenstand in die Historie."],
   ["festag_log_work", "Erledigte Einheit protokollieren: Commit, Pull Request, Merge, Deploy, Plan, Blocker, Notiz."],
   ["festag_complete_item", "Schließt eine Aufgabe ab, mit Zusammenfassung und Pull-Request-Link als Beleg."],
   ["festag_fail_item", "Meldet, dass eine Aufgabe nicht umsetzbar ist, mit Grund."],
   ["festag_flag_risk", "Markiert ein Risiko, das der Kunde oder das Team sehen soll."],
   ["festag_propose_decision", "Stellt eine Entscheidung zur Wahl, statt zu raten."],
-  ["festag_approve_item", "Gibt eine vorbereitete Aufgabe frei (nur mit Berechtigung)."],
+  ["festag_approve_item", "Legt eine offene Aufgabe in die Warteschlange des Agents. Freigaben an den Kunden macht ein Mensch."],
   ["festag_send", "Freier Text an Festag. Aven ordnet ihn dem richtigen Projekt zu."],
 ];
 
@@ -53,7 +54,7 @@ export default function DevelopersPage() {
     <div className="dev wrap wrap--wide">
       <aside className="dev-nav" aria-label="Inhalt">
         <div className="dev-nav-in">
-          <span className="dev-badge">Developers</span>
+          <span className="dev-badge">API</span>
           <nav>
             {NAV.map((n) => (
               <a key={n.id} href={`#${n.id}`}>
@@ -71,8 +72,7 @@ export default function DevelopersPage() {
         <header id="start" className="dev-head">
           <h1 className="display">API und Plugin</h1>
           <p className="lead">
-            Festag lässt sich von außen ansprechen: per HTTP-Anfrage, aus Zapier oder Make, oder direkt aus eurem Coding-Agent über das
-            Plugin. Aven ordnet ein, bereitet Entscheidungen vor und hält alles in der Historie.
+            Zwei Wege. HTTP nimmt freien Text an. Das Plugin gibt Claude Code, Cursor und Codex die Werkzeuge, mit Beleg und Freigabe.
           </p>
           <div className="dev-facts">
             <div>

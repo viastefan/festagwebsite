@@ -114,14 +114,8 @@ export function SiteNav() {
 
           <div className="nav-right">
             <SearchButton />
-            <Button href={links.login} variant="text">
+            <Button href={links.login} variant="text" className="nav-login">
               Anmelden
-            </Button>
-            <Button href="/contact" variant="ghost">
-              Demo anfragen
-            </Button>
-            <Button href={links.register} variant="solid">
-              Kostenlos starten
             </Button>
             <button
               type="button"
@@ -149,10 +143,10 @@ export function SiteNav() {
             style={{ top }}
             onMouseEnter={() => open(menu)}
             onMouseLeave={scheduleClose}
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.22, ease: EASE }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.55, ease: EASE }}
           >
             <div className="mega-inner">
               <div className="mega-grid">
@@ -202,13 +196,13 @@ export function SiteNav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.5, ease: EASE }}
           >
             <motion.nav
               className="msheet-inner"
               initial="hidden"
               animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }}
+              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.045, delayChildren: 0.08 } } }}
             >
               <motion.div className="msheet-find" variants={ITEM}>
                 <button
@@ -252,9 +246,6 @@ export function SiteNav() {
               />
               <MGroup label="Ressourcen" items={resourcesMenu.filter((i) => i.href !== "/community")} isActive={isActive} />
               <motion.div className="msheet-cta" variants={ITEM}>
-                <Button href={links.register} variant="solid" size="lg" arrow>
-                  Kostenlos starten
-                </Button>
                 <Button href={links.login} variant="text" size="lg" className="msheet-login">
                   Anmelden
                 </Button>
@@ -268,8 +259,8 @@ export function SiteNav() {
 }
 
 const ITEM = {
-  hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.55, ease: EASE } },
 };
 
 function MGroup({

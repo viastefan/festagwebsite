@@ -4,8 +4,6 @@ import { Icon, type IconName } from "../../_components/ui/Icon";
 import { Reveal, RevealGroup, RevealItem } from "../../_components/ui/Reveal";
 import { CtaBand, PageHero, SectionHead } from "../../_components/ui/Section";
 import { MemoryNav, MemoryStyles } from "../shared";
-import { links } from "@/lib/site/links";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/memory/token-economics" },
   title: "Token-Ökonomie — was KI-Arbeit wirklich bringt",
@@ -75,9 +73,6 @@ export default function MemoryTokenEconomicsPage() {
         lead="Token-Ausgaben sind in jeder Agentur eine Zahl ohne Gegenstück. Festag gibt ihr eines: die Lieferung, die daraus entstanden ist."
       >
         <div className="btn-row">
-          <Button href={links.register} variant="solid" size="lg" arrow>
-            Kostenlos starten
-          </Button>
           <Button href="/memory/chapters" variant="soft" size="lg">
             Wie Kapitel entstehen
           </Button>

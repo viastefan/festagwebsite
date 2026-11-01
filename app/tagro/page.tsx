@@ -97,8 +97,8 @@ export default function TagroPage() {
       <section className="section section--flush-top">
         <div className="wrap wrap--wide">
           <FeatureBlock
-            title="Decision Mode."
-            sub="Aven beantwortet Entscheidungsfragen mit Optionen, Risiko-Delta und Empfehlung — und schreibt die getroffene Entscheidung mit Begründung ins Projekt."
+            title="Warum es so rausgeht."
+            sub="Aven formuliert die Lieferung, sagt warum, und legt sie dem Client vor. Abgenommen bleibt ein eigener Schritt."
           >
             <DecisionScene />
           </FeatureBlock>

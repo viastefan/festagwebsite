@@ -12,7 +12,7 @@ function readMode(): Mode {
   } catch {
     /* privater Modus */
   }
-  return "system";
+  return "light";
 }
 const subs = new Set<() => void>();
 function subscribe(cb: () => void) {
@@ -28,7 +28,7 @@ function apply(mode: Mode) {
 
 /** Einstellung „Darstellung“ (Hell, Dunkel, System). Sitzt im Footer, nicht im Header. */
 export function ThemeSetting() {
-  const mode = useSyncExternalStore(subscribe, readMode, () => "system" as Mode);
+  const mode = useSyncExternalStore(subscribe, readMode, () => "light" as Mode);
   const set = (m: Mode) => {
     try {
       if (m === "system") localStorage.removeItem(KEY);

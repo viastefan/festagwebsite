@@ -57,6 +57,8 @@ const API_TOOLS: [string, string][] = [
   ["festag_next", "Nächste bereite Aufgabe mit vollem Brief."],
   ["festag_list_open", "Offene Aufgaben und Entscheidungen."],
   ["festag_start_item", "Arbeit an einer Aufgabe beginnen."],
+  ["festag_progress", "Eine Zeile Fortschritt, live in Festag."],
+  ["festag_report_progress", "Kurzer Zwischenstand in die Historie."],
   ["festag_log_work", "Commit, Pull Request, Merge, Deploy oder Blocker protokollieren."],
   ["festag_complete_item", "Aufgabe mit Zusammenfassung und Pull-Request-Link abschließen."],
   ["festag_propose_decision", "Eine Entscheidung zur Wahl stellen, statt zu raten."],
